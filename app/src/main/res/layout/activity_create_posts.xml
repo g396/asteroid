@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="sns.asteroid.api.entities.Status"/>
+        <variable
+            name="emojiViewModel"
+            type="sns.asteroid.viewmodel.EmojiListViewModel" />
+        <variable
+            name="credential"
+            type="sns.asteroid.db.entities.Credential" />
+        <variable
+            name="replyStatus"
+            type="Status" />
+        <variable
+            name="media"
+            type="java.util.List" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card_background"
+        tools:context=".view.activity.CreatePostsActivity">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/emojiSelector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- ScrollViewの中身はLinearLayoutにしとかないと表示崩れる -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical"
+                tools:ignore="ScrollViewSize">
+
+                <include
+                    android:id="@+id/reply"
+                    layout="@layout/row_posts_simple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{replyStatus == null ? View.GONE : View.VISIBLE}"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:posts="@{replyStatus.reblog == null ? replyStatus : replyStatus.reblog}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/icon"
+                    tools:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/spoilerText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/background_normal"
+                        android:visibility="gone"
+                        android:hint="@string/hint_warning"
+                        android:inputType="text"
+                        android:theme="@style/EditTextStyle"
+                        app:customTextSize='@{"default"}' />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/textArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_normal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp">
+
+                        <EditText
+                            android:id="@+id/content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="@color/transparent"
+                            android:gravity="top"
+                            android:hint="@string/hint"
+                            android:theme="@style/EditTextStyle"
+                            app:customTextSize='@{"default"}'
+                            app:layout_constraintBottom_toTopOf="@id/images"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_min="56dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0"
+                            tools:text="@string/sample_summary" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/images"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintBottom_toTopOf="@id/checkBox"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:srcCompat="@tools:sample/backgrounds/scenic"
+                            tools:visibility="visible" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/mark_as_nsfw"
+                            android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
+                            app:customTextSize='@{"default"}'
+                            app:layout_constraintBottom_toTopOf="@id/checkBoxResize"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/checkBoxResize"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="画像をリサイズ"
+                            android:checked="true"
+                            android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
+                            app:customTextSize='@{"default"}'
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/include_create_poll"
+                    layout="@layout/include_create_poll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/emojiSelector"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/card_background"
+            android:visibility="gone"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintBottom_toTopOf="@id/send"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/emojiViewPager"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/include_search_emoji"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/include_search_emoji"
+                layout="@layout/include_search_emoji"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="@integer/dynamic_visibility_h360"
+                app:viewModel="@{emojiViewModel}"
+                app:layout_constraintBottom_toTopOf="@id/emojiTab"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/emojiTab"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/tab_height"
+                android:background="@color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tabMaxWidth="108dp"
+                app:tabMode="auto"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            app:avatarUrl="@{credential.avatarStatic}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/send"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <HorizontalScrollView
+            android:id="@+id/flexbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/send"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@+id/send">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/selectVisibility"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/customEmoji"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/emoji" />
+
+                <ImageButton
+                    android:id="@+id/hashtag"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/hashtag" />
+
+                <ImageButton
+                    android:id="@+id/addImage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/image" />
+
+                <ToggleButton
+                    android:id="@+id/poll"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/selector_button_poll"
+                    android:enabled="@{media.size() == 0}"
+                    android:textOff="@null"
+                    android:textOn="@null" />
+
+                <ToggleButton
+                    android:id="@+id/cw"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/selector_button_cw"
+                    android:textOff="@null"
+                    android:textOn="@null" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@{credential.accentColor}"
+            android:drawableRight="@drawable/send"
+            android:drawableTint="@color/white"
+            android:elegantTextHeight="true"
+            android:text="@string/send_post"
+            android:textColor="@color/white"
+            app:cornerRadius="999dp"
+            app:customTextSize='@{"default"}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_min="48dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

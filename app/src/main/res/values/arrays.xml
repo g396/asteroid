@@ -1,0 +1,114 @@
+<resources>
+    <!-- 絵文字サイズ -->
+    <string-array name="emoji_size">
+        <item>Default</item>
+        <item>1.5x</item>
+        <item>2x</item>
+        <item>2.5x</item>
+        <item>5x</item>
+        <item>10x</item>
+    </string-array>
+
+    <string-array name="emoji_size_values">
+        <item>1.2</item>
+        <item>1.8</item>
+        <item>2.4</item>
+        <item>3.0</item>
+        <item>6.0</item>
+        <item>12.0</item>
+    </string-array>
+
+    <!-- テキストサイズ -->
+    <string-array name="text_size">
+        <item>-1</item>
+        <item>-0.5</item>
+        <item>Default</item>
+        <item>+0.5</item>
+        <item>+1</item>
+        <item>+1.5</item>
+        <item>+2</item>
+    </string-array>
+
+    <string-array name="text_size_values">
+        <item>12</item>
+        <item>13.5</item>
+        <item>15</item>
+        <item>16.5</item>
+        <item>18</item>
+        <item>19.5</item>
+        <item>21</item>
+    </string-array>
+
+    <string-array name="edittext_size">
+        <item>-1</item>
+        <item>-0.5</item>
+        <item>Default</item>
+        <item>+0.5</item>
+        <item>+1</item>
+        <item>+1.5</item>
+        <item>+2</item>
+    </string-array>
+
+    <string-array name="edittext_size_values">
+        <item>15</item>
+        <item>16.5</item>
+        <item>18</item>
+        <item>19.5</item>
+        <item>21</item>
+        <item>22.5</item>
+        <item>24</item>
+    </string-array>
+
+    <!-- タブの幅 -->
+    <string-array name="tab_width">
+        <item>Narrower than narrowest</item>
+        <item>Narrowest</item>
+        <item>Narrower</item>
+        <item>Default</item>
+    </string-array>
+
+    <string-array name="tab_width_value">
+        <item>16</item>
+        <item>32</item>
+        <item>48</item>
+        <item>64</item>
+    </string-array>
+
+    <string-array name="image_size">
+        <item>1920px(default)</item>
+        <item>1440px</item>
+        <item>1280px</item>
+        <item>960px</item>
+    </string-array>
+
+    <string-array name="image_size_value">
+        <item>1920</item>
+        <item>1440</item>
+        <item>1280</item>
+        <item>960</item>
+    </string-array>
+
+    <string-array name="time_format_value">
+        <item>relative</item>
+        <item>absolute</item>
+        <item>absolute_by_seconds</item>
+    </string-array>
+
+    <string-array name="time_format">
+        <item>Relative</item>
+        <item>Absolute</item>
+        <item>Absolute(by seconds)</item>
+    </string-array>
+
+    <string-array name="avatar_shape_value">
+        <item>circle</item>
+        <item>square</item>
+        <item>nft</item>
+    </string-array>
+
+    <string-array name="avatar_shape">
+        <item>Circle(default)</item>
+        <item>Square</item>
+        <item>Like NFT</item>
+    </string-array>
+</resources>

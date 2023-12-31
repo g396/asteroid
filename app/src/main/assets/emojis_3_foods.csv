@@ -1,0 +1,131 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Food-Drink,food-fruit,1F347,fully-qualified,🍇,grapes,E0.6
+Food-Drink,food-fruit,1F348,fully-qualified,🍈,melon,E0.6
+Food-Drink,food-fruit,1F349,fully-qualified,🍉,watermelon,E0.6
+Food-Drink,food-fruit,1F34A,fully-qualified,🍊,tangerine,E0.6
+Food-Drink,food-fruit,1F34B,fully-qualified,🍋,lemon,E1.0
+Food-Drink,food-fruit,1F34C,fully-qualified,🍌,banana,E0.6
+Food-Drink,food-fruit,1F34D,fully-qualified,🍍,pineapple,E0.6
+Food-Drink,food-fruit,1F96D,fully-qualified,🥭,mango,E11.0
+Food-Drink,food-fruit,1F34E,fully-qualified,🍎,red apple,E0.6
+Food-Drink,food-fruit,1F34F,fully-qualified,🍏,green apple,E0.6
+Food-Drink,food-fruit,1F350,fully-qualified,🍐,pear,E1.0
+Food-Drink,food-fruit,1F351,fully-qualified,🍑,peach,E0.6
+Food-Drink,food-fruit,1F352,fully-qualified,🍒,cherries,E0.6
+Food-Drink,food-fruit,1F353,fully-qualified,🍓,strawberry,E0.6
+Food-Drink,food-fruit,1FAD0,fully-qualified,🫐,blueberries,E13.0
+Food-Drink,food-fruit,1F95D,fully-qualified,🥝,kiwi fruit,E3.0
+Food-Drink,food-fruit,1F345,fully-qualified,🍅,tomato,E0.6
+Food-Drink,food-fruit,1FAD2,fully-qualified,🫒,olive,E13.0
+Food-Drink,food-fruit,1F965,fully-qualified,🥥,coconut,E5.0
+Food-Drink,food-vegetable,1F951,fully-qualified,🥑,avocado,E3.0
+Food-Drink,food-vegetable,1F346,fully-qualified,🍆,eggplant,E0.6
+Food-Drink,food-vegetable,1F954,fully-qualified,🥔,potato,E3.0
+Food-Drink,food-vegetable,1F955,fully-qualified,🥕,carrot,E3.0
+Food-Drink,food-vegetable,1F33D,fully-qualified,🌽,ear of corn,E0.6
+Food-Drink,food-vegetable,1F336 FE0F,fully-qualified,🌶️,hot pepper,E0.7
+Food-Drink,food-vegetable,1F336,unqualified,🌶,hot pepper,E0.7
+Food-Drink,food-vegetable,1FAD1,fully-qualified,🫑,bell pepper,E13.0
+Food-Drink,food-vegetable,1F952,fully-qualified,🥒,cucumber,E3.0
+Food-Drink,food-vegetable,1F96C,fully-qualified,🥬,leafy green,E11.0
+Food-Drink,food-vegetable,1F966,fully-qualified,🥦,broccoli,E5.0
+Food-Drink,food-vegetable,1F9C4,fully-qualified,🧄,garlic,E12.0
+Food-Drink,food-vegetable,1F9C5,fully-qualified,🧅,onion,E12.0
+Food-Drink,food-vegetable,1F95C,fully-qualified,🥜,peanuts,E3.0
+Food-Drink,food-vegetable,1F330,fully-qualified,🌰,chestnut,E0.6
+Food-Drink,food-prepared,1F35E,fully-qualified,🍞,bread,E0.6
+Food-Drink,food-prepared,1F950,fully-qualified,🥐,croissant,E3.0
+Food-Drink,food-prepared,1F956,fully-qualified,🥖,baguette bread,E3.0
+Food-Drink,food-prepared,1FAD3,fully-qualified,🫓,flatbread,E13.0
+Food-Drink,food-prepared,1F968,fully-qualified,🥨,pretzel,E5.0
+Food-Drink,food-prepared,1F96F,fully-qualified,🥯,bagel,E11.0
+Food-Drink,food-prepared,1F95E,fully-qualified,🥞,pancakes,E3.0
+Food-Drink,food-prepared,1F9C7,fully-qualified,🧇,waffle,E12.0
+Food-Drink,food-prepared,1F9C0,fully-qualified,🧀,cheese wedge,E1.0
+Food-Drink,food-prepared,1F356,fully-qualified,🍖,meat on bone,E0.6
+Food-Drink,food-prepared,1F357,fully-qualified,🍗,poultry leg,E0.6
+Food-Drink,food-prepared,1F969,fully-qualified,🥩,cut of meat,E5.0
+Food-Drink,food-prepared,1F953,fully-qualified,🥓,bacon,E3.0
+Food-Drink,food-prepared,1F354,fully-qualified,🍔,hamburger,E0.6
+Food-Drink,food-prepared,1F35F,fully-qualified,🍟,french fries,E0.6
+Food-Drink,food-prepared,1F355,fully-qualified,🍕,pizza,E0.6
+Food-Drink,food-prepared,1F32D,fully-qualified,🌭,hot dog,E1.0
+Food-Drink,food-prepared,1F96A,fully-qualified,🥪,sandwich,E5.0
+Food-Drink,food-prepared,1F32E,fully-qualified,🌮,taco,E1.0
+Food-Drink,food-prepared,1F32F,fully-qualified,🌯,burrito,E1.0
+Food-Drink,food-prepared,1FAD4,fully-qualified,🫔,tamale,E13.0
+Food-Drink,food-prepared,1F959,fully-qualified,🥙,stuffed flatbread,E3.0
+Food-Drink,food-prepared,1F9C6,fully-qualified,🧆,falafel,E12.0
+Food-Drink,food-prepared,1F95A,fully-qualified,🥚,egg,E3.0
+Food-Drink,food-prepared,1F373,fully-qualified,🍳,cooking,E0.6
+Food-Drink,food-prepared,1F958,fully-qualified,🥘,shallow pan of food,E3.0
+Food-Drink,food-prepared,1F372,fully-qualified,🍲,pot of food,E0.6
+Food-Drink,food-prepared,1FAD5,fully-qualified,🫕,fondue,E13.0
+Food-Drink,food-prepared,1F963,fully-qualified,🥣,bowl with spoon,E5.0
+Food-Drink,food-prepared,1F957,fully-qualified,🥗,green salad,E3.0
+Food-Drink,food-prepared,1F37F,fully-qualified,🍿,popcorn,E1.0
+Food-Drink,food-prepared,1F9C8,fully-qualified,🧈,butter,E12.0
+Food-Drink,food-prepared,1F9C2,fully-qualified,🧂,salt,E11.0
+Food-Drink,food-prepared,1F96B,fully-qualified,🥫,canned food,E5.0
+Food-Drink,food-asian,1F371,fully-qualified,🍱,bento box,E0.6
+Food-Drink,food-asian,1F358,fully-qualified,🍘,rice cracker,E0.6
+Food-Drink,food-asian,1F359,fully-qualified,🍙,rice ball,E0.6
+Food-Drink,food-asian,1F35A,fully-qualified,🍚,cooked rice,E0.6
+Food-Drink,food-asian,1F35B,fully-qualified,🍛,curry rice,E0.6
+Food-Drink,food-asian,1F35C,fully-qualified,🍜,steaming bowl,E0.6
+Food-Drink,food-asian,1F35D,fully-qualified,🍝,spaghetti,E0.6
+Food-Drink,food-asian,1F360,fully-qualified,🍠,roasted sweet potato,E0.6
+Food-Drink,food-asian,1F362,fully-qualified,🍢,oden,E0.6
+Food-Drink,food-asian,1F363,fully-qualified,🍣,sushi,E0.6
+Food-Drink,food-asian,1F364,fully-qualified,🍤,fried shrimp,E0.6
+Food-Drink,food-asian,1F365,fully-qualified,🍥,fish cake with swirl,E0.6
+Food-Drink,food-asian,1F96E,fully-qualified,🥮,moon cake,E11.0
+Food-Drink,food-asian,1F361,fully-qualified,🍡,dango,E0.6
+Food-Drink,food-asian,1F95F,fully-qualified,🥟,dumpling,E5.0
+Food-Drink,food-asian,1F960,fully-qualified,🥠,fortune cookie,E5.0
+Food-Drink,food-asian,1F961,fully-qualified,🥡,takeout box,E5.0
+Food-Drink,food-marine,1F980,fully-qualified,🦀,crab,E1.0
+Food-Drink,food-marine,1F99E,fully-qualified,🦞,lobster,E11.0
+Food-Drink,food-marine,1F990,fully-qualified,🦐,shrimp,E3.0
+Food-Drink,food-marine,1F991,fully-qualified,🦑,squid,E3.0
+Food-Drink,food-marine,1F9AA,fully-qualified,🦪,oyster,E12.0
+Food-Drink,food-sweet,1F366,fully-qualified,🍦,soft ice cream,E0.6
+Food-Drink,food-sweet,1F367,fully-qualified,🍧,shaved ice,E0.6
+Food-Drink,food-sweet,1F368,fully-qualified,🍨,ice cream,E0.6
+Food-Drink,food-sweet,1F369,fully-qualified,🍩,doughnut,E0.6
+Food-Drink,food-sweet,1F36A,fully-qualified,🍪,cookie,E0.6
+Food-Drink,food-sweet,1F382,fully-qualified,🎂,birthday cake,E0.6
+Food-Drink,food-sweet,1F370,fully-qualified,🍰,shortcake,E0.6
+Food-Drink,food-sweet,1F9C1,fully-qualified,🧁,cupcake,E11.0
+Food-Drink,food-sweet,1F967,fully-qualified,🥧,pie,E5.0
+Food-Drink,food-sweet,1F36B,fully-qualified,🍫,chocolate bar,E0.6
+Food-Drink,food-sweet,1F36C,fully-qualified,🍬,candy,E0.6
+Food-Drink,food-sweet,1F36D,fully-qualified,🍭,lollipop,E0.6
+Food-Drink,food-sweet,1F36E,fully-qualified,🍮,custard,E0.6
+Food-Drink,food-sweet,1F36F,fully-qualified,🍯,honey pot,E0.6
+Food-Drink,drink,1F37C,fully-qualified,🍼,baby bottle,E1.0
+Food-Drink,drink,1F95B,fully-qualified,🥛,glass of milk,E3.0
+Food-Drink,drink,2615,fully-qualified,☕,hot beverage,E0.6
+Food-Drink,drink,1FAD6,fully-qualified,🫖,teapot,E13.0
+Food-Drink,drink,1F375,fully-qualified,🍵,teacup without handle,E0.6
+Food-Drink,drink,1F376,fully-qualified,🍶,sake,E0.6
+Food-Drink,drink,1F37E,fully-qualified,🍾,bottle with popping cork,E1.0
+Food-Drink,drink,1F377,fully-qualified,🍷,wine glass,E0.6
+Food-Drink,drink,1F378,fully-qualified,🍸,cocktail glass,E0.6
+Food-Drink,drink,1F379,fully-qualified,🍹,tropical drink,E0.6
+Food-Drink,drink,1F37A,fully-qualified,🍺,beer mug,E0.6
+Food-Drink,drink,1F37B,fully-qualified,🍻,clinking beer mugs,E0.6
+Food-Drink,drink,1F942,fully-qualified,🥂,clinking glasses,E3.0
+Food-Drink,drink,1F943,fully-qualified,🥃,tumbler glass,E3.0
+Food-Drink,drink,1F964,fully-qualified,🥤,cup with straw,E5.0
+Food-Drink,drink,1F9CB,fully-qualified,🧋,bubble tea,E13.0
+Food-Drink,drink,1F9C3,fully-qualified,🧃,beverage box,E12.0
+Food-Drink,drink,1F9C9,fully-qualified,🧉,mate,E12.0
+Food-Drink,drink,1F9CA,fully-qualified,🧊,ice,E12.0
+Food-Drink,dishware,1F962,fully-qualified,🥢,chopsticks,E5.0
+Food-Drink,dishware,1F37D FE0F,fully-qualified,🍽️,fork and knife with plate,E0.7
+Food-Drink,dishware,1F37D,unqualified,🍽,fork and knife with plate,E0.7
+Food-Drink,dishware,1F374,fully-qualified,🍴,fork and knife,E0.6
+Food-Drink,dishware,1F944,fully-qualified,🥄,spoon,E3.0
+Food-Drink,dishware,1F52A,fully-qualified,🔪,kitchen knife,E0.6
+Food-Drink,dishware,1F3FA,fully-qualified,🏺,amphora,E1.0

@@ -1,0 +1,265 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Travel-Places,place-map,1F30D,fully-qualified,🌍,globe showing Europe-Africa,E0.7
+Travel-Places,place-map,1F30E,fully-qualified,🌎,globe showing Americas,E0.7
+Travel-Places,place-map,1F30F,fully-qualified,🌏,globe showing Asia-Australia,E0.6
+Travel-Places,place-map,1F310,fully-qualified,🌐,globe with meridians,E1.0
+Travel-Places,place-map,1F5FA FE0F,fully-qualified,🗺️,world map,E0.7
+Travel-Places,place-map,1F5FA,unqualified,🗺,world map,E0.7
+Travel-Places,place-map,1F5FE,fully-qualified,🗾,map of Japan,E0.6
+Travel-Places,place-map,1F9ED,fully-qualified,🧭,compass,E11.0
+Travel-Places,place-geographic,1F3D4 FE0F,fully-qualified,🏔️,snow-capped mountain,E0.7
+Travel-Places,place-geographic,1F3D4,unqualified,🏔,snow-capped mountain,E0.7
+Travel-Places,place-geographic,26F0 FE0F,fully-qualified,⛰️,mountain,E0.7
+Travel-Places,place-geographic,26F0,unqualified,⛰,mountain,E0.7
+Travel-Places,place-geographic,1F30B,fully-qualified,🌋,volcano,E0.6
+Travel-Places,place-geographic,1F5FB,fully-qualified,🗻,mount fuji,E0.6
+Travel-Places,place-geographic,1F3D5 FE0F,fully-qualified,🏕️,camping,E0.7
+Travel-Places,place-geographic,1F3D5,unqualified,🏕,camping,E0.7
+Travel-Places,place-geographic,1F3D6 FE0F,fully-qualified,🏖️,beach with umbrella,E0.7
+Travel-Places,place-geographic,1F3D6,unqualified,🏖,beach with umbrella,E0.7
+Travel-Places,place-geographic,1F3DC FE0F,fully-qualified,🏜️,desert,E0.7
+Travel-Places,place-geographic,1F3DC,unqualified,🏜,desert,E0.7
+Travel-Places,place-geographic,1F3DD FE0F,fully-qualified,🏝️,desert island,E0.7
+Travel-Places,place-geographic,1F3DD,unqualified,🏝,desert island,E0.7
+Travel-Places,place-geographic,1F3DE FE0F,fully-qualified,🏞️,national park,E0.7
+Travel-Places,place-geographic,1F3DE,unqualified,🏞,national park,E0.7
+Travel-Places,place-building,1F3DF FE0F,fully-qualified,🏟️,stadium,E0.7
+Travel-Places,place-building,1F3DF,unqualified,🏟,stadium,E0.7
+Travel-Places,place-building,1F3DB FE0F,fully-qualified,🏛️,classical building,E0.7
+Travel-Places,place-building,1F3DB,unqualified,🏛,classical building,E0.7
+Travel-Places,place-building,1F3D7 FE0F,fully-qualified,🏗️,building construction,E0.7
+Travel-Places,place-building,1F3D7,unqualified,🏗,building construction,E0.7
+Travel-Places,place-building,1F9F1,fully-qualified,🧱,brick,E11.0
+Travel-Places,place-building,1FAA8,fully-qualified,🪨,rock,E13.0
+Travel-Places,place-building,1FAB5,fully-qualified,🪵,wood,E13.0
+Travel-Places,place-building,1F6D6,fully-qualified,🛖,hut,E13.0
+Travel-Places,place-building,1F3D8 FE0F,fully-qualified,🏘️,houses,E0.7
+Travel-Places,place-building,1F3D8,unqualified,🏘,houses,E0.7
+Travel-Places,place-building,1F3DA FE0F,fully-qualified,🏚️,derelict house,E0.7
+Travel-Places,place-building,1F3DA,unqualified,🏚,derelict house,E0.7
+Travel-Places,place-building,1F3E0,fully-qualified,🏠,house,E0.6
+Travel-Places,place-building,1F3E1,fully-qualified,🏡,house with garden,E0.6
+Travel-Places,place-building,1F3E2,fully-qualified,🏢,office building,E0.6
+Travel-Places,place-building,1F3E3,fully-qualified,🏣,Japanese post office,E0.6
+Travel-Places,place-building,1F3E4,fully-qualified,🏤,post office,E1.0
+Travel-Places,place-building,1F3E5,fully-qualified,🏥,hospital,E0.6
+Travel-Places,place-building,1F3E6,fully-qualified,🏦,bank,E0.6
+Travel-Places,place-building,1F3E8,fully-qualified,🏨,hotel,E0.6
+Travel-Places,place-building,1F3E9,fully-qualified,🏩,love hotel,E0.6
+Travel-Places,place-building,1F3EA,fully-qualified,🏪,convenience store,E0.6
+Travel-Places,place-building,1F3EB,fully-qualified,🏫,school,E0.6
+Travel-Places,place-building,1F3EC,fully-qualified,🏬,department store,E0.6
+Travel-Places,place-building,1F3ED,fully-qualified,🏭,factory,E0.6
+Travel-Places,place-building,1F3EF,fully-qualified,🏯,Japanese castle,E0.6
+Travel-Places,place-building,1F3F0,fully-qualified,🏰,castle,E0.6
+Travel-Places,place-building,1F492,fully-qualified,💒,wedding,E0.6
+Travel-Places,place-building,1F5FC,fully-qualified,🗼,Tokyo tower,E0.6
+Travel-Places,place-building,1F5FD,fully-qualified,🗽,Statue of Liberty,E0.6
+Travel-Places,place-religious,26EA,fully-qualified,⛪,church,E0.6
+Travel-Places,place-religious,1F54C,fully-qualified,🕌,mosque,E1.0
+Travel-Places,place-religious,1F6D5,fully-qualified,🛕,hindu temple,E12.0
+Travel-Places,place-religious,1F54D,fully-qualified,🕍,synagogue,E1.0
+Travel-Places,place-religious,26E9 FE0F,fully-qualified,⛩️,shinto shrine,E0.7
+Travel-Places,place-religious,26E9,unqualified,⛩,shinto shrine,E0.7
+Travel-Places,place-religious,1F54B,fully-qualified,🕋,kaaba,E1.0
+Travel-Places,place-other,26F2,fully-qualified,⛲,fountain,E0.6
+Travel-Places,place-other,26FA,fully-qualified,⛺,tent,E0.6
+Travel-Places,place-other,1F301,fully-qualified,🌁,foggy,E0.6
+Travel-Places,place-other,1F303,fully-qualified,🌃,night with stars,E0.6
+Travel-Places,place-other,1F3D9 FE0F,fully-qualified,🏙️,cityscape,E0.7
+Travel-Places,place-other,1F3D9,unqualified,🏙,cityscape,E0.7
+Travel-Places,place-other,1F304,fully-qualified,🌄,sunrise over mountains,E0.6
+Travel-Places,place-other,1F305,fully-qualified,🌅,sunrise,E0.6
+Travel-Places,place-other,1F306,fully-qualified,🌆,cityscape at dusk,E0.6
+Travel-Places,place-other,1F307,fully-qualified,🌇,sunset,E0.6
+Travel-Places,place-other,1F309,fully-qualified,🌉,bridge at night,E0.6
+Travel-Places,place-other,2668 FE0F,fully-qualified,♨️,hot springs,E0.6
+Travel-Places,place-other,2668,unqualified,♨,hot springs,E0.6
+Travel-Places,place-other,1F3A0,fully-qualified,🎠,carousel horse,E0.6
+Travel-Places,place-other,1F3A1,fully-qualified,🎡,ferris wheel,E0.6
+Travel-Places,place-other,1F3A2,fully-qualified,🎢,roller coaster,E0.6
+Travel-Places,place-other,1F488,fully-qualified,💈,barber pole,E0.6
+Travel-Places,place-other,1F3AA,fully-qualified,🎪,circus tent,E0.6
+Travel-Places,transport-ground,1F682,fully-qualified,🚂,locomotive,E1.0
+Travel-Places,transport-ground,1F683,fully-qualified,🚃,railway car,E0.6
+Travel-Places,transport-ground,1F684,fully-qualified,🚄,high-speed train,E0.6
+Travel-Places,transport-ground,1F685,fully-qualified,🚅,bullet train,E0.6
+Travel-Places,transport-ground,1F686,fully-qualified,🚆,train,E1.0
+Travel-Places,transport-ground,1F687,fully-qualified,🚇,metro,E0.6
+Travel-Places,transport-ground,1F688,fully-qualified,🚈,light rail,E1.0
+Travel-Places,transport-ground,1F689,fully-qualified,🚉,station,E0.6
+Travel-Places,transport-ground,1F68A,fully-qualified,🚊,tram,E1.0
+Travel-Places,transport-ground,1F69D,fully-qualified,🚝,monorail,E1.0
+Travel-Places,transport-ground,1F69E,fully-qualified,🚞,mountain railway,E1.0
+Travel-Places,transport-ground,1F68B,fully-qualified,🚋,tram car,E1.0
+Travel-Places,transport-ground,1F68C,fully-qualified,🚌,bus,E0.6
+Travel-Places,transport-ground,1F68D,fully-qualified,🚍,oncoming bus,E0.7
+Travel-Places,transport-ground,1F68E,fully-qualified,🚎,trolleybus,E1.0
+Travel-Places,transport-ground,1F690,fully-qualified,🚐,minibus,E1.0
+Travel-Places,transport-ground,1F691,fully-qualified,🚑,ambulance,E0.6
+Travel-Places,transport-ground,1F692,fully-qualified,🚒,fire engine,E0.6
+Travel-Places,transport-ground,1F693,fully-qualified,🚓,police car,E0.6
+Travel-Places,transport-ground,1F694,fully-qualified,🚔,oncoming police car,E0.7
+Travel-Places,transport-ground,1F695,fully-qualified,🚕,taxi,E0.6
+Travel-Places,transport-ground,1F696,fully-qualified,🚖,oncoming taxi,E1.0
+Travel-Places,transport-ground,1F697,fully-qualified,🚗,automobile,E0.6
+Travel-Places,transport-ground,1F698,fully-qualified,🚘,oncoming automobile,E0.7
+Travel-Places,transport-ground,1F699,fully-qualified,🚙,sport utility vehicle,E0.6
+Travel-Places,transport-ground,1F6FB,fully-qualified,🛻,pickup truck,E13.0
+Travel-Places,transport-ground,1F69A,fully-qualified,🚚,delivery truck,E0.6
+Travel-Places,transport-ground,1F69B,fully-qualified,🚛,articulated lorry,E1.0
+Travel-Places,transport-ground,1F69C,fully-qualified,🚜,tractor,E1.0
+Travel-Places,transport-ground,1F3CE FE0F,fully-qualified,🏎️,racing car,E0.7
+Travel-Places,transport-ground,1F3CE,unqualified,🏎,racing car,E0.7
+Travel-Places,transport-ground,1F3CD FE0F,fully-qualified,🏍️,motorcycle,E0.7
+Travel-Places,transport-ground,1F3CD,unqualified,🏍,motorcycle,E0.7
+Travel-Places,transport-ground,1F6F5,fully-qualified,🛵,motor scooter,E3.0
+Travel-Places,transport-ground,1F9BD,fully-qualified,🦽,manual wheelchair,E12.0
+Travel-Places,transport-ground,1F9BC,fully-qualified,🦼,motorized wheelchair,E12.0
+Travel-Places,transport-ground,1F6FA,fully-qualified,🛺,auto rickshaw,E12.0
+Travel-Places,transport-ground,1F6B2,fully-qualified,🚲,bicycle,E0.6
+Travel-Places,transport-ground,1F6F4,fully-qualified,🛴,kick scooter,E3.0
+Travel-Places,transport-ground,1F6F9,fully-qualified,🛹,skateboard,E11.0
+Travel-Places,transport-ground,1F6FC,fully-qualified,🛼,roller skate,E13.0
+Travel-Places,transport-ground,1F68F,fully-qualified,🚏,bus stop,E0.6
+Travel-Places,transport-ground,1F6E3 FE0F,fully-qualified,🛣️,motorway,E0.7
+Travel-Places,transport-ground,1F6E3,unqualified,🛣,motorway,E0.7
+Travel-Places,transport-ground,1F6E4 FE0F,fully-qualified,🛤️,railway track,E0.7
+Travel-Places,transport-ground,1F6E4,unqualified,🛤,railway track,E0.7
+Travel-Places,transport-ground,1F6E2 FE0F,fully-qualified,🛢️,oil drum,E0.7
+Travel-Places,transport-ground,1F6E2,unqualified,🛢,oil drum,E0.7
+Travel-Places,transport-ground,26FD,fully-qualified,⛽,fuel pump,E0.6
+Travel-Places,transport-ground,1F6A8,fully-qualified,🚨,police car light,E0.6
+Travel-Places,transport-ground,1F6A5,fully-qualified,🚥,horizontal traffic light,E0.6
+Travel-Places,transport-ground,1F6A6,fully-qualified,🚦,vertical traffic light,E1.0
+Travel-Places,transport-ground,1F6D1,fully-qualified,🛑,stop sign,E3.0
+Travel-Places,transport-ground,1F6A7,fully-qualified,🚧,construction,E0.6
+Travel-Places,transport-water,2693,fully-qualified,⚓,anchor,E0.6
+Travel-Places,transport-water,26F5,fully-qualified,⛵,sailboat,E0.6
+Travel-Places,transport-water,1F6F6,fully-qualified,🛶,canoe,E3.0
+Travel-Places,transport-water,1F6A4,fully-qualified,🚤,speedboat,E0.6
+Travel-Places,transport-water,1F6F3 FE0F,fully-qualified,🛳️,passenger ship,E0.7
+Travel-Places,transport-water,1F6F3,unqualified,🛳,passenger ship,E0.7
+Travel-Places,transport-water,26F4 FE0F,fully-qualified,⛴️,ferry,E0.7
+Travel-Places,transport-water,26F4,unqualified,⛴,ferry,E0.7
+Travel-Places,transport-water,1F6E5 FE0F,fully-qualified,🛥️,motor boat,E0.7
+Travel-Places,transport-water,1F6E5,unqualified,🛥,motor boat,E0.7
+Travel-Places,transport-water,1F6A2,fully-qualified,🚢,ship,E0.6
+Travel-Places,transport-air,2708 FE0F,fully-qualified,✈️,airplane,E0.6
+Travel-Places,transport-air,2708,unqualified,✈,airplane,E0.6
+Travel-Places,transport-air,1F6E9 FE0F,fully-qualified,🛩️,small airplane,E0.7
+Travel-Places,transport-air,1F6E9,unqualified,🛩,small airplane,E0.7
+Travel-Places,transport-air,1F6EB,fully-qualified,🛫,airplane departure,E1.0
+Travel-Places,transport-air,1F6EC,fully-qualified,🛬,airplane arrival,E1.0
+Travel-Places,transport-air,1FA82,fully-qualified,🪂,parachute,E12.0
+Travel-Places,transport-air,1F4BA,fully-qualified,💺,seat,E0.6
+Travel-Places,transport-air,1F681,fully-qualified,🚁,helicopter,E1.0
+Travel-Places,transport-air,1F69F,fully-qualified,🚟,suspension railway,E1.0
+Travel-Places,transport-air,1F6A0,fully-qualified,🚠,mountain cableway,E1.0
+Travel-Places,transport-air,1F6A1,fully-qualified,🚡,aerial tramway,E1.0
+Travel-Places,transport-air,1F6F0 FE0F,fully-qualified,🛰️,satellite,E0.7
+Travel-Places,transport-air,1F6F0,unqualified,🛰,satellite,E0.7
+Travel-Places,transport-air,1F680,fully-qualified,🚀,rocket,E0.6
+Travel-Places,transport-air,1F6F8,fully-qualified,🛸,flying saucer,E5.0
+Travel-Places,hotel,1F6CE FE0F,fully-qualified,🛎️,bellhop bell,E0.7
+Travel-Places,hotel,1F6CE,unqualified,🛎,bellhop bell,E0.7
+Travel-Places,hotel,1F9F3,fully-qualified,🧳,luggage,E11.0
+Travel-Places,time,231B,fully-qualified,⌛,hourglass done,E0.6
+Travel-Places,time,23F3,fully-qualified,⏳,hourglass not done,E0.6
+Travel-Places,time,231A,fully-qualified,⌚,watch,E0.6
+Travel-Places,time,23F0,fully-qualified,⏰,alarm clock,E0.6
+Travel-Places,time,23F1 FE0F,fully-qualified,⏱️,stopwatch,E1.0
+Travel-Places,time,23F1,unqualified,⏱,stopwatch,E1.0
+Travel-Places,time,23F2 FE0F,fully-qualified,⏲️,timer clock,E1.0
+Travel-Places,time,23F2,unqualified,⏲,timer clock,E1.0
+Travel-Places,time,1F570 FE0F,fully-qualified,🕰️,mantelpiece clock,E0.7
+Travel-Places,time,1F570,unqualified,🕰,mantelpiece clock,E0.7
+Travel-Places,time,1F55B,fully-qualified,🕛,twelve oclock,E0.6
+Travel-Places,time,1F567,fully-qualified,🕧,twelve-thirty,E0.7
+Travel-Places,time,1F550,fully-qualified,🕐,one oclock,E0.6
+Travel-Places,time,1F55C,fully-qualified,🕜,one-thirty,E0.7
+Travel-Places,time,1F551,fully-qualified,🕑,two oclock,E0.6
+Travel-Places,time,1F55D,fully-qualified,🕝,two-thirty,E0.7
+Travel-Places,time,1F552,fully-qualified,🕒,three oclock,E0.6
+Travel-Places,time,1F55E,fully-qualified,🕞,three-thirty,E0.7
+Travel-Places,time,1F553,fully-qualified,🕓,four oclock,E0.6
+Travel-Places,time,1F55F,fully-qualified,🕟,four-thirty,E0.7
+Travel-Places,time,1F554,fully-qualified,🕔,five oclock,E0.6
+Travel-Places,time,1F560,fully-qualified,🕠,five-thirty,E0.7
+Travel-Places,time,1F555,fully-qualified,🕕,six oclock,E0.6
+Travel-Places,time,1F561,fully-qualified,🕡,six-thirty,E0.7
+Travel-Places,time,1F556,fully-qualified,🕖,seven oclock,E0.6
+Travel-Places,time,1F562,fully-qualified,🕢,seven-thirty,E0.7
+Travel-Places,time,1F557,fully-qualified,🕗,eight oclock,E0.6
+Travel-Places,time,1F563,fully-qualified,🕣,eight-thirty,E0.7
+Travel-Places,time,1F558,fully-qualified,🕘,nine oclock,E0.6
+Travel-Places,time,1F564,fully-qualified,🕤,nine-thirty,E0.7
+Travel-Places,time,1F559,fully-qualified,🕙,ten oclock,E0.6
+Travel-Places,time,1F565,fully-qualified,🕥,ten-thirty,E0.7
+Travel-Places,time,1F55A,fully-qualified,🕚,eleven oclock,E0.6
+Travel-Places,time,1F566,fully-qualified,🕦,eleven-thirty,E0.7
+Travel-Places,sky-weather,1F311,fully-qualified,🌑,new moon,E0.6
+Travel-Places,sky-weather,1F312,fully-qualified,🌒,waxing crescent moon,E1.0
+Travel-Places,sky-weather,1F313,fully-qualified,🌓,first quarter moon,E0.6
+Travel-Places,sky-weather,1F314,fully-qualified,🌔,waxing gibbous moon,E0.6
+Travel-Places,sky-weather,1F315,fully-qualified,🌕,full moon,E0.6
+Travel-Places,sky-weather,1F316,fully-qualified,🌖,waning gibbous moon,E1.0
+Travel-Places,sky-weather,1F317,fully-qualified,🌗,last quarter moon,E1.0
+Travel-Places,sky-weather,1F318,fully-qualified,🌘,waning crescent moon,E1.0
+Travel-Places,sky-weather,1F319,fully-qualified,🌙,crescent moon,E0.6
+Travel-Places,sky-weather,1F31A,fully-qualified,🌚,new moon face,E1.0
+Travel-Places,sky-weather,1F31B,fully-qualified,🌛,first quarter moon face,E0.6
+Travel-Places,sky-weather,1F31C,fully-qualified,🌜,last quarter moon face,E0.7
+Travel-Places,sky-weather,1F321 FE0F,fully-qualified,🌡️,thermometer,E0.7
+Travel-Places,sky-weather,1F321,unqualified,🌡,thermometer,E0.7
+Travel-Places,sky-weather,2600 FE0F,fully-qualified,☀️,sun,E0.6
+Travel-Places,sky-weather,2600,unqualified,☀,sun,E0.6
+Travel-Places,sky-weather,1F31D,fully-qualified,🌝,full moon face,E1.0
+Travel-Places,sky-weather,1F31E,fully-qualified,🌞,sun with face,E1.0
+Travel-Places,sky-weather,1FA90,fully-qualified,🪐,ringed planet,E12.0
+Travel-Places,sky-weather,2B50,fully-qualified,⭐,star,E0.6
+Travel-Places,sky-weather,1F31F,fully-qualified,🌟,glowing star,E0.6
+Travel-Places,sky-weather,1F320,fully-qualified,🌠,shooting star,E0.6
+Travel-Places,sky-weather,1F30C,fully-qualified,🌌,milky way,E0.6
+Travel-Places,sky-weather,2601 FE0F,fully-qualified,☁️,cloud,E0.6
+Travel-Places,sky-weather,2601,unqualified,☁,cloud,E0.6
+Travel-Places,sky-weather,26C5,fully-qualified,⛅,sun behind cloud,E0.6
+Travel-Places,sky-weather,26C8 FE0F,fully-qualified,⛈️,cloud with lightning and rain,E0.7
+Travel-Places,sky-weather,26C8,unqualified,⛈,cloud with lightning and rain,E0.7
+Travel-Places,sky-weather,1F324 FE0F,fully-qualified,🌤️,sun behind small cloud,E0.7
+Travel-Places,sky-weather,1F324,unqualified,🌤,sun behind small cloud,E0.7
+Travel-Places,sky-weather,1F325 FE0F,fully-qualified,🌥️,sun behind large cloud,E0.7
+Travel-Places,sky-weather,1F325,unqualified,🌥,sun behind large cloud,E0.7
+Travel-Places,sky-weather,1F326 FE0F,fully-qualified,🌦️,sun behind rain cloud,E0.7
+Travel-Places,sky-weather,1F326,unqualified,🌦,sun behind rain cloud,E0.7
+Travel-Places,sky-weather,1F327 FE0F,fully-qualified,🌧️,cloud with rain,E0.7
+Travel-Places,sky-weather,1F327,unqualified,🌧,cloud with rain,E0.7
+Travel-Places,sky-weather,1F328 FE0F,fully-qualified,🌨️,cloud with snow,E0.7
+Travel-Places,sky-weather,1F328,unqualified,🌨,cloud with snow,E0.7
+Travel-Places,sky-weather,1F329 FE0F,fully-qualified,🌩️,cloud with lightning,E0.7
+Travel-Places,sky-weather,1F329,unqualified,🌩,cloud with lightning,E0.7
+Travel-Places,sky-weather,1F32A FE0F,fully-qualified,🌪️,tornado,E0.7
+Travel-Places,sky-weather,1F32A,unqualified,🌪,tornado,E0.7
+Travel-Places,sky-weather,1F32B FE0F,fully-qualified,🌫️,fog,E0.7
+Travel-Places,sky-weather,1F32B,unqualified,🌫,fog,E0.7
+Travel-Places,sky-weather,1F32C FE0F,fully-qualified,🌬️,wind face,E0.7
+Travel-Places,sky-weather,1F32C,unqualified,🌬,wind face,E0.7
+Travel-Places,sky-weather,1F300,fully-qualified,🌀,cyclone,E0.6
+Travel-Places,sky-weather,1F308,fully-qualified,🌈,rainbow,E0.6
+Travel-Places,sky-weather,1F302,fully-qualified,🌂,closed umbrella,E0.6
+Travel-Places,sky-weather,2602 FE0F,fully-qualified,☂️,umbrella,E0.7
+Travel-Places,sky-weather,2602,unqualified,☂,umbrella,E0.7
+Travel-Places,sky-weather,2614,fully-qualified,☔,umbrella with rain drops,E0.6
+Travel-Places,sky-weather,26F1 FE0F,fully-qualified,⛱️,umbrella on ground,E0.7
+Travel-Places,sky-weather,26F1,unqualified,⛱,umbrella on ground,E0.7
+Travel-Places,sky-weather,26A1,fully-qualified,⚡,high voltage,E0.6
+Travel-Places,sky-weather,2744 FE0F,fully-qualified,❄️,snowflake,E0.6
+Travel-Places,sky-weather,2744,unqualified,❄,snowflake,E0.6
+Travel-Places,sky-weather,2603 FE0F,fully-qualified,☃️,snowman,E0.7
+Travel-Places,sky-weather,2603,unqualified,☃,snowman,E0.7
+Travel-Places,sky-weather,26C4,fully-qualified,⛄,snowman without snow,E0.6
+Travel-Places,sky-weather,2604 FE0F,fully-qualified,☄️,comet,E1.0
+Travel-Places,sky-weather,2604,unqualified,☄,comet,E1.0
+Travel-Places,sky-weather,1F525,fully-qualified,🔥,fire,E0.6
+Travel-Places,sky-weather,1F4A7,fully-qualified,💧,droplet,E0.6
+Travel-Places,sky-weather,1F30A,fully-qualified,🌊,water wave,E0.6

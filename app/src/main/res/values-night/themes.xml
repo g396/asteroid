@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AsteroidAlpha" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorOnPrimary">@color/black_base</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Customize your theme here. -->
+        <item name="actionBarTheme">@style/Theme.AsteroidAlpha.ActionBar</item>
+
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+    </style>
+
+    <style name="Theme.AsteroidAlpha.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
+        <item name="android:backgroundTint">@color/black_base</item>
+        <item name="android:background">@color/black_base</item>
+    </style>
+
+    <style name="Theme.AsteroidAlpha.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.AsteroidAlpha.ButtonNoAccentColor" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="AuthorizeActivityCheckBox" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="android:textColorPrimaryDisableOnly">@android:color/secondary_text_dark</item>
+    </style>
+
+    <style name="MaterialEditText" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
+    <style name="PopupMenu" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupBackground">@color/card_background</item>
+    </style>
+
+    <style name="FloatingActionButtonTheme">
+        <item name="backgroundTint">@color/dark_gray</item>
+        <item name="tint">@color/gray3</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+</resources>

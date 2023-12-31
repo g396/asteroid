@@ -1,0 +1,253 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/header_display">
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sp_text">
+        <ListPreference
+            app:defaultValue="15"
+            app:entries="@array/text_size"
+            app:entryValues="@array/text_size_values"
+            app:key="font_size"
+            app:title="@string/sp_text_size"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="18"
+            app:entries="@array/edittext_size"
+            app:entryValues="@array/edittext_size_values"
+            app:key="edittext_size"
+            app:title="@string/sp_edittext_size"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="1.2"
+            app:entries="@array/emoji_size"
+            app:entryValues="@array/emoji_size_values"
+            app:key="emoji_size"
+            app:title="@string/sp_emoji_size"
+            app:icon="@drawable/emoji"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:key="enable_emoji_animation"
+            app:defaultValue="false"
+            app:title="@string/sp_emoji_animation"
+            app:summary="@string/sp_emoji_animation_summary"
+            app:singleLineTitle="false"/>
+        <ListPreference
+            app:defaultValue="absolute"
+            app:entries="@array/time_format"
+            app:entryValues="@array/time_format_value"
+            app:key="time_format"
+            app:title="@string/sp_time_format"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/header_posts">
+        <SwitchPreferenceCompat
+            app:key="show_card"
+            app:defaultValue="true"
+            app:icon="@drawable/hyper_link"
+            app:title="@string/sp_show_card"
+            app:singleLineTitle="false"/>
+        <SwitchPreferenceCompat
+            app:key="show_via"
+            app:defaultValue="true"
+            app:title="@string/sp_show_via" />
+        <SwitchPreferenceCompat
+            app:key="hide_action_buttons"
+            app:defaultValue="false"
+            app:icon="@drawable/button_detail"
+            app:title="@string/sp_hide_buttons" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sp_avatar">
+        <SwitchPreferenceCompat
+            app:key="enable_avatar_animation"
+            app:defaultValue="true"
+            android:title="@string/sp_avatar_animation"
+            app:singleLineTitle="false"/>
+
+        <ListPreference
+            app:defaultValue="circle"
+            app:entries="@array/avatar_shape"
+            app:entryValues="@array/avatar_shape_value"
+            app:key="avatar_shape"
+            app:title="@string/sp_avatar_shape"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            app:key="show_avatar_header"
+            app:defaultValue="true"
+            app:title="@string/sp_avatar_header"
+            app:singleLineTitle="false"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/header_main">
+        <SwitchPreferenceCompat
+            app:key="tabs_width_static"
+            app:defaultValue="false"
+            app:title="@string/sp_fix_tabs_width"
+            app:singleLineTitle="false"/>
+        <ListPreference
+            android:dependency="tabs_width_static"
+            app:defaultValue="64"
+            app:entries="@array/tab_width"
+            app:entryValues="@array/tab_width_value"
+            app:key="tabs_width"
+            app:title="@string/sp_tabs_width"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:key="show_quick_post_area"
+            app:defaultValue="false"
+            app:icon="@drawable/menu_edit"
+            app:title="@string/sp_show_quick_post_area"
+            app:summary="Only (height > 360dp)"
+            app:singleLineTitle="false"/>
+        <SwitchPreferenceCompat
+            app:dependency="show_quick_post_area"
+            app:key="send_enter_key"
+            app:defaultValue="false"
+            app:title="@string/sp_send_enter_key"
+            app:singleLineTitle="false"/>
+        <SwitchPreferenceCompat
+            app:dependency="show_quick_post_area"
+            app:key="show_quick_post_visibility"
+            app:defaultValue="true"
+            app:title="@string/sp_show_quick_post_visibility"
+            app:singleLineTitle="false"/>
+        <SwitchPreferenceCompat
+            app:dependency="show_quick_post_area"
+            app:key="show_quick_post_emoji"
+            app:defaultValue="true"
+            app:title="@string/sp_show_quick_post_emoji"
+            app:singleLineTitle="false"/>
+        <SwitchPreferenceCompat
+            app:dependency="show_quick_post_area"
+            app:key="show_quick_post_hashtag"
+            app:defaultValue="true"
+            app:title="@string/sp_show_quick_post_hashtag"
+            app:singleLineTitle="false"/>
+        <SwitchPreferenceCompat
+            app:key="disable_sleep"
+            app:defaultValue="false"
+            app:icon="@drawable/sleep"
+            app:title="@string/sp_disable_sleep"
+            app:singleLineTitle="false"
+            android:singleLineTitle="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sp_new_posts">
+        <ListPreference
+            app:key="image_size"
+            app:defaultValue="1920"
+            app:icon="@drawable/image"
+            app:entries="@array/image_size"
+            app:entryValues="@array/image_size_value"
+            app:title="@string/sp_resize_image"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/header_values">
+        <SwitchPreferenceCompat
+            app:key="show_followers_count"
+            app:defaultValue="false"
+            app:title="@string/sp_show_followers_count"
+            app:singleLineTitle="false"/>
+
+        <SwitchPreferenceCompat
+            app:key="show_reactions_count"
+            app:defaultValue="false"
+            app:title="@string/sp_show_reactions_count"
+            app:singleLineTitle="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/header_dialog">
+        <SwitchPreferenceCompat
+            app:key="dialog"
+            app:defaultValue="true"
+            app:isPreferenceVisible="false"
+            app:title="@string/sp_dialog" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog"
+            app:key="dialog_post"
+            app:defaultValue="true"
+            app:icon="@drawable/send"
+            app:title="@string/sp_dialog_post" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog"
+            app:key="dialog_favourite"
+            app:defaultValue="true"
+            app:icon="@drawable/button_star"
+            app:title="@string/sp_dialog_favourite" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog"
+            app:key="dialog_reblog"
+            app:defaultValue="true"
+            app:icon="@drawable/button_boost"
+            app:title="@string/sp_dialog_reblog" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog"
+            app:key="dialog_bookmark"
+            app:defaultValue="true"
+            app:icon="@drawable/button_bookmark"
+            app:title="@string/sp_dialog_bookmark" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog"
+            app:key="dialog_emoji"
+            app:defaultValue="true"
+            app:icon="@drawable/emoji"
+            app:title="@string/sp_dialog_emoji" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog"
+            app:key="dialog_follow"
+            app:defaultValue="true"
+            app:icon="@drawable/follow"
+            app:title="@string/sp_dialog_follow" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/header_dialog_undo">
+        <SwitchPreferenceCompat
+            app:key="dialog_undo"
+            app:defaultValue="true"
+            app:isPreferenceVisible="false"
+            app:title="@string/sp_dialog_undo" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog_undo"
+            app:key="dialog_delete_status"
+            app:defaultValue="true"
+            app:icon="@drawable/remove"
+            app:title="@string/sp_dialog_undo_post" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog_undo"
+            app:key="dialog_undo_favourite"
+            app:defaultValue="true"
+            app:icon="@drawable/button_star"
+            app:title="@string/sp_dialog_undo_favourite" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog_undo"
+            app:key="dialog_undo_reblog"
+            app:defaultValue="true"
+            app:icon="@drawable/button_boost"
+            app:title="@string/sp_dialog_undo_reblog" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog_undo"
+            app:key="dialog_undo_bookmark"
+            app:defaultValue="true"
+            app:icon="@drawable/button_bookmark"
+            app:title="@string/sp_dialog_undo_bookmark" />
+        <SwitchPreferenceCompat
+            app:dependency="dialog_undo"
+            app:key="dialog_undo_emoji"
+            app:defaultValue="true"
+            app:icon="@drawable/emoji"
+            app:title="@string/sp_dialog_undo_emoji"/>
+        <SwitchPreferenceCompat
+            app:dependency="dialog_undo"
+            app:key="dialog_unfollow"
+            app:defaultValue="true"
+            app:icon="@drawable/follow_remove"
+            app:title="@string/sp_dialog_undo_follow" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

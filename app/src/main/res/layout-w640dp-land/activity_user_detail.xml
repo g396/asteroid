@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="sns.asteroid.view.BindingAdapter"/>
+        <import type="android.view.View"/>
+        <variable
+            name="account"
+            type="sns.asteroid.api.entities.Account" />
+        <variable
+            name="accentColor"
+            type="int" />
+        <variable
+            name="followButtonAccentColor"
+            type="int" />
+        <variable
+            name="followButtonImageResource"
+            type="int" />
+        <variable
+            name="followButtonTitle"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:alpha="0.6"
+                    app:glide="@{account.header_static}"
+                    app:layout_constraintDimensionRatio="3:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/transparent"
+                    android:theme="@style/Theme.AsteroidAlpha.PopupOverlay"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_margin="16dp"
+                    android:background="@color/transparent"
+                    app:avatarUrl="@{account.avatar}"
+                    app:layout_constraintBottom_toBottomOf="@+id/background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/background"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/isLocked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:visibility="@{account.locked == true ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/icon"
+                    app:layout_constraintEnd_toEndOf="@+id/icon"
+                    app:srcCompat="@drawable/visibility_locked" />
+
+                <TextView
+                    android:id="@+id/displayName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="@{account.display_name.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:customTextSize='@{"largest"}'
+                    app:displayName="@{account.convertedDisplayName}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/icon" />
+
+                <TextView
+                    android:id="@+id/acct"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text='@{"@" + account.acct}'
+                    app:customTextSize='@{"default"}'
+                    app:layout_constraintBottom_toTopOf="@id/profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/bot"
+                    app:layout_constraintTop_toBottomOf="@id/displayName"
+                    app:layout_goneMarginTop="16dp"
+                    app:layout_goneMarginStart="16dp"
+                    tools:text="@string/sample_id" />
+
+                <TextView
+                    android:id="@+id/bot"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/background_normal"
+                    android:backgroundTint="@color/gray1"
+                    android:paddingHorizontal="8dp"
+                    android:text="Bot"
+                    android:textColor="@color/gray4"
+                    android:visibility="@{account.bot ? View.VISIBLE : View.GONE}"
+                    app:customTextSize='@{"default"}'
+                    app:layout_constraintBottom_toBottomOf="@+id/acct"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight="wrap_content"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/acct"
+                    app:layout_constraintWidth="wrap_content"
+                    app:layout_goneMarginTop="16dp" />
+
+                <TextView
+                    android:id="@+id/profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:text="@string/sample_summary"
+                    android:visibility="@{account.note.length() > 0 ?  View.VISIBLE : View.GONE}"
+                    app:customTextSize='@{"default"}'
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/fieldsCardview"
+                    app:profile="@{account.convertedNote}"
+                    android:maxLines="999"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fieldsCardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/card_background"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="0dp"
+                    android:visibility="@{account.fields.size() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@id/hito_wo_madowasu_suuji_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/fields"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hito_wo_madowasu_suuji_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/card_background"
+                    app:layout_goneMarginBottom="0dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/hito_wo_madowasu_suuji"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/followButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:backgroundTint="@{followButtonAccentColor}"
+                    android:text="@{followButtonTitle}"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:cornerRadius="999dp"
+                    app:layout_constraintWidth="wrap_content_constrained"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/icon"
+                    app:layout_constraintBottom_toBottomOf="@id/icon"
+                    app:layout_constraintTop_toBottomOf="@+id/background" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:backgroundTint="@{followButtonAccentColor}"
+                    android:text="@string/menu_manage_profile"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:cornerRadius="999dp"
+                    app:layout_constraintWidth="wrap_content_constrained"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/icon"
+                    app:layout_constraintBottom_toBottomOf="@id/icon"
+                    app:layout_constraintTop_toBottomOf="@+id/background" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintWidth_percent="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_background"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutCollapsed"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:backgroundTint="@color/cardview_background"
+                app:tabIndicatorFullWidth="true"
+                app:tabPaddingStart="4dp"
+                app:tabPaddingEnd="4dp"
+                app:tabMode="auto" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

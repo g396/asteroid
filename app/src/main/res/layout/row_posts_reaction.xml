@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="sns.asteroid.view.BindingAdapter"/>
+        <import type="android.view.View"/>
+        <variable
+            name="posts"
+            type="sns.asteroid.api.entities.Status" />
+        <variable
+            name="showCounts"
+            type="boolean" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/row_toot_button"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/reply"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/button_reply"
+        android:contentDescription="@string/desc_favorite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boost"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ToggleButton
+        android:id="@+id/boost"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/selector_button_boost"
+        android:checked="@{posts.reblogged}"
+        android:contentDescription="@string/desc_favorite"
+        android:enabled='@{!posts.visibility.matches("private|direct")}'
+        android:textOff="@null"
+        android:textOn="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/favorite"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reply"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ToggleButton
+        android:id="@+id/favorite"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/selector_button_star"
+        android:contentDescription="@string/desc_favorite"
+        android:textOff="@null"
+        android:textOn="@null"
+        android:checked="@{posts.favourited}"
+        android:visibility="@{posts.emoji_reactions == null ? View.VISIBLE : View.GONE}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/emojiAction"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/boost"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/button_star"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        style="@style/Theme.AsteroidAlpha.ButtonNoAccentColor"
+        android:id="@+id/emojiAction"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/emoji"
+        android:backgroundTint="@color/transparent"
+        android:visibility="@{posts.emoji_reactions != null ? View.VISIBLE : View.GONE}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bookmark"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/favorite"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck"
+        tools:visibility="visible" />
+
+    <ToggleButton
+        android:id="@+id/bookmark"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/selector_button_bookmark"
+        android:contentDescription="@string/desc_favorite"
+        android:textOff="@null"
+        android:textOn="@null"
+        android:checked="@{posts.bookmarked}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/emojiAction"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        style="@style/Theme.AsteroidAlpha.ButtonNoAccentColor"
+        android:id="@+id/detail"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/button_detail"
+        android:contentDescription="@string/desc_favorite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bookmark"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/replyCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(posts.replies_count)}"
+        android:visibility="@{showCounts &amp;&amp; posts.replies_count > 0 ? View.VISIBLE : View.GONE}"
+        tools:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/reply"
+        app:layout_constraintStart_toEndOf="@+id/reply"
+        app:layout_constraintTop_toTopOf="@+id/reply" />
+
+    <TextView
+        android:id="@+id/boostCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(posts.reblogs_count)}"
+        android:visibility="@{showCounts &amp;&amp; posts.reblogs_count > 0 ? View.VISIBLE : View.GONE}"
+        tools:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/boost"
+        app:layout_constraintStart_toEndOf="@+id/boost"
+        app:layout_constraintTop_toTopOf="@+id/boost" />
+
+    <TextView
+        android:id="@+id/favouriteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(posts.favourites_count)}"
+        android:visibility="@{showCounts &amp;&amp; (posts.emoji_reactions == null) &amp;&amp; (posts.favourites_count > 0) ? View.VISIBLE : View.GONE}"
+        tools:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/favorite"
+        app:layout_constraintStart_toEndOf="@+id/favorite"
+        app:layout_constraintTop_toTopOf="@+id/favorite" />
+
+    <TextView
+        android:id="@+id/emojiCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(posts.emoji_reactions_count)}"
+        android:visibility="@{showCounts &amp;&amp; posts.emoji_reactions_count > 0 ? View.VISIBLE : View.GONE}"
+        tools:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/emojiAction"
+        app:layout_constraintStart_toEndOf="@+id/emojiAction"
+        app:layout_constraintTop_toTopOf="@+id/emojiAction" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

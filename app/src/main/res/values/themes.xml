@@ -1,0 +1,69 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AsteroidAlpha" parent="Theme.MaterialComponents.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <!-- Customize your theme here. -->
+        <item name="actionBarTheme">@style/Theme.AsteroidAlpha.ActionBar</item>
+
+    </style>
+
+    <style name="Theme.AsteroidAlpha.ActionBar" parent="Widget.MaterialComponents.Light.ActionBar.Solid">
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="Theme.AsteroidAlpha.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AsteroidAlpha.AppBarOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+    </style>
+    <style name="Theme.AsteroidAlpha.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.AsteroidAlpha.ButtonNoAccentColor" parent="ThemeOverlay.AppCompat.Light">
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="colorAccent">@color/card_background</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="colorControlActivated">@color/blue</item><!--カーソル選択の持ち手-->
+        <item name="android:textCursorDrawable">@drawable/cursor</item><!-- カーソル -->
+        <item name="android:textColorHighlight">@color/blue</item><!--カーソル選択時の色-->
+    </style>
+
+    <style name="AuthorizeActivityCheckBox" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="android:textColorPrimaryDisableOnly">@android:color/secondary_text_light</item>
+    </style>
+
+    <style name="MaterialEditText" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
+    <style name="CardViewRows" parent="ThemeOverlay.AppCompat">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/cardview_background</item>
+        <item name="android:layout_marginVertical">4dp</item>
+        <item name="android:layout_marginHorizontal">8dp</item>
+    </style>
+
+    <style name="FloatingActionButtonTheme">
+        <item name="backgroundTint">@color/gray4</item>
+        <item name="tint">@color/gray0</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+    
+</resources>

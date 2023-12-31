@@ -1,0 +1,96 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Activities,event,1F383,fully-qualified,🎃,jack-o-lantern,E0.6
+Activities,event,1F384,fully-qualified,🎄,Christmas tree,E0.6
+Activities,event,1F386,fully-qualified,🎆,fireworks,E0.6
+Activities,event,1F387,fully-qualified,🎇,sparkler,E0.6
+Activities,event,1F9E8,fully-qualified,🧨,firecracker,E11.0
+Activities,event,2728,fully-qualified,✨,sparkles,E0.6
+Activities,event,1F388,fully-qualified,🎈,balloon,E0.6
+Activities,event,1F389,fully-qualified,🎉,party popper,E0.6
+Activities,event,1F38A,fully-qualified,🎊,confetti ball,E0.6
+Activities,event,1F38B,fully-qualified,🎋,tanabata tree,E0.6
+Activities,event,1F38D,fully-qualified,🎍,pine decoration,E0.6
+Activities,event,1F38E,fully-qualified,🎎,Japanese dolls,E0.6
+Activities,event,1F38F,fully-qualified,🎏,carp streamer,E0.6
+Activities,event,1F390,fully-qualified,🎐,wind chime,E0.6
+Activities,event,1F391,fully-qualified,🎑,moon viewing ceremony,E0.6
+Activities,event,1F9E7,fully-qualified,🧧,red envelope,E11.0
+Activities,event,1F380,fully-qualified,🎀,ribbon,E0.6
+Activities,event,1F381,fully-qualified,🎁,wrapped gift,E0.6
+Activities,event,1F397 FE0F,fully-qualified,🎗️,reminder ribbon,E0.7
+Activities,event,1F397,unqualified,🎗,reminder ribbon,E0.7
+Activities,event,1F39F FE0F,fully-qualified,🎟️,admission tickets,E0.7
+Activities,event,1F39F,unqualified,🎟,admission tickets,E0.7
+Activities,event,1F3AB,fully-qualified,🎫,ticket,E0.6
+Activities,award-medal,1F396 FE0F,fully-qualified,🎖️,military medal,E0.7
+Activities,award-medal,1F396,unqualified,🎖,military medal,E0.7
+Activities,award-medal,1F3C6,fully-qualified,🏆,trophy,E0.6
+Activities,award-medal,1F3C5,fully-qualified,🏅,sports medal,E1.0
+Activities,award-medal,1F947,fully-qualified,🥇,1st place medal,E3.0
+Activities,award-medal,1F948,fully-qualified,🥈,2nd place medal,E3.0
+Activities,award-medal,1F949,fully-qualified,🥉,3rd place medal,E3.0
+Activities,sport,26BD,fully-qualified,⚽,soccer ball,E0.6
+Activities,sport,26BE,fully-qualified,⚾,baseball,E0.6
+Activities,sport,1F94E,fully-qualified,🥎,softball,E11.0
+Activities,sport,1F3C0,fully-qualified,🏀,basketball,E0.6
+Activities,sport,1F3D0,fully-qualified,🏐,volleyball,E1.0
+Activities,sport,1F3C8,fully-qualified,🏈,american football,E0.6
+Activities,sport,1F3C9,fully-qualified,🏉,rugby football,E1.0
+Activities,sport,1F3BE,fully-qualified,🎾,tennis,E0.6
+Activities,sport,1F94F,fully-qualified,🥏,flying disc,E11.0
+Activities,sport,1F3B3,fully-qualified,🎳,bowling,E0.6
+Activities,sport,1F3CF,fully-qualified,🏏,cricket game,E1.0
+Activities,sport,1F3D1,fully-qualified,🏑,field hockey,E1.0
+Activities,sport,1F3D2,fully-qualified,🏒,ice hockey,E1.0
+Activities,sport,1F94D,fully-qualified,🥍,lacrosse,E11.0
+Activities,sport,1F3D3,fully-qualified,🏓,ping pong,E1.0
+Activities,sport,1F3F8,fully-qualified,🏸,badminton,E1.0
+Activities,sport,1F94A,fully-qualified,🥊,boxing glove,E3.0
+Activities,sport,1F94B,fully-qualified,🥋,martial arts uniform,E3.0
+Activities,sport,1F945,fully-qualified,🥅,goal net,E3.0
+Activities,sport,26F3,fully-qualified,⛳,flag in hole,E0.6
+Activities,sport,26F8 FE0F,fully-qualified,⛸️,ice skate,E0.7
+Activities,sport,26F8,unqualified,⛸,ice skate,E0.7
+Activities,sport,1F3A3,fully-qualified,🎣,fishing pole,E0.6
+Activities,sport,1F93F,fully-qualified,🤿,diving mask,E12.0
+Activities,sport,1F3BD,fully-qualified,🎽,running shirt,E0.6
+Activities,sport,1F3BF,fully-qualified,🎿,skis,E0.6
+Activities,sport,1F6F7,fully-qualified,🛷,sled,E5.0
+Activities,sport,1F94C,fully-qualified,🥌,curling stone,E5.0
+Activities,game,1F3AF,fully-qualified,🎯,bullseye,E0.6
+Activities,game,1FA80,fully-qualified,🪀,yo-yo,E12.0
+Activities,game,1FA81,fully-qualified,🪁,kite,E12.0
+Activities,game,1F52B,fully-qualified,🔫,water pistol,E0.6
+Activities,game,1F3B1,fully-qualified,🎱,pool 8 ball,E0.6
+Activities,game,1F52E,fully-qualified,🔮,crystal ball,E0.6
+Activities,game,1FA84,fully-qualified,🪄,magic wand,E13.0
+Activities,game,1F3AE,fully-qualified,🎮,video game,E0.6
+Activities,game,1F579 FE0F,fully-qualified,🕹️,joystick,E0.7
+Activities,game,1F579,unqualified,🕹,joystick,E0.7
+Activities,game,1F3B0,fully-qualified,🎰,slot machine,E0.6
+Activities,game,1F3B2,fully-qualified,🎲,game die,E0.6
+Activities,game,1F9E9,fully-qualified,🧩,puzzle piece,E11.0
+Activities,game,1F9F8,fully-qualified,🧸,teddy bear,E11.0
+Activities,game,1FA85,fully-qualified,🪅,piata,E13.0
+Activities,game,1FA86,fully-qualified,🪆,nesting dolls,E13.0
+Activities,game,2660 FE0F,fully-qualified,♠️,spade suit,E0.6
+Activities,game,2660,unqualified,♠,spade suit,E0.6
+Activities,game,2665 FE0F,fully-qualified,♥️,heart suit,E0.6
+Activities,game,2665,unqualified,♥,heart suit,E0.6
+Activities,game,2666 FE0F,fully-qualified,♦️,diamond suit,E0.6
+Activities,game,2666,unqualified,♦,diamond suit,E0.6
+Activities,game,2663 FE0F,fully-qualified,♣️,club suit,E0.6
+Activities,game,2663,unqualified,♣,club suit,E0.6
+Activities,game,265F FE0F,fully-qualified,♟️,chess pawn,E11.0
+Activities,game,265F,unqualified,♟,chess pawn,E11.0
+Activities,game,1F0CF,fully-qualified,🃏,joker,E0.6
+Activities,game,1F004,fully-qualified,🀄,mahjong red dragon,E0.6
+Activities,game,1F3B4,fully-qualified,🎴,flower playing cards,E0.6
+Activities,arts-crafts,1F3AD,fully-qualified,🎭,performing arts,E0.6
+Activities,arts-crafts,1F5BC FE0F,fully-qualified,🖼️,framed picture,E0.7
+Activities,arts-crafts,1F5BC,unqualified,🖼,framed picture,E0.7
+Activities,arts-crafts,1F3A8,fully-qualified,🎨,artist palette,E0.6
+Activities,arts-crafts,1F9F5,fully-qualified,🧵,thread,E11.0
+Activities,arts-crafts,1FAA1,fully-qualified,🪡,sewing needle,E13.0
+Activities,arts-crafts,1F9F6,fully-qualified,🧶,yarn,E11.0
+Activities,arts-crafts,1FAA2,fully-qualified,🪢,knot,E13.0

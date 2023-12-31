@@ -1,0 +1,664 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Smileys-Emotion,face-smiling,1F600,fully-qualified,😀,grinning face,E1.0
+Smileys-Emotion,face-smiling,1F603,fully-qualified,😃,grinning face with big eyes,E0.6
+Smileys-Emotion,face-smiling,1F604,fully-qualified,😄,grinning face with smiling eyes,E0.6
+Smileys-Emotion,face-smiling,1F601,fully-qualified,😁,beaming face with smiling eyes,E0.6
+Smileys-Emotion,face-smiling,1F606,fully-qualified,😆,grinning squinting face,E0.6
+Smileys-Emotion,face-smiling,1F605,fully-qualified,😅,grinning face with sweat,E0.6
+Smileys-Emotion,face-smiling,1F923,fully-qualified,🤣,rolling on the floor laughing,E3.0
+Smileys-Emotion,face-smiling,1F602,fully-qualified,😂,face with tears of joy,E0.6
+Smileys-Emotion,face-smiling,1F642,fully-qualified,🙂,slightly smiling face,E1.0
+Smileys-Emotion,face-smiling,1F643,fully-qualified,🙃,upside-down face,E1.0
+Smileys-Emotion,face-smiling,1F609,fully-qualified,😉,winking face,E0.6
+Smileys-Emotion,face-smiling,1F60A,fully-qualified,😊,smiling face with smiling eyes,E0.6
+Smileys-Emotion,face-smiling,1F607,fully-qualified,😇,smiling face with halo,E1.0
+Smileys-Emotion,face-affection,1F970,fully-qualified,🥰,smiling face with hearts,E11.0
+Smileys-Emotion,face-affection,1F60D,fully-qualified,😍,smiling face with heart-eyes,E0.6
+Smileys-Emotion,face-affection,1F929,fully-qualified,🤩,star-struck,E5.0
+Smileys-Emotion,face-affection,1F618,fully-qualified,😘,face blowing a kiss,E0.6
+Smileys-Emotion,face-affection,1F617,fully-qualified,😗,kissing face,E1.0
+Smileys-Emotion,face-affection,263A FE0F,fully-qualified,☺️,smiling face,E0.6
+Smileys-Emotion,face-affection,263A,unqualified,☺,smiling face,E0.6
+Smileys-Emotion,face-affection,1F61A,fully-qualified,😚,kissing face with closed eyes,E0.6
+Smileys-Emotion,face-affection,1F619,fully-qualified,😙,kissing face with smiling eyes,E1.0
+Smileys-Emotion,face-affection,1F972,fully-qualified,🥲,smiling face with tear,E13.0
+Smileys-Emotion,face-tongue,1F60B,fully-qualified,😋,face savoring food,E0.6
+Smileys-Emotion,face-tongue,1F61B,fully-qualified,😛,face with tongue,E1.0
+Smileys-Emotion,face-tongue,1F61C,fully-qualified,😜,winking face with tongue,E0.6
+Smileys-Emotion,face-tongue,1F92A,fully-qualified,🤪,zany face,E5.0
+Smileys-Emotion,face-tongue,1F61D,fully-qualified,😝,squinting face with tongue,E0.6
+Smileys-Emotion,face-tongue,1F911,fully-qualified,🤑,money-mouth face,E1.0
+Smileys-Emotion,face-hand,1F917,fully-qualified,🤗,smiling face with open hands,E1.0
+Smileys-Emotion,face-hand,1F92D,fully-qualified,🤭,face with hand over mouth,E5.0
+Smileys-Emotion,face-hand,1F92B,fully-qualified,🤫,shushing face,E5.0
+Smileys-Emotion,face-hand,1F914,fully-qualified,🤔,thinking face,E1.0
+Smileys-Emotion,face-neutral-skeptical,1F910,fully-qualified,🤐,zipper-mouth face,E1.0
+Smileys-Emotion,face-neutral-skeptical,1F928,fully-qualified,🤨,face with raised eyebrow,E5.0
+Smileys-Emotion,face-neutral-skeptical,1F610,fully-qualified,😐,neutral face,E0.7
+Smileys-Emotion,face-neutral-skeptical,1F611,fully-qualified,😑,expressionless face,E1.0
+Smileys-Emotion,face-neutral-skeptical,1F636,fully-qualified,😶,face without mouth,E1.0
+Smileys-Emotion,face-neutral-skeptical,1F636 200D 1F32B FE0F,fully-qualified,😶‍🌫️,face in clouds,E13.1
+Smileys-Emotion,face-neutral-skeptical,1F636 200D 1F32B,minimally-qualified,😶‍🌫,face in clouds,E13.1
+Smileys-Emotion,face-neutral-skeptical,1F60F,fully-qualified,😏,smirking face,E0.6
+Smileys-Emotion,face-neutral-skeptical,1F612,fully-qualified,😒,unamused face,E0.6
+Smileys-Emotion,face-neutral-skeptical,1F644,fully-qualified,🙄,face with rolling eyes,E1.0
+Smileys-Emotion,face-neutral-skeptical,1F62C,fully-qualified,😬,grimacing face,E1.0
+Smileys-Emotion,face-neutral-skeptical,1F62E 200D 1F4A8,fully-qualified,😮‍💨,face exhaling,E13.1
+Smileys-Emotion,face-neutral-skeptical,1F925,fully-qualified,🤥,lying face,E3.0
+Smileys-Emotion,face-sleepy,1F60C,fully-qualified,😌,relieved face,E0.6
+Smileys-Emotion,face-sleepy,1F614,fully-qualified,😔,pensive face,E0.6
+Smileys-Emotion,face-sleepy,1F62A,fully-qualified,😪,sleepy face,E0.6
+Smileys-Emotion,face-sleepy,1F924,fully-qualified,🤤,drooling face,E3.0
+Smileys-Emotion,face-sleepy,1F634,fully-qualified,😴,sleeping face,E1.0
+Smileys-Emotion,face-unwell,1F637,fully-qualified,😷,face with medical mask,E0.6
+Smileys-Emotion,face-unwell,1F912,fully-qualified,🤒,face with thermometer,E1.0
+Smileys-Emotion,face-unwell,1F915,fully-qualified,🤕,face with head-bandage,E1.0
+Smileys-Emotion,face-unwell,1F922,fully-qualified,🤢,nauseated face,E3.0
+Smileys-Emotion,face-unwell,1F92E,fully-qualified,🤮,face vomiting,E5.0
+Smileys-Emotion,face-unwell,1F927,fully-qualified,🤧,sneezing face,E3.0
+Smileys-Emotion,face-unwell,1F975,fully-qualified,🥵,hot face,E11.0
+Smileys-Emotion,face-unwell,1F976,fully-qualified,🥶,cold face,E11.0
+Smileys-Emotion,face-unwell,1F974,fully-qualified,🥴,woozy face,E11.0
+Smileys-Emotion,face-unwell,1F635,fully-qualified,😵,face with crossed-out eyes,E0.6
+Smileys-Emotion,face-unwell,1F635 200D 1F4AB,fully-qualified,😵‍💫,face with spiral eyes,E13.1
+Smileys-Emotion,face-unwell,1F92F,fully-qualified,🤯,exploding head,E5.0
+Smileys-Emotion,face-hat,1F920,fully-qualified,🤠,cowboy hat face,E3.0
+Smileys-Emotion,face-hat,1F973,fully-qualified,🥳,partying face,E11.0
+Smileys-Emotion,face-hat,1F978,fully-qualified,🥸,disguised face,E13.0
+Smileys-Emotion,face-glasses,1F60E,fully-qualified,😎,smiling face with sunglasses,E1.0
+Smileys-Emotion,face-glasses,1F913,fully-qualified,🤓,nerd face,E1.0
+Smileys-Emotion,face-glasses,1F9D0,fully-qualified,🧐,face with monocle,E5.0
+Smileys-Emotion,face-concerned,1F615,fully-qualified,😕,confused face,E1.0
+Smileys-Emotion,face-concerned,1F61F,fully-qualified,😟,worried face,E1.0
+Smileys-Emotion,face-concerned,1F641,fully-qualified,🙁,slightly frowning face,E1.0
+Smileys-Emotion,face-concerned,2639 FE0F,fully-qualified,☹️,frowning face,E0.7
+Smileys-Emotion,face-concerned,2639,unqualified,☹,frowning face,E0.7
+Smileys-Emotion,face-concerned,1F62E,fully-qualified,😮,face with open mouth,E1.0
+Smileys-Emotion,face-concerned,1F62F,fully-qualified,😯,hushed face,E1.0
+Smileys-Emotion,face-concerned,1F632,fully-qualified,😲,astonished face,E0.6
+Smileys-Emotion,face-concerned,1F633,fully-qualified,😳,flushed face,E0.6
+Smileys-Emotion,face-concerned,1F97A,fully-qualified,🥺,pleading face,E11.0
+Smileys-Emotion,face-concerned,1F626,fully-qualified,😦,frowning face with open mouth,E1.0
+Smileys-Emotion,face-concerned,1F627,fully-qualified,😧,anguished face,E1.0
+Smileys-Emotion,face-concerned,1F628,fully-qualified,😨,fearful face,E0.6
+Smileys-Emotion,face-concerned,1F630,fully-qualified,😰,anxious face with sweat,E0.6
+Smileys-Emotion,face-concerned,1F625,fully-qualified,😥,sad but relieved face,E0.6
+Smileys-Emotion,face-concerned,1F622,fully-qualified,😢,crying face,E0.6
+Smileys-Emotion,face-concerned,1F62D,fully-qualified,😭,loudly crying face,E0.6
+Smileys-Emotion,face-concerned,1F631,fully-qualified,😱,face screaming in fear,E0.6
+Smileys-Emotion,face-concerned,1F616,fully-qualified,😖,confounded face,E0.6
+Smileys-Emotion,face-concerned,1F623,fully-qualified,😣,persevering face,E0.6
+Smileys-Emotion,face-concerned,1F61E,fully-qualified,😞,disappointed face,E0.6
+Smileys-Emotion,face-concerned,1F613,fully-qualified,😓,downcast face with sweat,E0.6
+Smileys-Emotion,face-concerned,1F629,fully-qualified,😩,weary face,E0.6
+Smileys-Emotion,face-concerned,1F62B,fully-qualified,😫,tired face,E0.6
+Smileys-Emotion,face-concerned,1F971,fully-qualified,🥱,yawning face,E12.0
+Smileys-Emotion,face-negative,1F624,fully-qualified,😤,face with steam from nose,E0.6
+Smileys-Emotion,face-negative,1F621,fully-qualified,😡,enraged face,E0.6
+Smileys-Emotion,face-negative,1F620,fully-qualified,😠,angry face,E0.6
+Smileys-Emotion,face-negative,1F92C,fully-qualified,🤬,face with symbols on mouth,E5.0
+Smileys-Emotion,face-negative,1F608,fully-qualified,😈,smiling face with horns,E1.0
+Smileys-Emotion,face-negative,1F47F,fully-qualified,👿,angry face with horns,E0.6
+Smileys-Emotion,face-negative,1F480,fully-qualified,💀,skull,E0.6
+Smileys-Emotion,face-negative,2620 FE0F,fully-qualified,☠️,skull and crossbones,E1.0
+Smileys-Emotion,face-negative,2620,unqualified,☠,skull and crossbones,E1.0
+Smileys-Emotion,face-costume,1F4A9,fully-qualified,💩,pile of poo,E0.6
+Smileys-Emotion,face-costume,1F921,fully-qualified,🤡,clown face,E3.0
+Smileys-Emotion,face-costume,1F479,fully-qualified,👹,ogre,E0.6
+Smileys-Emotion,face-costume,1F47A,fully-qualified,👺,goblin,E0.6
+Smileys-Emotion,face-costume,1F47B,fully-qualified,👻,ghost,E0.6
+Smileys-Emotion,face-costume,1F47D,fully-qualified,👽,alien,E0.6
+Smileys-Emotion,face-costume,1F47E,fully-qualified,👾,alien monster,E0.6
+Smileys-Emotion,face-costume,1F916,fully-qualified,🤖,robot,E1.0
+Smileys-Emotion,cat-face,1F63A,fully-qualified,😺,grinning cat,E0.6
+Smileys-Emotion,cat-face,1F638,fully-qualified,😸,grinning cat with smiling eyes,E0.6
+Smileys-Emotion,cat-face,1F639,fully-qualified,😹,cat with tears of joy,E0.6
+Smileys-Emotion,cat-face,1F63B,fully-qualified,😻,smiling cat with heart-eyes,E0.6
+Smileys-Emotion,cat-face,1F63C,fully-qualified,😼,cat with wry smile,E0.6
+Smileys-Emotion,cat-face,1F63D,fully-qualified,😽,kissing cat,E0.6
+Smileys-Emotion,cat-face,1F640,fully-qualified,🙀,weary cat,E0.6
+Smileys-Emotion,cat-face,1F63F,fully-qualified,😿,crying cat,E0.6
+Smileys-Emotion,cat-face,1F63E,fully-qualified,😾,pouting cat,E0.6
+Smileys-Emotion,monkey-face,1F648,fully-qualified,🙈,see-no-evil monkey,E0.6
+Smileys-Emotion,monkey-face,1F649,fully-qualified,🙉,hear-no-evil monkey,E0.6
+Smileys-Emotion,monkey-face,1F64A,fully-qualified,🙊,speak-no-evil monkey,E0.6
+People-Body,hand-fingers-open,1F44B,fully-qualified,👋,waving hand,E0.6
+People-Body,hand-fingers-open,1F91A,fully-qualified,🤚,raised back of hand,E3.0
+People-Body,hand-fingers-open,1F590 FE0F,fully-qualified,🖐️,hand with fingers splayed,E0.7
+People-Body,hand-fingers-open,1F590,unqualified,🖐,hand with fingers splayed,E0.7
+People-Body,hand-fingers-open,270B,fully-qualified,✋,raised hand,E0.6
+People-Body,hand-fingers-open,1F596,fully-qualified,🖖,vulcan salute,E1.0
+People-Body,hand-fingers-partial,1F44C,fully-qualified,👌,OK hand,E0.6
+People-Body,hand-fingers-partial,1F90C,fully-qualified,🤌,pinched fingers,E13.0
+People-Body,hand-fingers-partial,1F90F,fully-qualified,🤏,pinching hand,E12.0
+People-Body,hand-fingers-partial,270C FE0F,fully-qualified,✌️,victory hand,E0.6
+People-Body,hand-fingers-partial,270C,unqualified,✌,victory hand,E0.6
+People-Body,hand-fingers-partial,1F91E,fully-qualified,🤞,crossed fingers,E3.0
+People-Body,hand-fingers-partial,1F91F,fully-qualified,🤟,love-you gesture,E5.0
+People-Body,hand-fingers-partial,1F918,fully-qualified,🤘,sign of the horns,E1.0
+People-Body,hand-fingers-partial,1F919,fully-qualified,🤙,call me hand,E3.0
+People-Body,hand-single-finger,1F448,fully-qualified,👈,backhand index pointing left,E0.6
+People-Body,hand-single-finger,1F449,fully-qualified,👉,backhand index pointing right,E0.6
+People-Body,hand-single-finger,1F446,fully-qualified,👆,backhand index pointing up,E0.6
+People-Body,hand-single-finger,1F595,fully-qualified,🖕,middle finger,E1.0
+People-Body,hand-single-finger,1F447,fully-qualified,👇,backhand index pointing down,E0.6
+People-Body,hand-single-finger,261D FE0F,fully-qualified,☝️,index pointing up,E0.6
+People-Body,hand-single-finger,261D,unqualified,☝,index pointing up,E0.6
+People-Body,hand-fingers-closed,1F44D,fully-qualified,👍,thumbs up,E0.6
+People-Body,hand-fingers-closed,1F44E,fully-qualified,👎,thumbs down,E0.6
+People-Body,hand-fingers-closed,270A,fully-qualified,✊,raised fist,E0.6
+People-Body,hand-fingers-closed,1F44A,fully-qualified,👊,oncoming fist,E0.6
+People-Body,hand-fingers-closed,1F91B,fully-qualified,🤛,left-facing fist,E3.0
+People-Body,hand-fingers-closed,1F91C,fully-qualified,🤜,right-facing fist,E3.0
+People-Body,hands,1F44F,fully-qualified,👏,clapping hands,E0.6
+People-Body,hands,1F64C,fully-qualified,🙌,raising hands,E0.6
+People-Body,hands,1F450,fully-qualified,👐,open hands,E0.6
+People-Body,hands,1F932,fully-qualified,🤲,palms up together,E5.0
+People-Body,hands,1F91D,fully-qualified,🤝,handshake,E3.0
+People-Body,hands,1F64F,fully-qualified,🙏,folded hands,E0.6
+People-Body,hand-prop,270D FE0F,fully-qualified,✍️,writing hand,E0.7
+People-Body,hand-prop,270D,unqualified,✍,writing hand,E0.7
+People-Body,hand-prop,1F485,fully-qualified,💅,nail polish,E0.6
+People-Body,hand-prop,1F933,fully-qualified,🤳,selfie,E3.0
+People-Body,body-parts,1F4AA,fully-qualified,💪,flexed biceps,E0.6
+People-Body,body-parts,1F9BE,fully-qualified,🦾,mechanical arm,E12.0
+People-Body,body-parts,1F9BF,fully-qualified,🦿,mechanical leg,E12.0
+People-Body,body-parts,1F9B5,fully-qualified,🦵,leg,E11.0
+People-Body,body-parts,1F9B6,fully-qualified,🦶,foot,E11.0
+People-Body,body-parts,1F442,fully-qualified,👂,ear,E0.6
+People-Body,body-parts,1F9BB,fully-qualified,🦻,ear with hearing aid,E12.0
+People-Body,body-parts,1F443,fully-qualified,👃,nose,E0.6
+People-Body,body-parts,1F9E0,fully-qualified,🧠,brain,E5.0
+People-Body,body-parts,1FAC0,fully-qualified,🫀,anatomical heart,E13.0
+People-Body,body-parts,1FAC1,fully-qualified,🫁,lungs,E13.0
+People-Body,body-parts,1F9B7,fully-qualified,🦷,tooth,E11.0
+People-Body,body-parts,1F9B4,fully-qualified,🦴,bone,E11.0
+People-Body,body-parts,1F440,fully-qualified,👀,eyes,E0.6
+People-Body,body-parts,1F441 FE0F,fully-qualified,👁️,eye,E0.7
+People-Body,body-parts,1F441,unqualified,👁,eye,E0.7
+People-Body,body-parts,1F445,fully-qualified,👅,tongue,E0.6
+People-Body,body-parts,1F444,fully-qualified,👄,mouth,E0.6
+People-Body,person,1F476,fully-qualified,👶,baby,E0.6
+People-Body,person,1F9D2,fully-qualified,🧒,child,E5.0
+People-Body,person,1F466,fully-qualified,👦,boy,E0.6
+People-Body,person,1F467,fully-qualified,👧,girl,E0.6
+People-Body,person,1F9D1,fully-qualified,🧑,person,E5.0
+People-Body,person,1F471,fully-qualified,👱,person blond hair,E0.6
+People-Body,person,1F468,fully-qualified,👨,man,E0.6
+People-Body,person,1F9D4,fully-qualified,🧔,person beard,E5.0
+People-Body,person,1F9D4 200D 2642 FE0F,fully-qualified,🧔‍♂️,man beard,E13.1
+People-Body,person,1F9D4 200D 2642,minimally-qualified,🧔‍♂,man beard,E13.1
+People-Body,person,1F9D4 200D 2640 FE0F,fully-qualified,🧔‍♀️,woman beard,E13.1
+People-Body,person,1F9D4 200D 2640,minimally-qualified,🧔‍♀,woman beard,E13.1
+People-Body,person,1F468 200D 1F9B0,fully-qualified,👨‍🦰,man red hair,E11.0
+People-Body,person,1F468 200D 1F9B1,fully-qualified,👨‍🦱,man curly hair,E11.0
+People-Body,person,1F468 200D 1F9B3,fully-qualified,👨‍🦳,man white hair,E11.0
+People-Body,person,1F468 200D 1F9B2,fully-qualified,👨‍🦲,man bald,E11.0
+People-Body,person,1F469,fully-qualified,👩,woman,E0.6
+People-Body,person,1F469 200D 1F9B0,fully-qualified,👩‍🦰,woman red hair,E11.0
+People-Body,person,1F9D1 200D 1F9B0,fully-qualified,🧑‍🦰,person red hair,E12.1
+People-Body,person,1F469 200D 1F9B1,fully-qualified,👩‍🦱,woman curly hair,E11.0
+People-Body,person,1F9D1 200D 1F9B1,fully-qualified,🧑‍🦱,person curly hair,E12.1
+People-Body,person,1F469 200D 1F9B3,fully-qualified,👩‍🦳,woman white hair,E11.0
+People-Body,person,1F9D1 200D 1F9B3,fully-qualified,🧑‍🦳,person white hair,E12.1
+People-Body,person,1F469 200D 1F9B2,fully-qualified,👩‍🦲,woman bald,E11.0
+People-Body,person,1F9D1 200D 1F9B2,fully-qualified,🧑‍🦲,person bald,E12.1
+People-Body,person,1F471 200D 2640 FE0F,fully-qualified,👱‍♀️,woman blond hair,E4.0
+People-Body,person,1F471 200D 2640,minimally-qualified,👱‍♀,woman blond hair,E4.0
+People-Body,person,1F471 200D 2642 FE0F,fully-qualified,👱‍♂️,man blond hair,E4.0
+People-Body,person,1F471 200D 2642,minimally-qualified,👱‍♂,man blond hair,E4.0
+People-Body,person,1F9D3,fully-qualified,🧓,older person,E5.0
+People-Body,person,1F474,fully-qualified,👴,old man,E0.6
+People-Body,person,1F475,fully-qualified,👵,old woman,E0.6
+People-Body,person-gesture,1F64D,fully-qualified,🙍,person frowning,E0.6
+People-Body,person-gesture,1F64D 200D 2642 FE0F,fully-qualified,🙍‍♂️,man frowning,E4.0
+People-Body,person-gesture,1F64D 200D 2642,minimally-qualified,🙍‍♂,man frowning,E4.0
+People-Body,person-gesture,1F64D 200D 2640 FE0F,fully-qualified,🙍‍♀️,woman frowning,E4.0
+People-Body,person-gesture,1F64D 200D 2640,minimally-qualified,🙍‍♀,woman frowning,E4.0
+People-Body,person-gesture,1F64E,fully-qualified,🙎,person pouting,E0.6
+People-Body,person-gesture,1F64E 200D 2642 FE0F,fully-qualified,🙎‍♂️,man pouting,E4.0
+People-Body,person-gesture,1F64E 200D 2642,minimally-qualified,🙎‍♂,man pouting,E4.0
+People-Body,person-gesture,1F64E 200D 2640 FE0F,fully-qualified,🙎‍♀️,woman pouting,E4.0
+People-Body,person-gesture,1F64E 200D 2640,minimally-qualified,🙎‍♀,woman pouting,E4.0
+People-Body,person-gesture,1F645,fully-qualified,🙅,person gesturing NO,E0.6
+People-Body,person-gesture,1F645 200D 2642 FE0F,fully-qualified,🙅‍♂️,man gesturing NO,E4.0
+People-Body,person-gesture,1F645 200D 2642,minimally-qualified,🙅‍♂,man gesturing NO,E4.0
+People-Body,person-gesture,1F645 200D 2640 FE0F,fully-qualified,🙅‍♀️,woman gesturing NO,E4.0
+People-Body,person-gesture,1F645 200D 2640,minimally-qualified,🙅‍♀,woman gesturing NO,E4.0
+People-Body,person-gesture,1F646,fully-qualified,🙆,person gesturing OK,E0.6
+People-Body,person-gesture,1F646 200D 2642 FE0F,fully-qualified,🙆‍♂️,man gesturing OK,E4.0
+People-Body,person-gesture,1F646 200D 2642,minimally-qualified,🙆‍♂,man gesturing OK,E4.0
+People-Body,person-gesture,1F646 200D 2640 FE0F,fully-qualified,🙆‍♀️,woman gesturing OK,E4.0
+People-Body,person-gesture,1F646 200D 2640,minimally-qualified,🙆‍♀,woman gesturing OK,E4.0
+People-Body,person-gesture,1F481,fully-qualified,💁,person tipping hand,E0.6
+People-Body,person-gesture,1F481 200D 2642 FE0F,fully-qualified,💁‍♂️,man tipping hand,E4.0
+People-Body,person-gesture,1F481 200D 2642,minimally-qualified,💁‍♂,man tipping hand,E4.0
+People-Body,person-gesture,1F481 200D 2640 FE0F,fully-qualified,💁‍♀️,woman tipping hand,E4.0
+People-Body,person-gesture,1F481 200D 2640,minimally-qualified,💁‍♀,woman tipping hand,E4.0
+People-Body,person-gesture,1F64B,fully-qualified,🙋,person raising hand,E0.6
+People-Body,person-gesture,1F64B 200D 2642 FE0F,fully-qualified,🙋‍♂️,man raising hand,E4.0
+People-Body,person-gesture,1F64B 200D 2642,minimally-qualified,🙋‍♂,man raising hand,E4.0
+People-Body,person-gesture,1F64B 200D 2640 FE0F,fully-qualified,🙋‍♀️,woman raising hand,E4.0
+People-Body,person-gesture,1F64B 200D 2640,minimally-qualified,🙋‍♀,woman raising hand,E4.0
+People-Body,person-gesture,1F9CF,fully-qualified,🧏,deaf person,E12.0
+People-Body,person-gesture,1F9CF 200D 2642 FE0F,fully-qualified,🧏‍♂️,deaf man,E12.0
+People-Body,person-gesture,1F9CF 200D 2642,minimally-qualified,🧏‍♂,deaf man,E12.0
+People-Body,person-gesture,1F9CF 200D 2640 FE0F,fully-qualified,🧏‍♀️,deaf woman,E12.0
+People-Body,person-gesture,1F9CF 200D 2640,minimally-qualified,🧏‍♀,deaf woman,E12.0
+People-Body,person-gesture,1F647,fully-qualified,🙇,person bowing,E0.6
+People-Body,person-gesture,1F647 200D 2642 FE0F,fully-qualified,🙇‍♂️,man bowing,E4.0
+People-Body,person-gesture,1F647 200D 2642,minimally-qualified,🙇‍♂,man bowing,E4.0
+People-Body,person-gesture,1F647 200D 2640 FE0F,fully-qualified,🙇‍♀️,woman bowing,E4.0
+People-Body,person-gesture,1F647 200D 2640,minimally-qualified,🙇‍♀,woman bowing,E4.0
+People-Body,person-gesture,1F926,fully-qualified,🤦,person facepalming,E3.0
+People-Body,person-gesture,1F926 200D 2642 FE0F,fully-qualified,🤦‍♂️,man facepalming,E4.0
+People-Body,person-gesture,1F926 200D 2642,minimally-qualified,🤦‍♂,man facepalming,E4.0
+People-Body,person-gesture,1F926 200D 2640 FE0F,fully-qualified,🤦‍♀️,woman facepalming,E4.0
+People-Body,person-gesture,1F926 200D 2640,minimally-qualified,🤦‍♀,woman facepalming,E4.0
+People-Body,person-gesture,1F937,fully-qualified,🤷,person shrugging,E3.0
+People-Body,person-gesture,1F937 200D 2642 FE0F,fully-qualified,🤷‍♂️,man shrugging,E4.0
+People-Body,person-gesture,1F937 200D 2642,minimally-qualified,🤷‍♂,man shrugging,E4.0
+People-Body,person-gesture,1F937 200D 2640 FE0F,fully-qualified,🤷‍♀️,woman shrugging,E4.0
+People-Body,person-gesture,1F937 200D 2640,minimally-qualified,🤷‍♀,woman shrugging,E4.0
+People-Body,person-role,1F9D1 200D 2695 FE0F,fully-qualified,🧑‍⚕️,health worker,E12.1
+People-Body,person-role,1F9D1 200D 2695,minimally-qualified,🧑‍⚕,health worker,E12.1
+People-Body,person-role,1F468 200D 2695 FE0F,fully-qualified,👨‍⚕️,man health worker,E4.0
+People-Body,person-role,1F468 200D 2695,minimally-qualified,👨‍⚕,man health worker,E4.0
+People-Body,person-role,1F469 200D 2695 FE0F,fully-qualified,👩‍⚕️,woman health worker,E4.0
+People-Body,person-role,1F469 200D 2695,minimally-qualified,👩‍⚕,woman health worker,E4.0
+People-Body,person-role,1F9D1 200D 1F393,fully-qualified,🧑‍🎓,student,E12.1
+People-Body,person-role,1F468 200D 1F393,fully-qualified,👨‍🎓,man student,E4.0
+People-Body,person-role,1F469 200D 1F393,fully-qualified,👩‍🎓,woman student,E4.0
+People-Body,person-role,1F9D1 200D 1F3EB,fully-qualified,🧑‍🏫,teacher,E12.1
+People-Body,person-role,1F468 200D 1F3EB,fully-qualified,👨‍🏫,man teacher,E4.0
+People-Body,person-role,1F469 200D 1F3EB,fully-qualified,👩‍🏫,woman teacher,E4.0
+People-Body,person-role,1F9D1 200D 2696 FE0F,fully-qualified,🧑‍⚖️,judge,E12.1
+People-Body,person-role,1F9D1 200D 2696,minimally-qualified,🧑‍⚖,judge,E12.1
+People-Body,person-role,1F468 200D 2696 FE0F,fully-qualified,👨‍⚖️,man judge,E4.0
+People-Body,person-role,1F468 200D 2696,minimally-qualified,👨‍⚖,man judge,E4.0
+People-Body,person-role,1F469 200D 2696 FE0F,fully-qualified,👩‍⚖️,woman judge,E4.0
+People-Body,person-role,1F469 200D 2696,minimally-qualified,👩‍⚖,woman judge,E4.0
+People-Body,person-role,1F9D1 200D 1F33E,fully-qualified,🧑‍🌾,farmer,E12.1
+People-Body,person-role,1F468 200D 1F33E,fully-qualified,👨‍🌾,man farmer,E4.0
+People-Body,person-role,1F469 200D 1F33E,fully-qualified,👩‍🌾,woman farmer,E4.0
+People-Body,person-role,1F9D1 200D 1F373,fully-qualified,🧑‍🍳,cook,E12.1
+People-Body,person-role,1F468 200D 1F373,fully-qualified,👨‍🍳,man cook,E4.0
+People-Body,person-role,1F469 200D 1F373,fully-qualified,👩‍🍳,woman cook,E4.0
+People-Body,person-role,1F9D1 200D 1F527,fully-qualified,🧑‍🔧,mechanic,E12.1
+People-Body,person-role,1F468 200D 1F527,fully-qualified,👨‍🔧,man mechanic,E4.0
+People-Body,person-role,1F469 200D 1F527,fully-qualified,👩‍🔧,woman mechanic,E4.0
+People-Body,person-role,1F9D1 200D 1F3ED,fully-qualified,🧑‍🏭,factory worker,E12.1
+People-Body,person-role,1F468 200D 1F3ED,fully-qualified,👨‍🏭,man factory worker,E4.0
+People-Body,person-role,1F469 200D 1F3ED,fully-qualified,👩‍🏭,woman factory worker,E4.0
+People-Body,person-role,1F9D1 200D 1F4BC,fully-qualified,🧑‍💼,office worker,E12.1
+People-Body,person-role,1F468 200D 1F4BC,fully-qualified,👨‍💼,man office worker,E4.0
+People-Body,person-role,1F469 200D 1F4BC,fully-qualified,👩‍💼,woman office worker,E4.0
+People-Body,person-role,1F9D1 200D 1F52C,fully-qualified,🧑‍🔬,scientist,E12.1
+People-Body,person-role,1F468 200D 1F52C,fully-qualified,👨‍🔬,man scientist,E4.0
+People-Body,person-role,1F469 200D 1F52C,fully-qualified,👩‍🔬,woman scientist,E4.0
+People-Body,person-role,1F9D1 200D 1F4BB,fully-qualified,🧑‍💻,technologist,E12.1
+People-Body,person-role,1F468 200D 1F4BB,fully-qualified,👨‍💻,man technologist,E4.0
+People-Body,person-role,1F469 200D 1F4BB,fully-qualified,👩‍💻,woman technologist,E4.0
+People-Body,person-role,1F9D1 200D 1F3A4,fully-qualified,🧑‍🎤,singer,E12.1
+People-Body,person-role,1F468 200D 1F3A4,fully-qualified,👨‍🎤,man singer,E4.0
+People-Body,person-role,1F469 200D 1F3A4,fully-qualified,👩‍🎤,woman singer,E4.0
+People-Body,person-role,1F9D1 200D 1F3A8,fully-qualified,🧑‍🎨,artist,E12.1
+People-Body,person-role,1F468 200D 1F3A8,fully-qualified,👨‍🎨,man artist,E4.0
+People-Body,person-role,1F469 200D 1F3A8,fully-qualified,👩‍🎨,woman artist,E4.0
+People-Body,person-role,1F9D1 200D 2708 FE0F,fully-qualified,🧑‍✈️,pilot,E12.1
+People-Body,person-role,1F9D1 200D 2708,minimally-qualified,🧑‍✈,pilot,E12.1
+People-Body,person-role,1F468 200D 2708 FE0F,fully-qualified,👨‍✈️,man pilot,E4.0
+People-Body,person-role,1F468 200D 2708,minimally-qualified,👨‍✈,man pilot,E4.0
+People-Body,person-role,1F469 200D 2708 FE0F,fully-qualified,👩‍✈️,woman pilot,E4.0
+People-Body,person-role,1F469 200D 2708,minimally-qualified,👩‍✈,woman pilot,E4.0
+People-Body,person-role,1F9D1 200D 1F680,fully-qualified,🧑‍🚀,astronaut,E12.1
+People-Body,person-role,1F468 200D 1F680,fully-qualified,👨‍🚀,man astronaut,E4.0
+People-Body,person-role,1F469 200D 1F680,fully-qualified,👩‍🚀,woman astronaut,E4.0
+People-Body,person-role,1F9D1 200D 1F692,fully-qualified,🧑‍🚒,firefighter,E12.1
+People-Body,person-role,1F468 200D 1F692,fully-qualified,👨‍🚒,man firefighter,E4.0
+People-Body,person-role,1F469 200D 1F692,fully-qualified,👩‍🚒,woman firefighter,E4.0
+People-Body,person-role,1F46E,fully-qualified,👮,police officer,E0.6
+People-Body,person-role,1F46E 200D 2642 FE0F,fully-qualified,👮‍♂️,man police officer,E4.0
+People-Body,person-role,1F46E 200D 2642,minimally-qualified,👮‍♂,man police officer,E4.0
+People-Body,person-role,1F46E 200D 2640 FE0F,fully-qualified,👮‍♀️,woman police officer,E4.0
+People-Body,person-role,1F46E 200D 2640,minimally-qualified,👮‍♀,woman police officer,E4.0
+People-Body,person-role,1F575 FE0F,fully-qualified,🕵️,detective,E0.7
+People-Body,person-role,1F575,unqualified,🕵,detective,E0.7
+People-Body,person-role,1F575 FE0F 200D 2642 FE0F,fully-qualified,🕵️‍♂️,man detective,E4.0
+People-Body,person-role,1F575 200D 2642 FE0F,unqualified,🕵‍♂️,man detective,E4.0
+People-Body,person-role,1F575 FE0F 200D 2642,minimally-qualified,🕵️‍♂,man detective,E4.0
+People-Body,person-role,1F575 200D 2642,unqualified,🕵‍♂,man detective,E4.0
+People-Body,person-role,1F575 FE0F 200D 2640 FE0F,fully-qualified,🕵️‍♀️,woman detective,E4.0
+People-Body,person-role,1F575 200D 2640 FE0F,unqualified,🕵‍♀️,woman detective,E4.0
+People-Body,person-role,1F575 FE0F 200D 2640,minimally-qualified,🕵️‍♀,woman detective,E4.0
+People-Body,person-role,1F575 200D 2640,unqualified,🕵‍♀,woman detective,E4.0
+People-Body,person-role,1F482,fully-qualified,💂,guard,E0.6
+People-Body,person-role,1F482 200D 2642 FE0F,fully-qualified,💂‍♂️,man guard,E4.0
+People-Body,person-role,1F482 200D 2642,minimally-qualified,💂‍♂,man guard,E4.0
+People-Body,person-role,1F482 200D 2640 FE0F,fully-qualified,💂‍♀️,woman guard,E4.0
+People-Body,person-role,1F482 200D 2640,minimally-qualified,💂‍♀,woman guard,E4.0
+People-Body,person-role,1F977,fully-qualified,🥷,ninja,E13.0
+People-Body,person-role,1F477,fully-qualified,👷,construction worker,E0.6
+People-Body,person-role,1F477 200D 2642 FE0F,fully-qualified,👷‍♂️,man construction worker,E4.0
+People-Body,person-role,1F477 200D 2642,minimally-qualified,👷‍♂,man construction worker,E4.0
+People-Body,person-role,1F477 200D 2640 FE0F,fully-qualified,👷‍♀️,woman construction worker,E4.0
+People-Body,person-role,1F477 200D 2640,minimally-qualified,👷‍♀,woman construction worker,E4.0
+People-Body,person-role,1F934,fully-qualified,🤴,prince,E3.0
+People-Body,person-role,1F478,fully-qualified,👸,princess,E0.6
+People-Body,person-role,1F473,fully-qualified,👳,person wearing turban,E0.6
+People-Body,person-role,1F473 200D 2642 FE0F,fully-qualified,👳‍♂️,man wearing turban,E4.0
+People-Body,person-role,1F473 200D 2642,minimally-qualified,👳‍♂,man wearing turban,E4.0
+People-Body,person-role,1F473 200D 2640 FE0F,fully-qualified,👳‍♀️,woman wearing turban,E4.0
+People-Body,person-role,1F473 200D 2640,minimally-qualified,👳‍♀,woman wearing turban,E4.0
+People-Body,person-role,1F472,fully-qualified,👲,person with skullcap,E0.6
+People-Body,person-role,1F9D5,fully-qualified,🧕,woman with headscarf,E5.0
+People-Body,person-role,1F935,fully-qualified,🤵,person in tuxedo,E3.0
+People-Body,person-role,1F935 200D 2642 FE0F,fully-qualified,🤵‍♂️,man in tuxedo,E13.0
+People-Body,person-role,1F935 200D 2642,minimally-qualified,🤵‍♂,man in tuxedo,E13.0
+People-Body,person-role,1F935 200D 2640 FE0F,fully-qualified,🤵‍♀️,woman in tuxedo,E13.0
+People-Body,person-role,1F935 200D 2640,minimally-qualified,🤵‍♀,woman in tuxedo,E13.0
+People-Body,person-role,1F470,fully-qualified,👰,person with veil,E0.6
+People-Body,person-role,1F470 200D 2642 FE0F,fully-qualified,👰‍♂️,man with veil,E13.0
+People-Body,person-role,1F470 200D 2642,minimally-qualified,👰‍♂,man with veil,E13.0
+People-Body,person-role,1F470 200D 2640 FE0F,fully-qualified,👰‍♀️,woman with veil,E13.0
+People-Body,person-role,1F470 200D 2640,minimally-qualified,👰‍♀,woman with veil,E13.0
+People-Body,person-role,1F930,fully-qualified,🤰,pregnant woman,E3.0
+People-Body,person-role,1F931,fully-qualified,🤱,breast-feeding,E5.0
+People-Body,person-role,1F469 200D 1F37C,fully-qualified,👩‍🍼,woman feeding baby,E13.0
+People-Body,person-role,1F468 200D 1F37C,fully-qualified,👨‍🍼,man feeding baby,E13.0
+People-Body,person-role,1F9D1 200D 1F37C,fully-qualified,🧑‍🍼,person feeding baby,E13.0
+People-Body,person-fantasy,1F47C,fully-qualified,👼,baby angel,E0.6
+People-Body,person-fantasy,1F385,fully-qualified,🎅,Santa Claus,E0.6
+People-Body,person-fantasy,1F936,fully-qualified,🤶,Mrs Claus,E3.0
+People-Body,person-fantasy,1F9D1 200D 1F384,fully-qualified,🧑‍🎄,mx claus,E13.0
+People-Body,person-fantasy,1F9B8,fully-qualified,🦸,superhero,E11.0
+People-Body,person-fantasy,1F9B8 200D 2642 FE0F,fully-qualified,🦸‍♂️,man superhero,E11.0
+People-Body,person-fantasy,1F9B8 200D 2642,minimally-qualified,🦸‍♂,man superhero,E11.0
+People-Body,person-fantasy,1F9B8 200D 2640 FE0F,fully-qualified,🦸‍♀️,woman superhero,E11.0
+People-Body,person-fantasy,1F9B8 200D 2640,minimally-qualified,🦸‍♀,woman superhero,E11.0
+People-Body,person-fantasy,1F9B9,fully-qualified,🦹,supervillain,E11.0
+People-Body,person-fantasy,1F9B9 200D 2642 FE0F,fully-qualified,🦹‍♂️,man supervillain,E11.0
+People-Body,person-fantasy,1F9B9 200D 2642,minimally-qualified,🦹‍♂,man supervillain,E11.0
+People-Body,person-fantasy,1F9B9 200D 2640 FE0F,fully-qualified,🦹‍♀️,woman supervillain,E11.0
+People-Body,person-fantasy,1F9B9 200D 2640,minimally-qualified,🦹‍♀,woman supervillain,E11.0
+People-Body,person-fantasy,1F9D9,fully-qualified,🧙,mage,E5.0
+People-Body,person-fantasy,1F9D9 200D 2642 FE0F,fully-qualified,🧙‍♂️,man mage,E5.0
+People-Body,person-fantasy,1F9D9 200D 2642,minimally-qualified,🧙‍♂,man mage,E5.0
+People-Body,person-fantasy,1F9D9 200D 2640 FE0F,fully-qualified,🧙‍♀️,woman mage,E5.0
+People-Body,person-fantasy,1F9D9 200D 2640,minimally-qualified,🧙‍♀,woman mage,E5.0
+People-Body,person-fantasy,1F9DA,fully-qualified,🧚,fairy,E5.0
+People-Body,person-fantasy,1F9DA 200D 2642 FE0F,fully-qualified,🧚‍♂️,man fairy,E5.0
+People-Body,person-fantasy,1F9DA 200D 2642,minimally-qualified,🧚‍♂,man fairy,E5.0
+People-Body,person-fantasy,1F9DA 200D 2640 FE0F,fully-qualified,🧚‍♀️,woman fairy,E5.0
+People-Body,person-fantasy,1F9DA 200D 2640,minimally-qualified,🧚‍♀,woman fairy,E5.0
+People-Body,person-fantasy,1F9DB,fully-qualified,🧛,vampire,E5.0
+People-Body,person-fantasy,1F9DB 200D 2642 FE0F,fully-qualified,🧛‍♂️,man vampire,E5.0
+People-Body,person-fantasy,1F9DB 200D 2642,minimally-qualified,🧛‍♂,man vampire,E5.0
+People-Body,person-fantasy,1F9DB 200D 2640 FE0F,fully-qualified,🧛‍♀️,woman vampire,E5.0
+People-Body,person-fantasy,1F9DB 200D 2640,minimally-qualified,🧛‍♀,woman vampire,E5.0
+People-Body,person-fantasy,1F9DC,fully-qualified,🧜,merperson,E5.0
+People-Body,person-fantasy,1F9DC 200D 2642 FE0F,fully-qualified,🧜‍♂️,merman,E5.0
+People-Body,person-fantasy,1F9DC 200D 2642,minimally-qualified,🧜‍♂,merman,E5.0
+People-Body,person-fantasy,1F9DC 200D 2640 FE0F,fully-qualified,🧜‍♀️,mermaid,E5.0
+People-Body,person-fantasy,1F9DC 200D 2640,minimally-qualified,🧜‍♀,mermaid,E5.0
+People-Body,person-fantasy,1F9DD,fully-qualified,🧝,elf,E5.0
+People-Body,person-fantasy,1F9DD 200D 2642 FE0F,fully-qualified,🧝‍♂️,man elf,E5.0
+People-Body,person-fantasy,1F9DD 200D 2642,minimally-qualified,🧝‍♂,man elf,E5.0
+People-Body,person-fantasy,1F9DD 200D 2640 FE0F,fully-qualified,🧝‍♀️,woman elf,E5.0
+People-Body,person-fantasy,1F9DD 200D 2640,minimally-qualified,🧝‍♀,woman elf,E5.0
+People-Body,person-fantasy,1F9DE,fully-qualified,🧞,genie,E5.0
+People-Body,person-fantasy,1F9DE 200D 2642 FE0F,fully-qualified,🧞‍♂️,man genie,E5.0
+People-Body,person-fantasy,1F9DE 200D 2642,minimally-qualified,🧞‍♂,man genie,E5.0
+People-Body,person-fantasy,1F9DE 200D 2640 FE0F,fully-qualified,🧞‍♀️,woman genie,E5.0
+People-Body,person-fantasy,1F9DE 200D 2640,minimally-qualified,🧞‍♀,woman genie,E5.0
+People-Body,person-fantasy,1F9DF,fully-qualified,🧟,zombie,E5.0
+People-Body,person-fantasy,1F9DF 200D 2642 FE0F,fully-qualified,🧟‍♂️,man zombie,E5.0
+People-Body,person-fantasy,1F9DF 200D 2642,minimally-qualified,🧟‍♂,man zombie,E5.0
+People-Body,person-fantasy,1F9DF 200D 2640 FE0F,fully-qualified,🧟‍♀️,woman zombie,E5.0
+People-Body,person-fantasy,1F9DF 200D 2640,minimally-qualified,🧟‍♀,woman zombie,E5.0
+People-Body,person-activity,1F486,fully-qualified,💆,person getting massage,E0.6
+People-Body,person-activity,1F486 200D 2642 FE0F,fully-qualified,💆‍♂️,man getting massage,E4.0
+People-Body,person-activity,1F486 200D 2642,minimally-qualified,💆‍♂,man getting massage,E4.0
+People-Body,person-activity,1F486 200D 2640 FE0F,fully-qualified,💆‍♀️,woman getting massage,E4.0
+People-Body,person-activity,1F486 200D 2640,minimally-qualified,💆‍♀,woman getting massage,E4.0
+People-Body,person-activity,1F487,fully-qualified,💇,person getting haircut,E0.6
+People-Body,person-activity,1F487 200D 2642 FE0F,fully-qualified,💇‍♂️,man getting haircut,E4.0
+People-Body,person-activity,1F487 200D 2642,minimally-qualified,💇‍♂,man getting haircut,E4.0
+People-Body,person-activity,1F487 200D 2640 FE0F,fully-qualified,💇‍♀️,woman getting haircut,E4.0
+People-Body,person-activity,1F487 200D 2640,minimally-qualified,💇‍♀,woman getting haircut,E4.0
+People-Body,person-activity,1F6B6,fully-qualified,🚶,person walking,E0.6
+People-Body,person-activity,1F6B6 200D 2642 FE0F,fully-qualified,🚶‍♂️,man walking,E4.0
+People-Body,person-activity,1F6B6 200D 2642,minimally-qualified,🚶‍♂,man walking,E4.0
+People-Body,person-activity,1F6B6 200D 2640 FE0F,fully-qualified,🚶‍♀️,woman walking,E4.0
+People-Body,person-activity,1F6B6 200D 2640,minimally-qualified,🚶‍♀,woman walking,E4.0
+People-Body,person-activity,1F9CD,fully-qualified,🧍,person standing,E12.0
+People-Body,person-activity,1F9CD 200D 2642 FE0F,fully-qualified,🧍‍♂️,man standing,E12.0
+People-Body,person-activity,1F9CD 200D 2642,minimally-qualified,🧍‍♂,man standing,E12.0
+People-Body,person-activity,1F9CD 200D 2640 FE0F,fully-qualified,🧍‍♀️,woman standing,E12.0
+People-Body,person-activity,1F9CD 200D 2640,minimally-qualified,🧍‍♀,woman standing,E12.0
+People-Body,person-activity,1F9CE,fully-qualified,🧎,person kneeling,E12.0
+People-Body,person-activity,1F9CE 200D 2642 FE0F,fully-qualified,🧎‍♂️,man kneeling,E12.0
+People-Body,person-activity,1F9CE 200D 2642,minimally-qualified,🧎‍♂,man kneeling,E12.0
+People-Body,person-activity,1F9CE 200D 2640 FE0F,fully-qualified,🧎‍♀️,woman kneeling,E12.0
+People-Body,person-activity,1F9CE 200D 2640,minimally-qualified,🧎‍♀,woman kneeling,E12.0
+People-Body,person-activity,1F9D1 200D 1F9AF,fully-qualified,🧑‍🦯,person with white cane,E12.1
+People-Body,person-activity,1F468 200D 1F9AF,fully-qualified,👨‍🦯,man with white cane,E12.0
+People-Body,person-activity,1F469 200D 1F9AF,fully-qualified,👩‍🦯,woman with white cane,E12.0
+People-Body,person-activity,1F9D1 200D 1F9BC,fully-qualified,🧑‍🦼,person in motorized wheelchair,E12.1
+People-Body,person-activity,1F468 200D 1F9BC,fully-qualified,👨‍🦼,man in motorized wheelchair,E12.0
+People-Body,person-activity,1F469 200D 1F9BC,fully-qualified,👩‍🦼,woman in motorized wheelchair,E12.0
+People-Body,person-activity,1F9D1 200D 1F9BD,fully-qualified,🧑‍🦽,person in manual wheelchair,E12.1
+People-Body,person-activity,1F468 200D 1F9BD,fully-qualified,👨‍🦽,man in manual wheelchair,E12.0
+People-Body,person-activity,1F469 200D 1F9BD,fully-qualified,👩‍🦽,woman in manual wheelchair,E12.0
+People-Body,person-activity,1F3C3,fully-qualified,🏃,person running,E0.6
+People-Body,person-activity,1F3C3 200D 2642 FE0F,fully-qualified,🏃‍♂️,man running,E4.0
+People-Body,person-activity,1F3C3 200D 2642,minimally-qualified,🏃‍♂,man running,E4.0
+People-Body,person-activity,1F3C3 200D 2640 FE0F,fully-qualified,🏃‍♀️,woman running,E4.0
+People-Body,person-activity,1F3C3 200D 2640,minimally-qualified,🏃‍♀,woman running,E4.0
+People-Body,person-activity,1F483,fully-qualified,💃,woman dancing,E0.6
+People-Body,person-activity,1F57A,fully-qualified,🕺,man dancing,E3.0
+People-Body,person-activity,1F574 FE0F,fully-qualified,🕴️,person in suit levitating,E0.7
+People-Body,person-activity,1F574,unqualified,🕴,person in suit levitating,E0.7
+People-Body,person-activity,1F46F,fully-qualified,👯,people with bunny ears,E0.6
+People-Body,person-activity,1F46F 200D 2642 FE0F,fully-qualified,👯‍♂️,men with bunny ears,E4.0
+People-Body,person-activity,1F46F 200D 2642,minimally-qualified,👯‍♂,men with bunny ears,E4.0
+People-Body,person-activity,1F46F 200D 2640 FE0F,fully-qualified,👯‍♀️,women with bunny ears,E4.0
+People-Body,person-activity,1F46F 200D 2640,minimally-qualified,👯‍♀,women with bunny ears,E4.0
+People-Body,person-activity,1F9D6,fully-qualified,🧖,person in steamy room,E5.0
+People-Body,person-activity,1F9D6 200D 2642 FE0F,fully-qualified,🧖‍♂️,man in steamy room,E5.0
+People-Body,person-activity,1F9D6 200D 2642,minimally-qualified,🧖‍♂,man in steamy room,E5.0
+People-Body,person-activity,1F9D6 200D 2640 FE0F,fully-qualified,🧖‍♀️,woman in steamy room,E5.0
+People-Body,person-activity,1F9D6 200D 2640,minimally-qualified,🧖‍♀,woman in steamy room,E5.0
+People-Body,person-activity,1F9D7,fully-qualified,🧗,person climbing,E5.0
+People-Body,person-activity,1F9D7 200D 2642 FE0F,fully-qualified,🧗‍♂️,man climbing,E5.0
+People-Body,person-activity,1F9D7 200D 2642,minimally-qualified,🧗‍♂,man climbing,E5.0
+People-Body,person-activity,1F9D7 200D 2640 FE0F,fully-qualified,🧗‍♀️,woman climbing,E5.0
+People-Body,person-activity,1F9D7 200D 2640,minimally-qualified,🧗‍♀,woman climbing,E5.0
+People-Body,person-sport,1F93A,fully-qualified,🤺,person fencing,E3.0
+People-Body,person-sport,1F3C7,fully-qualified,🏇,horse racing,E1.0
+People-Body,person-sport,26F7 FE0F,fully-qualified,⛷️,skier,E0.7
+People-Body,person-sport,26F7,unqualified,⛷,skier,E0.7
+People-Body,person-sport,1F3C2,fully-qualified,🏂,snowboarder,E0.6
+People-Body,person-sport,1F3CC FE0F,fully-qualified,🏌️,person golfing,E0.7
+People-Body,person-sport,1F3CC,unqualified,🏌,person golfing,E0.7
+People-Body,person-sport,1F3CC FE0F 200D 2642 FE0F,fully-qualified,🏌️‍♂️,man golfing,E4.0
+People-Body,person-sport,1F3CC 200D 2642 FE0F,unqualified,🏌‍♂️,man golfing,E4.0
+People-Body,person-sport,1F3CC FE0F 200D 2642,minimally-qualified,🏌️‍♂,man golfing,E4.0
+People-Body,person-sport,1F3CC 200D 2642,unqualified,🏌‍♂,man golfing,E4.0
+People-Body,person-sport,1F3CC FE0F 200D 2640 FE0F,fully-qualified,🏌️‍♀️,woman golfing,E4.0
+People-Body,person-sport,1F3CC 200D 2640 FE0F,unqualified,🏌‍♀️,woman golfing,E4.0
+People-Body,person-sport,1F3CC FE0F 200D 2640,minimally-qualified,🏌️‍♀,woman golfing,E4.0
+People-Body,person-sport,1F3CC 200D 2640,unqualified,🏌‍♀,woman golfing,E4.0
+People-Body,person-sport,1F3C4,fully-qualified,🏄,person surfing,E0.6
+People-Body,person-sport,1F3C4 200D 2642 FE0F,fully-qualified,🏄‍♂️,man surfing,E4.0
+People-Body,person-sport,1F3C4 200D 2642,minimally-qualified,🏄‍♂,man surfing,E4.0
+People-Body,person-sport,1F3C4 200D 2640 FE0F,fully-qualified,🏄‍♀️,woman surfing,E4.0
+People-Body,person-sport,1F3C4 200D 2640,minimally-qualified,🏄‍♀,woman surfing,E4.0
+People-Body,person-sport,1F6A3,fully-qualified,🚣,person rowing boat,E1.0
+People-Body,person-sport,1F6A3 200D 2642 FE0F,fully-qualified,🚣‍♂️,man rowing boat,E4.0
+People-Body,person-sport,1F6A3 200D 2642,minimally-qualified,🚣‍♂,man rowing boat,E4.0
+People-Body,person-sport,1F6A3 200D 2640 FE0F,fully-qualified,🚣‍♀️,woman rowing boat,E4.0
+People-Body,person-sport,1F6A3 200D 2640,minimally-qualified,🚣‍♀,woman rowing boat,E4.0
+People-Body,person-sport,1F3CA,fully-qualified,🏊,person swimming,E0.6
+People-Body,person-sport,1F3CA 200D 2642 FE0F,fully-qualified,🏊‍♂️,man swimming,E4.0
+People-Body,person-sport,1F3CA 200D 2642,minimally-qualified,🏊‍♂,man swimming,E4.0
+People-Body,person-sport,1F3CA 200D 2640 FE0F,fully-qualified,🏊‍♀️,woman swimming,E4.0
+People-Body,person-sport,1F3CA 200D 2640,minimally-qualified,🏊‍♀,woman swimming,E4.0
+People-Body,person-sport,26F9 FE0F,fully-qualified,⛹️,person bouncing ball,E0.7
+People-Body,person-sport,26F9,unqualified,⛹,person bouncing ball,E0.7
+People-Body,person-sport,26F9 FE0F 200D 2642 FE0F,fully-qualified,⛹️‍♂️,man bouncing ball,E4.0
+People-Body,person-sport,26F9 200D 2642 FE0F,unqualified,⛹‍♂️,man bouncing ball,E4.0
+People-Body,person-sport,26F9 FE0F 200D 2642,minimally-qualified,⛹️‍♂,man bouncing ball,E4.0
+People-Body,person-sport,26F9 200D 2642,unqualified,⛹‍♂,man bouncing ball,E4.0
+People-Body,person-sport,26F9 FE0F 200D 2640 FE0F,fully-qualified,⛹️‍♀️,woman bouncing ball,E4.0
+People-Body,person-sport,26F9 200D 2640 FE0F,unqualified,⛹‍♀️,woman bouncing ball,E4.0
+People-Body,person-sport,26F9 FE0F 200D 2640,minimally-qualified,⛹️‍♀,woman bouncing ball,E4.0
+People-Body,person-sport,26F9 200D 2640,unqualified,⛹‍♀,woman bouncing ball,E4.0
+People-Body,person-sport,1F3CB FE0F,fully-qualified,🏋️,person lifting weights,E0.7
+People-Body,person-sport,1F3CB,unqualified,🏋,person lifting weights,E0.7
+People-Body,person-sport,1F3CB FE0F 200D 2642 FE0F,fully-qualified,🏋️‍♂️,man lifting weights,E4.0
+People-Body,person-sport,1F3CB 200D 2642 FE0F,unqualified,🏋‍♂️,man lifting weights,E4.0
+People-Body,person-sport,1F3CB FE0F 200D 2642,minimally-qualified,🏋️‍♂,man lifting weights,E4.0
+People-Body,person-sport,1F3CB 200D 2642,unqualified,🏋‍♂,man lifting weights,E4.0
+People-Body,person-sport,1F3CB FE0F 200D 2640 FE0F,fully-qualified,🏋️‍♀️,woman lifting weights,E4.0
+People-Body,person-sport,1F3CB 200D 2640 FE0F,unqualified,🏋‍♀️,woman lifting weights,E4.0
+People-Body,person-sport,1F3CB FE0F 200D 2640,minimally-qualified,🏋️‍♀,woman lifting weights,E4.0
+People-Body,person-sport,1F3CB 200D 2640,unqualified,🏋‍♀,woman lifting weights,E4.0
+People-Body,person-sport,1F6B4,fully-qualified,🚴,person biking,E1.0
+People-Body,person-sport,1F6B4 200D 2642 FE0F,fully-qualified,🚴‍♂️,man biking,E4.0
+People-Body,person-sport,1F6B4 200D 2642,minimally-qualified,🚴‍♂,man biking,E4.0
+People-Body,person-sport,1F6B4 200D 2640 FE0F,fully-qualified,🚴‍♀️,woman biking,E4.0
+People-Body,person-sport,1F6B4 200D 2640,minimally-qualified,🚴‍♀,woman biking,E4.0
+People-Body,person-sport,1F6B5,fully-qualified,🚵,person mountain biking,E1.0
+People-Body,person-sport,1F6B5 200D 2642 FE0F,fully-qualified,🚵‍♂️,man mountain biking,E4.0
+People-Body,person-sport,1F6B5 200D 2642,minimally-qualified,🚵‍♂,man mountain biking,E4.0
+People-Body,person-sport,1F6B5 200D 2640 FE0F,fully-qualified,🚵‍♀️,woman mountain biking,E4.0
+People-Body,person-sport,1F6B5 200D 2640,minimally-qualified,🚵‍♀,woman mountain biking,E4.0
+People-Body,person-sport,1F938,fully-qualified,🤸,person cartwheeling,E3.0
+People-Body,person-sport,1F938 200D 2642 FE0F,fully-qualified,🤸‍♂️,man cartwheeling,E4.0
+People-Body,person-sport,1F938 200D 2642,minimally-qualified,🤸‍♂,man cartwheeling,E4.0
+People-Body,person-sport,1F938 200D 2640 FE0F,fully-qualified,🤸‍♀️,woman cartwheeling,E4.0
+People-Body,person-sport,1F938 200D 2640,minimally-qualified,🤸‍♀,woman cartwheeling,E4.0
+People-Body,person-sport,1F93C,fully-qualified,🤼,people wrestling,E3.0
+People-Body,person-sport,1F93C 200D 2642 FE0F,fully-qualified,🤼‍♂️,men wrestling,E4.0
+People-Body,person-sport,1F93C 200D 2642,minimally-qualified,🤼‍♂,men wrestling,E4.0
+People-Body,person-sport,1F93C 200D 2640 FE0F,fully-qualified,🤼‍♀️,women wrestling,E4.0
+People-Body,person-sport,1F93C 200D 2640,minimally-qualified,🤼‍♀,women wrestling,E4.0
+People-Body,person-sport,1F93D,fully-qualified,🤽,person playing water polo,E3.0
+People-Body,person-sport,1F93D 200D 2642 FE0F,fully-qualified,🤽‍♂️,man playing water polo,E4.0
+People-Body,person-sport,1F93D 200D 2642,minimally-qualified,🤽‍♂,man playing water polo,E4.0
+People-Body,person-sport,1F93D 200D 2640 FE0F,fully-qualified,🤽‍♀️,woman playing water polo,E4.0
+People-Body,person-sport,1F93D 200D 2640,minimally-qualified,🤽‍♀,woman playing water polo,E4.0
+People-Body,person-sport,1F93E,fully-qualified,🤾,person playing handball,E3.0
+People-Body,person-sport,1F93E 200D 2642 FE0F,fully-qualified,🤾‍♂️,man playing handball,E4.0
+People-Body,person-sport,1F93E 200D 2642,minimally-qualified,🤾‍♂,man playing handball,E4.0
+People-Body,person-sport,1F93E 200D 2640 FE0F,fully-qualified,🤾‍♀️,woman playing handball,E4.0
+People-Body,person-sport,1F93E 200D 2640,minimally-qualified,🤾‍♀,woman playing handball,E4.0
+People-Body,person-sport,1F939,fully-qualified,🤹,person juggling,E3.0
+People-Body,person-sport,1F939 200D 2642 FE0F,fully-qualified,🤹‍♂️,man juggling,E4.0
+People-Body,person-sport,1F939 200D 2642,minimally-qualified,🤹‍♂,man juggling,E4.0
+People-Body,person-sport,1F939 200D 2640 FE0F,fully-qualified,🤹‍♀️,woman juggling,E4.0
+People-Body,person-sport,1F939 200D 2640,minimally-qualified,🤹‍♀,woman juggling,E4.0
+People-Body,person-resting,1F9D8,fully-qualified,🧘,person in lotus position,E5.0
+People-Body,person-resting,1F9D8 200D 2642 FE0F,fully-qualified,🧘‍♂️,man in lotus position,E5.0
+People-Body,person-resting,1F9D8 200D 2642,minimally-qualified,🧘‍♂,man in lotus position,E5.0
+People-Body,person-resting,1F9D8 200D 2640 FE0F,fully-qualified,🧘‍♀️,woman in lotus position,E5.0
+People-Body,person-resting,1F9D8 200D 2640,minimally-qualified,🧘‍♀,woman in lotus position,E5.0
+People-Body,person-resting,1F6C0,fully-qualified,🛀,person taking bath,E0.6
+People-Body,person-resting,1F6CC,fully-qualified,🛌,person in bed,E1.0
+People-Body,family,1F9D1 200D 1F91D 200D 1F9D1,fully-qualified,🧑‍🤝‍🧑,people holding hands,E12.0
+People-Body,family,1F46D,fully-qualified,👭,women holding hands,E1.0
+People-Body,family,1F46B,fully-qualified,👫,woman and man holding hands,E0.6
+People-Body,family,1F46C,fully-qualified,👬,men holding hands,E1.0
+People-Body,family,1F48F,fully-qualified,💏,kiss,E0.6
+People-Body,family,1F469 200D 2764 FE0F 200D 1F48B 200D 1F468,fully-qualified,👩‍❤️‍💋‍👨,kiss woman man,E2.0
+People-Body,family,1F469 200D 2764 200D 1F48B 200D 1F468,minimally-qualified,👩‍❤‍💋‍👨,kiss woman man,E2.0
+People-Body,family,1F468 200D 2764 FE0F 200D 1F48B 200D 1F468,fully-qualified,👨‍❤️‍💋‍👨,kiss man man,E2.0
+People-Body,family,1F468 200D 2764 200D 1F48B 200D 1F468,minimally-qualified,👨‍❤‍💋‍👨,kiss man man,E2.0
+People-Body,family,1F469 200D 2764 FE0F 200D 1F48B 200D 1F469,fully-qualified,👩‍❤️‍💋‍👩,kiss woman woman,E2.0
+People-Body,family,1F469 200D 2764 200D 1F48B 200D 1F469,minimally-qualified,👩‍❤‍💋‍👩,kiss woman woman,E2.0
+People-Body,family,1F491,fully-qualified,💑,couple with heart,E0.6
+People-Body,family,1F469 200D 2764 FE0F 200D 1F468,fully-qualified,👩‍❤️‍👨,couple with heart woman man,E2.0
+People-Body,family,1F469 200D 2764 200D 1F468,minimally-qualified,👩‍❤‍👨,couple with heart woman man,E2.0
+People-Body,family,1F468 200D 2764 FE0F 200D 1F468,fully-qualified,👨‍❤️‍👨,couple with heart man man,E2.0
+People-Body,family,1F468 200D 2764 200D 1F468,minimally-qualified,👨‍❤‍👨,couple with heart man man,E2.0
+People-Body,family,1F469 200D 2764 FE0F 200D 1F469,fully-qualified,👩‍❤️‍👩,couple with heart woman woman,E2.0
+People-Body,family,1F469 200D 2764 200D 1F469,minimally-qualified,👩‍❤‍👩,couple with heart woman woman,E2.0
+People-Body,family,1F46A,fully-qualified,👪,family,E0.6
+People-Body,family,1F468 200D 1F469 200D 1F466,fully-qualified,👨‍👩‍👦,family man woman boy,E2.0
+People-Body,family,1F468 200D 1F469 200D 1F467,fully-qualified,👨‍👩‍👧,family man woman girl,E2.0
+People-Body,family,1F468 200D 1F469 200D 1F467 200D 1F466,fully-qualified,👨‍👩‍👧‍👦,family man woman girl boy,E2.0
+People-Body,family,1F468 200D 1F469 200D 1F466 200D 1F466,fully-qualified,👨‍👩‍👦‍👦,family man woman boy boy,E2.0
+People-Body,family,1F468 200D 1F469 200D 1F467 200D 1F467,fully-qualified,👨‍👩‍👧‍👧,family man woman girl girl,E2.0
+People-Body,family,1F468 200D 1F468 200D 1F466,fully-qualified,👨‍👨‍👦,family man man boy,E2.0
+People-Body,family,1F468 200D 1F468 200D 1F467,fully-qualified,👨‍👨‍👧,family man man girl,E2.0
+People-Body,family,1F468 200D 1F468 200D 1F467 200D 1F466,fully-qualified,👨‍👨‍👧‍👦,family man man girl boy,E2.0
+People-Body,family,1F468 200D 1F468 200D 1F466 200D 1F466,fully-qualified,👨‍👨‍👦‍👦,family man man boy boy,E2.0
+People-Body,family,1F468 200D 1F468 200D 1F467 200D 1F467,fully-qualified,👨‍👨‍👧‍👧,family man man girl girl,E2.0
+People-Body,family,1F469 200D 1F469 200D 1F466,fully-qualified,👩‍👩‍👦,family woman woman boy,E2.0
+People-Body,family,1F469 200D 1F469 200D 1F467,fully-qualified,👩‍👩‍👧,family woman woman girl,E2.0
+People-Body,family,1F469 200D 1F469 200D 1F467 200D 1F466,fully-qualified,👩‍👩‍👧‍👦,family woman woman girl boy,E2.0
+People-Body,family,1F469 200D 1F469 200D 1F466 200D 1F466,fully-qualified,👩‍👩‍👦‍👦,family woman woman boy boy,E2.0
+People-Body,family,1F469 200D 1F469 200D 1F467 200D 1F467,fully-qualified,👩‍👩‍👧‍👧,family woman woman girl girl,E2.0
+People-Body,family,1F468 200D 1F466,fully-qualified,👨‍👦,family man boy,E4.0
+People-Body,family,1F468 200D 1F466 200D 1F466,fully-qualified,👨‍👦‍👦,family man boy boy,E4.0
+People-Body,family,1F468 200D 1F467,fully-qualified,👨‍👧,family man girl,E4.0
+People-Body,family,1F468 200D 1F467 200D 1F466,fully-qualified,👨‍👧‍👦,family man girl boy,E4.0
+People-Body,family,1F468 200D 1F467 200D 1F467,fully-qualified,👨‍👧‍👧,family man girl girl,E4.0
+People-Body,family,1F469 200D 1F466,fully-qualified,👩‍👦,family woman boy,E4.0
+People-Body,family,1F469 200D 1F466 200D 1F466,fully-qualified,👩‍👦‍👦,family woman boy boy,E4.0
+People-Body,family,1F469 200D 1F467,fully-qualified,👩‍👧,family woman girl,E4.0
+People-Body,family,1F469 200D 1F467 200D 1F466,fully-qualified,👩‍👧‍👦,family woman girl boy,E4.0
+People-Body,family,1F469 200D 1F467 200D 1F467,fully-qualified,👩‍👧‍👧,family woman girl girl,E4.0
+People-Body,person-symbol,1F5E3 FE0F,fully-qualified,🗣️,speaking head,E0.7
+People-Body,person-symbol,1F5E3,unqualified,🗣,speaking head,E0.7
+People-Body,person-symbol,1F464,fully-qualified,👤,bust in silhouette,E0.6
+People-Body,person-symbol,1F465,fully-qualified,👥,busts in silhouette,E1.0
+People-Body,person-symbol,1FAC2,fully-qualified,🫂,people hugging,E13.0
+People-Body,person-symbol,1F463,fully-qualified,👣,footprints,E0.6
+Smileys-Emotion,heart,1F48C,fully-qualified,💌,love letter,E0.6
+Smileys-Emotion,heart,1F498,fully-qualified,💘,heart with arrow,E0.6
+Smileys-Emotion,heart,1F49D,fully-qualified,💝,heart with ribbon,E0.6
+Smileys-Emotion,heart,1F496,fully-qualified,💖,sparkling heart,E0.6
+Smileys-Emotion,heart,1F497,fully-qualified,💗,growing heart,E0.6
+Smileys-Emotion,heart,1F493,fully-qualified,💓,beating heart,E0.6
+Smileys-Emotion,heart,1F49E,fully-qualified,💞,revolving hearts,E0.6
+Smileys-Emotion,heart,1F495,fully-qualified,💕,two hearts,E0.6
+Smileys-Emotion,heart,1F49F,fully-qualified,💟,heart decoration,E0.6
+Smileys-Emotion,heart,2763 FE0F,fully-qualified,❣️,heart exclamation,E1.0
+Smileys-Emotion,heart,2763,unqualified,❣,heart exclamation,E1.0
+Smileys-Emotion,heart,1F494,fully-qualified,💔,broken heart,E0.6
+Smileys-Emotion,heart,2764 FE0F 200D 1F525,fully-qualified,❤️‍🔥,heart on fire,E13.1
+Smileys-Emotion,heart,2764 200D 1F525,unqualified,❤‍🔥,heart on fire,E13.1
+Smileys-Emotion,heart,2764 FE0F 200D 1FA79,fully-qualified,❤️‍🩹,mending heart,E13.1
+Smileys-Emotion,heart,2764 200D 1FA79,unqualified,❤‍🩹,mending heart,E13.1
+Smileys-Emotion,heart,2764 FE0F,fully-qualified,❤️,red heart,E0.6
+Smileys-Emotion,heart,2764,unqualified,❤,red heart,E0.6
+Smileys-Emotion,heart,1F9E1,fully-qualified,🧡,orange heart,E5.0
+Smileys-Emotion,heart,1F49B,fully-qualified,💛,yellow heart,E0.6
+Smileys-Emotion,heart,1F49A,fully-qualified,💚,green heart,E0.6
+Smileys-Emotion,heart,1F499,fully-qualified,💙,blue heart,E0.6
+Smileys-Emotion,heart,1F49C,fully-qualified,💜,purple heart,E0.6
+Smileys-Emotion,heart,1F90E,fully-qualified,🤎,brown heart,E12.0
+Smileys-Emotion,heart,1F5A4,fully-qualified,🖤,black heart,E3.0
+Smileys-Emotion,heart,1F90D,fully-qualified,🤍,white heart,E12.0
+Smileys-Emotion,emotion,1F48B,fully-qualified,💋,kiss mark,E0.6
+Smileys-Emotion,emotion,1F4AF,fully-qualified,💯,hundred points,E0.6
+Smileys-Emotion,emotion,1F4A2,fully-qualified,💢,anger symbol,E0.6
+Smileys-Emotion,emotion,1F4A5,fully-qualified,💥,collision,E0.6
+Smileys-Emotion,emotion,1F4AB,fully-qualified,💫,dizzy,E0.6
+Smileys-Emotion,emotion,1F4A6,fully-qualified,💦,sweat droplets,E0.6
+Smileys-Emotion,emotion,1F4A8,fully-qualified,💨,dashing away,E0.6
+Smileys-Emotion,emotion,1F573 FE0F,fully-qualified,🕳️,hole,E0.7
+Smileys-Emotion,emotion,1F573,unqualified,🕳,hole,E0.7
+Smileys-Emotion,emotion,1F4AC,fully-qualified,💬,speech balloon,E0.6
+Smileys-Emotion,emotion,1F441 FE0F 200D 1F5E8 FE0F,fully-qualified,👁️‍🗨️,eye in speech bubble,E2.0
+Smileys-Emotion,emotion,1F441 200D 1F5E8 FE0F,unqualified,👁‍🗨️,eye in speech bubble,E2.0
+Smileys-Emotion,emotion,1F441 FE0F 200D 1F5E8,minimally-qualified,👁️‍🗨,eye in speech bubble,E2.0
+Smileys-Emotion,emotion,1F441 200D 1F5E8,unqualified,👁‍🗨,eye in speech bubble,E2.0
+Smileys-Emotion,emotion,1F5E8 FE0F,fully-qualified,🗨️,left speech bubble,E2.0
+Smileys-Emotion,emotion,1F5E8,unqualified,🗨,left speech bubble,E2.0
+Smileys-Emotion,emotion,1F5EF FE0F,fully-qualified,🗯️,right anger bubble,E0.7
+Smileys-Emotion,emotion,1F5EF,unqualified,🗯,right anger bubble,E0.7
+Smileys-Emotion,emotion,1F4AD,fully-qualified,💭,thought balloon,E1.0
+Smileys-Emotion,emotion,1F4A4,fully-qualified,💤,ZZZ,E0.6

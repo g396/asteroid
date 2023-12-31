@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_follow">フォローする</string>
+    <string name="button_following">フォロー中</string>
+    <string name="button_block">ブロックを解除</string>
+    <string name="button_mute">ミュートを解除</string>
+    <string name="button_request">フォロリク送信済</string>
+</resources>

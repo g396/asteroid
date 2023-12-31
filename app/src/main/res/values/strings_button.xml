@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_follow">Follow</string>
+    <string name="button_following">Following</string>
+    <string name="button_block">Unblock</string>
+    <string name="button_mute">Unmute</string>
+    <string name="button_request">Requesting…</string>
+</resources>

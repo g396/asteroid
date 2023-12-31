@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_settings_display">設定</string>
+    <string name="header_display">(確実に反映させる為に再起動して下さい)</string>
+
+    <!--文字列-->
+    <string name="sp_text">文字列</string>
+    <string name="sp_text_size">フォントサイズ(本文)</string>
+    <string name="sp_edittext_size">フォントサイズ(テキストボックス)</string>
+    <string name="sp_emoji_size">絵文字のスケーリング</string>
+    <string name="sp_emoji_animation">GIF絵文字を再生する</string>
+    <string name="sp_emoji_animation_summary">私の技量不足でTextView内の絵文字は再生されません</string>
+    <string name="sp_time_format">時刻のフォーマット</string>
+
+    <!--タイムラインの投稿-->
+    <string name="header_posts">投稿の詳細</string>
+    <string name="sp_show_card">リンク先のプレビューを表示する</string>
+    <string name="sp_show_via">viaを表示する</string>
+    <string name="sp_hide_buttons">アクションボタンを隠す</string>
+
+    <!--プロフィール画像-->
+    <string name="sp_avatar">プロフィール画像</string>
+    <string name="sp_avatar_animation">アニメーションを有効にする</string>
+    <string name="sp_avatar_shape">画像の形状</string>
+    <string name="sp_avatar_header">カラムのヘッダにプロフィール画像を表示する</string>
+
+    <!--メイン画面-->
+    <string name="header_main">メイン画面</string>
+    <string name="sp_fix_tabs_width">タブの幅を固定する</string>
+    <string name="sp_tabs_width">タブの幅</string>
+    <string name="sp_show_quick_post_area">タイムラインに投稿バーを表示する</string>
+    <string name="sp_show_quick_post_visibility">Visibilityを表示</string>
+    <string name="sp_show_quick_post_emoji">絵文字ボタンを表示</string>
+    <string name="sp_show_quick_post_hashtag">実況モードを表示</string>
+    <string name="sp_send_enter_key">Enterキーを送信ボタンに置き換える</string>
+    <string name="sp_disable_sleep">スリープを無効にする（メイン画面のみ）</string>
+
+    <!--新規投稿-->
+    <string name="sp_new_posts">新規投稿</string>
+    <string name="sp_resize_image">添付画像リサイズ時の大きさ(長辺)</string>
+
+    <!--愚かな-->
+    <string name="header_values">貴方たち人間を惑わす為の数字</string>
+    <string name="sp_show_followers_count">投稿数・フォロー数・フォロワー数を表示</string>
+    <string name="sp_show_reactions_count">投稿のリアクション数を表示</string>
+
+    <!--ダイアログ-->
+    <string name="header_dialog">確認ダイアログ</string>
+    <string name="sp_dialog">アクション時にダイアログを表示する</string>
+    <string name="sp_dialog_post">投稿送信時</string>
+    <string name="sp_dialog_favourite">ふぁぼ</string>
+    <string name="sp_dialog_reblog">ブースト</string>
+    <string name="sp_dialog_bookmark">ブックマーク</string>
+    <string name="sp_dialog_emoji">絵文字(一部サーバ用)</string>
+    <string name="sp_dialog_follow">フォロー・フォローリクエスト</string>
+    <!--ダイアログ-->
+    <string name="header_dialog_undo">確認ダイアログ(取り消し時)</string>
+    <string name="sp_dialog_undo">アクション取り消し時にダイアログを表示する</string>
+    <string name="sp_dialog_undo_post">投稿削除時</string>
+    <string name="sp_dialog_undo_favourite">ふぁぼ</string>
+    <string name="sp_dialog_undo_reblog">ブースト</string>
+    <string name="sp_dialog_undo_bookmark">ブックマーク</string>
+    <string name="sp_dialog_undo_emoji">絵文字(一部サーバ用)</string>
+    <string name="sp_dialog_undo_follow">フォロー解除・フォローリクエスト取消</string>
+</resources>

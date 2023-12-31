@@ -1,0 +1,276 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Flags,flag,1F3C1,fully-qualified,🏁,chequered flag,E0.6
+Flags,flag,1F6A9,fully-qualified,🚩,triangular flag,E0.6
+Flags,flag,1F38C,fully-qualified,🎌,crossed flags,E0.6
+Flags,flag,1F3F4,fully-qualified,🏴,black flag,E1.0
+Flags,flag,1F3F3 FE0F,fully-qualified,🏳️,white flag,E0.7
+Flags,flag,1F3F3,unqualified,🏳,white flag,E0.7
+Flags,flag,1F3F3 FE0F 200D 1F308,fully-qualified,🏳️‍🌈,rainbow flag,E4.0
+Flags,flag,1F3F3 200D 1F308,unqualified,🏳‍🌈,rainbow flag,E4.0
+Flags,flag,1F3F3 FE0F 200D 26A7 FE0F,fully-qualified,🏳️‍⚧️,transgender flag,E13.0
+Flags,flag,1F3F3 200D 26A7 FE0F,unqualified,🏳‍⚧️,transgender flag,E13.0
+Flags,flag,1F3F3 FE0F 200D 26A7,minimally-qualified,🏳️‍⚧,transgender flag,E13.0
+Flags,flag,1F3F3 200D 26A7,unqualified,🏳‍⚧,transgender flag,E13.0
+Flags,flag,1F3F4 200D 2620 FE0F,fully-qualified,🏴‍☠️,pirate flag,E11.0
+Flags,flag,1F3F4 200D 2620,minimally-qualified,🏴‍☠,pirate flag,E11.0
+Flags,country-flag,1F1E6 1F1E8,fully-qualified,🇦🇨,flag Ascension Island,E2.0
+Flags,country-flag,1F1E6 1F1E9,fully-qualified,🇦🇩,flag Andorra,E2.0
+Flags,country-flag,1F1E6 1F1EA,fully-qualified,🇦🇪,flag United Arab Emirates,E2.0
+Flags,country-flag,1F1E6 1F1EB,fully-qualified,🇦🇫,flag Afghanistan,E2.0
+Flags,country-flag,1F1E6 1F1EC,fully-qualified,🇦🇬,flag Antigua  Barbuda,E2.0
+Flags,country-flag,1F1E6 1F1EE,fully-qualified,🇦🇮,flag Anguilla,E2.0
+Flags,country-flag,1F1E6 1F1F1,fully-qualified,🇦🇱,flag Albania,E2.0
+Flags,country-flag,1F1E6 1F1F2,fully-qualified,🇦🇲,flag Armenia,E2.0
+Flags,country-flag,1F1E6 1F1F4,fully-qualified,🇦🇴,flag Angola,E2.0
+Flags,country-flag,1F1E6 1F1F6,fully-qualified,🇦🇶,flag Antarctica,E2.0
+Flags,country-flag,1F1E6 1F1F7,fully-qualified,🇦🇷,flag Argentina,E2.0
+Flags,country-flag,1F1E6 1F1F8,fully-qualified,🇦🇸,flag American Samoa,E2.0
+Flags,country-flag,1F1E6 1F1F9,fully-qualified,🇦🇹,flag Austria,E2.0
+Flags,country-flag,1F1E6 1F1FA,fully-qualified,🇦🇺,flag Australia,E2.0
+Flags,country-flag,1F1E6 1F1FC,fully-qualified,🇦🇼,flag Aruba,E2.0
+Flags,country-flag,1F1E6 1F1FD,fully-qualified,🇦🇽,flag land Islands,E2.0
+Flags,country-flag,1F1E6 1F1FF,fully-qualified,🇦🇿,flag Azerbaijan,E2.0
+Flags,country-flag,1F1E7 1F1E6,fully-qualified,🇧🇦,flag Bosnia  Herzegovina,E2.0
+Flags,country-flag,1F1E7 1F1E7,fully-qualified,🇧🇧,flag Barbados,E2.0
+Flags,country-flag,1F1E7 1F1E9,fully-qualified,🇧🇩,flag Bangladesh,E2.0
+Flags,country-flag,1F1E7 1F1EA,fully-qualified,🇧🇪,flag Belgium,E2.0
+Flags,country-flag,1F1E7 1F1EB,fully-qualified,🇧🇫,flag Burkina Faso,E2.0
+Flags,country-flag,1F1E7 1F1EC,fully-qualified,🇧🇬,flag Bulgaria,E2.0
+Flags,country-flag,1F1E7 1F1ED,fully-qualified,🇧🇭,flag Bahrain,E2.0
+Flags,country-flag,1F1E7 1F1EE,fully-qualified,🇧🇮,flag Burundi,E2.0
+Flags,country-flag,1F1E7 1F1EF,fully-qualified,🇧🇯,flag Benin,E2.0
+Flags,country-flag,1F1E7 1F1F1,fully-qualified,🇧🇱,flag St Barthlemy,E2.0
+Flags,country-flag,1F1E7 1F1F2,fully-qualified,🇧🇲,flag Bermuda,E2.0
+Flags,country-flag,1F1E7 1F1F3,fully-qualified,🇧🇳,flag Brunei,E2.0
+Flags,country-flag,1F1E7 1F1F4,fully-qualified,🇧🇴,flag Bolivia,E2.0
+Flags,country-flag,1F1E7 1F1F6,fully-qualified,🇧🇶,flag Caribbean Netherlands,E2.0
+Flags,country-flag,1F1E7 1F1F7,fully-qualified,🇧🇷,flag Brazil,E2.0
+Flags,country-flag,1F1E7 1F1F8,fully-qualified,🇧🇸,flag Bahamas,E2.0
+Flags,country-flag,1F1E7 1F1F9,fully-qualified,🇧🇹,flag Bhutan,E2.0
+Flags,country-flag,1F1E7 1F1FB,fully-qualified,🇧🇻,flag Bouvet Island,E2.0
+Flags,country-flag,1F1E7 1F1FC,fully-qualified,🇧🇼,flag Botswana,E2.0
+Flags,country-flag,1F1E7 1F1FE,fully-qualified,🇧🇾,flag Belarus,E2.0
+Flags,country-flag,1F1E7 1F1FF,fully-qualified,🇧🇿,flag Belize,E2.0
+Flags,country-flag,1F1E8 1F1E6,fully-qualified,🇨🇦,flag Canada,E2.0
+Flags,country-flag,1F1E8 1F1E8,fully-qualified,🇨🇨,flag Cocos Keeling Islands,E2.0
+Flags,country-flag,1F1E8 1F1E9,fully-qualified,🇨🇩,flag Congo - Kinshasa,E2.0
+Flags,country-flag,1F1E8 1F1EB,fully-qualified,🇨🇫,flag Central African Republic,E2.0
+Flags,country-flag,1F1E8 1F1EC,fully-qualified,🇨🇬,flag Congo - Brazzaville,E2.0
+Flags,country-flag,1F1E8 1F1ED,fully-qualified,🇨🇭,flag Switzerland,E2.0
+Flags,country-flag,1F1E8 1F1EE,fully-qualified,🇨🇮,flag Cte dIvoire,E2.0
+Flags,country-flag,1F1E8 1F1F0,fully-qualified,🇨🇰,flag Cook Islands,E2.0
+Flags,country-flag,1F1E8 1F1F1,fully-qualified,🇨🇱,flag Chile,E2.0
+Flags,country-flag,1F1E8 1F1F2,fully-qualified,🇨🇲,flag Cameroon,E2.0
+Flags,country-flag,1F1E8 1F1F3,fully-qualified,🇨🇳,flag China,E0.6
+Flags,country-flag,1F1E8 1F1F4,fully-qualified,🇨🇴,flag Colombia,E2.0
+Flags,country-flag,1F1E8 1F1F5,fully-qualified,🇨🇵,flag Clipperton Island,E2.0
+Flags,country-flag,1F1E8 1F1F7,fully-qualified,🇨🇷,flag Costa Rica,E2.0
+Flags,country-flag,1F1E8 1F1FA,fully-qualified,🇨🇺,flag Cuba,E2.0
+Flags,country-flag,1F1E8 1F1FB,fully-qualified,🇨🇻,flag Cape Verde,E2.0
+Flags,country-flag,1F1E8 1F1FC,fully-qualified,🇨🇼,flag Curaao,E2.0
+Flags,country-flag,1F1E8 1F1FD,fully-qualified,🇨🇽,flag Christmas Island,E2.0
+Flags,country-flag,1F1E8 1F1FE,fully-qualified,🇨🇾,flag Cyprus,E2.0
+Flags,country-flag,1F1E8 1F1FF,fully-qualified,🇨🇿,flag Czechia,E2.0
+Flags,country-flag,1F1E9 1F1EA,fully-qualified,🇩🇪,flag Germany,E0.6
+Flags,country-flag,1F1E9 1F1EC,fully-qualified,🇩🇬,flag Diego Garcia,E2.0
+Flags,country-flag,1F1E9 1F1EF,fully-qualified,🇩🇯,flag Djibouti,E2.0
+Flags,country-flag,1F1E9 1F1F0,fully-qualified,🇩🇰,flag Denmark,E2.0
+Flags,country-flag,1F1E9 1F1F2,fully-qualified,🇩🇲,flag Dominica,E2.0
+Flags,country-flag,1F1E9 1F1F4,fully-qualified,🇩🇴,flag Dominican Republic,E2.0
+Flags,country-flag,1F1E9 1F1FF,fully-qualified,🇩🇿,flag Algeria,E2.0
+Flags,country-flag,1F1EA 1F1E6,fully-qualified,🇪🇦,flag Ceuta  Melilla,E2.0
+Flags,country-flag,1F1EA 1F1E8,fully-qualified,🇪🇨,flag Ecuador,E2.0
+Flags,country-flag,1F1EA 1F1EA,fully-qualified,🇪🇪,flag Estonia,E2.0
+Flags,country-flag,1F1EA 1F1EC,fully-qualified,🇪🇬,flag Egypt,E2.0
+Flags,country-flag,1F1EA 1F1ED,fully-qualified,🇪🇭,flag Western Sahara,E2.0
+Flags,country-flag,1F1EA 1F1F7,fully-qualified,🇪🇷,flag Eritrea,E2.0
+Flags,country-flag,1F1EA 1F1F8,fully-qualified,🇪🇸,flag Spain,E0.6
+Flags,country-flag,1F1EA 1F1F9,fully-qualified,🇪🇹,flag Ethiopia,E2.0
+Flags,country-flag,1F1EA 1F1FA,fully-qualified,🇪🇺,flag European Union,E2.0
+Flags,country-flag,1F1EB 1F1EE,fully-qualified,🇫🇮,flag Finland,E2.0
+Flags,country-flag,1F1EB 1F1EF,fully-qualified,🇫🇯,flag Fiji,E2.0
+Flags,country-flag,1F1EB 1F1F0,fully-qualified,🇫🇰,flag Falkland Islands,E2.0
+Flags,country-flag,1F1EB 1F1F2,fully-qualified,🇫🇲,flag Micronesia,E2.0
+Flags,country-flag,1F1EB 1F1F4,fully-qualified,🇫🇴,flag Faroe Islands,E2.0
+Flags,country-flag,1F1EB 1F1F7,fully-qualified,🇫🇷,flag France,E0.6
+Flags,country-flag,1F1EC 1F1E6,fully-qualified,🇬🇦,flag Gabon,E2.0
+Flags,country-flag,1F1EC 1F1E7,fully-qualified,🇬🇧,flag United Kingdom,E0.6
+Flags,country-flag,1F1EC 1F1E9,fully-qualified,🇬🇩,flag Grenada,E2.0
+Flags,country-flag,1F1EC 1F1EA,fully-qualified,🇬🇪,flag Georgia,E2.0
+Flags,country-flag,1F1EC 1F1EB,fully-qualified,🇬🇫,flag French Guiana,E2.0
+Flags,country-flag,1F1EC 1F1EC,fully-qualified,🇬🇬,flag Guernsey,E2.0
+Flags,country-flag,1F1EC 1F1ED,fully-qualified,🇬🇭,flag Ghana,E2.0
+Flags,country-flag,1F1EC 1F1EE,fully-qualified,🇬🇮,flag Gibraltar,E2.0
+Flags,country-flag,1F1EC 1F1F1,fully-qualified,🇬🇱,flag Greenland,E2.0
+Flags,country-flag,1F1EC 1F1F2,fully-qualified,🇬🇲,flag Gambia,E2.0
+Flags,country-flag,1F1EC 1F1F3,fully-qualified,🇬🇳,flag Guinea,E2.0
+Flags,country-flag,1F1EC 1F1F5,fully-qualified,🇬🇵,flag Guadeloupe,E2.0
+Flags,country-flag,1F1EC 1F1F6,fully-qualified,🇬🇶,flag Equatorial Guinea,E2.0
+Flags,country-flag,1F1EC 1F1F7,fully-qualified,🇬🇷,flag Greece,E2.0
+Flags,country-flag,1F1EC 1F1F8,fully-qualified,🇬🇸,flag South Georgia  South Sandwich Islands,E2.0
+Flags,country-flag,1F1EC 1F1F9,fully-qualified,🇬🇹,flag Guatemala,E2.0
+Flags,country-flag,1F1EC 1F1FA,fully-qualified,🇬🇺,flag Guam,E2.0
+Flags,country-flag,1F1EC 1F1FC,fully-qualified,🇬🇼,flag Guinea-Bissau,E2.0
+Flags,country-flag,1F1EC 1F1FE,fully-qualified,🇬🇾,flag Guyana,E2.0
+Flags,country-flag,1F1ED 1F1F0,fully-qualified,🇭🇰,flag Hong Kong SAR China,E2.0
+Flags,country-flag,1F1ED 1F1F2,fully-qualified,🇭🇲,flag Heard  McDonald Islands,E2.0
+Flags,country-flag,1F1ED 1F1F3,fully-qualified,🇭🇳,flag Honduras,E2.0
+Flags,country-flag,1F1ED 1F1F7,fully-qualified,🇭🇷,flag Croatia,E2.0
+Flags,country-flag,1F1ED 1F1F9,fully-qualified,🇭🇹,flag Haiti,E2.0
+Flags,country-flag,1F1ED 1F1FA,fully-qualified,🇭🇺,flag Hungary,E2.0
+Flags,country-flag,1F1EE 1F1E8,fully-qualified,🇮🇨,flag Canary Islands,E2.0
+Flags,country-flag,1F1EE 1F1E9,fully-qualified,🇮🇩,flag Indonesia,E2.0
+Flags,country-flag,1F1EE 1F1EA,fully-qualified,🇮🇪,flag Ireland,E2.0
+Flags,country-flag,1F1EE 1F1F1,fully-qualified,🇮🇱,flag Israel,E2.0
+Flags,country-flag,1F1EE 1F1F2,fully-qualified,🇮🇲,flag Isle of Man,E2.0
+Flags,country-flag,1F1EE 1F1F3,fully-qualified,🇮🇳,flag India,E2.0
+Flags,country-flag,1F1EE 1F1F4,fully-qualified,🇮🇴,flag British Indian Ocean Territory,E2.0
+Flags,country-flag,1F1EE 1F1F6,fully-qualified,🇮🇶,flag Iraq,E2.0
+Flags,country-flag,1F1EE 1F1F7,fully-qualified,🇮🇷,flag Iran,E2.0
+Flags,country-flag,1F1EE 1F1F8,fully-qualified,🇮🇸,flag Iceland,E2.0
+Flags,country-flag,1F1EE 1F1F9,fully-qualified,🇮🇹,flag Italy,E0.6
+Flags,country-flag,1F1EF 1F1EA,fully-qualified,🇯🇪,flag Jersey,E2.0
+Flags,country-flag,1F1EF 1F1F2,fully-qualified,🇯🇲,flag Jamaica,E2.0
+Flags,country-flag,1F1EF 1F1F4,fully-qualified,🇯🇴,flag Jordan,E2.0
+Flags,country-flag,1F1EF 1F1F5,fully-qualified,🇯🇵,flag Japan,E0.6
+Flags,country-flag,1F1F0 1F1EA,fully-qualified,🇰🇪,flag Kenya,E2.0
+Flags,country-flag,1F1F0 1F1EC,fully-qualified,🇰🇬,flag Kyrgyzstan,E2.0
+Flags,country-flag,1F1F0 1F1ED,fully-qualified,🇰🇭,flag Cambodia,E2.0
+Flags,country-flag,1F1F0 1F1EE,fully-qualified,🇰🇮,flag Kiribati,E2.0
+Flags,country-flag,1F1F0 1F1F2,fully-qualified,🇰🇲,flag Comoros,E2.0
+Flags,country-flag,1F1F0 1F1F3,fully-qualified,🇰🇳,flag St Kitts  Nevis,E2.0
+Flags,country-flag,1F1F0 1F1F5,fully-qualified,🇰🇵,flag North Korea,E2.0
+Flags,country-flag,1F1F0 1F1F7,fully-qualified,🇰🇷,flag South Korea,E0.6
+Flags,country-flag,1F1F0 1F1FC,fully-qualified,🇰🇼,flag Kuwait,E2.0
+Flags,country-flag,1F1F0 1F1FE,fully-qualified,🇰🇾,flag Cayman Islands,E2.0
+Flags,country-flag,1F1F0 1F1FF,fully-qualified,🇰🇿,flag Kazakhstan,E2.0
+Flags,country-flag,1F1F1 1F1E6,fully-qualified,🇱🇦,flag Laos,E2.0
+Flags,country-flag,1F1F1 1F1E7,fully-qualified,🇱🇧,flag Lebanon,E2.0
+Flags,country-flag,1F1F1 1F1E8,fully-qualified,🇱🇨,flag St Lucia,E2.0
+Flags,country-flag,1F1F1 1F1EE,fully-qualified,🇱🇮,flag Liechtenstein,E2.0
+Flags,country-flag,1F1F1 1F1F0,fully-qualified,🇱🇰,flag Sri Lanka,E2.0
+Flags,country-flag,1F1F1 1F1F7,fully-qualified,🇱🇷,flag Liberia,E2.0
+Flags,country-flag,1F1F1 1F1F8,fully-qualified,🇱🇸,flag Lesotho,E2.0
+Flags,country-flag,1F1F1 1F1F9,fully-qualified,🇱🇹,flag Lithuania,E2.0
+Flags,country-flag,1F1F1 1F1FA,fully-qualified,🇱🇺,flag Luxembourg,E2.0
+Flags,country-flag,1F1F1 1F1FB,fully-qualified,🇱🇻,flag Latvia,E2.0
+Flags,country-flag,1F1F1 1F1FE,fully-qualified,🇱🇾,flag Libya,E2.0
+Flags,country-flag,1F1F2 1F1E6,fully-qualified,🇲🇦,flag Morocco,E2.0
+Flags,country-flag,1F1F2 1F1E8,fully-qualified,🇲🇨,flag Monaco,E2.0
+Flags,country-flag,1F1F2 1F1E9,fully-qualified,🇲🇩,flag Moldova,E2.0
+Flags,country-flag,1F1F2 1F1EA,fully-qualified,🇲🇪,flag Montenegro,E2.0
+Flags,country-flag,1F1F2 1F1EB,fully-qualified,🇲🇫,flag St Martin,E2.0
+Flags,country-flag,1F1F2 1F1EC,fully-qualified,🇲🇬,flag Madagascar,E2.0
+Flags,country-flag,1F1F2 1F1ED,fully-qualified,🇲🇭,flag Marshall Islands,E2.0
+Flags,country-flag,1F1F2 1F1F0,fully-qualified,🇲🇰,flag North Macedonia,E2.0
+Flags,country-flag,1F1F2 1F1F1,fully-qualified,🇲🇱,flag Mali,E2.0
+Flags,country-flag,1F1F2 1F1F2,fully-qualified,🇲🇲,flag Myanmar Burma,E2.0
+Flags,country-flag,1F1F2 1F1F3,fully-qualified,🇲🇳,flag Mongolia,E2.0
+Flags,country-flag,1F1F2 1F1F4,fully-qualified,🇲🇴,flag Macao SAR China,E2.0
+Flags,country-flag,1F1F2 1F1F5,fully-qualified,🇲🇵,flag Northern Mariana Islands,E2.0
+Flags,country-flag,1F1F2 1F1F6,fully-qualified,🇲🇶,flag Martinique,E2.0
+Flags,country-flag,1F1F2 1F1F7,fully-qualified,🇲🇷,flag Mauritania,E2.0
+Flags,country-flag,1F1F2 1F1F8,fully-qualified,🇲🇸,flag Montserrat,E2.0
+Flags,country-flag,1F1F2 1F1F9,fully-qualified,🇲🇹,flag Malta,E2.0
+Flags,country-flag,1F1F2 1F1FA,fully-qualified,🇲🇺,flag Mauritius,E2.0
+Flags,country-flag,1F1F2 1F1FB,fully-qualified,🇲🇻,flag Maldives,E2.0
+Flags,country-flag,1F1F2 1F1FC,fully-qualified,🇲🇼,flag Malawi,E2.0
+Flags,country-flag,1F1F2 1F1FD,fully-qualified,🇲🇽,flag Mexico,E2.0
+Flags,country-flag,1F1F2 1F1FE,fully-qualified,🇲🇾,flag Malaysia,E2.0
+Flags,country-flag,1F1F2 1F1FF,fully-qualified,🇲🇿,flag Mozambique,E2.0
+Flags,country-flag,1F1F3 1F1E6,fully-qualified,🇳🇦,flag Namibia,E2.0
+Flags,country-flag,1F1F3 1F1E8,fully-qualified,🇳🇨,flag New Caledonia,E2.0
+Flags,country-flag,1F1F3 1F1EA,fully-qualified,🇳🇪,flag Niger,E2.0
+Flags,country-flag,1F1F3 1F1EB,fully-qualified,🇳🇫,flag Norfolk Island,E2.0
+Flags,country-flag,1F1F3 1F1EC,fully-qualified,🇳🇬,flag Nigeria,E2.0
+Flags,country-flag,1F1F3 1F1EE,fully-qualified,🇳🇮,flag Nicaragua,E2.0
+Flags,country-flag,1F1F3 1F1F1,fully-qualified,🇳🇱,flag Netherlands,E2.0
+Flags,country-flag,1F1F3 1F1F4,fully-qualified,🇳🇴,flag Norway,E2.0
+Flags,country-flag,1F1F3 1F1F5,fully-qualified,🇳🇵,flag Nepal,E2.0
+Flags,country-flag,1F1F3 1F1F7,fully-qualified,🇳🇷,flag Nauru,E2.0
+Flags,country-flag,1F1F3 1F1FA,fully-qualified,🇳🇺,flag Niue,E2.0
+Flags,country-flag,1F1F3 1F1FF,fully-qualified,🇳🇿,flag New Zealand,E2.0
+Flags,country-flag,1F1F4 1F1F2,fully-qualified,🇴🇲,flag Oman,E2.0
+Flags,country-flag,1F1F5 1F1E6,fully-qualified,🇵🇦,flag Panama,E2.0
+Flags,country-flag,1F1F5 1F1EA,fully-qualified,🇵🇪,flag Peru,E2.0
+Flags,country-flag,1F1F5 1F1EB,fully-qualified,🇵🇫,flag French Polynesia,E2.0
+Flags,country-flag,1F1F5 1F1EC,fully-qualified,🇵🇬,flag Papua New Guinea,E2.0
+Flags,country-flag,1F1F5 1F1ED,fully-qualified,🇵🇭,flag Philippines,E2.0
+Flags,country-flag,1F1F5 1F1F0,fully-qualified,🇵🇰,flag Pakistan,E2.0
+Flags,country-flag,1F1F5 1F1F1,fully-qualified,🇵🇱,flag Poland,E2.0
+Flags,country-flag,1F1F5 1F1F2,fully-qualified,🇵🇲,flag St Pierre  Miquelon,E2.0
+Flags,country-flag,1F1F5 1F1F3,fully-qualified,🇵🇳,flag Pitcairn Islands,E2.0
+Flags,country-flag,1F1F5 1F1F7,fully-qualified,🇵🇷,flag Puerto Rico,E2.0
+Flags,country-flag,1F1F5 1F1F8,fully-qualified,🇵🇸,flag Palestinian Territories,E2.0
+Flags,country-flag,1F1F5 1F1F9,fully-qualified,🇵🇹,flag Portugal,E2.0
+Flags,country-flag,1F1F5 1F1FC,fully-qualified,🇵🇼,flag Palau,E2.0
+Flags,country-flag,1F1F5 1F1FE,fully-qualified,🇵🇾,flag Paraguay,E2.0
+Flags,country-flag,1F1F6 1F1E6,fully-qualified,🇶🇦,flag Qatar,E2.0
+Flags,country-flag,1F1F7 1F1EA,fully-qualified,🇷🇪,flag Runion,E2.0
+Flags,country-flag,1F1F7 1F1F4,fully-qualified,🇷🇴,flag Romania,E2.0
+Flags,country-flag,1F1F7 1F1F8,fully-qualified,🇷🇸,flag Serbia,E2.0
+Flags,country-flag,1F1F7 1F1FA,fully-qualified,🇷🇺,flag Russia,E0.6
+Flags,country-flag,1F1F7 1F1FC,fully-qualified,🇷🇼,flag Rwanda,E2.0
+Flags,country-flag,1F1F8 1F1E6,fully-qualified,🇸🇦,flag Saudi Arabia,E2.0
+Flags,country-flag,1F1F8 1F1E7,fully-qualified,🇸🇧,flag Solomon Islands,E2.0
+Flags,country-flag,1F1F8 1F1E8,fully-qualified,🇸🇨,flag Seychelles,E2.0
+Flags,country-flag,1F1F8 1F1E9,fully-qualified,🇸🇩,flag Sudan,E2.0
+Flags,country-flag,1F1F8 1F1EA,fully-qualified,🇸🇪,flag Sweden,E2.0
+Flags,country-flag,1F1F8 1F1EC,fully-qualified,🇸🇬,flag Singapore,E2.0
+Flags,country-flag,1F1F8 1F1ED,fully-qualified,🇸🇭,flag St Helena,E2.0
+Flags,country-flag,1F1F8 1F1EE,fully-qualified,🇸🇮,flag Slovenia,E2.0
+Flags,country-flag,1F1F8 1F1EF,fully-qualified,🇸🇯,flag Svalbard  Jan Mayen,E2.0
+Flags,country-flag,1F1F8 1F1F0,fully-qualified,🇸🇰,flag Slovakia,E2.0
+Flags,country-flag,1F1F8 1F1F1,fully-qualified,🇸🇱,flag Sierra Leone,E2.0
+Flags,country-flag,1F1F8 1F1F2,fully-qualified,🇸🇲,flag San Marino,E2.0
+Flags,country-flag,1F1F8 1F1F3,fully-qualified,🇸🇳,flag Senegal,E2.0
+Flags,country-flag,1F1F8 1F1F4,fully-qualified,🇸🇴,flag Somalia,E2.0
+Flags,country-flag,1F1F8 1F1F7,fully-qualified,🇸🇷,flag Suriname,E2.0
+Flags,country-flag,1F1F8 1F1F8,fully-qualified,🇸🇸,flag South Sudan,E2.0
+Flags,country-flag,1F1F8 1F1F9,fully-qualified,🇸🇹,flag So Tom  Prncipe,E2.0
+Flags,country-flag,1F1F8 1F1FB,fully-qualified,🇸🇻,flag El Salvador,E2.0
+Flags,country-flag,1F1F8 1F1FD,fully-qualified,🇸🇽,flag Sint Maarten,E2.0
+Flags,country-flag,1F1F8 1F1FE,fully-qualified,🇸🇾,flag Syria,E2.0
+Flags,country-flag,1F1F8 1F1FF,fully-qualified,🇸🇿,flag Eswatini,E2.0
+Flags,country-flag,1F1F9 1F1E6,fully-qualified,🇹🇦,flag Tristan da Cunha,E2.0
+Flags,country-flag,1F1F9 1F1E8,fully-qualified,🇹🇨,flag Turks  Caicos Islands,E2.0
+Flags,country-flag,1F1F9 1F1E9,fully-qualified,🇹🇩,flag Chad,E2.0
+Flags,country-flag,1F1F9 1F1EB,fully-qualified,🇹🇫,flag French Southern Territories,E2.0
+Flags,country-flag,1F1F9 1F1EC,fully-qualified,🇹🇬,flag Togo,E2.0
+Flags,country-flag,1F1F9 1F1ED,fully-qualified,🇹🇭,flag Thailand,E2.0
+Flags,country-flag,1F1F9 1F1EF,fully-qualified,🇹🇯,flag Tajikistan,E2.0
+Flags,country-flag,1F1F9 1F1F0,fully-qualified,🇹🇰,flag Tokelau,E2.0
+Flags,country-flag,1F1F9 1F1F1,fully-qualified,🇹🇱,flag Timor-Leste,E2.0
+Flags,country-flag,1F1F9 1F1F2,fully-qualified,🇹🇲,flag Turkmenistan,E2.0
+Flags,country-flag,1F1F9 1F1F3,fully-qualified,🇹🇳,flag Tunisia,E2.0
+Flags,country-flag,1F1F9 1F1F4,fully-qualified,🇹🇴,flag Tonga,E2.0
+Flags,country-flag,1F1F9 1F1F7,fully-qualified,🇹🇷,flag Turkey,E2.0
+Flags,country-flag,1F1F9 1F1F9,fully-qualified,🇹🇹,flag Trinidad  Tobago,E2.0
+Flags,country-flag,1F1F9 1F1FB,fully-qualified,🇹🇻,flag Tuvalu,E2.0
+Flags,country-flag,1F1F9 1F1FC,fully-qualified,🇹🇼,flag Taiwan,E2.0
+Flags,country-flag,1F1F9 1F1FF,fully-qualified,🇹🇿,flag Tanzania,E2.0
+Flags,country-flag,1F1FA 1F1E6,fully-qualified,🇺🇦,flag Ukraine,E2.0
+Flags,country-flag,1F1FA 1F1EC,fully-qualified,🇺🇬,flag Uganda,E2.0
+Flags,country-flag,1F1FA 1F1F2,fully-qualified,🇺🇲,flag US Outlying Islands,E2.0
+Flags,country-flag,1F1FA 1F1F3,fully-qualified,🇺🇳,flag United Nations,E4.0
+Flags,country-flag,1F1FA 1F1F8,fully-qualified,🇺🇸,flag United States,E0.6
+Flags,country-flag,1F1FA 1F1FE,fully-qualified,🇺🇾,flag Uruguay,E2.0
+Flags,country-flag,1F1FA 1F1FF,fully-qualified,🇺🇿,flag Uzbekistan,E2.0
+Flags,country-flag,1F1FB 1F1E6,fully-qualified,🇻🇦,flag Vatican City,E2.0
+Flags,country-flag,1F1FB 1F1E8,fully-qualified,🇻🇨,flag St Vincent  Grenadines,E2.0
+Flags,country-flag,1F1FB 1F1EA,fully-qualified,🇻🇪,flag Venezuela,E2.0
+Flags,country-flag,1F1FB 1F1EC,fully-qualified,🇻🇬,flag British Virgin Islands,E2.0
+Flags,country-flag,1F1FB 1F1EE,fully-qualified,🇻🇮,flag US Virgin Islands,E2.0
+Flags,country-flag,1F1FB 1F1F3,fully-qualified,🇻🇳,flag Vietnam,E2.0
+Flags,country-flag,1F1FB 1F1FA,fully-qualified,🇻🇺,flag Vanuatu,E2.0
+Flags,country-flag,1F1FC 1F1EB,fully-qualified,🇼🇫,flag Wallis  Futuna,E2.0
+Flags,country-flag,1F1FC 1F1F8,fully-qualified,🇼🇸,flag Samoa,E2.0
+Flags,country-flag,1F1FD 1F1F0,fully-qualified,🇽🇰,flag Kosovo,E2.0
+Flags,country-flag,1F1FE 1F1EA,fully-qualified,🇾🇪,flag Yemen,E2.0
+Flags,country-flag,1F1FE 1F1F9,fully-qualified,🇾🇹,flag Mayotte,E2.0
+Flags,country-flag,1F1FF 1F1E6,fully-qualified,🇿🇦,flag South Africa,E2.0
+Flags,country-flag,1F1FF 1F1F2,fully-qualified,🇿🇲,flag Zambia,E2.0
+Flags,country-flag,1F1FF 1F1FC,fully-qualified,🇿🇼,flag Zimbabwe,E2.0
+Flags,subdivision-flag,1F3F4 E0067 E0062 E0065 E006E E0067 E007F,fully-qualified,🏴󠁧󠁢󠁥󠁮󠁧󠁿,flag England,E5.0
+Flags,subdivision-flag,1F3F4 E0067 E0062 E0073 E0063 E0074 E007F,fully-qualified,🏴󠁧󠁢󠁳󠁣󠁴󠁿,flag Scotland,E5.0
+Flags,subdivision-flag,1F3F4 E0067 E0062 E0077 E006C E0073 E007F,fully-qualified,🏴󠁧󠁢󠁷󠁬󠁳󠁿,flag Wales,E5.0

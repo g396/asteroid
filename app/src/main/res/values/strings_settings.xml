@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_settings_display">settings</string>
+    <string name="header_display">(Restart required)</string>
+
+    <!--Text strings-->
+    <string name="sp_text">Text strings</string>
+    <string name="sp_text_size">Font size (body)</string>
+    <string name="sp_edittext_size">Font size (input field)</string>
+    <string name="sp_emoji_size">Emojis scaling</string>
+    <string name="sp_emoji_animation">Enable GIF-Emoji animation</string>
+    <string name="sp_emoji_animation_summary">Due to technical limitations, animation of emojis in posts are disabled</string>
+    <string name="sp_time_format">Time format</string>
+
+    <!--Posts-->
+    <string name="header_posts">Detail of posts</string>
+    <string name="sp_show_card">Show preview of links</string>
+    <string name="sp_show_via">show the via in posts</string>
+    <string name="sp_hide_buttons">Hide action buttons</string>
+
+    <!--Avatar img-->
+    <string name="sp_avatar">Avatar images</string>
+    <string name="sp_avatar_animation">Enable animations</string>
+    <string name="sp_avatar_shape">Image\'s shape</string>
+    <string name="sp_avatar_header">Show avatar image in column\'s header</string>
+
+    <!--Main window-->
+    <string name="header_main">Main window</string>
+    <string name="sp_fix_tabs_width">Fix tabs width</string>
+    <string name="sp_tabs_width">Tabs width</string>
+    <string name="sp_show_quick_post_area">Show Quick-Post in timeline</string>
+    <string name="sp_show_quick_post_visibility">Enable select Visibility</string>
+    <string name="sp_show_quick_post_emoji">Enable Emoji-button</string>
+    <string name="sp_show_quick_post_hashtag">実況モード (Hashtag-broadcasting)</string>
+    <string name="sp_send_enter_key">Replace the enter key to send button</string>
+    <string name="sp_disable_sleep">Disable auto-sleep in main window</string>
+
+    <!--New posts-->
+    <string name="sp_new_posts">New posts</string>
+    <string name="sp_resize_image">Image size (when resizing)</string>
+
+    <!-- 愚かな -->
+    <string name="header_values">Is it really necessary?</string>
+    <string name="sp_show_followers_count">Show the number of posts, followings and followers counts</string>
+    <string name="sp_show_reactions_count">Show reactions counts</string>
+
+    <!--Dialogs-->
+    <string name="header_dialog">Dialogs</string>
+    <string name="sp_dialog">Show dialog when action</string>
+    <string name="sp_dialog_post">Send post</string>
+    <string name="sp_dialog_favourite">Favourite</string>
+    <string name="sp_dialog_reblog">Boost</string>
+    <string name="sp_dialog_bookmark">Bookmark</string>
+    <string name="sp_dialog_emoji">Emoji Reaction (for Fedibird and others)</string>
+    <string name="sp_dialog_follow">Follow user / send follow request</string>
+    <!--Dialogs-->
+    <string name="header_dialog_undo">Dialogs(undo)</string>
+    <string name="sp_dialog_undo">Show dialog when undo action</string>
+    <string name="sp_dialog_undo_post">Delete post</string>
+    <string name="sp_dialog_undo_favourite">Unfavourite</string>
+    <string name="sp_dialog_undo_reblog">Unboost</string>
+    <string name="sp_dialog_undo_bookmark">Unbookmark</string>
+    <string name="sp_dialog_undo_emoji">Emoji Reaction (for Fedibird and others)</string>>
+    <string name="sp_dialog_undo_follow">Unfollow user / undo follow request</string>
+</resources>

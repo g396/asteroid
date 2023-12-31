@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="failed">失敗しました</string>
+
+    <!--posts-->
+    <string name="deleted">削除しました</string>
+
+    <!--upload media-->
+    <string name="uploaded">アップロード完了</string>
+    <string name="failed_to_load_media">ファイルの読み込みに失敗しました</string>
+    <string name="media_attachments_limit">一度にアップロード可能な数は４枚までです</string>
+    <string name="media_poll_xor">投票作成時はメディアを添付できません</string>
+    <string name="media_xor">複数のメディアを同時に添付することは出来ません</string>
+    <string name="saved">保存しました</string>
+    <string name="failed_to_save">保存に失敗しました</string>
+
+    <!--reaction-->
+    <string name="favourited">ふぁぼりました</string>
+    <string name="reblogged">ブーストしました</string>
+    <string name="bookmarked">ブックマークしました</string>
+    <string name="reacted">リアクションしました</string><!---emoji reaction (fedibird.com)-->
+    <string name="pin">ピン留めしました</string>
+    <string name="please_select">選択して下さい</string>
+    <string name="voted">投票しました</string>
+    <string name="undo">取り消しました</string>
+
+    <!--relationship-->
+    <string name="followed">フォローしました</string>
+    <string name="unfollowed">フォロー解除しました</string>
+    <string name="requested_follow">フォローリクエストを送信しました</string>
+    <string name="undo_request_follow">フォローリクエストを取り消ししました</string>
+    <string name="blocked">ブロックしました</string>
+    <string name="unblocked">ブロックを解除しました</string>
+    <string name="muted">ミュートしました</string>
+    <string name="unmuted">ミュートを解除しました</string>
+    <string name="accept_follow_request">フォローリクエストを承認しました</string>
+    <string name="reject_follow_request">フォローリクエストを拒否しました</string>
+    <string name="enable_notify">新規投稿の通知を有効にしました</string>
+    <string name="disable_notify">新規投稿の通知を無効にしました</string>
+    <string name="show_reblogs">ブースト投稿の表示を有効にしました</string>
+    <string name="hide_reblogs">ブースト投稿の表示を無効にしました</string>
+
+    <!--others-->
+    <string name="added_column">カラムを追加しました</string>
+    <string name="url_copied">URLをコピーしました</string>
+    <string name="end_of_list">リストの終端</string>
+    <string name="empty_response">空のレスポンス</string>
+    <string name="unimplemented">そのうち実装します</string>
+    <string name="permission_denied">権限がありません</string>
+    <string name="permission_granted">権限が承認されました。もう一度操作を実行して下さい</string>
+    <string name="press_back_button_again">もう一度戻るアクションで終了</string>
+
+    <string name="select_account_reply">返信時はアカウント切替できません</string>
+    <string name="select_account_media">メディアのアップロード後はアカウント切替できません</string>
+</resources>

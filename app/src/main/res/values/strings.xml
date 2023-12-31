@@ -1,0 +1,105 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Asteroid</string>
+
+    <string name="authorize_button">Login</string>
+    <string name="authorize_url_hint">URL (Ex. mastodon.social)</string>
+    <string name="authorize_access_token_hint">Access token</string>
+    <string name="authorize_appname_hint">Custom name</string>
+    <string name="authorize_advanced">Advanced options</string>
+    <string name="authorize_token">Enter the access token directly</string>
+    <string name="authorize_appname">Enter the custom name of application</string>
+
+    <string name="at_mark" translatable="false">\@</string>
+    <string name="acct" translatable="false">\@%1$s</string>
+    <string name="boosted_by" translatable="false">Boosted by %1$s</string>
+    <string name="pinned">Pinned</string>
+    <string name="reply_to">Mention</string>
+    <string name="read_more">More…</string>
+
+    <string name="notification_favourited">" favourited"</string>
+    <string name="notification_reblogged">" boosted"</string>
+    <string name="notification_mention">" mentioned you"</string>
+    <string name="notification_follow">" follows you"</string>
+    <string name="notification_follow_request">" requested follow"</string>
+    <string name="notification_poll">\'s poll finished</string>
+    <string name="notification_emoji">" reacted with Emoji"</string>
+    <string name="notification_status">" 's new posts"</string>
+    <string name="notification_others">Others</string>
+    <string name="notification_single">%1$s</string>
+    <string name="notification_multi">%1$s and %2$s users</string>
+    <string name="title_activity_user_detail" translatable="false">UserDetailActivity</string>
+
+    <string name="action_streaming">Enable streaming</string>
+    <string name="action_refresh">Refresh column</string>
+
+    <string name="hint">What\'s happening?</string>
+    <string name="hint_warning">Warning text</string>
+    <string name="hint_search">Search</string>
+    <string name="hint_search_emoji">Search Emojis</string>
+
+    <string name="send_post">Send</string>
+    <string name="create_a_poll">Create a poll</string>
+    <string name="poll_multiple">Allows multiple selections</string>
+
+    <string name="mark_as_nsfw">Mark as NSFW contents</string>
+    <string name="resize_images">Resize images</string>
+
+    <string name="favourite_other_account">Favourite from other account…</string>
+    <string name="boost_other_account">Boost from other account…</string>
+    <string name="bookmark_other_account">Bookmark from other account…</string>
+
+    <!--コンテキストメニュー-->
+    <string name="delete">Delete this post</string>
+    <string name="edit">Edit this post</string>
+    <string name="favourite">Favourite</string>
+    <string name="unfavourite">Unfavourite</string>
+    <string name="pin_the_posts">Pin posts to profile</string>
+    <string name="who_favourited">Show users who favourited this</string>
+    <string name="who_reblogged">Show users who boosted this</string>
+    <string name="unpin_the_posts">Unpin posts from profile</string>
+    <string name="open_in_browser">Open in browser</string>
+    <string name="copy_link">Copy link</string>
+
+    <string name="context_img">Image file</string>
+    <string name="context_video">Video file</string>
+    <string name="context_audio">Audio file</string>
+
+    <!--AboutInstanceActivity(このインスタンスについて)-->
+    <string name="button_about_server">About Instance</string>
+    <string name="rules">Server rules</string>
+    <string name="active_user">Number of active users</string>
+    <string name="now_loading">Now loading</string>
+    <string name="admin">Administrator</string>
+    <string name="only_allowed_mastodon">This feature is only supported for Mastodon Instances</string>
+
+
+    <!--エラー画面-->
+    <string name="failed_loading">Failed to load</string>
+    <string name="failed_internal_server_error">Internal server error</string>
+    <string name="failed_to_parse_json">A problem occurred while parsing JSON</string>
+    <string name="no_matches">No matches found</string>
+
+    <string name="code_404" translatable="false">404</string>
+    <string name="code_503" translatable="false">503</string>
+
+    <string name="empty">Please enter content</string>
+    <string name="send">Posted</string>
+    <string name="vote">Vote</string>
+
+    <string name="save">Save</string>
+
+    <string name="already_exist">The column is already exists</string>
+
+    <string name="title_posts">Posts</string>
+    <string name="title_media">Media</string>
+    <string name="title_following">Followings</string>
+    <string name="title_followers">Followers</string>
+
+    <string name="visibility_server">Default value (in server)</string>
+    <string name="visibility_public">Public</string>
+    <string name="visibility_unlisted">Unlisted</string>
+    <string name="visibility_private">Followers only</string>
+    <string name="visibility_direct">Mentioned people only</string>
+
+    <string name="manage">Manage…</string>
+</resources>

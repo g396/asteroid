@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--define visibility-->
+    <!-- 0:visible 1:invisible 2:gone -->
+    <integer name="dynamic_visibility_h360">2</integer>
+</resources>

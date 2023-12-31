@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--menu-->
+    <string name="dialog_yes">はい</string>
+    <string name="dialog_cancel">キャンセル</string>
+    <string name="dialog_add">追加</string>
+    <string name="dialog_show_never">次回以降表示しない</string>
+
+    <!--posts-->
+    <string name="dialog_delete">削除しますか？</string>
+
+    <!--reaction-->
+    <string name="dialog_favourite">ふぁぼりますか？</string>
+    <string name="dialog_undo_favourite">ふぁぼを取り消ししますか？</string>
+    <string name="dialog_reblog">ブーストしますか？</string>
+    <string name="dialog_undo_reblog">ブーストを取り消ししますか？</string>
+    <string name="dialog_bookmark">ブックマークしますか？</string>
+    <string name="dialog_undo_bookmark">ブックマークを取り消ししますか？</string>
+    <string name="dialog_emoji">%1$sでリアクションしますか？</string>
+    <string name="dialog_undo_emoji">%1$sのリアクションを取り消ししますか？</string>
+
+    <!--relationship-->
+    <string name="dialog_follow">%1$sから%2$sをフォローしますか？</string>
+    <string name="dialog_unfollow">%1$sから%2$sのフォローを解除しますか？</string>
+    <string name="dialog_follow_request">%1$sから%2$sへフォローリクエストを送りますか？</string>
+    <string name="dialog_undo_follow_request">%1$sから%2$sへのフォローリクエストを取り消しますか？</string>
+    <string name="dialog_block">%1$sから%2$sをブロックしますか？</string>
+    <string name="dialog_unblock">%1$sから%2$sのブロックを解除しますか？</string>
+    <string name="dialog_mute">%1$sから%2$sをミュートしますか？</string>
+    <string name="dialog_unmute">%1$sから%2$sのミュートを解除しますか？</string>
+    <string name="dialog_mute_checkbox">通知もミュートする</string>
+
+    <!--manage account-->
+    <string name="dialog_remove_accounts">%1$sからログアウトしますか？</string>
+
+    <!--create posts-->
+    <string name="dialog_create_post">%1$sから投稿しますか？</string>
+    <string name="dialog_create_post_delete">削除しますか？</string>
+    <string name="dialog_remove_image">添付ファイルを削除しますか？</string>
+
+    <string name="dialog_enter_hashtag">ハッシュタグを入力</string>
+    <string name="dialog_change_account">アカウントを選択</string>
+
+    <string name="dialog_description_title">画像に説明文を追加</string>
+    <string name="dialog_description_hint">説明文</string>
+
+    <!--list-->
+    <string name="dialog_create_a_new_list">新しいリストを作成</string>
+    <string name="dialog_hint_list">タイトルを入力</string>
+    <string name="dialog_delete_list">%1$sを削除しますか？</string>
+</resources>

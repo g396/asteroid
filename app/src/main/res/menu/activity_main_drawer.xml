@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/user_context">
+        <item
+            android:id="@+id/nav_manage_profile"
+            android:icon="@drawable/edit_profile"
+            android:title="@string/menu_manage_profile">
+        </item>
+    </group>
+    <group
+        android:id="@+id/group_timelines">
+        <item
+            android:id="@+id/nav_local"
+            android:icon="@drawable/column_local"
+            android:title="@string/column_local" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/column_home"
+            android:title="@string/column_home" />
+        <item
+            android:id="@+id/nav_mix"
+            android:icon="@drawable/column_mix"
+            android:title="@string/column_mix" />
+        <item
+            android:id="@+id/nav_public"
+            android:icon="@drawable/column_public"
+            android:title="@string/column_public" />
+        <item
+            android:id="@+id/nav_lists"
+            android:icon="@drawable/column_list"
+            android:title="@string/column_list" />
+    </group>
+
+    <group
+        android:id="@+id/group_search">
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/search"
+            android:title="@string/column_search" />
+        <item
+            android:id="@+id/nav_trends"
+            android:icon="@drawable/trends"
+            android:title="@string/column_trends_suggestions" />
+    </group>
+
+
+    <group
+        android:id="@+id/group_notifications">
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/column_notification"
+            android:title="@string/column_notifications" />
+        <item
+            android:id="@+id/nav_reply"
+            android:icon="@drawable/mention"
+            android:title="@string/column_mention" />
+    </group>
+
+    <group
+        android:id="@+id/group_actions">
+        <item
+            android:id="@+id/nav_favourites"
+            android:icon="@drawable/column_favourite"
+            android:title="@string/column_favourites" />
+        <item
+            android:id="@+id/nav_bookmarks"
+            android:icon="@drawable/column_bookmarks"
+            android:title="@string/column_bookmarks" />
+    </group>
+
+    <group
+        android:id="@+id/group_settings">
+        <item
+            android:id="@+id/nav_manage_accounts"
+            android:icon="@drawable/user"
+            android:title="@string/title_settings_manage_accounts" />
+        <item
+            android:id="@+id/nav_manage_columns"
+            android:icon="@drawable/settings_general"
+            android:title="@string/title_manage_columns" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/settings"
+            android:title="@string/title_settings" />
+    </group>
+
+</menu>

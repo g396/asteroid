@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="failed">An error occurred</string>
+
+    <!--posts-->
+    <string name="deleted">Deleted</string>
+
+    <!--upload media-->
+    <string name="uploaded">Uploaded</string>
+    <string name="failed_to_load_media">Failed to load</string>
+    <string name="media_attachments_limit">You can upload up to 4 pictures at a time</string>
+    <string name="media_poll_xor">When creating a poll, media cannot be attached</string>
+    <string name="media_xor">Multiple media cannot be attached at the same time</string>
+    <!--download media -->
+    <string name="saved">Saved</string>
+    <string name="failed_to_save">Failed to save</string>
+
+    <!--reaction-->
+    <string name="favourited">Favourited</string>
+    <string name="reblogged">Boosted</string>
+    <string name="bookmarked">Bookmarked</string>
+    <string name="reacted">Reacted with Emoji</string><!---emoji reaction (fedibird.com)-->
+    <string name="pin">Pinned</string>
+    <string name="please_select">Please select</string>
+    <string name="voted">Voted</string>
+    <string name="undo">Undo</string>
+
+    <!--relationship-->
+    <string name="followed">Followed this user</string>
+    <string name="unfollowed">Unfolowed this user</string>
+    <string name="requested_follow">Sent follow request</string>
+    <string name="undo_request_follow">Undo follow request</string>
+    <string name="blocked">Blocked this user</string>
+    <string name="unblocked">Unblocked this user</string>
+    <string name="muted">Muted this user</string>
+    <string name="unmuted">Unmuted this user</string>
+    <string name="enable_notify">Notification enabled</string>
+    <string name="disable_notify">Notification disabled</string>
+    <string name="show_reblogs">Made enabled to show user\'s reblogs</string>
+    <string name="hide_reblogs">Made disaabled to show user\'s reblogs</string>
+
+    <string name="accept_follow_request">Accepted follow request</string>
+    <string name="reject_follow_request">Rejected follow request</string>
+
+    <!--others-->
+    <string name="added_column">Added</string>
+    <string name="url_copied">URL copied</string>
+    <string name="end_of_list">End of list</string>
+    <string name="empty_response">Empty response</string>
+    <string name="unimplemented">\?</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="permission_granted">Permission granted, try to perform the operation again</string>
+    <string name="press_back_button_again">Press the back button again to exit</string>
+
+    <string name="select_account_reply">Account switching is not available when replying</string>
+    <string name="select_account_media">Account switching is not available when uploaded media</string>
+</resources>

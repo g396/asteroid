@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="desc_icon" translatable="false">user\'s icon</string>
+    <string name="desc_boost" translatable="false">boost this post</string>
+    <string name="desc_favorite" translatable="false">favorite this post</string>
+    <string name="desc_reply" translatable="false">reply to this post</string>
+</resources>

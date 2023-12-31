@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_block_list">ブロックしたアカウント一覧</string>
+    <string name="title_mute_list">ミュートしたアカウント一覧</string>
+    <string name="title_manage_columns">カラムの管理・追加</string>
+    <string name="title_settings">設定</string>
+    <string name="title_settings_manage_accounts">アカウントの管理・追加</string>
+    <string name="title_login_mastodon">Mastodonでログイン</string>
+    <string name="title_oss_license">OSSライセンス</string>
+    <string name="title_about_instance">このインスタンスについて</string>
+    <string name="title_new_posts">新規投稿</string>
+    <string name="title_reply">返信</string>
+    <string name="title_detail_notification">通知の詳細</string>
+    <string name="title_detail_posts">投稿の詳細 (id:%1$s)</string>
+    <string name="title_add_to_list">リストへ追加・削除</string>
+    <string name="title_accounts_list">リスト内のアカウント一覧</string>
+    <string name="title_recently_hashtags">最近使用したハッシュタグ</string>
+</resources>

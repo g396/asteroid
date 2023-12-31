@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--SettingsActivity-->
+    <string name="settings_general">一般設定</string>
+
+    <string name="settings_comment">翻訳者募集中！</string>
+
+    <string name="menu_block">ブロック</string>
+    <string name="menu_unblock">ブロック解除</string>
+    <string name="menu_mute">ミュート</string>
+    <string name="menu_unmute">ミュート解除</string>
+    <string name="menu_add_column">カラムとして追加</string>
+    <string name="menu_add_column_media">カラムとして追加(メディア)</string>
+    <string name="menu_add_to_list">リストへ追加・削除</string>
+    <string name="menu_enable_reblogs">ブースト投稿を表示する</string>
+    <string name="menu_disable_reblogs">ブースト投稿を非表示にする</string>
+    <string name="menu_enable_notify">ユーザの新着投稿を通知する</string>
+    <string name="menu_disaable_notify">新着投稿の通知を無効にする</string>
+
+    <string name="follow_hashtag">ハッシュタグをフォロー</string>
+    <string name="unfollow_hashtag">ハッシュタグのフォローを解除</string>
+
+    <string name="menu_manage_profile">プロフィールを編集</string>
+    <string name="menu_change_color">色を変更</string>
+    <string name="menu_remove">削除</string>
+
+    <string name="menu_import_hashtag">フォロー中のハッシュタグをインポート</string>
+    <string name="menu_exclusive_home">これらの投稿をホームから除外する</string>
+    <string name="menu_not_exclusive_home">これらの投稿をホームから除外しない</string>
+
+    <string name="menu_replies_policy">リプライの表示設定</string>
+    <string name="menu_replies_policy_none">表示しない</string>
+    <string name="menu_replies_policy_list">リスト内のユーザ</string>
+    <string name="menu_replies_policy_followed">フォロー中のユーザ全員</string>
+</resources>

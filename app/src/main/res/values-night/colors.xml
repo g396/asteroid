@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="status_bar">#191C1E</color>
+    <color name="card_background">#18181B</color>
+    <color name="cardview_background">#232328</color>
+    <color name="cardview_sub_background">#3F3F46</color>
+    <color name="boost_background">#FF113333</color>
+    <color name="graph_background">#71717A</color>
+    <color name="error_message">@color/red</color>
+    <color name="switch_account">@color/gray3</color>
+</resources>

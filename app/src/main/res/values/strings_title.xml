@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_block_list">Show list of blocking users</string>
+    <string name="title_mute_list">Show list of muting users</string>
+    <string name="title_manage_columns">Manage columns</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_settings_manage_accounts">Manage accounts</string>
+    <string name="title_login_mastodon">Login with Mastodon</string>
+    <string name="title_oss_license">OSS licenses</string>
+    <string name="title_about_instance">About this Instance</string>
+    <string name="title_new_posts">Create posts</string>
+    <string name="title_reply">Reply</string>
+    <string name="title_detail_notification">Detail of notification</string>
+    <string name="title_detail_posts">Detail of posts (id:%1$s)</string>
+    <string name="title_add_to_list">Add to the list / Remove</string>
+    <string name="title_accounts_list">List of accounts</string>
+    <string name="title_recently_hashtags">Recently used hashtags</string>
+</resources>

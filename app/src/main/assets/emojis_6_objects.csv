@@ -1,0 +1,301 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Objects,clothing,1F453,fully-qualified,👓,glasses,E0.6
+Objects,clothing,1F576 FE0F,fully-qualified,🕶️,sunglasses,E0.7
+Objects,clothing,1F576,unqualified,🕶,sunglasses,E0.7
+Objects,clothing,1F97D,fully-qualified,🥽,goggles,E11.0
+Objects,clothing,1F97C,fully-qualified,🥼,lab coat,E11.0
+Objects,clothing,1F9BA,fully-qualified,🦺,safety vest,E12.0
+Objects,clothing,1F454,fully-qualified,👔,necktie,E0.6
+Objects,clothing,1F455,fully-qualified,👕,t-shirt,E0.6
+Objects,clothing,1F456,fully-qualified,👖,jeans,E0.6
+Objects,clothing,1F9E3,fully-qualified,🧣,scarf,E5.0
+Objects,clothing,1F9E4,fully-qualified,🧤,gloves,E5.0
+Objects,clothing,1F9E5,fully-qualified,🧥,coat,E5.0
+Objects,clothing,1F9E6,fully-qualified,🧦,socks,E5.0
+Objects,clothing,1F457,fully-qualified,👗,dress,E0.6
+Objects,clothing,1F458,fully-qualified,👘,kimono,E0.6
+Objects,clothing,1F97B,fully-qualified,🥻,sari,E12.0
+Objects,clothing,1FA71,fully-qualified,🩱,one-piece swimsuit,E12.0
+Objects,clothing,1FA72,fully-qualified,🩲,briefs,E12.0
+Objects,clothing,1FA73,fully-qualified,🩳,shorts,E12.0
+Objects,clothing,1F459,fully-qualified,👙,bikini,E0.6
+Objects,clothing,1F45A,fully-qualified,👚,womans clothes,E0.6
+Objects,clothing,1F45B,fully-qualified,👛,purse,E0.6
+Objects,clothing,1F45C,fully-qualified,👜,handbag,E0.6
+Objects,clothing,1F45D,fully-qualified,👝,clutch bag,E0.6
+Objects,clothing,1F6CD FE0F,fully-qualified,🛍️,shopping bags,E0.7
+Objects,clothing,1F6CD,unqualified,🛍,shopping bags,E0.7
+Objects,clothing,1F392,fully-qualified,🎒,backpack,E0.6
+Objects,clothing,1FA74,fully-qualified,🩴,thong sandal,E13.0
+Objects,clothing,1F45E,fully-qualified,👞,mans shoe,E0.6
+Objects,clothing,1F45F,fully-qualified,👟,running shoe,E0.6
+Objects,clothing,1F97E,fully-qualified,🥾,hiking boot,E11.0
+Objects,clothing,1F97F,fully-qualified,🥿,flat shoe,E11.0
+Objects,clothing,1F460,fully-qualified,👠,high-heeled shoe,E0.6
+Objects,clothing,1F461,fully-qualified,👡,womans sandal,E0.6
+Objects,clothing,1FA70,fully-qualified,🩰,ballet shoes,E12.0
+Objects,clothing,1F462,fully-qualified,👢,womans boot,E0.6
+Objects,clothing,1F451,fully-qualified,👑,crown,E0.6
+Objects,clothing,1F452,fully-qualified,👒,womans hat,E0.6
+Objects,clothing,1F3A9,fully-qualified,🎩,top hat,E0.6
+Objects,clothing,1F393,fully-qualified,🎓,graduation cap,E0.6
+Objects,clothing,1F9E2,fully-qualified,🧢,billed cap,E5.0
+Objects,clothing,1FA96,fully-qualified,🪖,military helmet,E13.0
+Objects,clothing,26D1 FE0F,fully-qualified,⛑️,rescue workers helmet,E0.7
+Objects,clothing,26D1,unqualified,⛑,rescue workers helmet,E0.7
+Objects,clothing,1F4FF,fully-qualified,📿,prayer beads,E1.0
+Objects,clothing,1F484,fully-qualified,💄,lipstick,E0.6
+Objects,clothing,1F48D,fully-qualified,💍,ring,E0.6
+Objects,clothing,1F48E,fully-qualified,💎,gem stone,E0.6
+Objects,sound,1F507,fully-qualified,🔇,muted speaker,E1.0
+Objects,sound,1F508,fully-qualified,🔈,speaker low volume,E0.7
+Objects,sound,1F509,fully-qualified,🔉,speaker medium volume,E1.0
+Objects,sound,1F50A,fully-qualified,🔊,speaker high volume,E0.6
+Objects,sound,1F4E2,fully-qualified,📢,loudspeaker,E0.6
+Objects,sound,1F4E3,fully-qualified,📣,megaphone,E0.6
+Objects,sound,1F4EF,fully-qualified,📯,postal horn,E1.0
+Objects,sound,1F514,fully-qualified,🔔,bell,E0.6
+Objects,sound,1F515,fully-qualified,🔕,bell with slash,E1.0
+Objects,music,1F3BC,fully-qualified,🎼,musical score,E0.6
+Objects,music,1F3B5,fully-qualified,🎵,musical note,E0.6
+Objects,music,1F3B6,fully-qualified,🎶,musical notes,E0.6
+Objects,music,1F399 FE0F,fully-qualified,🎙️,studio microphone,E0.7
+Objects,music,1F399,unqualified,🎙,studio microphone,E0.7
+Objects,music,1F39A FE0F,fully-qualified,🎚️,level slider,E0.7
+Objects,music,1F39A,unqualified,🎚,level slider,E0.7
+Objects,music,1F39B FE0F,fully-qualified,🎛️,control knobs,E0.7
+Objects,music,1F39B,unqualified,🎛,control knobs,E0.7
+Objects,music,1F3A4,fully-qualified,🎤,microphone,E0.6
+Objects,music,1F3A7,fully-qualified,🎧,headphone,E0.6
+Objects,music,1F4FB,fully-qualified,📻,radio,E0.6
+Objects,musical-instrument,1F3B7,fully-qualified,🎷,saxophone,E0.6
+Objects,musical-instrument,1FA97,fully-qualified,🪗,accordion,E13.0
+Objects,musical-instrument,1F3B8,fully-qualified,🎸,guitar,E0.6
+Objects,musical-instrument,1F3B9,fully-qualified,🎹,musical keyboard,E0.6
+Objects,musical-instrument,1F3BA,fully-qualified,🎺,trumpet,E0.6
+Objects,musical-instrument,1F3BB,fully-qualified,🎻,violin,E0.6
+Objects,musical-instrument,1FA95,fully-qualified,🪕,banjo,E12.0
+Objects,musical-instrument,1F941,fully-qualified,🥁,drum,E3.0
+Objects,musical-instrument,1FA98,fully-qualified,🪘,long drum,E13.0
+Objects,phone,1F4F1,fully-qualified,📱,mobile phone,E0.6
+Objects,phone,1F4F2,fully-qualified,📲,mobile phone with arrow,E0.6
+Objects,phone,260E FE0F,fully-qualified,☎️,telephone,E0.6
+Objects,phone,260E,unqualified,☎,telephone,E0.6
+Objects,phone,1F4DE,fully-qualified,📞,telephone receiver,E0.6
+Objects,phone,1F4DF,fully-qualified,📟,pager,E0.6
+Objects,phone,1F4E0,fully-qualified,📠,fax machine,E0.6
+Objects,computer,1F50B,fully-qualified,🔋,battery,E0.6
+Objects,computer,1F50C,fully-qualified,🔌,electric plug,E0.6
+Objects,computer,1F4BB,fully-qualified,💻,laptop,E0.6
+Objects,computer,1F5A5 FE0F,fully-qualified,🖥️,desktop computer,E0.7
+Objects,computer,1F5A5,unqualified,🖥,desktop computer,E0.7
+Objects,computer,1F5A8 FE0F,fully-qualified,🖨️,printer,E0.7
+Objects,computer,1F5A8,unqualified,🖨,printer,E0.7
+Objects,computer,2328 FE0F,fully-qualified,⌨️,keyboard,E1.0
+Objects,computer,2328,unqualified,⌨,keyboard,E1.0
+Objects,computer,1F5B1 FE0F,fully-qualified,🖱️,computer mouse,E0.7
+Objects,computer,1F5B1,unqualified,🖱,computer mouse,E0.7
+Objects,computer,1F5B2 FE0F,fully-qualified,🖲️,trackball,E0.7
+Objects,computer,1F5B2,unqualified,🖲,trackball,E0.7
+Objects,computer,1F4BD,fully-qualified,💽,computer disk,E0.6
+Objects,computer,1F4BE,fully-qualified,💾,floppy disk,E0.6
+Objects,computer,1F4BF,fully-qualified,💿,optical disk,E0.6
+Objects,computer,1F4C0,fully-qualified,📀,dvd,E0.6
+Objects,computer,1F9EE,fully-qualified,🧮,abacus,E11.0
+Objects,light-video,1F3A5,fully-qualified,🎥,movie camera,E0.6
+Objects,light-video,1F39E FE0F,fully-qualified,🎞️,film frames,E0.7
+Objects,light-video,1F39E,unqualified,🎞,film frames,E0.7
+Objects,light-video,1F4FD FE0F,fully-qualified,📽️,film projector,E0.7
+Objects,light-video,1F4FD,unqualified,📽,film projector,E0.7
+Objects,light-video,1F3AC,fully-qualified,🎬,clapper board,E0.6
+Objects,light-video,1F4FA,fully-qualified,📺,television,E0.6
+Objects,light-video,1F4F7,fully-qualified,📷,camera,E0.6
+Objects,light-video,1F4F8,fully-qualified,📸,camera with flash,E1.0
+Objects,light-video,1F4F9,fully-qualified,📹,video camera,E0.6
+Objects,light-video,1F4FC,fully-qualified,📼,videocassette,E0.6
+Objects,light-video,1F50D,fully-qualified,🔍,magnifying glass tilted left,E0.6
+Objects,light-video,1F50E,fully-qualified,🔎,magnifying glass tilted right,E0.6
+Objects,light-video,1F56F FE0F,fully-qualified,🕯️,candle,E0.7
+Objects,light-video,1F56F,unqualified,🕯,candle,E0.7
+Objects,light-video,1F4A1,fully-qualified,💡,light bulb,E0.6
+Objects,light-video,1F526,fully-qualified,🔦,flashlight,E0.6
+Objects,light-video,1F3EE,fully-qualified,🏮,red paper lantern,E0.6
+Objects,light-video,1FA94,fully-qualified,🪔,diya lamp,E12.0
+Objects,book-paper,1F4D4,fully-qualified,📔,notebook with decorative cover,E0.6
+Objects,book-paper,1F4D5,fully-qualified,📕,closed book,E0.6
+Objects,book-paper,1F4D6,fully-qualified,📖,open book,E0.6
+Objects,book-paper,1F4D7,fully-qualified,📗,green book,E0.6
+Objects,book-paper,1F4D8,fully-qualified,📘,blue book,E0.6
+Objects,book-paper,1F4D9,fully-qualified,📙,orange book,E0.6
+Objects,book-paper,1F4DA,fully-qualified,📚,books,E0.6
+Objects,book-paper,1F4D3,fully-qualified,📓,notebook,E0.6
+Objects,book-paper,1F4D2,fully-qualified,📒,ledger,E0.6
+Objects,book-paper,1F4C3,fully-qualified,📃,page with curl,E0.6
+Objects,book-paper,1F4DC,fully-qualified,📜,scroll,E0.6
+Objects,book-paper,1F4C4,fully-qualified,📄,page facing up,E0.6
+Objects,book-paper,1F4F0,fully-qualified,📰,newspaper,E0.6
+Objects,book-paper,1F5DE FE0F,fully-qualified,🗞️,rolled-up newspaper,E0.7
+Objects,book-paper,1F5DE,unqualified,🗞,rolled-up newspaper,E0.7
+Objects,book-paper,1F4D1,fully-qualified,📑,bookmark tabs,E0.6
+Objects,book-paper,1F516,fully-qualified,🔖,bookmark,E0.6
+Objects,book-paper,1F3F7 FE0F,fully-qualified,🏷️,label,E0.7
+Objects,book-paper,1F3F7,unqualified,🏷,label,E0.7
+Objects,money,1F4B0,fully-qualified,💰,money bag,E0.6
+Objects,money,1FA99,fully-qualified,🪙,coin,E13.0
+Objects,money,1F4B4,fully-qualified,💴,yen banknote,E0.6
+Objects,money,1F4B5,fully-qualified,💵,dollar banknote,E0.6
+Objects,money,1F4B6,fully-qualified,💶,euro banknote,E1.0
+Objects,money,1F4B7,fully-qualified,💷,pound banknote,E1.0
+Objects,money,1F4B8,fully-qualified,💸,money with wings,E0.6
+Objects,money,1F4B3,fully-qualified,💳,credit card,E0.6
+Objects,money,1F9FE,fully-qualified,🧾,receipt,E11.0
+Objects,money,1F4B9,fully-qualified,💹,chart increasing with yen,E0.6
+Objects,mail,2709 FE0F,fully-qualified,✉️,envelope,E0.6
+Objects,mail,2709,unqualified,✉,envelope,E0.6
+Objects,mail,1F4E7,fully-qualified,📧,e-mail,E0.6
+Objects,mail,1F4E8,fully-qualified,📨,incoming envelope,E0.6
+Objects,mail,1F4E9,fully-qualified,📩,envelope with arrow,E0.6
+Objects,mail,1F4E4,fully-qualified,📤,outbox tray,E0.6
+Objects,mail,1F4E5,fully-qualified,📥,inbox tray,E0.6
+Objects,mail,1F4E6,fully-qualified,📦,package,E0.6
+Objects,mail,1F4EB,fully-qualified,📫,closed mailbox with raised flag,E0.6
+Objects,mail,1F4EA,fully-qualified,📪,closed mailbox with lowered flag,E0.6
+Objects,mail,1F4EC,fully-qualified,📬,open mailbox with raised flag,E0.7
+Objects,mail,1F4ED,fully-qualified,📭,open mailbox with lowered flag,E0.7
+Objects,mail,1F4EE,fully-qualified,📮,postbox,E0.6
+Objects,mail,1F5F3 FE0F,fully-qualified,🗳️,ballot box with ballot,E0.7
+Objects,mail,1F5F3,unqualified,🗳,ballot box with ballot,E0.7
+Objects,writing,270F FE0F,fully-qualified,✏️,pencil,E0.6
+Objects,writing,270F,unqualified,✏,pencil,E0.6
+Objects,writing,2712 FE0F,fully-qualified,✒️,black nib,E0.6
+Objects,writing,2712,unqualified,✒,black nib,E0.6
+Objects,writing,1F58B FE0F,fully-qualified,🖋️,fountain pen,E0.7
+Objects,writing,1F58B,unqualified,🖋,fountain pen,E0.7
+Objects,writing,1F58A FE0F,fully-qualified,🖊️,pen,E0.7
+Objects,writing,1F58A,unqualified,🖊,pen,E0.7
+Objects,writing,1F58C FE0F,fully-qualified,🖌️,paintbrush,E0.7
+Objects,writing,1F58C,unqualified,🖌,paintbrush,E0.7
+Objects,writing,1F58D FE0F,fully-qualified,🖍️,crayon,E0.7
+Objects,writing,1F58D,unqualified,🖍,crayon,E0.7
+Objects,writing,1F4DD,fully-qualified,📝,memo,E0.6
+Objects,office,1F4BC,fully-qualified,💼,briefcase,E0.6
+Objects,office,1F4C1,fully-qualified,📁,file folder,E0.6
+Objects,office,1F4C2,fully-qualified,📂,open file folder,E0.6
+Objects,office,1F5C2 FE0F,fully-qualified,🗂️,card index dividers,E0.7
+Objects,office,1F5C2,unqualified,🗂,card index dividers,E0.7
+Objects,office,1F4C5,fully-qualified,📅,calendar,E0.6
+Objects,office,1F4C6,fully-qualified,📆,tear-off calendar,E0.6
+Objects,office,1F5D2 FE0F,fully-qualified,🗒️,spiral notepad,E0.7
+Objects,office,1F5D2,unqualified,🗒,spiral notepad,E0.7
+Objects,office,1F5D3 FE0F,fully-qualified,🗓️,spiral calendar,E0.7
+Objects,office,1F5D3,unqualified,🗓,spiral calendar,E0.7
+Objects,office,1F4C7,fully-qualified,📇,card index,E0.6
+Objects,office,1F4C8,fully-qualified,📈,chart increasing,E0.6
+Objects,office,1F4C9,fully-qualified,📉,chart decreasing,E0.6
+Objects,office,1F4CA,fully-qualified,📊,bar chart,E0.6
+Objects,office,1F4CB,fully-qualified,📋,clipboard,E0.6
+Objects,office,1F4CC,fully-qualified,📌,pushpin,E0.6
+Objects,office,1F4CD,fully-qualified,📍,round pushpin,E0.6
+Objects,office,1F4CE,fully-qualified,📎,paperclip,E0.6
+Objects,office,1F587 FE0F,fully-qualified,🖇️,linked paperclips,E0.7
+Objects,office,1F587,unqualified,🖇,linked paperclips,E0.7
+Objects,office,1F4CF,fully-qualified,📏,straight ruler,E0.6
+Objects,office,1F4D0,fully-qualified,📐,triangular ruler,E0.6
+Objects,office,2702 FE0F,fully-qualified,✂️,scissors,E0.6
+Objects,office,2702,unqualified,✂,scissors,E0.6
+Objects,office,1F5C3 FE0F,fully-qualified,🗃️,card file box,E0.7
+Objects,office,1F5C3,unqualified,🗃,card file box,E0.7
+Objects,office,1F5C4 FE0F,fully-qualified,🗄️,file cabinet,E0.7
+Objects,office,1F5C4,unqualified,🗄,file cabinet,E0.7
+Objects,office,1F5D1 FE0F,fully-qualified,🗑️,wastebasket,E0.7
+Objects,office,1F5D1,unqualified,🗑,wastebasket,E0.7
+Objects,lock,1F512,fully-qualified,🔒,locked,E0.6
+Objects,lock,1F513,fully-qualified,🔓,unlocked,E0.6
+Objects,lock,1F50F,fully-qualified,🔏,locked with pen,E0.6
+Objects,lock,1F510,fully-qualified,🔐,locked with key,E0.6
+Objects,lock,1F511,fully-qualified,🔑,key,E0.6
+Objects,lock,1F5DD FE0F,fully-qualified,🗝️,old key,E0.7
+Objects,lock,1F5DD,unqualified,🗝,old key,E0.7
+Objects,tool,1F528,fully-qualified,🔨,hammer,E0.6
+Objects,tool,1FA93,fully-qualified,🪓,axe,E12.0
+Objects,tool,26CF FE0F,fully-qualified,⛏️,pick,E0.7
+Objects,tool,26CF,unqualified,⛏,pick,E0.7
+Objects,tool,2692 FE0F,fully-qualified,⚒️,hammer and pick,E1.0
+Objects,tool,2692,unqualified,⚒,hammer and pick,E1.0
+Objects,tool,1F6E0 FE0F,fully-qualified,🛠️,hammer and wrench,E0.7
+Objects,tool,1F6E0,unqualified,🛠,hammer and wrench,E0.7
+Objects,tool,1F5E1 FE0F,fully-qualified,🗡️,dagger,E0.7
+Objects,tool,1F5E1,unqualified,🗡,dagger,E0.7
+Objects,tool,2694 FE0F,fully-qualified,⚔️,crossed swords,E1.0
+Objects,tool,2694,unqualified,⚔,crossed swords,E1.0
+Objects,tool,1F4A3,fully-qualified,💣,bomb,E0.6
+Objects,tool,1FA83,fully-qualified,🪃,boomerang,E13.0
+Objects,tool,1F3F9,fully-qualified,🏹,bow and arrow,E1.0
+Objects,tool,1F6E1 FE0F,fully-qualified,🛡️,shield,E0.7
+Objects,tool,1F6E1,unqualified,🛡,shield,E0.7
+Objects,tool,1FA9A,fully-qualified,🪚,carpentry saw,E13.0
+Objects,tool,1F527,fully-qualified,🔧,wrench,E0.6
+Objects,tool,1FA9B,fully-qualified,🪛,screwdriver,E13.0
+Objects,tool,1F529,fully-qualified,🔩,nut and bolt,E0.6
+Objects,tool,2699 FE0F,fully-qualified,⚙️,gear,E1.0
+Objects,tool,2699,unqualified,⚙,gear,E1.0
+Objects,tool,1F5DC FE0F,fully-qualified,🗜️,clamp,E0.7
+Objects,tool,1F5DC,unqualified,🗜,clamp,E0.7
+Objects,tool,2696 FE0F,fully-qualified,⚖️,balance scale,E1.0
+Objects,tool,2696,unqualified,⚖,balance scale,E1.0
+Objects,tool,1F9AF,fully-qualified,🦯,white cane,E12.0
+Objects,tool,1F517,fully-qualified,🔗,link,E0.6
+Objects,tool,26D3 FE0F,fully-qualified,⛓️,chains,E0.7
+Objects,tool,26D3,unqualified,⛓,chains,E0.7
+Objects,tool,1FA9D,fully-qualified,🪝,hook,E13.0
+Objects,tool,1F9F0,fully-qualified,🧰,toolbox,E11.0
+Objects,tool,1F9F2,fully-qualified,🧲,magnet,E11.0
+Objects,tool,1FA9C,fully-qualified,🪜,ladder,E13.0
+Objects,science,2697 FE0F,fully-qualified,⚗️,alembic,E1.0
+Objects,science,2697,unqualified,⚗,alembic,E1.0
+Objects,science,1F9EA,fully-qualified,🧪,test tube,E11.0
+Objects,science,1F9EB,fully-qualified,🧫,petri dish,E11.0
+Objects,science,1F9EC,fully-qualified,🧬,dna,E11.0
+Objects,science,1F52C,fully-qualified,🔬,microscope,E1.0
+Objects,science,1F52D,fully-qualified,🔭,telescope,E1.0
+Objects,science,1F4E1,fully-qualified,📡,satellite antenna,E0.6
+Objects,medical,1F489,fully-qualified,💉,syringe,E0.6
+Objects,medical,1FA78,fully-qualified,🩸,drop of blood,E12.0
+Objects,medical,1F48A,fully-qualified,💊,pill,E0.6
+Objects,medical,1FA79,fully-qualified,🩹,adhesive bandage,E12.0
+Objects,medical,1FA7A,fully-qualified,🩺,stethoscope,E12.0
+Objects,household,1F6AA,fully-qualified,🚪,door,E0.6
+Objects,household,1F6D7,fully-qualified,🛗,elevator,E13.0
+Objects,household,1FA9E,fully-qualified,🪞,mirror,E13.0
+Objects,household,1FA9F,fully-qualified,🪟,window,E13.0
+Objects,household,1F6CF FE0F,fully-qualified,🛏️,bed,E0.7
+Objects,household,1F6CF,unqualified,🛏,bed,E0.7
+Objects,household,1F6CB FE0F,fully-qualified,🛋️,couch and lamp,E0.7
+Objects,household,1F6CB,unqualified,🛋,couch and lamp,E0.7
+Objects,household,1FA91,fully-qualified,🪑,chair,E12.0
+Objects,household,1F6BD,fully-qualified,🚽,toilet,E0.6
+Objects,household,1FAA0,fully-qualified,🪠,plunger,E13.0
+Objects,household,1F6BF,fully-qualified,🚿,shower,E1.0
+Objects,household,1F6C1,fully-qualified,🛁,bathtub,E1.0
+Objects,household,1FAA4,fully-qualified,🪤,mouse trap,E13.0
+Objects,household,1FA92,fully-qualified,🪒,razor,E12.0
+Objects,household,1F9F4,fully-qualified,🧴,lotion bottle,E11.0
+Objects,household,1F9F7,fully-qualified,🧷,safety pin,E11.0
+Objects,household,1F9F9,fully-qualified,🧹,broom,E11.0
+Objects,household,1F9FA,fully-qualified,🧺,basket,E11.0
+Objects,household,1F9FB,fully-qualified,🧻,roll of paper,E11.0
+Objects,household,1FAA3,fully-qualified,🪣,bucket,E13.0
+Objects,household,1F9FC,fully-qualified,🧼,soap,E11.0
+Objects,household,1FAA5,fully-qualified,🪥,toothbrush,E13.0
+Objects,household,1F9FD,fully-qualified,🧽,sponge,E11.0
+Objects,household,1F9EF,fully-qualified,🧯,fire extinguisher,E11.0
+Objects,household,1F6D2,fully-qualified,🛒,shopping cart,E3.0
+Objects,other-object,1F6AC,fully-qualified,🚬,cigarette,E0.6
+Objects,other-object,26B0 FE0F,fully-qualified,⚰️,coffin,E1.0
+Objects,other-object,26B0,unqualified,⚰,coffin,E1.0
+Objects,other-object,1FAA6,fully-qualified,🪦,headstone,E13.0
+Objects,other-object,26B1 FE0F,fully-qualified,⚱️,funeral urn,E1.0
+Objects,other-object,26B1,unqualified,⚱,funeral urn,E1.0
+Objects,other-object,1F9FF,fully-qualified,🧿,nazar amulet,E11.0
+Objects,other-object,1F5FF,fully-qualified,🗿,moai,E0.6
+Objects,other-object,1FAA7,fully-qualified,🪧,placard,E13.0

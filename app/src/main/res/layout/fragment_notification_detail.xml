@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="account"
+            type="sns.asteroid.api.entities.Account" />
+        <variable
+            name="accountCount"
+            type="int" />
+        <variable
+            name="notificationType"
+            type="String" />
+
+        <variable
+            name="image"
+            type="String" />
+        <variable
+            name="unicodeEmoji"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card_background">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingVertical="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:textStyle="bold"
+                    app:customTextSize='@{"default"}'
+                    app:notificationType="@{notificationType}"
+                    app:reactedUser="@{account}"
+                    app:peoplesCount="@{accountCount}"/>
+
+                <include
+                    layout="@layout/row_notification_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:visibility='@{notificationType.equals("emoji_reaction") ? View.VISIBLE : View.GONE}'
+                    app:image="@{image}"
+                    app:imageType="@{notificationType}"
+                    app:unicodeEmoji="@{unicodeEmoji}"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reactionUsers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

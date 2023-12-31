@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--menu-->
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_add">Add</string>
+    <string name="dialog_show_never">Naver show again</string>
+
+    <!--posts-->
+    <string name="dialog_delete">Delete this post?</string>
+
+    <!--reaction-->
+    <string name="dialog_favourite">Add favourite this post?</string>
+    <string name="dialog_undo_favourite">Undo favourite this post?</string>
+    <string name="dialog_reblog">Boost this post?</string>
+    <string name="dialog_undo_reblog">Undo boost this post?</string>
+    <string name="dialog_bookmark">Add bookmark this post?</string>
+    <string name="dialog_undo_bookmark">Undo bookmark this post?</string>
+    <string name="dialog_emoji">Reaction with %1$s?</string>
+    <string name="dialog_undo_emoji">Undo reaction the %1$s?</string>
+
+    <!--relationship-->
+    <string name="dialog_follow">Follow %2$s from %1$s?</string>
+    <string name="dialog_unfollow">Unfollow %2$s from %1$s??</string>
+    <string name="dialog_follow_request">Send follow request to %2$s from %1$s??</string>
+    <string name="dialog_undo_follow_request">Undo follow request for %2$s from %1$s??</string>
+    <string name="dialog_block">Block %2$s from %1$s?</string>
+    <string name="dialog_unblock">Unblock %2$s from %1$s?</string>
+    <string name="dialog_mute">Mute %2$s from %1$s?</string>
+    <string name="dialog_unmute">Unmute %2$s from %1$s?</string>
+    <string name="dialog_mute_checkbox">Mute notifications</string>
+
+    <!--manage account-->
+    <string name="dialog_remove_accounts">Logout from %1$s?</string>
+
+    <!--create posts-->
+    <string name="dialog_create_post">Send posts from %1$s?</string>
+    <string name="dialog_create_post_delete">Delete it?</string>
+    <string name="dialog_remove_image">Remove the file?</string>
+
+    <string name="dialog_enter_hashtag">Enter a hashtag</string>
+    <string name="dialog_change_account">Select account</string>
+
+    <string name="dialog_description_title">Add a description</string>
+    <string name="dialog_description_hint">description</string>
+
+    <!--list-->
+    <string name="dialog_create_a_new_list">Create a new list</string>
+    <string name="dialog_hint_list">Title</string>
+    <string name="dialog_delete_list">Delete %1$s?</string>
+</resources>

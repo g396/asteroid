@@ -1,0 +1,63 @@
+<resources>
+    <!-- 絵文字サイズ -->
+    <string-array name="emoji_size">
+        <item>デフォルト</item>
+        <item>1.5倍</item>
+        <item>2倍</item>
+        <item>2.5倍</item>
+        <item>5倍</item>
+        <item>10倍</item>
+    </string-array>
+
+    <!-- テキストサイズ -->
+    <string-array name="text_size">
+        <item>-1</item>
+        <item>-0.5</item>
+        <item>デフォルト</item>
+        <item>+0.5</item>
+        <item>+1</item>
+        <item>+1.5</item>
+        <item>+2</item>
+    </string-array>
+
+    <!-- テキストサイズ -->
+    <string-array name="edittext_size">
+        <item>-1</item>
+        <item>-0.5</item>
+        <item>デフォルト</item>
+        <item>+0.5</item>
+        <item>+1</item>
+        <item>+1.5</item>
+        <item>+2</item>
+    </string-array>
+
+    <!-- タブの幅 -->
+    <string-array name="tab_width">
+        <item>限界まで狭く</item>
+        <item>もっと狭く</item>
+        <item>狭く</item>
+        <item>デフォルト</item>
+    </string-array>
+
+    <!--画像リサイズ時の大きさ(長辺)-->
+    <string-array name="image_size">
+        <item>1920px(デフォルト)</item>
+        <item>1440px</item>
+        <item>1280px</item>
+        <item>960px</item>
+    </string-array>
+
+    <!--時間のフォーマット-->
+    <string-array name="time_format">
+        <item>相対時刻</item>
+        <item>絶対時刻</item>
+        <item>絶対時刻(秒単位)</item>
+    </string-array>
+
+    <!--アイコンの形-->
+    <string-array name="avatar_shape">
+        <item>円形(デフォルト)</item>
+        <item>正方形</item>
+        <item>誰でもNFT</item>
+    </string-array>
+</resources>

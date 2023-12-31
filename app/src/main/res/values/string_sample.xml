@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_id">\@asteroid</string>
+    <string name="sample_created_at">5s</string>
+    <string name="sample_summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="sample_summary2">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</string>
+    <string name="sample_summary3">Windowsでコンピューターの世界が広がります。1234567890</string>
+    <string name="sample_display_name">Asteroid Dev</string>
+    <string name="sample_field1">Browser</string>
+    <string name="sample_value1">Vivaldi</string>
+    <string name="sample_field2">東京特許許可局</string>
+    <string name="sample_value2">は存在しません特許庁です</string>
+    <string name="sample_field3">エレクリだー</string>
+    <string name="sample_value3">エレクリだーーー！！！！！(チャーーラーラーrーtrwrgwウィmrgtzbダツツダツツダツツダツツダツダツデツツデツツデツツデツツチャーrwgmォdpデドドデレpwdjwgmw搭狛》ォントセット1ｬ・\ｹﾇｶ{ﾄ7</string>
+    <string name="sample_field4">ビッグマックのセット</string>
+    <string name="sample_value4">ビッグマックを1000個?</string>
+    <string name="sample_poll">ブラウザは何を使用していますか</string>
+</resources>

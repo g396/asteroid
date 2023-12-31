@@ -1,0 +1,149 @@
+Group,Subgroup,CodePoint,Status,Representation,Name,Section
+Animals-Nature,animal-mammal,1F435,fully-qualified,🐵,monkey face,E0.6
+Animals-Nature,animal-mammal,1F412,fully-qualified,🐒,monkey,E0.6
+Animals-Nature,animal-mammal,1F98D,fully-qualified,🦍,gorilla,E3.0
+Animals-Nature,animal-mammal,1F9A7,fully-qualified,🦧,orangutan,E12.0
+Animals-Nature,animal-mammal,1F436,fully-qualified,🐶,dog face,E0.6
+Animals-Nature,animal-mammal,1F415,fully-qualified,🐕,dog,E0.7
+Animals-Nature,animal-mammal,1F9AE,fully-qualified,🦮,guide dog,E12.0
+Animals-Nature,animal-mammal,1F415 200D 1F9BA,fully-qualified,🐕‍🦺,service dog,E12.0
+Animals-Nature,animal-mammal,1F429,fully-qualified,🐩,poodle,E0.6
+Animals-Nature,animal-mammal,1F43A,fully-qualified,🐺,wolf,E0.6
+Animals-Nature,animal-mammal,1F98A,fully-qualified,🦊,fox,E3.0
+Animals-Nature,animal-mammal,1F99D,fully-qualified,🦝,raccoon,E11.0
+Animals-Nature,animal-mammal,1F431,fully-qualified,🐱,cat face,E0.6
+Animals-Nature,animal-mammal,1F408,fully-qualified,🐈,cat,E0.7
+Animals-Nature,animal-mammal,1F408 200D 2B1B,fully-qualified,🐈‍⬛,black cat,E13.0
+Animals-Nature,animal-mammal,1F981,fully-qualified,🦁,lion,E1.0
+Animals-Nature,animal-mammal,1F42F,fully-qualified,🐯,tiger face,E0.6
+Animals-Nature,animal-mammal,1F405,fully-qualified,🐅,tiger,E1.0
+Animals-Nature,animal-mammal,1F406,fully-qualified,🐆,leopard,E1.0
+Animals-Nature,animal-mammal,1F434,fully-qualified,🐴,horse face,E0.6
+Animals-Nature,animal-mammal,1F40E,fully-qualified,🐎,horse,E0.6
+Animals-Nature,animal-mammal,1F984,fully-qualified,🦄,unicorn,E1.0
+Animals-Nature,animal-mammal,1F993,fully-qualified,🦓,zebra,E5.0
+Animals-Nature,animal-mammal,1F98C,fully-qualified,🦌,deer,E3.0
+Animals-Nature,animal-mammal,1F9AC,fully-qualified,🦬,bison,E13.0
+Animals-Nature,animal-mammal,1F42E,fully-qualified,🐮,cow face,E0.6
+Animals-Nature,animal-mammal,1F402,fully-qualified,🐂,ox,E1.0
+Animals-Nature,animal-mammal,1F403,fully-qualified,🐃,water buffalo,E1.0
+Animals-Nature,animal-mammal,1F404,fully-qualified,🐄,cow,E1.0
+Animals-Nature,animal-mammal,1F437,fully-qualified,🐷,pig face,E0.6
+Animals-Nature,animal-mammal,1F416,fully-qualified,🐖,pig,E1.0
+Animals-Nature,animal-mammal,1F417,fully-qualified,🐗,boar,E0.6
+Animals-Nature,animal-mammal,1F43D,fully-qualified,🐽,pig nose,E0.6
+Animals-Nature,animal-mammal,1F40F,fully-qualified,🐏,ram,E1.0
+Animals-Nature,animal-mammal,1F411,fully-qualified,🐑,ewe,E0.6
+Animals-Nature,animal-mammal,1F410,fully-qualified,🐐,goat,E1.0
+Animals-Nature,animal-mammal,1F42A,fully-qualified,🐪,camel,E1.0
+Animals-Nature,animal-mammal,1F42B,fully-qualified,🐫,two-hump camel,E0.6
+Animals-Nature,animal-mammal,1F999,fully-qualified,🦙,llama,E11.0
+Animals-Nature,animal-mammal,1F992,fully-qualified,🦒,giraffe,E5.0
+Animals-Nature,animal-mammal,1F418,fully-qualified,🐘,elephant,E0.6
+Animals-Nature,animal-mammal,1F9A3,fully-qualified,🦣,mammoth,E13.0
+Animals-Nature,animal-mammal,1F98F,fully-qualified,🦏,rhinoceros,E3.0
+Animals-Nature,animal-mammal,1F99B,fully-qualified,🦛,hippopotamus,E11.0
+Animals-Nature,animal-mammal,1F42D,fully-qualified,🐭,mouse face,E0.6
+Animals-Nature,animal-mammal,1F401,fully-qualified,🐁,mouse,E1.0
+Animals-Nature,animal-mammal,1F400,fully-qualified,🐀,rat,E1.0
+Animals-Nature,animal-mammal,1F439,fully-qualified,🐹,hamster,E0.6
+Animals-Nature,animal-mammal,1F430,fully-qualified,🐰,rabbit face,E0.6
+Animals-Nature,animal-mammal,1F407,fully-qualified,🐇,rabbit,E1.0
+Animals-Nature,animal-mammal,1F43F FE0F,fully-qualified,🐿️,chipmunk,E0.7
+Animals-Nature,animal-mammal,1F43F,unqualified,🐿,chipmunk,E0.7
+Animals-Nature,animal-mammal,1F9AB,fully-qualified,🦫,beaver,E13.0
+Animals-Nature,animal-mammal,1F994,fully-qualified,🦔,hedgehog,E5.0
+Animals-Nature,animal-mammal,1F987,fully-qualified,🦇,bat,E3.0
+Animals-Nature,animal-mammal,1F43B,fully-qualified,🐻,bear,E0.6
+Animals-Nature,animal-mammal,1F43B 200D 2744 FE0F,fully-qualified,🐻‍❄️,polar bear,E13.0
+Animals-Nature,animal-mammal,1F43B 200D 2744,minimally-qualified,🐻‍❄,polar bear,E13.0
+Animals-Nature,animal-mammal,1F428,fully-qualified,🐨,koala,E0.6
+Animals-Nature,animal-mammal,1F43C,fully-qualified,🐼,panda,E0.6
+Animals-Nature,animal-mammal,1F9A5,fully-qualified,🦥,sloth,E12.0
+Animals-Nature,animal-mammal,1F9A6,fully-qualified,🦦,otter,E12.0
+Animals-Nature,animal-mammal,1F9A8,fully-qualified,🦨,skunk,E12.0
+Animals-Nature,animal-mammal,1F998,fully-qualified,🦘,kangaroo,E11.0
+Animals-Nature,animal-mammal,1F9A1,fully-qualified,🦡,badger,E11.0
+Animals-Nature,animal-mammal,1F43E,fully-qualified,🐾,paw prints,E0.6
+Animals-Nature,animal-bird,1F983,fully-qualified,🦃,turkey,E1.0
+Animals-Nature,animal-bird,1F414,fully-qualified,🐔,chicken,E0.6
+Animals-Nature,animal-bird,1F413,fully-qualified,🐓,rooster,E1.0
+Animals-Nature,animal-bird,1F423,fully-qualified,🐣,hatching chick,E0.6
+Animals-Nature,animal-bird,1F424,fully-qualified,🐤,baby chick,E0.6
+Animals-Nature,animal-bird,1F425,fully-qualified,🐥,front-facing baby chick,E0.6
+Animals-Nature,animal-bird,1F426,fully-qualified,🐦,bird,E0.6
+Animals-Nature,animal-bird,1F427,fully-qualified,🐧,penguin,E0.6
+Animals-Nature,animal-bird,1F54A FE0F,fully-qualified,🕊️,dove,E0.7
+Animals-Nature,animal-bird,1F54A,unqualified,🕊,dove,E0.7
+Animals-Nature,animal-bird,1F985,fully-qualified,🦅,eagle,E3.0
+Animals-Nature,animal-bird,1F986,fully-qualified,🦆,duck,E3.0
+Animals-Nature,animal-bird,1F9A2,fully-qualified,🦢,swan,E11.0
+Animals-Nature,animal-bird,1F989,fully-qualified,🦉,owl,E3.0
+Animals-Nature,animal-bird,1F9A4,fully-qualified,🦤,dodo,E13.0
+Animals-Nature,animal-bird,1FAB6,fully-qualified,🪶,feather,E13.0
+Animals-Nature,animal-bird,1F9A9,fully-qualified,🦩,flamingo,E12.0
+Animals-Nature,animal-bird,1F99A,fully-qualified,🦚,peacock,E11.0
+Animals-Nature,animal-bird,1F99C,fully-qualified,🦜,parrot,E11.0
+Animals-Nature,animal-amphibian,1F438,fully-qualified,🐸,frog,E0.6
+Animals-Nature,animal-reptile,1F40A,fully-qualified,🐊,crocodile,E1.0
+Animals-Nature,animal-reptile,1F422,fully-qualified,🐢,turtle,E0.6
+Animals-Nature,animal-reptile,1F98E,fully-qualified,🦎,lizard,E3.0
+Animals-Nature,animal-reptile,1F40D,fully-qualified,🐍,snake,E0.6
+Animals-Nature,animal-reptile,1F432,fully-qualified,🐲,dragon face,E0.6
+Animals-Nature,animal-reptile,1F409,fully-qualified,🐉,dragon,E1.0
+Animals-Nature,animal-reptile,1F995,fully-qualified,🦕,sauropod,E5.0
+Animals-Nature,animal-reptile,1F996,fully-qualified,🦖,T-Rex,E5.0
+Animals-Nature,animal-marine,1F433,fully-qualified,🐳,spouting whale,E0.6
+Animals-Nature,animal-marine,1F40B,fully-qualified,🐋,whale,E1.0
+Animals-Nature,animal-marine,1F42C,fully-qualified,🐬,dolphin,E0.6
+Animals-Nature,animal-marine,1F9AD,fully-qualified,🦭,seal,E13.0
+Animals-Nature,animal-marine,1F41F,fully-qualified,🐟,fish,E0.6
+Animals-Nature,animal-marine,1F420,fully-qualified,🐠,tropical fish,E0.6
+Animals-Nature,animal-marine,1F421,fully-qualified,🐡,blowfish,E0.6
+Animals-Nature,animal-marine,1F988,fully-qualified,🦈,shark,E3.0
+Animals-Nature,animal-marine,1F419,fully-qualified,🐙,octopus,E0.6
+Animals-Nature,animal-marine,1F41A,fully-qualified,🐚,spiral shell,E0.6
+Animals-Nature,animal-bug,1F40C,fully-qualified,🐌,snail,E0.6
+Animals-Nature,animal-bug,1F98B,fully-qualified,🦋,butterfly,E3.0
+Animals-Nature,animal-bug,1F41B,fully-qualified,🐛,bug,E0.6
+Animals-Nature,animal-bug,1F41C,fully-qualified,🐜,ant,E0.6
+Animals-Nature,animal-bug,1F41D,fully-qualified,🐝,honeybee,E0.6
+Animals-Nature,animal-bug,1FAB2,fully-qualified,🪲,beetle,E13.0
+Animals-Nature,animal-bug,1F41E,fully-qualified,🐞,lady beetle,E0.6
+Animals-Nature,animal-bug,1F997,fully-qualified,🦗,cricket,E5.0
+Animals-Nature,animal-bug,1FAB3,fully-qualified,🪳,cockroach,E13.0
+Animals-Nature,animal-bug,1F577 FE0F,fully-qualified,🕷️,spider,E0.7
+Animals-Nature,animal-bug,1F577,unqualified,🕷,spider,E0.7
+Animals-Nature,animal-bug,1F578 FE0F,fully-qualified,🕸️,spider web,E0.7
+Animals-Nature,animal-bug,1F578,unqualified,🕸,spider web,E0.7
+Animals-Nature,animal-bug,1F982,fully-qualified,🦂,scorpion,E1.0
+Animals-Nature,animal-bug,1F99F,fully-qualified,🦟,mosquito,E11.0
+Animals-Nature,animal-bug,1FAB0,fully-qualified,🪰,fly,E13.0
+Animals-Nature,animal-bug,1FAB1,fully-qualified,🪱,worm,E13.0
+Animals-Nature,animal-bug,1F9A0,fully-qualified,🦠,microbe,E11.0
+Animals-Nature,plant-flower,1F490,fully-qualified,💐,bouquet,E0.6
+Animals-Nature,plant-flower,1F338,fully-qualified,🌸,cherry blossom,E0.6
+Animals-Nature,plant-flower,1F4AE,fully-qualified,💮,white flower,E0.6
+Animals-Nature,plant-flower,1F3F5 FE0F,fully-qualified,🏵️,rosette,E0.7
+Animals-Nature,plant-flower,1F3F5,unqualified,🏵,rosette,E0.7
+Animals-Nature,plant-flower,1F339,fully-qualified,🌹,rose,E0.6
+Animals-Nature,plant-flower,1F940,fully-qualified,🥀,wilted flower,E3.0
+Animals-Nature,plant-flower,1F33A,fully-qualified,🌺,hibiscus,E0.6
+Animals-Nature,plant-flower,1F33B,fully-qualified,🌻,sunflower,E0.6
+Animals-Nature,plant-flower,1F33C,fully-qualified,🌼,blossom,E0.6
+Animals-Nature,plant-flower,1F337,fully-qualified,🌷,tulip,E0.6
+Animals-Nature,plant-other,1F331,fully-qualified,🌱,seedling,E0.6
+Animals-Nature,plant-other,1FAB4,fully-qualified,🪴,potted plant,E13.0
+Animals-Nature,plant-other,1F332,fully-qualified,🌲,evergreen tree,E1.0
+Animals-Nature,plant-other,1F333,fully-qualified,🌳,deciduous tree,E1.0
+Animals-Nature,plant-other,1F334,fully-qualified,🌴,palm tree,E0.6
+Animals-Nature,plant-other,1F335,fully-qualified,🌵,cactus,E0.6
+Animals-Nature,plant-other,1F33E,fully-qualified,🌾,sheaf of rice,E0.6
+Animals-Nature,plant-other,1F33F,fully-qualified,🌿,herb,E0.6
+Animals-Nature,plant-other,2618 FE0F,fully-qualified,☘️,shamrock,E1.0
+Animals-Nature,plant-other,2618,unqualified,☘,shamrock,E1.0
+Animals-Nature,plant-other,1F340,fully-qualified,🍀,four leaf clover,E0.6
+Animals-Nature,plant-other,1F341,fully-qualified,🍁,maple leaf,E0.6
+Animals-Nature,plant-other,1F342,fully-qualified,🍂,fallen leaf,E0.6
+Animals-Nature,plant-other,1F343,fully-qualified,🍃,leaf fluttering in wind,E0.6
+Animals-Nature,plant-other,1F344,fully-qualified,🍄,mushroom,E0.6

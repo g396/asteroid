@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="voted"
+            type="boolean" />
+        <variable
+            name="expired"
+            type="boolean" />
+        <variable
+            name="expireAt"
+            type="String" />
+    </data>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@drawable/background_normal"
+    android:backgroundTint="@color/cardview_sub_background"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/poll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:clickable="false"
+        android:isScrollContainer="false"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/pollButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:visibility="@{(expired || voted) ? View.GONE : View.VISIBLE}"
+        android:orientation="horizontal"
+        tools:visibility="visible">
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/pollButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="0dp"
+            android:text="@string/vote"
+            android:background="@drawable/background_normal"
+            android:minHeight="24dp"
+            android:minWidth="48dp"
+            app:customTextSize='@{"default"}' />
+        <ProgressBar
+            android:id="@+id/pollLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/expireAt"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:customTextSize='@{"default"}'
+        app:expireAt="@{expireAt}"
+        tools:text="残り0分"/>
+
+</LinearLayout>
+</layout>

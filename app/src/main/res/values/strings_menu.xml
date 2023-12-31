@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--SettingsActivity-->
+    <string name="settings_general">General settings</string>
+
+    <string name="settings_comment">We are looking for translators!</string>
+    <string name="settings_version" translatable="false">Version</string>
+    <string name="settings_developer" translatable="false">Developer</string>
+    <string name="settings_developer_id" translatable="false">396@vivaldi.net</string>
+    <string name="settings_official" translatable="false">Official account</string>
+    <string name="settings_official_id" translatable="false">AsteroidApp@vivaldi.net</string>
+
+    <string name="menu_block">Block this user</string>
+    <string name="menu_unblock">Unblock this user</string>
+    <string name="menu_mute">Mute this user</string>
+    <string name="menu_unmute">Unmute this user</string>
+    <string name="menu_add_column">Add as column</string>
+    <string name="menu_add_column_media">Add as column (only media)</string>
+    <string name="menu_add_to_list">Add to the list / Remove</string>
+    <string name="menu_enable_reblogs">Show user\'s reblogged posts</string>
+    <string name="menu_disable_reblogs">Hide user\'s reblogged posts</string>
+    <string name="menu_enable_notify">Notify new posts</string>
+    <string name="menu_disaable_notify">Don\'t notify new posts</string>
+
+    <string name="follow_hashtag">Follow this hashtag</string>
+    <string name="unfollow_hashtag">Unfollow this hashtag</string>
+
+    <string name="menu_manage_profile">Manage profile</string>
+    <string name="menu_change_color">Change color</string>
+    <string name="menu_remove">Remove</string>
+
+    <string name="menu_import_hashtag">Import following hashtags</string>
+
+    <string name="menu_exclusive_home">Remove from Home-feed</string>
+    <string name="menu_not_exclusive_home">Undo remove from Home-feed</string>
+
+    <string name="menu_replies_policy">Show replies to…</string>
+    <string name="menu_replies_policy_none">No one</string>
+    <string name="menu_replies_policy_list">Members of the list</string>
+    <string name="menu_replies_policy_followed">Any Followed User</string>
+</resources>

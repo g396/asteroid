@@ -1,0 +1,75 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="sns.asteroid.view.activity.TimelineActivity">
+    <item
+        android:id="@+id/action_streaming"
+        android:icon="@drawable/streaming_on"
+        android:orderInCategory="50"
+        android:checkable="true"
+        android:checked="true"
+        android:visible="false"
+        android:title="@string/action_streaming"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/follow_tag"
+        android:icon="@drawable/follow"
+        android:orderInCategory="70"
+        android:visible="false"
+        android:title="@string/follow_hashtag"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/unfollow_tag"
+        android:icon="@drawable/follow_remove"
+        android:orderInCategory="70"
+        android:visible="false"
+        android:title="@string/unfollow_hashtag"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/show_accounts_list"
+        android:icon="@drawable/relation"
+        android:orderInCategory="70"
+        android:visible="false"
+        android:title="@string/title_accounts_list"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/announcements"
+        android:icon="@drawable/announcement"
+        android:visible="false"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/refresh"
+        android:orderInCategory="100"
+        android:title="@string/action_refresh"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/add_column"
+        android:orderInCategory="150"
+        android:visible="false"
+        android:title="@string/menu_add_column" />
+
+    <item
+        android:id="@+id/exclusive_true"
+        android:orderInCategory="200"
+        android:visible="false"
+        android:title="@string/menu_exclusive_home" />
+
+    <item
+        android:id="@+id/exclusive_false"
+        android:orderInCategory="201"
+        android:visible="false"
+        android:title="@string/menu_not_exclusive_home" />
+
+    <item
+        android:id="@+id/replies_policy"
+        android:orderInCategory="202"
+        android:visible="false"
+        android:title="@string/menu_replies_policy" />
+</menu>

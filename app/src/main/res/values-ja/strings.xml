@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="authorize_button">ログイン</string>
+    <string name="authorize_url_hint">URL (例:mastodon.social)</string>
+    <string name="authorize_access_token_hint">アクセストークン</string>
+    <string name="authorize_appname_hint">アプリ名(いわゆるvia芸)</string>
+    <string name="authorize_advanced">上級者向けオプション</string>
+    <string name="authorize_token">アクセストークンを直接入力する</string>
+    <string name="authorize_appname">投稿元のアプリ名を手動で設定する</string>
+
+    <string name="pinned">ピン留め</string>
+    <string name="reply_to">返信</string>
+    <string name="read_more">もっと見る</string>
+
+    <string name="notification_favourited">がふぁぼりました</string>
+    <string name="notification_reblogged">がブーストしました</string>
+    <string name="notification_mention">が返信しました</string>
+    <string name="notification_follow">があなたをフォローしました</string>
+    <string name="notification_follow_request">からフォローリクエストが届きました</string>
+    <string name="notification_poll">のアンケートが終了しました</string>
+    <string name="notification_emoji">が絵文字でリアクションしました</string>
+    <string name="notification_single">%1$sさん</string>
+    <string name="notification_multi">%1$sさんと他%2$s人</string>
+    <string name="notification_status">の新着投稿</string>
+    <string name="notification_others">その他の通知</string>
+
+    <string name="action_streaming">ストリーミング</string>
+    <string name="action_refresh">再読み込み</string>
+
+    <string name="hint">今何してる？</string>
+    <string name="hint_warning">警告文</string>
+    <string name="hint_search">検索ワード</string>
+    <string name="hint_search_emoji">絵文字を検索</string>
+
+    <string name="send_post">送信</string>
+    <string name="vote">投票</string>
+    <string name="create_a_poll">投票を作成</string>
+    <string name="poll_multiple">複数選択可能にする</string>
+
+    <string name="save">保存</string>
+
+    <string name="mark_as_nsfw">NSFWコンテンツとしてマーク</string>
+    <string name="resize_images">画像をリサイズする(長辺1920px)</string>
+
+    <string name="favourite_other_account">他のアカウントでふぁぼる…</string>
+    <string name="boost_other_account">他のアカウントでブースト…</string>
+    <string name="bookmark_other_account">他のアカウントでブックマーク…</string>
+
+    <!--コンテキストメニュー-->
+    <string name="delete">削除</string>
+    <string name="edit">編集</string>
+    <string name="favourite">ふぁぼる</string>
+    <string name="unfavourite">ふぁぼ取消</string>
+    <string name="pin_the_posts">プロフィールへピン留めする</string>
+    <string name="unpin_the_posts">プロフィールからピン留めを外す</string>
+    <string name="who_favourited">この投稿をふぁぼった人一覧</string>
+    <string name="who_reblogged">この投稿をブーストした人一覧</string>
+    <string name="open_in_browser">ブラウザで開く</string>
+    <string name="copy_link">リンクをコピー</string>
+
+    <string name="context_img">画像ファイル</string>
+    <string name="context_video">動画ファイル</string>
+    <string name="context_audio">オーディオファイル</string>
+
+    <!--AboutInstanceActivity(このインスタンスについて)-->
+    <string name="button_about_server">インスタンス情報</string>
+    <string name="rules">サーバのルール</string>
+    <string name="active_user">アクティブユーザー数</string>
+    <string name="now_loading">読み込み中…</string>
+    <string name="admin">管理者</string>
+    <string name="only_allowed_mastodon">この機能はMastodonインスタンスにのみ対応しています</string>
+
+
+    <!--エラー画面-->
+    <string name="failed_loading">読み込みに失敗しました</string>
+    <string name="failed_internal_server_error">サーバー側に問題が発生しています (メンテナンス中であるか、障害が発生している可能性があります)</string>
+    <string name="failed_to_parse_json">JSONの解析中に問題が発生しました</string>
+    <string name="no_matches">一致する内容はありません</string>
+
+    <string name="empty">内容を入力してください</string>
+    <string name="send">投稿しました</string>
+
+    <string name="already_exist">すでにある</string>
+
+    <string name="title_posts">投稿</string>
+    <string name="title_media">メディア</string>
+    <string name="title_following">フォロー</string>
+    <string name="title_followers">フォロワー</string>
+
+    <string name="visibility_server">サーバのデフォルト設定</string>
+    <string name="visibility_public">公開</string>
+    <string name="visibility_unlisted">未収載</string>
+    <string name="visibility_private">フォロワーのみ</string>
+    <string name="visibility_direct">指定相手のみ</string>
+
+    <string name="manage">管理…</string>
+</resources>

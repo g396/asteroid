@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="column_local">ローカルタイムライン</string>
+    <string name="column_home">ホーム</string>
+    <string name="column_public">連合タイムライン</string>
+    <string name="column_mix">Mix (ローカル+ホーム)</string>
+    <string name="column_local_media">ローカル(メディア)</string>
+    <string name="column_public_media">連合(メディア)</string>
+    <string name="column_search">検索</string>
+    <string name="column_notifications">通知</string>
+    <string name="column_mention">返信</string>
+    <string name="column_favourites">お気に入り</string>
+    <string name="column_bookmarks">ブックマーク</string>
+    <string name="column_list">リスト</string>
+    <string name="column_hashtag">ハッシュタグ</string>
+    <string name="column_profile">プロフィール編集</string>
+    <string name="column_trends">トレンド</string>
+    <string name="column_trends_suggestions">トレンド・リコメンド</string>
+    <string name="column_directory">ディレクトリ</string>
+    <string name="column_suggestions">おすすめユーザ</string>
+    <string name="column_favourited_by">投稿をふぁぼったユーザ</string>
+    <string name="column_reblogged_by">投稿をブーストしたユーザ</string>
+</resources>

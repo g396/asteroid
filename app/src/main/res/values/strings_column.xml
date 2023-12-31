@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="column_local">Local timeline</string>
+    <string name="column_home">Home</string>
+    <string name="column_public">Federated timeline</string>
+    <string name="column_mix">Mix (Local + Home)</string>
+    <string name="column_local_media">Local　(media)</string>
+    <string name="column_public_media">Public (media)</string>
+    <string name="column_search">Search</string>
+    <string name="column_notifications">Notifications</string>
+    <string name="column_mention">Mentions</string>
+    <string name="column_favourites">Favourites</string>
+    <string name="column_bookmarks">Bookmarks</string>
+    <string name="column_list">Lists</string>
+    <string name="column_hashtag">Hashtag</string>
+    <string name="column_profile">Manage profile</string>
+    <string name="column_trends">Trends</string>
+    <string name="column_trends_suggestions">Trends/suggestions</string>
+    <string name="column_directory">Directory</string>
+    <string name="column_suggestions">Suggestions</string>
+    <string name="column_favourited_by">Favourited by</string>
+    <string name="column_reblogged_by">Boosted by</string>
+</resources>
