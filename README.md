@@ -15,6 +15,11 @@ Android上で動作する非公式Mastodonクライアントです
 + 実況モード
 
 ---
+## Downloads
+
+[Releases](https://github.com/g396/asteroid/releases)の最新版のAssetsに含まれるapkファイルをDLしてインストールして下さい
+
+---
 ## 問い合わせ
 
 Asteroid: [AsteroidApp@vivaldi.net](https://social.vivaldi.net/@AsteroidApp)
