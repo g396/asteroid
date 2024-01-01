@@ -196,6 +196,18 @@ object BindingAdapter {
         }
     }
 
+    @BindingAdapter("setTextColorByVisibility")
+    @JvmStatic
+    fun setTextColorByVisibility(view: TextView, visibility: String?) {
+        val color = when (visibility) {
+            "unlisted"  -> view.context.getColor(R.color.textColorUnlisted)
+            "private"   -> view.context.getColor(R.color.textColorPrivate)
+            "direct"    -> view.context.getColor(R.color.textColorDirect)
+            else        -> view.context.getColor(R.color.textColorPublic)
+        }
+        view.setTextColor(color)
+    }
+
     @BindingAdapter("visibility")
     @JvmStatic
     fun setVisibilityIcon(view: ImageView, visibility: String?) {

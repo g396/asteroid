@@ -17,6 +17,8 @@
     <color name="transparent">#00000000</color>
     <color name="error_message">@color/white</color>
     <color name="switch_account">@color/gray1</color>
+
+    <!--material color 300-->
     <color name="red">#E57373</color>
     <color name="pink">#F06292</color>
     <color name="purple">#BA68C8</color>
@@ -33,10 +35,29 @@
     <color name="amber">#FFD54F</color>
     <color name="orange">#FFB74D</color>
     <color name="deep_orange">#FF8A65</color>
+
+    <!--material color 200-->
+    <color name="green_200">#A5D6A7</color>
+    <color name="orange_200">#FFCC80</color>
+    <color name="deep_purple_200">#B39DDB</color>
+
+    <!--material color 500,400-->
+    <color name="green_500">#4CAF50</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="deep_purple_400">#7E57C2</color>
+
+
     <color name="dark_gray">#3F3F46</color>
     <color name="gray0">#52525B</color>
     <color name="gray1">#71717A</color>
     <color name="gray2">#A1A1AA</color>
     <color name="gray3">#D4D4D8</color>
     <color name="gray4">#E5E5E5</color>
+
+    <color name="textColorSecondary">#8a000000</color>
+
+    <color name="textColorPublic">@color/textColorSecondary</color>
+    <color name="textColorUnlisted">@color/green_500</color>
+    <color name="textColorPrivate">@color/orange_500</color>
+    <color name="textColorDirect">@color/deep_purple_400</color>
 </resources>
