@@ -155,19 +155,12 @@ object BindingAdapter {
     @BindingAdapter("boostedBy")
     @JvmStatic
     fun setBoostedBy(view: TextView, boostedBy: String?) {
-        if (boostedBy.isNullOrBlank()) {
-            view.visibility = View.GONE
-            return
-        } else {
-            view.visibility = View.VISIBLE
-
-            val imageGetter = let {
-                val size = (view.textSize * 1.2).toInt()
-                ImageSourceGetter(view, size)
-            }
-            val formatted = String.format(getString(R.string.boosted_by), boostedBy)
-            view.text = HtmlCompat.fromHtml(formatted, HtmlCompat.FROM_HTML_MODE_COMPACT, imageGetter, null).trim()
+        val imageGetter = let {
+            val size = (view.textSize * 1.2).toInt()
+            ImageSourceGetter(view, size)
         }
+        val formatted = String.format(getString(R.string.boosted_by), boostedBy)
+        view.text = HtmlCompat.fromHtml(formatted, HtmlCompat.FROM_HTML_MODE_COMPACT, imageGetter, null).trim()
     }
 
     @BindingAdapter("profile")
