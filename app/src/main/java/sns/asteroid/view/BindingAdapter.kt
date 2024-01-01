@@ -26,21 +26,9 @@ import sns.asteroid.model.util.ImageSourceGetter
 import sns.asteroid.model.util.TimeFormatter
 
 object BindingAdapter {
-
-    @BindingAdapter("date")
-    @JvmStatic
-    fun convertDate(view: TextView, date: String?) {
-        view.text = date?.let {
-            when (SettingsValues.getInstance().timeFormat) {
-                SettingsValues.TIME_FORMAT_AUTO -> TimeFormatter.formatAuto(it)
-                SettingsValues.TIME_FORMAT_RELATIVE -> TimeFormatter.formatRelative(it)
-                SettingsValues.TIME_FORMAT_ABSOLUTE -> TimeFormatter.formatAbsolute(it)
-                SettingsValues.TIME_FORMAT_ABSOLUTE_BY_SECONDS -> TimeFormatter.formatAbsolute(it, useSeconds = true)
-                else -> TimeFormatter.formatAuto(it)
-            }
-        }
-    }
-
+    /**
+     * ユーザ名とacctを1つのTextViewに併記する
+     */
     @BindingAdapter("acct", "displayName")
     @JvmStatic
     fun setName(view: TextView, acct: String?, displayName: String?) {
@@ -56,16 +44,28 @@ object BindingAdapter {
 
     }
 
-    @BindingAdapter("avatarContext")
+    /**
+     * 絵文字を含むHTMLテキストをセットする
+     * フラグに合わせて絵文字の拡大・縮小も行う
+     */
+    @BindingAdapter("content", "scaleEmojis")
     @JvmStatic
-    fun showAvatar(view: ImageView, avatarContext: String?) {
-        val showAvatar = SettingsValues.getInstance().showAvatarInColumnHeader
-        if ((avatarContext == "header") and !showAvatar) {
-            view.visibility = View.GONE
-        } else {
-            view.visibility = View.VISIBLE
+    fun setContent(view: TextView, content: String?, scaleEmojis: Boolean) {
+        if(content == null) return
+
+        val imageGetter = run {
+            val scale = if (scaleEmojis) SettingsValues.getInstance().emojiSize else 1.0
+            val size = (view.textSize * scale).toInt()
+            ImageSourceGetter(view, size)
         }
+        view.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
+            .trimEnd()
     }
+
+    /**
+     * アイコン画像のセット
+     * 設定値に合わせて切り抜く形を変更（デフォルトで円形）
+     */
 
     @BindingAdapter("avatarUrl")
     @JvmStatic
@@ -85,47 +85,10 @@ object BindingAdapter {
             .let { if(!isAnimationEnable) it.dontAnimate() else it }
             .into(view)
     }
-    @BindingAdapter("imageUrl", "imageType")
-    @JvmStatic
-    fun applyImage(view: ImageView, imageUrl: String?, imageType: String?) {
-        val isAnimationEnable = SettingsValues.getInstance().isEnableEmojiAnimation
-        val applyImage: () -> Unit = {
-            Glide.with(view)
-                .load(imageUrl)
-                .dontTransform()
-                .let { if(!isAnimationEnable) it.dontAnimate() else it }
-                .into(view)
-        }
 
-        when (imageType) {
-            "favourite" -> view.setImageResource(R.drawable.star)
-            "reblog"    -> view.setImageResource(R.drawable.boost)
-            "mention"     -> view.setImageResource(R.drawable.button_reply)
-            "user"      -> if(imageUrl?.isNotEmpty() == true) applyAvatar(view, imageUrl)
-            else        -> if(imageUrl?.isNotEmpty() == true) { applyImage() }
-        }
-
-        view.scaleType = when (imageType) {
-            "favourite" -> ImageView.ScaleType.CENTER
-            "reblog"    -> ImageView.ScaleType.CENTER
-            else        -> ImageView.ScaleType.FIT_CENTER
-        }
-    }
-
-    @BindingAdapter("content", "scaleEmojis")
-    @JvmStatic
-    fun setContent(view: TextView, content: String?, scaleEmojis: Boolean) {
-        if(content == null) return
-
-        val imageGetter = run {
-            val scale = if (scaleEmojis) SettingsValues.getInstance().emojiSize else 1.0
-            val size = (view.textSize * scale).toInt()
-            ImageSourceGetter(view, size)
-        }
-        view.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
-                .trimEnd()
-    }
-
+    /**
+     * ブーストされた投稿を緑色の枠で囲む
+     */
     @BindingAdapter("reblog")
     @JvmStatic
     fun setBackground(view: ConstraintLayout, reblog: Boolean = false) {
@@ -135,6 +98,10 @@ object BindingAdapter {
         view.background = AppCompatResources.getDrawable(view.context, backgroundResId)
     }
 
+    /**
+     * 設定から有効にしている場合に
+     * 未収載の投稿を緑色、非公開の投稿をオレンジ色、DMを紫色の文字にする
+     */
     @BindingAdapter("setTextColorByVisibility")
     @JvmStatic
     fun setTextColorByVisibility(view: TextView, visibility: String?) {
@@ -148,6 +115,9 @@ object BindingAdapter {
         view.setTextColor(color)
     }
 
+    /**
+     * 投稿の公開範囲のアイコンを設定する
+     */
     @BindingAdapter("visibility")
     @JvmStatic
     fun setVisibilityIcon(view: ImageView, visibility: String?) {
@@ -159,23 +129,37 @@ object BindingAdapter {
         }
     }
 
-    @BindingAdapter("glide")
+    /**
+     * 投稿時刻をセット
+     * 時刻のフォーマットは設定値に合わせて変える
+     */
+    @BindingAdapter("date")
     @JvmStatic
-    fun setImage(view: ImageView, imageUrl: String?) {
-        view.visibility = if(imageUrl.isNullOrBlank()) View.GONE else View.VISIBLE
-        if(!imageUrl.isNullOrBlank()) Glide.with(view).load(imageUrl).into(view)
-    }
-
-    @BindingAdapter("accentColor")
-    @JvmStatic
-    fun setAccentColor(view: ImageView, accentColor: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            view.colorFilter = BlendModeColorFilter(accentColor, BlendMode.SRC_IN)
-        } else {
-            view.setColorFilter(accentColor, PorterDuff.Mode.SRC_IN)
+    fun convertDate(view: TextView, date: String?) {
+        view.text = date?.let {
+            when (SettingsValues.getInstance().timeFormat) {
+                SettingsValues.TIME_FORMAT_AUTO -> TimeFormatter.formatAuto(it)
+                SettingsValues.TIME_FORMAT_RELATIVE -> TimeFormatter.formatRelative(it)
+                SettingsValues.TIME_FORMAT_ABSOLUTE -> TimeFormatter.formatAbsolute(it)
+                SettingsValues.TIME_FORMAT_ABSOLUTE_BY_SECONDS -> TimeFormatter.formatAbsolute(it, useSeconds = true)
+                else -> TimeFormatter.formatAuto(it)
+            }
         }
     }
 
+    /**
+     * 投票の終了時刻をセット
+     */
+    @BindingAdapter("expireAt")
+    @JvmStatic
+    fun setExpireAt(view:TextView, expireAt: String?) {
+        view.text = TimeFormatter.formatExpire(expireAt)
+    }
+
+    /**
+     * フィルターによって非表示となった投稿に対し
+     * どのフィルターが適用されているか表示する
+     */
     @BindingAdapter("filter_subject")
     @JvmStatic
     fun setContentFiltering(view: TextView, filter: List<FilterResult>?) {
@@ -183,6 +167,10 @@ object BindingAdapter {
         view.text = String.format("Filtered: %s", filterTitle)
     }
 
+    /**
+     * 通知のタイトルをセットする
+     * (例:Fooさんと他n人がふぁぼりました)
+     */
     @BindingAdapter("reactedUser", "notificationType", "peoplesCount")
     @JvmStatic
     fun setNotificationTitle(view: TextView, reactedUser: Account?, notificationType: String?, peoplesCount: Int?) {
@@ -214,7 +202,54 @@ object BindingAdapter {
     }
 
     /**
-     * BindingAdapterで弄りまわしてない他のTextViewはこれでサイズ調整する
+     * 通知画面の画像をセット
+     * ユーザのアイコン画像・ふぁぼやBTのアイコン・リアクションの絵文字を種類問わずAdapterに突っ込んでいるので
+     * それぞれ場合分けをする
+     */
+    @BindingAdapter("imageUrl", "imageType")
+    @JvmStatic
+    fun setNotificationImage(view: ImageView, imageUrl: String?, imageType: String?) {
+        val isAnimationEnable = SettingsValues.getInstance().isEnableEmojiAnimation
+        val applyImage: () -> Unit = {
+            Glide.with(view)
+                .load(imageUrl)
+                .dontTransform()
+                .let { if(!isAnimationEnable) it.dontAnimate() else it }
+                .into(view)
+        }
+
+        when (imageType) {
+            "favourite" -> view.setImageResource(R.drawable.star)
+            "reblog"    -> view.setImageResource(R.drawable.boost)
+            "mention"     -> view.setImageResource(R.drawable.button_reply)
+            "user"      -> if(imageUrl?.isNotEmpty() == true) applyAvatar(view, imageUrl)
+            else        -> if(imageUrl?.isNotEmpty() == true) { applyImage() }
+        }
+
+        view.scaleType = when (imageType) {
+            "favourite" -> ImageView.ScaleType.CENTER
+            "reblog"    -> ImageView.ScaleType.CENTER
+            else        -> ImageView.ScaleType.FIT_CENTER
+        }
+    }
+
+    /**
+     * カラムのヘッダーのアイコンを表示するかどうか設定
+     */
+    @BindingAdapter("avatarContext")
+    @JvmStatic
+    fun showAvatar(view: ImageView, avatarContext: String?) {
+        val showAvatar = SettingsValues.getInstance().showAvatarInColumnHeader
+        if ((avatarContext == "header") and !showAvatar) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
+    /**
+     * 設定でテキストサイズを変更している場合に
+     * サイズを適用する(TextView用)
      */
     @BindingAdapter("customTextSize")
     @JvmStatic
@@ -232,6 +267,10 @@ object BindingAdapter {
         view.textSize = size + weight
     }
 
+    /**
+     * 設定でテキストサイズを変更している場合に
+     * サイズを適用する(Buttonのテキスト用)
+     */
     @BindingAdapter("customTextSize")
     @JvmStatic
     fun setCustomTextSize(view: Button, customTextSize: String?) {
@@ -246,10 +285,27 @@ object BindingAdapter {
         view.textSize = size + weight
     }
 
-    @BindingAdapter("expireAt")
+    /**
+     * 指定した色をImageViewに適用
+     */
+    @BindingAdapter("accentColor")
     @JvmStatic
-    fun setExpireAt(view:TextView, expireAt: String?) {
-        view.text = TimeFormatter.formatExpire(expireAt)
+    fun setAccentColor(view: ImageView, accentColor: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            view.colorFilter = BlendModeColorFilter(accentColor, BlendMode.SRC_IN)
+        } else {
+            view.setColorFilter(accentColor, PorterDuff.Mode.SRC_IN)
+        }
+    }
+
+    /**
+     * Glideを使用して画像をセット（汎用）
+     */
+    @BindingAdapter("glide")
+    @JvmStatic
+    fun setImage(view: ImageView, imageUrl: String?) {
+        view.visibility = if(imageUrl.isNullOrBlank()) View.GONE else View.VISIBLE
+        if(!imageUrl.isNullOrBlank()) Glide.with(view).load(imageUrl).into(view)
     }
 
     fun getString(resId: Int): String {
