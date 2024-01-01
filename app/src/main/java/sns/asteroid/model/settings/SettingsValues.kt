@@ -12,6 +12,7 @@ class SettingsValues private constructor() {
     val editTextSize = getEditTextSize()
     val imageSize = getResizeImageSize()
     val timeFormat = getTimeFormat()
+    val changeTextColor = getChangeTextColorByVisibility()
     val avatarShape = getAvatarShape()
     val showAvatarInColumnHeader = getIsShowAvatarInColumnHeader()
     var isDialogEnableOnFollow = getIsDialogEnableOnFollow()
@@ -139,6 +140,12 @@ class SettingsValues private constructor() {
             val context = CustomApplication.getApplicationContext()
             return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(KEY_TIME_FORMAT, TIME_FORMAT_ABSOLUTE).toString()
+        }
+
+        private fun getChangeTextColorByVisibility(): Boolean {
+            val context = CustomApplication.getApplicationContext()
+            return androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(KEY_CHANGE_TEXT_COLOR_VISIBILITY, true)
         }
 
         private fun getIsDialogEnableOnFollow(): Boolean {
@@ -439,6 +446,7 @@ class SettingsValues private constructor() {
 
         private const val KEY_TEXT_SIZE = "font_size"
         private const val KEY_EDITTEXT_SIZE = "edittext_size"
+        private const val KEY_CHANGE_TEXT_COLOR_VISIBILITY = "change_text_color_visibility"
         private const val KEY_ENABLE_EMOJI_ANIMATION = "enable_emoji_animation"
         private const val KEY_ENABLE_AVATAR_ANIMATION = "enable_avatar_animation"
         private const val KEY_SHOW_CARD = "show_card"

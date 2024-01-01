@@ -148,6 +148,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/sample_display_name"
+                app:setTextColorByVisibility="@{posts.visibility}"
                 app:acct="@{posts.account.acct}"
                 app:customTextSize='@{"default"}'
                 app:displayName="@{posts.account.convertedDisplayName}"
@@ -189,6 +190,7 @@
                 android:focusableInTouchMode="false"
                 android:text="@string/sample_created_at"
                 app:customTextSize='@{"default"}'
+                app:setTextColorByVisibility="@{posts.visibility}"
                 app:date="@{posts.created_at}"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -242,6 +244,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/sample_summary3"
                         app:content="@{posts.parsedContent}"
+                        app:setTextColorByVisibility="@{posts.visibility}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
