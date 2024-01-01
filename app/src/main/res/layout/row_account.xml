@@ -2,7 +2,6 @@
 <layout>
     <data>
         <import type="android.view.View"/>
-        <import type="sns.asteroid.view.BindingAdapter"/>
         <variable
             name="account"
             type="sns.asteroid.api.entities.Account" />

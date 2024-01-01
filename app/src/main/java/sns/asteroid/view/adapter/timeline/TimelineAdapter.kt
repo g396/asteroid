@@ -16,7 +16,6 @@ import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.RowPostsBinding
 import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
-import sns.asteroid.view.BindingAdapter
 import sns.asteroid.view.adapter.*
 import sns.asteroid.view.adapter.poll.PollAdapter
 import sns.asteroid.view.adapter.timeline.EventsListener.*
