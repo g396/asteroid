@@ -62,7 +62,6 @@
             android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
             android:text="@string/pinned"
             app:flow_lastVerticalBias="0"
-            app:isPinned="@{posts.pinned}"
             app:customTextSize='@{"default"}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pinIcon"
@@ -173,7 +172,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="4dp"
-                app:editedAt="@{posts.edited_at}"
+                android:visibility="@{posts.edited_at.length() > 0 ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="@+id/post_at"
                 app:layout_constraintDimensionRatio="5:7"
                 app:layout_constraintEnd_toStartOf="@+id/visibilityIcon"

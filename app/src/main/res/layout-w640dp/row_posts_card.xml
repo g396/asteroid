@@ -50,8 +50,9 @@
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="10"
-                android:text="@string/sample_summary"
-                app:cardDescription="@{cardDescription}"
+                android:text="@{cardDescription}"
+                android:visibility="@{cardDescription.length() > 0 ? View.VISIBLE : View.GONE}"
+                tools:text="@string/sample_summary"
                 app:customTextSize='@{"default"}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,14 +65,15 @@
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="10"
-                android:text="@string/sample_display_name"
                 android:textStyle="bold"
-                app:cardTitle="@{cardTitle}"
+                android:text="@{cardTitle}"
+                android:visibility="@{cardTitle.length() > 0 ? View.VISIBLE : View.GONE}"
                 app:customTextSize='@{"default"}'
                 app:layout_constraintBottom_toTopOf="@+id/cardContent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/thumbnail"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/sample_summary3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

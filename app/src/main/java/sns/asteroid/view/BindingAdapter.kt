@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.text.HtmlCompat
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import jp.wasabeef.glide.transformations.MaskTransformation
@@ -150,13 +151,6 @@ object BindingAdapter {
         view.background = AppCompatResources.getDrawable(context, backgroundDrawable)
     }
 
-    @BindingAdapter("isPinned")
-    @JvmStatic
-    fun setPin(view: View, isPinned: Boolean?) {
-        view.visibility = if (isPinned == true) View.VISIBLE
-        else View.GONE
-    }
-
     @BindingAdapter("boostedBy")
     @JvmStatic
     fun setBoostedBy(view: TextView, boostedBy: String?) {
@@ -212,7 +206,7 @@ object BindingAdapter {
     @BindingAdapter("visibility")
     @JvmStatic
     fun setVisibilityIcon(view: ImageView, visibility: String?) {
-        view.visibility = if(visibility == "public") View.GONE else View.VISIBLE
+        view.isVisible = visibility != "public"
         when (visibility) {
             "unlisted" -> view.setImageResource(R.drawable.visibility_unlisted)
             "private" -> view.setImageResource(R.drawable.visibility_locked)
@@ -220,31 +214,11 @@ object BindingAdapter {
         }
     }
 
-    @BindingAdapter("editedAt")
-    @JvmStatic
-    fun setEditIcon(view: ImageView, editedAt: String?) {
-        view.visibility = if (editedAt.isNullOrBlank()) View.GONE else View.VISIBLE
-    }
-
     @BindingAdapter("glide")
     @JvmStatic
     fun setImage(view: ImageView, imageUrl: String?) {
         view.visibility = if(imageUrl.isNullOrBlank()) View.GONE else View.VISIBLE
         if(!imageUrl.isNullOrBlank()) Glide.with(view).load(imageUrl).into(view)
-    }
-
-    @BindingAdapter("cardTitle")
-    @JvmStatic
-    fun setCardTitle(view: TextView, cardTitle: String?) {
-        view.visibility = if(cardTitle.isNullOrBlank()) View.GONE else View.VISIBLE
-        view.text = cardTitle
-    }
-
-    @BindingAdapter("cardDescription")
-    @JvmStatic
-    fun setCardDescription(view: TextView, cardDescription: String?) {
-        view.visibility = if(cardDescription.isNullOrBlank()) View.GONE else View.VISIBLE
-        view.text = cardDescription
     }
 
     @BindingAdapter("accentColor")
