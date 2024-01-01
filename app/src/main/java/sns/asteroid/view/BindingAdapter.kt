@@ -163,27 +163,6 @@ object BindingAdapter {
         view.text = HtmlCompat.fromHtml(formatted, HtmlCompat.FROM_HTML_MODE_COMPACT, imageGetter, null).trim()
     }
 
-    @BindingAdapter("profile")
-    @JvmStatic
-    fun setProfile(view: TextView, profile: String?) {
-        setCustomTextSize(view, "default")
-
-        if (profile.isNullOrBlank()) {
-            view.visibility = View.GONE
-            return
-        }
-
-        view.visibility = View.VISIBLE
-        val imageGetter = let {
-            val size = (view.textSize * 1.2).toInt()
-            ImageSourceGetter(view, size)
-        }
-        view.text = profile.let {
-            HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
-                .trimEnd()
-        }
-    }
-
     @BindingAdapter("setTextColorByVisibility")
     @JvmStatic
     fun setTextColorByVisibility(view: TextView, visibility: String?) {
