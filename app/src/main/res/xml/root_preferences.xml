@@ -40,6 +40,11 @@
             app:key="time_format"
             app:title="@string/sp_time_format"
             app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:key="change_text_color_visibility"
+            app:defaultValue="true"
+            app:title="@string/sp_text_color_visibility"
+            app:singleLineTitle="false" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/header_posts">

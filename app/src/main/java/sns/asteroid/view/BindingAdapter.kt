@@ -199,6 +199,7 @@ object BindingAdapter {
     @BindingAdapter("setTextColorByVisibility")
     @JvmStatic
     fun setTextColorByVisibility(view: TextView, visibility: String?) {
+        if (!SettingsValues.getInstance().changeTextColor) return
         val color = when (visibility) {
             "unlisted"  -> view.context.getColor(R.color.textColorUnlisted)
             "private"   -> view.context.getColor(R.color.textColorPrivate)

@@ -11,6 +11,7 @@
     <string name="sp_emoji_animation">Enable GIF-Emoji animation</string>
     <string name="sp_emoji_animation_summary">Due to technical limitations, animation of emojis in posts are disabled</string>
     <string name="sp_time_format">Time format</string>
+    <string name="sp_text_color_visibility">Change text color by posts visibility</string>
 
     <!--Posts-->
     <string name="header_posts">Detail of posts</string>
