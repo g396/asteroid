@@ -57,7 +57,6 @@ open class TimelineAdapter(
         binding.filteringVisibility = filteringVisibility(status.filtered)
         binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
         binding.boostedBy = parentStatus.boostedBy
-        binding.background = parentStatus.background
         binding.showCard = settings.isShowCard
         binding.showVia = settings.isShowVia
         binding.showRelation = true

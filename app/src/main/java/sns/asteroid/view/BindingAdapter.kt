@@ -143,12 +143,13 @@ object BindingAdapter {
         }
     }
 
-    @BindingAdapter("backgroundDrawable")
+    @BindingAdapter("reblog")
     @JvmStatic
-    fun setBackground(view: ConstraintLayout, backgroundDrawable: Int) {
-        if(backgroundDrawable == 0x0) return
-        val context = CustomApplication.getApplicationContext()
-        view.background = AppCompatResources.getDrawable(context, backgroundDrawable)
+    fun setBackground(view: ConstraintLayout, reblog: Boolean = false) {
+        val backgroundResId =
+            if (reblog) R.drawable.background_boost
+            else R.drawable.background_normal
+        view.background = AppCompatResources.getDrawable(view.context, backgroundResId)
     }
 
     @BindingAdapter("boostedBy")

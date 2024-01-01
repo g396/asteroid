@@ -46,15 +46,8 @@ data class Status(
     val parsedContent = CustomEmojiParser.parse(content, emojis)
     val parsedSpoilerText = CustomEmojiParser.parse(spoiler_text, emojis)
 
-    val background by lazy {
-        // if (isPinned) R.drawable.background_pinned
-        if (reblog != null) R.drawable.background_boost
-        else R.drawable.background_normal
-    }
-    val boostedBy by lazy {
-        val empty = ""
-        if (reblog == null) empty
+    val boostedBy =
+        if (reblog == null) ""
         else if (account.display_name.isBlank()) account.username
         else CustomEmojiParser.parse(account.display_name, account.emojis)
-    }
 }

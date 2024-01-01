@@ -152,7 +152,6 @@ class NotificationAdapter(
         binding.columnContext = columnContext
         binding.filteringVisibility = filteringVisibility(status.filtered)
         binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
-        binding.background = status.background
         binding.showCard = settings.isShowCard
         binding.showVia = false
         binding.showRelation = false
