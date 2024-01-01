@@ -94,7 +94,8 @@
                     android:layout_marginEnd="16dp"
                     android:visibility="@{account.display_name.length() > 0 ? View.VISIBLE : View.GONE}"
                     app:customTextSize='@{"largest"}'
-                    app:displayName="@{account.convertedDisplayName}"
+                    app:content="@{account.convertedDisplayName}"
+                    app:scaleEmojis="@{false}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/icon" />
@@ -151,6 +152,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/fieldsCardview"
                     app:content="@{account.convertedNote}"
+                    app:scaleEmojis="@{true}"
                     android:maxLines="999"/>
 
                 <androidx.cardview.widget.CardView

@@ -56,20 +56,6 @@ object BindingAdapter {
 
     }
 
-    @BindingAdapter("displayName")
-    @JvmStatic
-    fun setDisplayName(view: TextView, displayName: String?) {
-        val imageGetter = let {
-            val size = (view.textSize * 1.0).toInt()
-            ImageSourceGetter(view, size)
-        }
-
-        view.text = displayName?.let {
-            HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT, imageGetter, null)
-                .trim()
-        }
-    }
-
     @BindingAdapter("avatarContext")
     @JvmStatic
     fun showAvatar(view: ImageView, avatarContext: String?) {
@@ -126,21 +112,18 @@ object BindingAdapter {
         }
     }
 
-    @BindingAdapter("content")
+    @BindingAdapter("content", "scaleEmojis")
     @JvmStatic
-    fun setContent(view: TextView, content: String?) {
-        setCustomTextSize(view, "default")
+    fun setContent(view: TextView, content: String?, scaleEmojis: Boolean) {
+        if(content == null) return
 
-        val imageGetter = let {
-            val scale = SettingsValues.getInstance().emojiSize
+        val imageGetter = run {
+            val scale = if (scaleEmojis) SettingsValues.getInstance().emojiSize else 1.0
             val size = (view.textSize * scale).toInt()
             ImageSourceGetter(view, size)
         }
-
-        view.text = content?.let {
-            HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
+        view.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
                 .trimEnd()
-        }
     }
 
     @BindingAdapter("reblog")
@@ -150,17 +133,6 @@ object BindingAdapter {
             if (reblog) R.drawable.background_boost
             else R.drawable.background_normal
         view.background = AppCompatResources.getDrawable(view.context, backgroundResId)
-    }
-
-    @BindingAdapter("boostedBy")
-    @JvmStatic
-    fun setBoostedBy(view: TextView, boostedBy: String?) {
-        val imageGetter = let {
-            val size = (view.textSize * 1.2).toInt()
-            ImageSourceGetter(view, size)
-        }
-        val formatted = String.format(getString(R.string.boosted_by), boostedBy)
-        view.text = HtmlCompat.fromHtml(formatted, HtmlCompat.FROM_HTML_MODE_COMPACT, imageGetter, null).trim()
     }
 
     @BindingAdapter("setTextColorByVisibility")

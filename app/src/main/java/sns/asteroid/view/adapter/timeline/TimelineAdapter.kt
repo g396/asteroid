@@ -16,6 +16,7 @@ import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.RowPostsBinding
 import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
+import sns.asteroid.view.BindingAdapter
 import sns.asteroid.view.adapter.*
 import sns.asteroid.view.adapter.poll.PollAdapter
 import sns.asteroid.view.adapter.timeline.EventsListener.*
@@ -56,7 +57,7 @@ open class TimelineAdapter(
         binding.columnContext = columnContext
         binding.filteringVisibility = filteringVisibility(status.filtered)
         binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
-        binding.boostedBy = parentStatus.boostedBy
+        binding.boostedBy = parentStatus.boostedBy.let { if(it.isNotBlank()) String.format(context.getString(R.string.boosted_by), it) else it }
         binding.showCard = settings.isShowCard
         binding.showVia = settings.isShowVia
         binding.showRelation = true
