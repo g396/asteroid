@@ -5,7 +5,6 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="sns.asteroid.view.BindingAdapter"/>
         <variable
             name="columnContext"
             type="String" />
@@ -62,7 +61,6 @@
             android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
             android:text="@string/pinned"
             app:flow_lastVerticalBias="0"
-            app:isPinned="@{posts.pinned}"
             app:customTextSize='@{"default"}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pinIcon"
@@ -89,8 +87,9 @@
             android:layout_marginEnd="8dp"
             android:text="@string/boosted_by"
             android:visibility="@{(boostedBy.length() > 0) ? filteringVisibility : View.GONE}"
+            app:content="@{boostedBy}"
+            app:scaleEmojis="@{false}"
             app:customTextSize='@{"default"}'
-            app:boostedBy="@{boostedBy}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/boostIcon"
             app:layout_constraintTop_toBottomOf="@+id/pinned" />
@@ -123,7 +122,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/boost_by"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:backgroundDrawable="@{background}">
+            app:reblog="@{boostedBy.length() > 0}">
 
             <ImageView
                 android:id="@+id/icon"
@@ -173,7 +172,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="4dp"
-                app:editedAt="@{posts.edited_at}"
+                android:visibility="@{posts.edited_at.length() > 0 ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="@+id/post_at"
                 app:layout_constraintDimensionRatio="5:7"
                 app:layout_constraintEnd_toStartOf="@+id/visibilityIcon"
@@ -244,6 +243,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/sample_summary3"
                         app:content="@{posts.parsedContent}"
+                        app:scaleEmojis="@{true}"
+                        app:customTextSize='@{"default"}'
                         app:setTextColorByVisibility="@{posts.visibility}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

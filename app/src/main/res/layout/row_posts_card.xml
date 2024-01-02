@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="sns.asteroid.view.BindingAdapter"/>
         <import type="android.view.View"/>
         <variable
             name="thumbnail"
@@ -52,9 +51,10 @@
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="10"
-                android:text="@string/sample_summary"
+                android:text="@{cardDescription}"
+                android:visibility="@{cardDescription.length() > 0 ? View.VISIBLE : View.GONE}"
+                tools:text="@string/sample_summary"
                 app:customTextSize='@{"default"}'
-                app:cardDescription="@{cardDescription}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -66,14 +66,15 @@
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="10"
-                android:text="@string/sample_display_name"
+                android:text="@{cardTitle}"
+                android:visibility="@{cardTitle.length() > 0 ? View.VISIBLE : View.GONE}"
                 android:textStyle="bold"
                 app:customTextSize='@{"default"}'
-                app:cardTitle="@{cardTitle}"
                 app:layout_constraintBottom_toTopOf="@+id/cardContent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
+                app:layout_constraintTop_toBottomOf="@+id/thumbnail"
+                tools:text="@string/sample_summary3"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

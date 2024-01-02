@@ -56,8 +56,11 @@ open class TimelineAdapter(
         binding.columnContext = columnContext
         binding.filteringVisibility = filteringVisibility(status.filtered)
         binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
-        binding.boostedBy = parentStatus.boostedBy
-        binding.background = parentStatus.background
+        binding.boostedBy =
+            if(parentStatus.reblog != null) {
+                val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
+                String.format(context.getString(R.string.boosted_by), user)
+            } else null
         binding.showCard = settings.isShowCard
         binding.showVia = settings.isShowVia
         binding.showRelation = true

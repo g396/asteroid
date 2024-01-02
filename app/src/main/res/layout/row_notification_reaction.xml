@@ -103,6 +103,7 @@
                 android:padding="8dp"
                 app:customTextSize='@{"default"}'
                 app:content="@{content}"
+                app:scaleEmojis="@{true}"
                 tools:text="@string/sample_summary"
                 tools:visibility="invisible" />
 

@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="sns.asteroid.view.BindingAdapter"/>
         <variable
             name="account"
             type="sns.asteroid.api.entities.Account" />

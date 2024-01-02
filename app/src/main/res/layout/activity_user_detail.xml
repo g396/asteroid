@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="sns.asteroid.view.BindingAdapter"/>
         <import type="android.view.View"/>
         <variable
             name="account"
@@ -94,7 +93,8 @@
                     android:layout_marginEnd="16dp"
                     android:visibility="@{account.display_name.length() > 0 ? View.VISIBLE : View.GONE}"
                     app:customTextSize='@{"largest"}'
-                    app:displayName="@{account.convertedDisplayName}"
+                    app:content="@{account.convertedDisplayName}"
+                    app:scaleEmojis="@{false}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/icon" />
@@ -150,7 +150,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/fieldsCardview"
-                    app:profile="@{account.convertedNote}"
+                    app:content="@{account.convertedNote}"
+                    app:scaleEmojis="@{true}"
                     android:maxLines="999"/>
 
                 <androidx.cardview.widget.CardView
