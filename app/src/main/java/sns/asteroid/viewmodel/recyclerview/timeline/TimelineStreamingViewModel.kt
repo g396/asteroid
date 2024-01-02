@@ -35,7 +35,7 @@ open class TimelineStreamingViewModel(
             contents.value?.toMutableList()?.apply {
                 val index = indexOf(current)
                 removeAt(index)
-                add(index, content.copy().apply { isSelected = current.isSelected })
+                add(index, content)
             }.let { _contents.postValue(it) }
         } else {
             contents.value?.toMutableList()?.apply { add(0, content) }

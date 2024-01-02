@@ -50,7 +50,6 @@ open class TimelineViewModel(
         }
         reblogged.forEach { r ->
             val new = r.copy().also {
-                it.isSelected = r.isSelected
                 it.filtered = r.filtered
                 it.isShowContent = r.isShowContent
                 it.reblog = content
@@ -65,7 +64,6 @@ open class TimelineViewModel(
         }
         statuses.forEach { s ->
             val new = content.also {
-                it.isSelected = s.isSelected
                 it.filtered = s.filtered
                 it.isShowContent = s.isShowContent
             }
@@ -86,7 +84,6 @@ open class TimelineViewModel(
         }
         reblogged.forEach { r ->
             val new = r.copy().also {
-                it.isSelected = r.isSelected
                 it.reblog = it.reblog?.copy()?.also { s ->
                     s.poll = poll
                 }
@@ -102,7 +99,6 @@ open class TimelineViewModel(
         }
         statuses.forEach { s ->
             val new = s.copy().also {
-                it.isSelected = s.isSelected
                 it.poll = poll
             }
             val index = mutableList.indexOf(s)

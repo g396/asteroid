@@ -41,8 +41,6 @@ data class Status(
     val emoji_reactions_count: Int = 0,
     var isShowContent: Boolean = reblog?.spoiler_text?.isEmpty() ?: spoiler_text.isEmpty(),
 ): java.io.Serializable, ContentInterface {
-    var isSelected = false // タイムラインでのボタン表示・非表示切り替えに使用する
-
     val parsedContent = CustomEmojiParser.parse(content, emojis)
     val parsedSpoilerText = CustomEmojiParser.parse(spoiler_text, emojis)
 }
