@@ -31,10 +31,10 @@ data class Status(
     val language: String? = null, // ISO 639 Part 1 two-letter language code
     val text: String? = null,
     val edited_at: String? = null, // ISO 8601 Datetime
-    var favourited: Boolean = false,
-    var reblogged: Boolean = false,
+    val favourited: Boolean = false,
+    val reblogged: Boolean = false,
     val muted: Boolean = false,
-    var bookmarked: Boolean = false,
+    val bookmarked: Boolean = false,
     var pinned: Boolean = false,
     var filtered: List<FilterResult> = emptyList(),
     val emoji_reactions: List<EmojiReaction>? = null, // use in fedibird.com
