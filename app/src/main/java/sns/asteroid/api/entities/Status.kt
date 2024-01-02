@@ -45,9 +45,4 @@ data class Status(
 
     val parsedContent = CustomEmojiParser.parse(content, emojis)
     val parsedSpoilerText = CustomEmojiParser.parse(spoiler_text, emojis)
-
-    val boostedBy =
-        if (reblog == null) ""
-        else if (account.display_name.isBlank()) account.username
-        else CustomEmojiParser.parse(account.display_name, account.emojis)
 }
