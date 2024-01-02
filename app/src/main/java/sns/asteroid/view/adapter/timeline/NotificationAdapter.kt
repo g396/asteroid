@@ -176,13 +176,14 @@ class NotificationAdapter(
         binding.filterText.setOnClickListener {
             status.useFilter = false
             val currentPosition = currentList.indexOfFirst { it.status?.id == status.id }
-            notifyItemChanged(position)
+            notifyItemChanged(currentPosition)
         }
 
         // show or hide content warning
         binding.cw.root.setOnClickListener {
             status.isShowContent = !status.isShowContent
-            notifyItemChanged(position)
+            val currentPosition = currentList.indexOfFirst { it.status?.id == status.id }
+            notifyItemChanged(currentPosition)
         }
 
         binding.icon.setOnClickListener {
