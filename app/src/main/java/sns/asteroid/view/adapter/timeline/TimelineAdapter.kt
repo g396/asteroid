@@ -58,8 +58,8 @@ open class TimelineAdapter(
         // For BindingAdapter
         binding.posts = status
         binding.columnContext = columnContext
-        binding.filteringVisibility = filteringVisibility(status.filtered)
-        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
+        binding.filteringVisibility = filteringVisibility(status.filtered, status.useFilter)
+        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered, status.useFilter)
         binding.boostedBy =
             if(parentStatus.reblog != null) {
                 val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
@@ -90,7 +90,7 @@ open class TimelineAdapter(
 
         // show filtered posts
         binding.filterText.setOnClickListener {
-            status.filtered = emptyList()
+            status.useFilter = false
             // ストリーミング中だとpositionがだんだんズレていくので再度取得する
             val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
             notifyItemChanged(currentPosition)

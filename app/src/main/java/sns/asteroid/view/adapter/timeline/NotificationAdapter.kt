@@ -94,7 +94,7 @@ class NotificationAdapter(
                 else
                     status.parsedContent.ifEmpty { if(status.media_attachments.isNotEmpty()) "[media]" else "No content" }
             }
-            filteringVisibility = notification.status?.let { filteringVisibility(it.filtered) } ?: View.VISIBLE
+            filteringVisibility = notification.status?.let { filteringVisibility(it.filtered, it.useFilter) } ?: View.VISIBLE
         }
 
         // Events
@@ -150,8 +150,8 @@ class NotificationAdapter(
         // For BindingAdapter
         binding.posts = status
         binding.columnContext = columnContext
-        binding.filteringVisibility = filteringVisibility(status.filtered)
-        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
+        binding.filteringVisibility = filteringVisibility(status.filtered, status.useFilter)
+        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered, status.useFilter)
         binding.showCard = settings.isShowCard
         binding.showVia = false
         binding.showRelation = false
@@ -174,7 +174,8 @@ class NotificationAdapter(
 
         // show filtered posts
         binding.filterText.setOnClickListener {
-            status.filtered = emptyList()
+            status.useFilter = false
+            val currentPosition = currentList.indexOfFirst { it.status?.id == status.id }
             notifyItemChanged(position)
         }
 

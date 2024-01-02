@@ -31,7 +31,7 @@ class PinnedUserTimelineModel(
             coerceInputValues = true
         }
         val pinned = json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
-            .onEach { it.pinned = true }
+            .map { it.copy(pinned = true) }
 
         if(pinned.isEmpty()) return posts.also {
             response.close()

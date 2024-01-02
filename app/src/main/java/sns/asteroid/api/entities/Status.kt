@@ -25,8 +25,8 @@ data class Status(
     val url: String? = null,
     val in_reply_to_id: String? = null,
     val in_reply_to_account_id: String? = null,
-    var reblog: Status? = null,
-    var poll: Poll? = null,
+    val reblog: Status? = null,
+    val poll: Poll? = null,
     val card: Card? = null,
     val language: String? = null, // ISO 639 Part 1 two-letter language code
     val text: String? = null,
@@ -35,12 +35,14 @@ data class Status(
     val reblogged: Boolean = false,
     val muted: Boolean = false,
     val bookmarked: Boolean = false,
-    var pinned: Boolean = false,
-    var filtered: List<FilterResult> = emptyList(),
+    val pinned: Boolean = false,
+    val filtered: List<FilterResult> = emptyList(),
     val emoji_reactions: List<EmojiReaction>? = null, // use in fedibird.com
     val emoji_reactions_count: Int = 0,
-    var isShowContent: Boolean = reblog?.spoiler_text?.isEmpty() ?: spoiler_text.isEmpty(),
 ): java.io.Serializable, ContentInterface {
     val parsedContent = CustomEmojiParser.parse(content, emojis)
     val parsedSpoilerText = CustomEmojiParser.parse(spoiler_text, emojis)
+
+    var isShowContent: Boolean = reblog?.spoiler_text?.isEmpty() ?: spoiler_text.isEmpty()
+    var useFilter: Boolean = true
 }
