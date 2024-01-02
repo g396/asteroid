@@ -35,6 +35,7 @@ class NotificationViewModel(
      */
     override fun onUpdated(notification: Notification) {
         viewModelScope.launch {
+            timelineModel.setSinceId(notification.id)
             withContext(Dispatchers.Main) { updateContent(notification) }
         }
     }
