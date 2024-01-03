@@ -151,7 +151,6 @@ open class TimelineAdapter(
         // RecyclerView contents
         binding.mediaAttachments.apply {
             (adapter as MediaAdapter).submitList(status.media_attachments, status.sensitive)
-            (layoutManager as GridLayoutManager).spanSizeLookup = MediaAdapter.MediaSpanSizeLookUp(status.media_attachments.size)
         }
         binding.reactions.apply {
             val emojis = status.emoji_reactions ?: emptyList()
@@ -232,8 +231,7 @@ open class TimelineAdapter(
     inner class ViewHolder(internal val binding: RowPostsBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.mediaAttachments.also {
-                it.adapter = MediaAdapter(context, listener)
-                it.layoutManager = GridLayoutManager(context, 2)
+                it.adapter = MediaAdapter(context, listener, 2)
             }
             binding.reactions.also {
                 it.adapter = ReactionAdapter(context, settings.isEnableEmojiAnimation, listener)

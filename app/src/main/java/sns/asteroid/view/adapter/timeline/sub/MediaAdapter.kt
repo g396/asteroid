@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,12 +21,19 @@ import sns.asteroid.view.adapter.timeline.EventsListener
 
 class MediaAdapter (
     private val context: Context,
-    private val listener: EventsListener
+    private val listener: EventsListener,
+    private val spanSize: Int,
 ): ListAdapter<MediaAttachment, MediaAdapter.ViewHolder>(ContentDiffUtil()) {
     private var isSensitive = true
 
     companion object {
         private val blurHashImages = mutableMapOf<String, Bitmap>()
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.layoutManager = GridLayoutManager(context, spanSize).also {
+            it.spanSizeLookup = MediaSpanSizeLookUp()
+        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -35,15 +44,7 @@ class MediaAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val imageView = holder.binding.image
 
-        if (itemCount % 2 == 0) {
-            if (position % 2 == 0) {
-                holder.binding.enableMarginStart = false
-                holder.binding.enableMarginEnd = true
-            } else {
-                holder.binding.enableMarginStart = true
-                holder.binding.enableMarginEnd = false
-            }
-        } else {
+        if ((spanSize == 2) and (itemCount % 2 == 1)) {
             if (position == 0) {
                 holder.binding.enableMarginStart = false
                 holder.binding.enableMarginEnd = false
@@ -52,6 +53,17 @@ class MediaAdapter (
                 holder.binding.enableMarginEnd = false
             } else {
                 holder.binding.enableMarginStart = false
+                holder.binding.enableMarginEnd = true
+            }
+        } else {
+            if (position % spanSize == 0) {
+                holder.binding.enableMarginStart = false
+                holder.binding.enableMarginEnd = true
+            } else if (position % spanSize == (spanSize-1)) {
+                holder.binding.enableMarginStart = true
+                holder.binding.enableMarginEnd = false
+            } else {
+                holder.binding.enableMarginStart = true
                 holder.binding.enableMarginEnd = true
             }
         }
@@ -93,9 +105,9 @@ class MediaAdapter (
     /**
      * 画像の枚数が奇数のときは1枚目を横幅いっぱいに表示する
      */
-    class MediaSpanSizeLookUp(val size: Int): SpanSizeLookup() {
+    inner class MediaSpanSizeLookUp: SpanSizeLookup() {
         override fun getSpanSize(position: Int): Int {
-            return if ((size % 2 == 1) and (position == 0))
+            return if ((spanSize == 2) and (currentList.size % 2 == 1) and (position == 0))
                 2
             else
                 1

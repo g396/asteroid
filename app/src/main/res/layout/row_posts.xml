@@ -30,6 +30,9 @@
             name="showVia"
             type="boolean" />
         <variable
+            name="hideEmojiReactions"
+            type="boolean" />
+        <variable
             name="background"
             type="int" />
     </data>
@@ -45,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? filteringVisibility : View.GONE}'
             app:layout_constraintBottom_toBottomOf="@+id/pinned"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pinned"
@@ -58,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? filteringVisibility : View.GONE}'
             android:text="@string/pinned"
             app:flow_lastVerticalBias="0"
             app:customTextSize='@{"default"}'
@@ -242,6 +245,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sample_summary3"
+                        android:visibility="@{posts.content.length() > 0 ? View.VISIBLE : View.GONE}"
                         app:content="@{posts.parsedContent}"
                         app:scaleEmojis="@{true}"
                         app:customTextSize='@{"default"}'
@@ -299,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:nestedScrollingEnabled="false"
-                    android:visibility="@{posts.emoji_reactions.size() > 0 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{!hideEmojiReactions &amp;&amp; posts.emoji_reactions_count > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_goneMarginTop="0dp"
                     app:layout_constraintTop_toBottomOf="@+id/mediaAttachments" />
 

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.*
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,38 +37,13 @@ class NotificationAdapter(
         val binding = holder.binding
         val notification = getItem(position)
 
-        // set visibility
         binding.apply {
-            status.root.visibility = when(notification.type) {
-                "favourite"         -> View.GONE
-                "reblog"            -> View.GONE
-                "follow"            -> View.GONE
-                "follow_request"    -> View.GONE
-                "emoji_reaction"    -> View.GONE
-                else                -> View.VISIBLE
-            }
-
-            reaction.notificationText.visibility = when(notification.type) {
-                "favourite"         -> View.VISIBLE
-                "reblog"            -> View.VISIBLE
-                "follow"            -> View.VISIBLE
-                "follow_request"    -> View.VISIBLE
-                "emoji_reaction"    -> View.VISIBLE
-                else                -> View.GONE
-            }
+            status.root.isVisible = notification.status != null
+            reaction.notificationText.isVisible = notification.status == null
         }
 
-        when(notification.type) {
-            "favourite"         -> setReactionView(holder, position)
-            "reblog"            -> setReactionView(holder, position)
-            "follow"            -> setReactionView(holder, position)
-            "follow_request"    -> setReactionView(holder, position)
-            "emoji_reaction"    -> setReactionView(holder, position)
-            else                -> {
-                setReactionView(holder, position)
-                setGeneralContent(holder, position)
-            }
-        }
+        setReactionView(holder, position)
+        if (notification.status != null) setStatusView(holder, position)
     }
 
     private fun setReactionView(holder: ViewHolder, position: Int) {
@@ -82,19 +58,10 @@ class NotificationAdapter(
                 notification.otherAccount.size
             notificationType =
                 notification.type
-            content = let {
-                if (notification.type.matches(Regex("follow|follow_request")))
-                    notification.account.note.ifEmpty { "No content" }
-
-                val status = notification.status
-                    ?: return@let notification.account.note.ifEmpty { "No content" }
-
-                if (status.spoiler_text.isNotEmpty())
-                    "[CW]" + status.spoiler_text
-                else
-                    status.parsedContent.ifEmpty { if(status.media_attachments.isNotEmpty()) "[media]" else "No content" }
-            }
-            filteringVisibility = notification.status?.let { filteringVisibility(it.filtered, it.useFilter) } ?: View.VISIBLE
+            content =
+                notification.account.note.ifEmpty { "No content" }
+            filteringVisibility =
+                notification.status?.let { filteringVisibility(it.filtered, it.useFilter) } ?: View.VISIBLE
         }
 
         // Events
@@ -142,7 +109,7 @@ class NotificationAdapter(
         })
     }
     @SuppressLint("ClickableViewAccessibility")
-    private fun setGeneralContent(holder: ViewHolder, position: Int) {
+    private fun setStatusView(holder: ViewHolder, position: Int) {
         val binding = holder.binding.status
         val notification = getItem(position)
         val status = notification.status ?: return
@@ -222,7 +189,6 @@ class NotificationAdapter(
         // RecyclerView contents
         binding.mediaAttachments.apply {
             (adapter as MediaAdapter).submitList(status.media_attachments, status.sensitive)
-            (layoutManager as GridLayoutManager).spanSizeLookup = MediaAdapter.MediaSpanSizeLookUp(status.media_attachments.size)
         }
         binding.includePoll.poll.apply {
             val poll = status.poll ?: return@apply
@@ -244,8 +210,8 @@ class NotificationAdapter(
             binding.status.reactions.visibility = View.GONE
 
             binding.status.mediaAttachments.also {
-                it.adapter = MediaAdapter(context, listener)
-                it.layoutManager = GridLayoutManager(context, 2)
+                it.adapter = MediaAdapter(context, listener, 4)
+                it.layoutManager = GridLayoutManager(context, 4)
             }
             binding.status.includePoll.poll.also {
                 it.adapter = PollAdapter(context)
