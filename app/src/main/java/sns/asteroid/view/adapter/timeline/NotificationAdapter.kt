@@ -189,7 +189,6 @@ class NotificationAdapter(
         // RecyclerView contents
         binding.mediaAttachments.apply {
             (adapter as MediaAdapter).submitList(status.media_attachments, status.sensitive)
-            (layoutManager as GridLayoutManager).spanSizeLookup = MediaAdapter.MediaSpanSizeLookUp(status.media_attachments.size)
         }
         binding.includePoll.poll.apply {
             val poll = status.poll ?: return@apply
@@ -211,8 +210,8 @@ class NotificationAdapter(
             binding.status.reactions.visibility = View.GONE
 
             binding.status.mediaAttachments.also {
-                it.adapter = MediaAdapter(context, listener)
-                it.layoutManager = GridLayoutManager(context, 2)
+                it.adapter = MediaAdapter(context, listener, 4)
+                it.layoutManager = GridLayoutManager(context, 4)
             }
             binding.status.includePoll.poll.also {
                 it.adapter = PollAdapter(context)
