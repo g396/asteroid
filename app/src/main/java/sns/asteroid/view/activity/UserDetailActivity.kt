@@ -101,15 +101,15 @@ class UserDetailActivity:
             binding.account = account
 
             binding.fields.also {
-                val list = account.fields ?: emptyList()
+                val list = account.convertedField ?: emptyList()
                 it.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
                 (it.adapter as FieldAdapter).submitList(list)
             }
             binding.hitoWoMadowasuSuuji.also {
                 val list = listOf(
-                    Field(getString(R.string.title_posts),"${account.statuses_count}", null),
-                    Field(getString(R.string.title_following),"${account.following_count}", null),
-                    Field(getString(R.string.title_followers),"${account.followers_count}", null),
+                    Triple(getString(R.string.title_posts),"${account.statuses_count}", null),
+                    Triple(getString(R.string.title_following),"${account.following_count}", null),
+                    Triple(getString(R.string.title_followers),"${account.followers_count}", null),
                 )
                 (it.adapter as FieldAdapter).submitList(list)
             }

@@ -31,6 +31,12 @@ data class Account(
     val convertedDisplayName = CustomEmojiParser.parse(display_name, emojis)
     val convertedNote = CustomEmojiParser.parse(note, emojis)
 
+    val convertedField = fields?.map {
+        val name = CustomEmojiParser.parse(it.name, emojis)
+        val value = CustomEmojiParser.parse(it.value, emojis)
+        Triple(name, value, it.verified_at)
+    }
+
     @Serializable
     data class Source(
         val privacy: String,
