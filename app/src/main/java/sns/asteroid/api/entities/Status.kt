@@ -1,17 +1,25 @@
 package sns.asteroid.api.entities
 
 import kotlinx.serialization.Serializable
-import sns.asteroid.R
 import sns.asteroid.model.emoji.CustomEmojiParser
 
+/**
+ * @param created_at            ISO-8601 Datetime
+ * @param content               HTML text
+ * @param visibility            Enumerable (public, unlisted, private, direct)
+ * @param language              ISO-639 Part 1 two-letter language code
+ * @param edited_at             ISO-8601 Datetime
+ * @param emoji_reactions       use in fedibird.com and others
+ * @param emoji_reactions_count use in fedibird.com and others
+ */
 @Serializable
 data class Status(
     override val id: String,
     val uri: String,
-    val created_at: String, // ISO 8601 Datetime
+    val created_at: String,
     val account: Account,
-    val content: String, // HTML
-    val visibility: String, //Enumerable (public, unlisted, private, direct)
+    val content: String,
+    val visibility: String,
     val sensitive: Boolean,
     val spoiler_text: String,
     val media_attachments: List<MediaAttachment>,
@@ -28,16 +36,16 @@ data class Status(
     val reblog: Status? = null,
     val poll: Poll? = null,
     val card: Card? = null,
-    val language: String? = null, // ISO 639 Part 1 two-letter language code
+    val language: String? = null,
     val text: String? = null,
-    val edited_at: String? = null, // ISO 8601 Datetime
+    val edited_at: String? = null,
     val favourited: Boolean = false,
     val reblogged: Boolean = false,
     val muted: Boolean = false,
     val bookmarked: Boolean = false,
     val pinned: Boolean = false,
     val filtered: List<FilterResult> = emptyList(),
-    val emoji_reactions: List<EmojiReaction>? = null, // use in fedibird.com
+    val emoji_reactions: List<EmojiReaction>? = null,
     val emoji_reactions_count: Int = 0,
 ): java.io.Serializable, ContentInterface {
     val parsedContent = CustomEmojiParser.parse(content, emojis)
