@@ -39,6 +39,10 @@ open class TimelineAdapter(
 ) : ListAdapter<Status, TimelineAdapter.ViewHolder>(ContentDiffUtil<Status>()), TimelineFilter {
     private val settings = SettingsValues.getInstance()
 
+    // アクションボタンを隠す設定が有効の際には
+    // このIDの投稿だけボタンを表示する
+    private var selectingStatusId: String? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val binding = RowPostsBinding.inflate(inflater, parent, false)
@@ -54,8 +58,8 @@ open class TimelineAdapter(
         // For BindingAdapter
         binding.posts = status
         binding.columnContext = columnContext
-        binding.filteringVisibility = filteringVisibility(status.filtered)
-        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered)
+        binding.filteringVisibility = filteringVisibility(status.filtered, status.useFilter)
+        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered, status.useFilter)
         binding.boostedBy =
             if(parentStatus.reblog != null) {
                 val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
@@ -86,7 +90,7 @@ open class TimelineAdapter(
 
         // show filtered posts
         binding.filterText.setOnClickListener {
-            status.filtered = emptyList()
+            status.useFilter = false
             // ストリーミング中だとpositionがだんだんズレていくので再度取得する
             val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
             notifyItemChanged(currentPosition)
@@ -160,26 +164,31 @@ open class TimelineAdapter(
 
         // BindingAdapterに移行したいけどなんか重くなる
         binding.include.rowTootButton.apply {
-            visibility = if ((parentStatus.isSelected) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
+            visibility = if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
         }
     }
 
     private fun showOrHideActionButtons(id: String) {
         val index = currentList.indexOfFirst { it.id == id }
-        val currentIndex = currentList.indexOfFirst { it.isSelected }
+        val currentIndex = currentList.indexOfFirst { it.id == selectingStatusId }
 
         if (currentIndex == -1) {
-            currentList[index].isSelected = true
+            selectingStatusId = id
             notifyItemChanged(index)
         } else if (index == currentIndex) {
-            currentList[currentIndex].isSelected = false
+            selectingStatusId = null
             notifyItemChanged(currentIndex)
         } else {
-            currentList[currentIndex].isSelected = false
-            currentList[index].isSelected = true
+            selectingStatusId = id
             notifyItemChanged(currentIndex)
             notifyItemChanged(index)
         }
+    }
+
+    fun showActionButton(id: String?) {
+        selectingStatusId = id
+        val index = currentList.indexOfFirst { it.id == id }
+        if(index >= 0) notifyItemChanged(index)
     }
 
     inner class OnMenuClickListener(private val posts: Status): View.OnClickListener {

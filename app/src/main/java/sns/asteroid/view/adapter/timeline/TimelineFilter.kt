@@ -9,10 +9,17 @@ import sns.asteroid.api.entities.FilterResult
 interface TimelineFilter {
     val columnContext: String
 
-    fun filteringVisibility(filterResults: List<FilterResult>): Int {
-        return if (filterResults.none { it.filter.context.contains(columnContext) }) View.VISIBLE else View.GONE
+    fun filteringVisibility(filterResults: List<FilterResult>, useFilter: Boolean): Int {
+        return if(!useFilter)
+            View.VISIBLE
+        else if(filterResults.none { it.filter.context.contains(columnContext) })
+            View.VISIBLE
+        else
+            View.GONE
     }
-    fun filteringMessageVisibility(filterResults: List<FilterResult>): Int {
+    fun filteringMessageVisibility(filterResults: List<FilterResult>, useFilter: Boolean): Int {
+        if (!useFilter) return View.GONE
+
         val hideWord = filterResults.filter {
             (it.filter.context.contains(columnContext)) and (it.filter.filter_action == "warn")
         }

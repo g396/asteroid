@@ -44,7 +44,7 @@ class StatusDetailActivity: AppCompatActivity() {
     class StatusDetailFragment : TimelineFragment() {
         override val viewModel: StatusDetailViewModel by viewModels {
             val credential = requireArguments().get("credential") as Credential
-            val status = (requireArguments().get("status") as Status).apply { isSelected = true }
+            val status = (requireArguments().get("status") as Status)
             StatusDetailViewModel.Factory(credential, status)
         }
 
@@ -54,7 +54,10 @@ class StatusDetailActivity: AppCompatActivity() {
                 myAccountId = viewModel.credential.value!!.account_id,
                 listener = this@StatusDetailFragment,
                 columnContext = "thread",
-            )
+            ).also {
+                val status = (requireArguments().get("status") as Status)
+                it.showActionButton(status.id)
+            }
         }
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
