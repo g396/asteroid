@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Field (
-    var name: String,
+    val name: String,
     val value: String,
     val verified_at: String?, // ISO 8601 Datetime
 ): java.io.Serializable
