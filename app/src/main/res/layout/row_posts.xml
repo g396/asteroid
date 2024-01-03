@@ -30,6 +30,9 @@
             name="showVia"
             type="boolean" />
         <variable
+            name="hideEmojiReactions"
+            type="boolean" />
+        <variable
             name="background"
             type="int" />
     </data>
@@ -299,7 +302,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:nestedScrollingEnabled="false"
-                    android:visibility="@{posts.emoji_reactions.size() > 0 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{!hideEmojiReactions &amp;&amp; posts.emoji_reactions_count > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_goneMarginTop="0dp"
                     app:layout_constraintTop_toBottomOf="@+id/mediaAttachments" />
 
