@@ -3,7 +3,9 @@ package sns.asteroid.api.entities
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-// Mastodon 4.0.0 or later
+/**
+ * added at v4.0.0
+ */
 @Serializable
 data class InstanceV2(
     val domain: String,
