@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? filteringVisibility : View.GONE}'
             app:layout_constraintBottom_toBottomOf="@+id/pinned"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pinned"
@@ -61,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? filteringVisibility : View.GONE}'
             android:text="@string/pinned"
             app:flow_lastVerticalBias="0"
             app:customTextSize='@{"default"}'
