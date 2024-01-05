@@ -42,13 +42,7 @@ class NotificationFragment:
     override val recyclerViewAdapter: NotificationAdapter by lazy {
         NotificationAdapter(requireContext(), listener = this, notificationListener = this)
     }
-    override val title by lazy {
-        val column = requireArguments().getSerializable("column") as ColumnInfo
-        when(column.subject) {
-            "mention" -> getString(R.string.column_mention)
-            else -> getString(R.string.column_notifications)
-        }
-    }
+    override val title by lazy { getString(R.string.column_notifications) }
 
     override val lifecycleScope: LifecycleCoroutineScope
         get() = lifecycle.coroutineScope

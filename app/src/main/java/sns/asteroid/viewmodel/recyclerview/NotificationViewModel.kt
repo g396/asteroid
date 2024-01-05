@@ -24,9 +24,7 @@ class NotificationViewModel(
     credential: Credential,
 ) : RecyclerViewViewModel<Notification>(columnInfo, credential), Streaming,
     AbstractStreamingClient.OnReceiveListener<Notification>, StatusViewModelInterface {
-    override val timelineModel =
-        if(columnInfo.subject == "mention") NotificationTimelineModel(credential, onlyMention = true)
-        else NotificationTimelineModel(credential)
+    override val timelineModel = NotificationTimelineModel(credential)
 
     override val hash: String get() = columnInfo.hash
     override var enableStreaming = columnInfo.streaming
