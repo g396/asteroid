@@ -107,10 +107,9 @@ class NotificationFragment:
     }
 
     override fun onFragmentShow() {
-        super.onFragmentShow()
         lifecycleScope.launch { viewModel.reloadCredential() }
-
         if(!viewModel.isLoaded) {
+            loadLatest()
             getAnnouncements()
         }
         if(!viewModel.streamingClient.isConnecting() and viewModel.enableStreaming) {
