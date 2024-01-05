@@ -28,6 +28,7 @@ abstract class AbstractStreamingClient<T>(
     }
 
     override fun connect() {
+        close()
         val request = Request.Builder().url(uri).build()
         webSocket = httpClient.newWebSocket(request, this)
     }
@@ -37,7 +38,7 @@ abstract class AbstractStreamingClient<T>(
     }
 
     override fun close() {
-        webSocket?.cancel()
+        webSocket?.close(1000, null)
     }
 
     override fun isConnecting(): Boolean {

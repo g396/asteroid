@@ -5,6 +5,10 @@
     <!--posts-->
     <string name="deleted">削除しました</string>
 
+    <!--streaming-->
+    <string name="streaming_connect">ストリーミング接続中・・・</string>
+    <string name="streaming_disconnect">ストリーミングを無効化しました</string>
+
     <!--upload media-->
     <string name="uploaded">アップロード完了</string>
     <string name="failed_to_load_media">ファイルの読み込みに失敗しました</string>

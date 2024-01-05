@@ -28,6 +28,8 @@ class NotificationViewModel(
         if(columnInfo.subject == "mention") NotificationTimelineModel(credential, onlyMention = true)
         else NotificationTimelineModel(credential)
 
+    override val hash: String get() = columnInfo.hash
+    override var enableStreaming = columnInfo.streaming
     override val streamingClient = NotificationStreamingClient(this, credential)
 
     /**

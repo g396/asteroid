@@ -23,6 +23,8 @@ open class TimelineStreamingViewModel(
         "mix"   -> MixTimelineStreamingClient(this, credential)
         else    -> TimelineStreamingClient(this, columnInfo, credential)
     }
+    override val hash: String get() = columnInfo.hash
+    override var enableStreaming = columnInfo.streaming
 
     /**
      * 同じIDの投稿がすでにある場合は新しいデータで置換
