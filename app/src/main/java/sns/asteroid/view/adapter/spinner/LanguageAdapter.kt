@@ -35,14 +35,7 @@ class LanguageAdapter(
         val view = convertView ?: layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false)
 
         view.findViewById<TextView>(android.R.id.text1).apply {
-            text = StringBuilder()
-                .append(list[position].code.uppercase())
-                .append(" ")
-                .append("(")
-                .append(list[position].name)
-                .append(")")
-                .toString()
-                .trimStart()
+            text = list[position].text
         }
 
         return view

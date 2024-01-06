@@ -12,6 +12,15 @@ data class ISO639Lang(
     @CsvBindByName(column = "Name", required = true)
     val name: String = "",
 ) {
+    val text get() = StringBuilder()
+        .append(code.uppercase())
+        .append(" ")
+        .append("(")
+        .append(name)
+        .append(")")
+        .toString()
+        .trimStart()
+
      companion object {
          private val DEFAULT_LANG = ISO639Lang("", "Default in server")
 
