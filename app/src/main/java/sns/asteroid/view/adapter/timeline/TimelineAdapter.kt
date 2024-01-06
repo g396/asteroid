@@ -106,6 +106,9 @@ open class TimelineAdapter(
             notifyItemChanged(currentPosition)
         }
 
+        binding.boostBy.setOnClickListener {
+            listener.onAccountClick(parentStatus.account)
+        }
         binding.icon.setOnClickListener {
             listener.onAccountClick(status.reblog?.account?: status.account)
         }
