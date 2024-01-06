@@ -221,7 +221,7 @@ open class TimelineAdapter(
                     add(WHO_ACTIONED, Item.MENU_WHO_BOOSTED.order, Item.MENU_WHO_BOOSTED.order, context.getString(R.string.who_reblogged))
 
                 if(!posts.visibility.matches(Regex("private|direct")) and !posts.reblogged) {
-                    add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, "公開範囲を指定してブースト")
+                    add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, context.getString(R.string.boost_selected_visibility))
                 }
 
                 if(!posts.visibility.matches(Regex("private|direct")))
@@ -242,9 +242,9 @@ open class TimelineAdapter(
                         setOnMenuItemClickListener(BoostMenuItemClickListener())
                     }
                     boostPopupMenu.menu.apply {
-                        add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, "公開")
-                        add(BOOST, Item.MENU_BOOST_UNLISTED.order, Item.MENU_BOOST_UNLISTED.order, "未収載")
-                        add(BOOST, Item.MENU_BOOST_PRIVATE.order, Item.MENU_BOOST_PRIVATE.order, "プライベート")
+                        add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, context.getString(R.string.visibility_public))
+                        add(BOOST, Item.MENU_BOOST_UNLISTED.order, Item.MENU_BOOST_UNLISTED.order, context.getString(R.string.visibility_unlisted))
+                        add(BOOST, Item.MENU_BOOST_PRIVATE.order, Item.MENU_BOOST_PRIVATE.order, context.getString(R.string.visibility_private))
                     }
                     boostPopupMenu.show()
                 } else {
