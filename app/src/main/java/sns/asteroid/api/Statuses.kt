@@ -40,7 +40,7 @@ class Statuses(
             sensitive = false,
             spoilerText = "",
             visibility = visibility,
-            language = null,
+            language = "",
             scheduledAt = null,
         )
     }
@@ -55,6 +55,7 @@ class Statuses(
         pollExpiresIn: Int?,
         pollMultiple: Boolean?,
         inReplyToId: String?,
+        language: String,
     ): Response? {
         return postNewStatus(
             status = status,
@@ -67,7 +68,7 @@ class Statuses(
             sensitive = sensitive,
             spoilerText = spoilerText,
             visibility = visibility,
-            language = null,
+            language = language,
             scheduledAt = null,
         )
     }
@@ -83,7 +84,7 @@ class Statuses(
         sensitive: Boolean?,
         spoilerText: String,
         visibility: String,
-        language: String?,
+        language: String,
         scheduledAt: String?,
     ): Response? {
         val url = ("https://${credential.instance}/api/v1/statuses").toHttpUrlOrNull()
@@ -96,11 +97,11 @@ class Statuses(
             pollHideTotals?.let {put("poll[hide_totals]", "$pollHideTotals")}
             inReplyToId?.let {put("in_reply_to_id", "$inReplyToId")}
             sensitive?.let {put("sensitive", "$sensitive")}
-            language?.let {put("language", "$language")}
             scheduledAt?.let {put("scheduled_at", "$scheduledAt")}
 
             if(visibility.isNotBlank()) put("visibility", visibility)
             if(spoilerText.isNotBlank()) put("spoiler_text", spoilerText)
+            if(language.isNotBlank()) put("language", language)
         }
 
         val urlBuilder =url.newBuilder().apply {

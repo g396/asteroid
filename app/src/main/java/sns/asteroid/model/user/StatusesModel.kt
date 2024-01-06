@@ -73,6 +73,7 @@ class StatusesModel(val credential: Credential) {
         pollExpire: Int?,
         pollMultiple: Boolean?,
         replyTo: Status?,
+        language: String,
     ): Result {
         if(text.isEmpty() and mediaAttachments.isEmpty()) return Result(false, getString(R.string.empty))
 
@@ -89,6 +90,7 @@ class StatusesModel(val credential: Credential) {
             pollExpiresIn = pollExpire,
             pollMultiple = pollMultiple,
             inReplyToId = replyTo?.id,
+            language  = language,
         ) ?: return Result(false, getString(R.string.failed))
 
         if(!response.isSuccessful)

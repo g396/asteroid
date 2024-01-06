@@ -32,8 +32,10 @@ import sns.asteroid.databinding.RowMediaSquareBinding
 import sns.asteroid.db.entities.Credential
 import sns.asteroid.model.emoji.CustomEmojiParser
 import sns.asteroid.model.settings.SettingsValues
+import sns.asteroid.model.util.ISO639Lang
 import sns.asteroid.view.adapter.pager.EmojiPagerAdapter
 import sns.asteroid.view.adapter.poll.CreatePollAdapter
+import sns.asteroid.view.adapter.spinner.LanguageAdapter
 import sns.asteroid.view.adapter.spinner.VisibilityAdapter
 import sns.asteroid.view.adapter.time.TimeDaysAdapter
 import sns.asteroid.view.adapter.time.TimeHoursAdapter
@@ -83,6 +85,9 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         viewModel.media.observe(this@CreatePostsActivity, Observer {
             binding.media = it
             (binding.images.adapter as MediaAdapter).submitList(it)
+        })
+        viewModel.language.observe(this@CreatePostsActivity, Observer {
+            LanguageAdapter(this, binding.language, it)
         })
         viewModel.toastMessage.observe(this@CreatePostsActivity, Observer {
             Toast.makeText(this@CreatePostsActivity, it, Toast.LENGTH_SHORT).show()
@@ -353,6 +358,11 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 val item = spinner.selectedItem as VisibilityAdapter.Visibility
                 item.value
             }
+            val language = let {
+                val spinner = binding.language
+                val item = spinner.selectedItem as ISO639Lang
+                item.code
+            }
             val sensitive = binding.checkBox.isChecked
 
             val pollOption = if (binding.poll.isChecked) {
@@ -375,7 +385,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             val resizeImage = binding.checkBoxResize.isChecked
 
             val result = viewModel.postStatuses(
-                text, spoilerText, sensitive, visibility, pollOption, pollExpire, pollMultiple, resizeImage
+                text, spoilerText, sensitive, visibility, language, pollOption, pollExpire, pollMultiple, resizeImage
             )
             if (result) {
                 setResult(RESULT_OK, Intent())

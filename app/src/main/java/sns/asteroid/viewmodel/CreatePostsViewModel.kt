@@ -17,6 +17,7 @@ import sns.asteroid.model.settings.RecentlyHashtagModel
 import sns.asteroid.model.settings.SettingsManageAccountsModel
 import sns.asteroid.model.user.MediaModel
 import sns.asteroid.model.user.StatusesModel
+import sns.asteroid.model.util.ISO639Lang
 
 class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewModel() {
     private val _credential = MutableLiveData<Credential>()
@@ -27,6 +28,9 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
 
     private val _hashtags = MutableLiveData<List<String>>()
     val hashtags: LiveData<List<String>> get() = _hashtags
+
+    private val _language = MutableLiveData<List<ISO639Lang>>()
+    val language: LiveData<List<ISO639Lang>> get() = _language
 
     // 複数種類のメディアを同時に添付することは出来ないので最初に選んだメディアの種類を保持する必要あり
     private val _property = MutableLiveData<Property>()
@@ -46,6 +50,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
         viewModelScope.launch {
             _credential.value = credential ?: loadDefaultCredential()
             loadHashtags()
+            loadLanguagesList()
         }
     }
 
@@ -57,6 +62,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
         spoilerText: String,
         sensitive: Boolean,
         visibility: String,
+        language: String,
         pollOption: List<String>?,
         pollExpire: Int?,
         pollMultiple: Boolean?,
@@ -81,7 +87,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
         val result = withContext(Dispatchers.IO) {
             val list =  mediaAttachments.unzip().second
             StatusesModel(credential.value!!).postStatuses(
-                text, spoilerText, list, sensitive, visibility, pollOption, pollExpire, pollMultiple, replyTo
+                text, spoilerText, list, sensitive, visibility, pollOption, pollExpire, pollMultiple, replyTo, language
             )
         }
         _toastMessage.value = result.toastMessage
@@ -117,6 +123,11 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
     suspend fun loadHashtags() = withContext(Dispatchers.IO) {
         val hashtags = RecentlyHashtagModel.getAll()
         _hashtags.postValue(hashtags)
+    }
+
+    suspend fun loadLanguagesList() = withContext(Dispatchers.IO) {
+        val languages = ISO639Lang.getLanguageList()
+        _language.postValue(languages)
     }
 
     /**
