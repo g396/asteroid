@@ -46,7 +46,28 @@ interface StatusViewModelInterface {
     }
 
     suspend fun postBoost(statusId: String): Boolean {
-        val result = withContext(Dispatchers.IO) { StatusesModel(credential.value!!).postBoost(statusId) }
+        val result = withContext(Dispatchers.IO) { StatusesModel(credential.value!!).postBoost(statusId, StatusesModel.Visibility.NONE) }
+        result.status?.let { replaceContent(it) }
+        toastMessage.value = result.toastMessage
+        return result.isSuccess
+    }
+
+    suspend fun postBoostPublic(statusId: String): Boolean {
+        val result = withContext(Dispatchers.IO) { StatusesModel(credential.value!!).postBoost(statusId, StatusesModel.Visibility.PUBLIC) }
+        result.status?.let { replaceContent(it) }
+        toastMessage.value = result.toastMessage
+        return result.isSuccess
+    }
+
+    suspend fun postBoostUnlisted(statusId: String): Boolean {
+        val result = withContext(Dispatchers.IO) { StatusesModel(credential.value!!).postBoost(statusId, StatusesModel.Visibility.UNLISTED) }
+        result.status?.let { replaceContent(it) }
+        toastMessage.value = result.toastMessage
+        return result.isSuccess
+    }
+
+    suspend fun postBoostPrivate(statusId: String): Boolean {
+        val result = withContext(Dispatchers.IO) { StatusesModel(credential.value!!).postBoost(statusId, StatusesModel.Visibility.PRIVATE) }
         result.status?.let { replaceContent(it) }
         toastMessage.value = result.toastMessage
         return result.isSuccess
@@ -55,7 +76,7 @@ interface StatusViewModelInterface {
     suspend fun postBoost(credential: Credential, uri: String) = withContext(Dispatchers.IO) {
         val status = SearchModel(credential).findStatus(uri)
             ?: return@withContext false.also { toastMessage.postValue("Not found") }
-        val result = StatusesModel(credential).postBoost(status.id)
+        val result = StatusesModel(credential).postBoost(status.id, StatusesModel.Visibility.NONE)
         toastMessage.postValue(result.toastMessage)
         return@withContext result.isSuccess
     }
