@@ -17,6 +17,7 @@
     <string name="header_posts">Detail of posts</string>
     <string name="sp_show_card">Show preview of links</string>
     <string name="sp_show_via">show the via in posts</string>
+    <string name="sp_boost_background">Apply background color to boosted posts</string>
     <string name="sp_hide_buttons">Hide action buttons</string>
 
     <!--Avatar img-->

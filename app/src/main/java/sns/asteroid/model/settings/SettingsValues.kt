@@ -76,6 +76,7 @@ class SettingsValues private constructor() {
             setIsDialogEnableOnDeleteStatus(value)
         }
     val isShowCard = getIsShowCard()
+    val applyBackgroundColor = getApplyBackgroundColorBoostedPosts()
     val isShowQuickPostArea = getIsShowQuickPostArea()
     val isShowQuickPostVisibility = getIsShowQuickPostVisibility()
     val isShowQuickPostEmoji = getIsShowQuickPostEmoji()
@@ -334,6 +335,12 @@ class SettingsValues private constructor() {
                 .getBoolean(KEY_SHOW_CARD, true)
         }
 
+        private fun getApplyBackgroundColorBoostedPosts(): Boolean {
+            val context = CustomApplication.getApplicationContext()
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(KEY_BOOST_BACKGROUND, true)
+        }
+
         private fun getIsShowQuickPostArea(): Boolean {
             val context = CustomApplication.getApplicationContext()
             return PreferenceManager.getDefaultSharedPreferences(context)
@@ -450,6 +457,7 @@ class SettingsValues private constructor() {
         private const val KEY_ENABLE_EMOJI_ANIMATION = "enable_emoji_animation"
         private const val KEY_ENABLE_AVATAR_ANIMATION = "enable_avatar_animation"
         private const val KEY_SHOW_CARD = "show_card"
+        private const val KEY_BOOST_BACKGROUND = "boost_background"
         private const val KEY_SHOW_QUICK_POST_AREA = "show_quick_post_area"
         private const val KEY_SHOW_QUICK_POST_VISIBILITY = "show_quick_post_visibility"
         private const val KEY_SHOW_QUICK_POST_EMOJI = "show_quick_post_emoji"

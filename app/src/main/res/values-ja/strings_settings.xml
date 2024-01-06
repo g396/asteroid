@@ -17,6 +17,7 @@
     <string name="header_posts">投稿の詳細</string>
     <string name="sp_show_card">リンク先のプレビューを表示する</string>
     <string name="sp_show_via">viaを表示する</string>
+    <string name="sp_boost_background">ブーストされた投稿を緑色の枠で囲む</string>
     <string name="sp_hide_buttons">アクションボタンを隠す</string>
 
     <!--プロフィール画像-->

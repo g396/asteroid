@@ -59,6 +59,10 @@
             app:defaultValue="true"
             app:title="@string/sp_show_via" />
         <SwitchPreferenceCompat
+            app:key="boost_background"
+            app:defaultValue="true"
+            app:title="@string/sp_boost_background" />
+        <SwitchPreferenceCompat
             app:key="hide_action_buttons"
             app:defaultValue="false"
             app:icon="@drawable/button_detail"

@@ -57,7 +57,7 @@ object Statuses {
     @JvmStatic
     fun setBackground(view: ConstraintLayout, reblog: Boolean = false) {
         val backgroundResId =
-            if (reblog) R.drawable.background_boost
+            if (reblog and SettingsValues.getInstance().applyBackgroundColor) R.drawable.background_boost
             else R.drawable.background_normal
         view.background = AppCompatResources.getDrawable(view.context, backgroundResId)
     }
