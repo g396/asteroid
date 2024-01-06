@@ -67,6 +67,7 @@ open class TimelineAdapter(
                 val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
                 String.format(context.getString(R.string.boosted_by), user)
             } else null
+        binding.boostVisibility = parentStatus.visibility
         binding.showCard = settings.isShowCard
         binding.showVia = settings.isShowVia
         binding.showRelation = true
