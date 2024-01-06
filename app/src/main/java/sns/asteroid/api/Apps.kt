@@ -12,6 +12,7 @@ class Apps(private val server: String, private val appName: String) {
         const val APP_NAME = "Asteroid"
         const val REDIRECT_URI = "asteroid.oauth://callback"
         const val SCOPE = "read write follow"
+        const val WEBSITE = "https://github.com/g396/asteroid"
     }
 
     fun createApps(): Response? {
@@ -22,6 +23,7 @@ class Apps(private val server: String, private val appName: String) {
             put("client_name", appName.ifBlank { APP_NAME })
             put("redirect_uris", REDIRECT_URI)
             put("scopes", SCOPE)
+            put("website", WEBSITE)
         }
 
         val urlBuilder =url.newBuilder().apply {
