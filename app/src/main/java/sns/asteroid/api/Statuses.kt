@@ -145,10 +145,15 @@ class Statuses(
         val url = ("https://${credential.instance}/api/v1/statuses/$id/${action.value}").toHttpUrlOrNull()
             ?: return null
 
+        val urlBuilder = url.newBuilder().apply {
+            if(action == PostAction.BOOST_PUBLIC) addQueryParameter("visibility", "public")
+            if(action == PostAction.BOOST_PRIVATE) addQueryParameter("visibility", "unlisted")
+            if(action == PostAction.BOOST_LOCKED) addQueryParameter("visibility", "private")
+        }
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
         val request = Request.Builder()
-            .url(url.newBuilder().build())
+            .url(urlBuilder.build())
             .addHeader("Authorization", "Bearer ${credential.accessToken}")
             .post(requestBody)
             .build()
@@ -200,6 +205,9 @@ class Statuses(
         FAVOURITE("favourite"),
         UNFAVOURITE("unfavourite"),
         BOOST("reblog"),
+        BOOST_PUBLIC("reblog"),
+        BOOST_PRIVATE("reblog"),
+        BOOST_LOCKED("reblog"),
         UNBOOST("unreblog"),
         BOOKMARK("bookmark"),
         UNBOOKMARK("unbookmark"),

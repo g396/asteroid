@@ -160,10 +160,14 @@ class StatusesModel(val credential: Credential) {
     /**
      * ブーストする
      */
-    fun postBoost(statusId: String): Result {
+    fun postBoost(statusId: String, visibility: Visibility): Result {
         val client = Statuses(credential)
-        val response = client.postAction(statusId, Statuses.PostAction.BOOST)
-            ?: return Result(false, getString(R.string.failed))
+        val response = when(visibility) {
+            Visibility.NONE -> client.postAction(statusId, Statuses.PostAction.BOOST)
+            Visibility.PUBLIC -> client.postAction(statusId, Statuses.PostAction.BOOST_PUBLIC)
+            Visibility.UNLISTED -> client.postAction(statusId, Statuses.PostAction.BOOST_PRIVATE)
+            Visibility.PRIVATE -> client.postAction(statusId, Statuses.PostAction.BOOST_LOCKED)
+        } ?: return Result(false, getString(R.string.failed))
 
         return if(response.isSuccessful) {
             val json = Json {
@@ -271,9 +275,14 @@ class StatusesModel(val credential: Credential) {
             Result(false, response.body!!.string()).also { response.close() }
     }
 
-
-
     fun getString(resId: Int): String {
         return CustomApplication.getApplicationContext().getString(resId)
+    }
+
+    enum class Visibility {
+        NONE,
+        PUBLIC,
+        UNLISTED,
+        PRIVATE,
     }
 }
