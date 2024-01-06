@@ -5,6 +5,10 @@
     <!--posts-->
     <string name="deleted">Deleted</string>
 
+    <!--streaming-->
+    <string name="streaming_connect">Streaming in progress…</string>
+    <string name="streaming_disconnect">Streaming disabled</string>
+
     <!--upload media-->
     <string name="uploaded">Uploaded</string>
     <string name="failed_to_load_media">Failed to load</string>

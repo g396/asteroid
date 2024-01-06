@@ -38,10 +38,7 @@ class WhoActionedModel(credential: Credential, val id: String, val action: Actio
             maxId = AttributeGetter.getMaxIdFromHttpLinkHeader(response),
             sinceId = AttributeGetter.getSinceIdFromHttpLinkHeader(response),
             toastMessage = if(accounts.isEmpty()) getString(R.string.end_of_list) else null,
-        ).also {
-            android.util.Log.d("maxId", it.maxId.toString())
-            android.util.Log.d("sinceId", it.sinceId.toString())
-        }
+        )
     }
 
     enum class Action {

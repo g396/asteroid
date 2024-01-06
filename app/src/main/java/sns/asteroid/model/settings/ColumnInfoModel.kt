@@ -49,5 +49,12 @@ class ColumnInfoModel {
             val dao = db.columnInfoDao()
             dao.updateListTitle(title, hash)
         }
+
+        fun setIsEnableStreaming(enabled: Boolean, hash: String) {
+            val context = CustomApplication.getApplicationContext()
+            val db = AppDatabase.getDatabase(context)
+            val dao = db.columnInfoDao()
+            dao.updateStreaming(enabled, hash)
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
@@ -42,13 +43,7 @@ class NotificationFragment:
     override val recyclerViewAdapter: NotificationAdapter by lazy {
         NotificationAdapter(requireContext(), listener = this, notificationListener = this)
     }
-    override val title by lazy {
-        val column = requireArguments().getSerializable("column") as ColumnInfo
-        when(column.subject) {
-            "mention" -> getString(R.string.column_mention)
-            else -> getString(R.string.column_notifications)
-        }
-    }
+    override val title by lazy { getString(R.string.column_notifications) }
 
     override val lifecycleScope: LifecycleCoroutineScope
         get() = lifecycle.coroutineScope
@@ -66,12 +61,21 @@ class NotificationFragment:
             binding.messageBar.textView.text = HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT).trimEnd()
             binding.messageBar.textView.movementMethod = LinkMovementMethod()
         })
-
-        startStreaming()
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         super.onCreateMenu(menu, menuInflater)
+
+        menu.findItem(R.id.action_streaming).also {
+            it.isVisible = true
+            if (viewModel.enableStreaming) {
+                it.isChecked = true
+                it.setIcon(R.drawable.streaming_on)
+            } else {
+                it.isChecked = false
+                it.setIcon(R.drawable.streaming_off)
+            }
+        }
 
         menu.findItem(R.id.announcements).apply {
             iconTintList = let {
@@ -87,6 +91,16 @@ class NotificationFragment:
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.announcements -> { binding.messageBar.root.isVisible = !binding.messageBar.root.isVisible }
+            R.id.action_streaming -> {
+                item.isChecked = !item.isChecked
+                if (item.isChecked) {
+                    item.setIcon(R.drawable.streaming_on)
+                    startStreaming()
+                } else {
+                    item.setIcon(R.drawable.streaming_off)
+                    stopStreaming()
+                }
+            }
             else -> return super.onMenuItemSelected(item)
         }
         return true
@@ -94,12 +108,12 @@ class NotificationFragment:
 
     override fun onFragmentShow() {
         lifecycleScope.launch { viewModel.reloadCredential() }
-        if(!viewModel.isLoaded or !viewModel.streamingClient.isConnecting()) {
-            lifecycleScope.launch {
-                resumeStreaming()
-                loadLatest()
-                getAnnouncements()
-            }
+        if(!viewModel.isLoaded) {
+            loadLatest()
+            getAnnouncements()
+        }
+        if(!viewModel.streamingClient.isConnecting() and viewModel.enableStreaming) {
+            resumeStreaming()
         }
     }
 
@@ -128,7 +142,13 @@ class NotificationFragment:
     }
 
     private fun startStreaming() {
+        Toast.makeText(requireContext(), R.string.streaming_connect, Toast.LENGTH_SHORT).show()
         lifecycleScope.launch { viewModel.startStreaming() }
+    }
+
+    private fun stopStreaming() {
+        Toast.makeText(requireContext(), R.string.streaming_disconnect, Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch { viewModel.stopStreaming() }
     }
 
     private fun resumeStreaming() {

@@ -39,6 +39,7 @@
     <item
         android:id="@+id/announcements"
         android:icon="@drawable/announcement"
+        android:orderInCategory="90"
         android:visible="false"
         app:showAsAction="always"/>
 

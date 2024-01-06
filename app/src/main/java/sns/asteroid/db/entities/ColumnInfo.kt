@@ -19,7 +19,7 @@ data class ColumnInfo (
     @ColumnInfo(name = "option_id") val option_id: String,
     @ColumnInfo(name = "option_title") val option_title: String,
     @ColumnInfo(name = "priority") var priority: Int,
-    @ColumnInfo(name = "streaming") var streaming: Boolean = true,
+    @ColumnInfo(name = "streaming") val streaming: Boolean = true,
     @ColumnInfo(name = "hash") val hash: String = getHash(),
 ): Serializable {
     @Ignore constructor(acct:String, subject: String, priority: Int):

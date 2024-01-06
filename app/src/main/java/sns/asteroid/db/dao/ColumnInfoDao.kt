@@ -31,6 +31,9 @@ interface ColumnInfoDao {
         "UPDATE ColumnInfo SET option_title = :title WHERE hash = :hash ")
     fun updateListTitle(title: String, hash: String)
 
+    @Query("UPDATE ColumnInfo SET streaming = :enabled WHERE hash = :hash")
+    fun updateStreaming(enabled: Boolean, hash: String)
+
     @Query("DELETE FROM ColumnInfo")
     fun deleteAll()
 
