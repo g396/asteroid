@@ -106,14 +106,19 @@ class NotificationFragment:
         return true
     }
 
+    /**
+     * ストリーミング復帰時に最新の投稿を別途取得したり
+     * 色々と条件が異なるのでsuper()を呼ばない
+     */
     override fun onFragmentShow() {
         lifecycleScope.launch { viewModel.reloadCredential() }
-        if(!viewModel.isLoaded) {
-            loadLatest()
-            getAnnouncements()
-        }
         if(!viewModel.streamingClient.isConnecting() and viewModel.enableStreaming) {
             resumeStreaming()
+            loadLatest()
+            getAnnouncements()
+        } else if(!viewModel.isLoaded) {
+            loadLatest()
+            getAnnouncements()
         }
     }
 

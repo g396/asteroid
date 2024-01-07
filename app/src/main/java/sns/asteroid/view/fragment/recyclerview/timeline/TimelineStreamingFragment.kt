@@ -19,10 +19,18 @@ open class TimelineStreamingFragment: TimelineFragment() {
         TimelineStreamingViewModel.Factory(column, credential)
     }
 
+    /**
+     * ストリーミング復帰時に最新の投稿を別途取得したり
+     * 色々と条件が異なるのでsuper()を呼ばない
+     */
     override fun onFragmentShow() {
-        super.onFragmentShow()
-        if(!viewModel.streamingClient.isConnecting() and viewModel.enableStreaming)
+        lifecycleScope.launch { viewModel.reloadCredential() }
+        if(!viewModel.streamingClient.isConnecting() and viewModel.enableStreaming) {
             resumeStreaming()
+            loadLatest()
+        } else if(!viewModel.isLoaded) {
+            loadLatest()
+        }
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
