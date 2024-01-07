@@ -284,6 +284,12 @@
                     android:background="@drawable/selector_button_cw"
                     android:textOff="@null"
                     android:textOn="@null" />
+
+                <Spinner
+                    android:id="@+id/language"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/transparent" />
             </LinearLayout>
         </HorizontalScrollView>
 
