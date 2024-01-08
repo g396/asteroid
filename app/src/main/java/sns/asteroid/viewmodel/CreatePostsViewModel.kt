@@ -43,8 +43,15 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
 
     val mediaAttachments = mutableListOf<Pair<Uri, MediaAttachment>>()
 
+    /* EditText */
     val content = MutableLiveData<String>()
     val spoilerText = MutableLiveData<String>()
+
+    /* CheckBox */
+    val sensitive = MutableLiveData<Boolean>()
+    val resizeImage = MutableLiveData<Boolean>()
+    val createPoll = MutableLiveData<Boolean>()
+    val pollMultiple = MutableLiveData<Boolean>()
 
     init {
         _property.value = Property.NONE
@@ -58,7 +65,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         }
         if(content.value == null) content.value = ""
         if(spoilerText.value == null) spoilerText.value = ""
-
+        sensitive.value = false
+        resizeImage.value = true
+        createPoll.value = false
+        pollMultiple.value = true
 
         viewModelScope.launch {
             _credential.value = credential ?: loadDefaultCredential()
@@ -73,13 +83,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
      * 投稿を送信する
      */
     suspend fun postStatuses(
-        sensitive: Boolean,
         visibility: String,
         language: String,
         pollOption: List<String>?,
         pollExpire: Int?,
-        pollMultiple: Boolean?,
-        resizeImage: Boolean,
     ): Boolean {
         val notUploadedYet = media.value!!.filter { selected ->
             val found = mediaAttachments.find { uploaded -> selected.first == uploaded.first }
@@ -87,7 +94,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         }
         notUploadedYet.forEach {
             val result = withContext(Dispatchers.IO) {
-                MediaModel(credential.value!!).postMedia(it.first, descriptions[it.first], resizeImage)
+                MediaModel(credential.value!!).postMedia(it.first, descriptions[it.first], resizeImage.value!!)
             }
             if (result.isSuccess) {
                 mediaAttachments.add(Pair(it.first, result.mediaAttachment!!))
@@ -97,10 +104,14 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             }
         }
 
+        val multiple =
+            if(createPoll.value == true) pollMultiple.value
+            else null
+
         val result = withContext(Dispatchers.IO) {
             val list =  mediaAttachments.unzip().second
             StatusesModel(credential.value!!).postStatuses(
-                content.value!!, spoilerText.value!!, list, sensitive, visibility, pollOption, pollExpire, pollMultiple, replyTo, language
+                content.value!!, spoilerText.value!!, list, sensitive.value!!, visibility, pollOption, pollExpire, multiple, replyTo, language
             )
         }
         _toastMessage.value = result.toastMessage

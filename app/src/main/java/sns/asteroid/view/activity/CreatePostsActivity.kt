@@ -378,7 +378,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 val item = spinner.selectedItem as ISO639Lang
                 item.code
             }
-            val sensitive = binding.checkBox.isChecked
 
             val pollOption = if (binding.poll.isChecked) {
                 val recyclerView = binding.includeCreatePoll.recyclerView
@@ -393,15 +392,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 ((days * 24 + hours) * 60 + minutes) * 60
             } else null
 
-            val pollMultiple = if(binding.poll.isChecked) {
-                binding.includeCreatePoll.checkBox.isChecked
-            } else null
-
-            val resizeImage = binding.checkBoxResize.isChecked
-
-            val result = viewModel.postStatuses(
-                sensitive, visibility, language, pollOption, pollExpire, pollMultiple, resizeImage
-            )
+            val result = viewModel.postStatuses(visibility, language, pollOption, pollExpire)
             if (result) {
                 setResult(RESULT_OK, Intent())
                 finish()

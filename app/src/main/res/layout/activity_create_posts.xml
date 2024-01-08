@@ -128,6 +128,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="8dp"
+                            android:checked="@={viewModel.sensitive}"
                             android:text="@string/mark_as_nsfw"
                             android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
                             app:customTextSize='@{"default"}'
@@ -143,7 +144,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="8dp"
                             android:text="画像をリサイズ"
-                            android:checked="true"
+                            android:checked="@={viewModel.resizeImage}"
                             android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
                             app:customTextSize='@{"default"}'
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -159,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="8dp"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    app:viewModel="@{viewModel}"/>
 
                 <Space
                     android:layout_width="match_parent"
@@ -279,6 +281,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/selector_button_poll"
+                    android:checked="@={viewModel.createPoll}"
                     android:enabled="@{media.size() == 0}"
                     android:textOff="@null"
                     android:textOn="@null" />
