@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="8dp"
-                    android:visibility="gone"
+                    android:visibility="@{viewModel.createPoll ? View.VISIBLE : View.GONE}"
                     app:viewModel="@{viewModel}"/>
 
                 <Space

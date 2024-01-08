@@ -117,9 +117,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         }
         binding.includeCreatePoll.also { poll ->
             binding.poll.setOnClickListener {
-                poll.root.visibility =
-                    if (binding.poll.isChecked) View.VISIBLE
-                    else View.GONE
+                binding.invalidateAll()
             }
             poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
             poll.hours.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.hours)
