@@ -7,10 +7,10 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.core.view.setPadding
 
-abstract class TimeSpinnerAdapter (
+class TimeSpinnerAdapter (
     val context: Context,
+    val list: List<Int>,
 ): BaseAdapter() {
-    abstract val list: List<Int>
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val textView = TextView(context).apply {

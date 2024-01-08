@@ -61,6 +61,7 @@
             android:layout_weight="1"
             android:layout_margin="8dp"
             android:dropDownHeight="200dp"
+            android:selectedItemPosition="@={viewModel.dayPosition}"
             android:background="@drawable/background_normal"
             android:backgroundTint="@color/cardview_sub_background"
             tools:layout_height="48dp"/>
@@ -77,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="8dp"
+            android:selectedItemPosition="@={viewModel.hourPosition}"
             android:background="@drawable/background_normal"
             android:backgroundTint="@color/cardview_sub_background"
             tools:layout_height="48dp"/>
@@ -93,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="8dp"
+            android:selectedItemPosition="@={viewModel.minPosition}"
             android:background="@drawable/background_normal"
             android:backgroundTint="@color/cardview_sub_background"
             tools:layout_height="48dp"/>

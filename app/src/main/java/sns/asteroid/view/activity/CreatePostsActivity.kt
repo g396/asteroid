@@ -39,9 +39,7 @@ import sns.asteroid.view.adapter.pager.EmojiPagerAdapter
 import sns.asteroid.view.adapter.poll.CreatePollAdapter
 import sns.asteroid.view.adapter.spinner.LanguageAdapter
 import sns.asteroid.view.adapter.spinner.VisibilityAdapter
-import sns.asteroid.view.adapter.time.TimeDaysAdapter
-import sns.asteroid.view.adapter.time.TimeHoursAdapter
-import sns.asteroid.view.adapter.time.TimeMinutesAdapter
+import sns.asteroid.view.adapter.time.TimeSpinnerAdapter
 import sns.asteroid.view.dialog.*
 import sns.asteroid.view.fragment.emoji_selector.EmojiSelectorFragment
 import sns.asteroid.viewmodel.CreatePostsViewModel
@@ -128,10 +126,9 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 it.adapter = CreatePollAdapter(this@CreatePostsActivity)
                 it.layoutManager = LinearLayoutManager(this@CreatePostsActivity)
             }
-            poll.days.adapter = TimeDaysAdapter(this@CreatePostsActivity)
-            poll.hours.adapter = TimeHoursAdapter(this@CreatePostsActivity)
-            poll.minutes.adapter = TimeMinutesAdapter(this@CreatePostsActivity)
-            poll.hours.setSelection(1)
+            poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
+            poll.hours.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.hours)
+            poll.minutes.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.mins)
         }
 
         binding.content.addTextChangedListener(object: TextWatcher {
@@ -371,14 +368,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 adapter.getList()
             } else null
 
-            val pollExpire = if (binding.poll.isChecked) {
-                val minutes = binding.includeCreatePoll.minutes.selectedItem as Int
-                val hours = binding.includeCreatePoll.hours.selectedItem as Int
-                val days = binding.includeCreatePoll.days.selectedItem as Int
-                ((days * 24 + hours) * 60 + minutes) * 60
-            } else null
-
-            val result = viewModel.postStatuses(pollOption, pollExpire)
+            val result = viewModel.postStatuses(pollOption)
             if (result) {
                 setResult(RESULT_OK, Intent())
                 finish()

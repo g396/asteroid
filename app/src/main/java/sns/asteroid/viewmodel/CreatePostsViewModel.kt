@@ -59,6 +59,26 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
 
     var visibilityPosition: Int = 0
 
+    /* Spinner (poll) */
+    val days = listOf(
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+        10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+    )
+    val hours = listOf(
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+        10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+        20, 21, 22, 23,
+    )
+    val mins = listOf(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55)
+
+    var dayPosition: Int = 0
+    var hourPosition: Int = 1
+    var minPosition: Int = 0
+
+    private val expireInSeconds get() =
+        (((days[dayPosition] * 24 + hours[hourPosition]) * 60) + mins[minPosition]) * 60
+
     init {
         _property.value = Property.NONE
         _media.value = mutableListOf()
@@ -93,7 +113,6 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
      */
     suspend fun postStatuses(
         pollOption: List<String>?,
-        pollExpire: Int?,
     ): Boolean {
         val notUploadedYet = media.value!!.filter { selected ->
             val found = mediaAttachments.find { uploaded -> selected.first == uploaded.first }
@@ -116,6 +135,9 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         val multiple =
             if(createPoll.value == true) pollMultiple.value
             else null
+        val expire =
+            if(createPoll.value == true) expireInSeconds
+        else null
 
         val result = withContext(Dispatchers.IO) {
             val list =  mediaAttachments.unzip().second
@@ -126,7 +148,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
                 sensitive.value!!,
                 VisibilityAdapter.getVisibility(visibilityPosition),
                 pollOption,
-                pollExpire,
+                expire,
                 multiple,
                 replyTo,
                 languageCode
