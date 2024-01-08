@@ -9,6 +9,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.view.View.OnClickListener
 import android.view.inputmethod.InputMethodManager
@@ -52,7 +54,8 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
     private val viewModel: CreatePostsViewModel by viewModels {
         val credential = intent.getSerializableExtra("credential") as Credential?
         val replyTo = intent.getSerializableExtra("reply_to") as Status?
-        CreatePostsViewModel.Factory(credential, replyTo)
+        val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
+        CreatePostsViewModel.Factory(credential, replyTo, intentText)
     }
     private val emojiViewModel: EmojiListViewModel by viewModels()
 
@@ -75,6 +78,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         getContentFromIntent()
         setContentView(binding.root)
 
+        binding.viewModel = viewModel
         binding.emojiViewModel = emojiViewModel
         binding.replyStatus = viewModel.replyTo
 
@@ -132,6 +136,20 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             poll.minutes.adapter = TimeMinutesAdapter(this@CreatePostsActivity)
             poll.hours.setSelection(1)
         }
+
+        binding.content.addTextChangedListener(object: TextWatcher {
+            private var isFirst = true
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable) {
+                if (isFirst) {
+                    isFirst = false
+                    binding.content.setSelection(s.length)
+                }
+            }
+        })
 
         showKeyboard()
         onBackPressedDispatcher.addCallback(BackKeyCallback())
@@ -350,9 +368,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 show(supportFragmentManager, "tag")
             }
 
-            val text = binding.content.text.toString()
-            val spoilerText = binding.spoilerText.text.toString()
-
             val visibility = let {
                 val spinner = binding.selectVisibility
                 val item = spinner.selectedItem as VisibilityAdapter.Visibility
@@ -385,7 +400,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             val resizeImage = binding.checkBoxResize.isChecked
 
             val result = viewModel.postStatuses(
-                text, spoilerText, sensitive, visibility, language, pollOption, pollExpire, pollMultiple, resizeImage
+                sensitive, visibility, language, pollOption, pollExpire, pollMultiple, resizeImage
             )
             if (result) {
                 setResult(RESULT_OK, Intent())
@@ -430,20 +445,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
             lifecycleScope.launch { viewModel.addMedia(CreatePostsViewModel.Property.IMAGE, uri) }
             return
-        }
-
-        if(intent.type == "text/plain") {
-            // タイムラインのテキストボックスor共有機能から文字列を受け取った場合
-            binding.content.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
-            binding.content.setSelection(binding.content.text.length)
-        } else {
-            // 返信先のacctをテキストボックスに入力する(自分への返信は除く)
-            val replyTo = intent.getSerializableExtra("reply_to") as Status? ?: return
-            val credential = intent.getSerializableExtra("credential") as Credential?
-            if(credential?.account_id != replyTo.account.id) {
-                binding.content.setText(String.format(getString(R.string.acct) + " ", replyTo.account.acct))
-                binding.content.setSelection(binding.content.text.length)
-            }
         }
     }
 

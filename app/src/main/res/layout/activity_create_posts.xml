@@ -8,6 +8,9 @@
         <import type="android.view.View"/>
         <import type="sns.asteroid.api.entities.Status"/>
         <variable
+            name="viewModel"
+            type="sns.asteroid.viewmodel.CreatePostsViewModel" />
+        <variable
             name="emojiViewModel"
             type="sns.asteroid.viewmodel.EmojiListViewModel" />
         <variable
@@ -68,6 +71,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/background_normal"
+                        android:text="@={viewModel.spoilerText}"
                         android:visibility="gone"
                         android:hint="@string/hint_warning"
                         android:inputType="text"
@@ -93,6 +97,7 @@
                             android:gravity="top"
                             android:hint="@string/hint"
                             android:theme="@style/EditTextStyle"
+                            android:text="@={viewModel.content}"
                             app:customTextSize='@{"default"}'
                             app:layout_constraintBottom_toTopOf="@id/images"
                             app:layout_constraintEnd_toEndOf="parent"

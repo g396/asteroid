@@ -19,7 +19,7 @@ import sns.asteroid.model.user.MediaModel
 import sns.asteroid.model.user.StatusesModel
 import sns.asteroid.model.util.ISO639Lang
 
-class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewModel() {
+class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intentText: String?): ViewModel() {
     private val _credential = MutableLiveData<Credential>()
     val credential: LiveData<Credential> get() = _credential
 
@@ -43,23 +43,36 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
 
     val mediaAttachments = mutableListOf<Pair<Uri, MediaAttachment>>()
 
+    val content = MutableLiveData<String>()
+    val spoilerText = MutableLiveData<String>()
+
     init {
         _property.value = Property.NONE
         _media.value = mutableListOf()
+
+        replyTo?.let {
+            if(it.account.id != credential?.account_id) content.value = String.format("@%1\$s ", replyTo.account.acct)
+        }
+        intentText?.let {
+            content.value = it
+        }
+        if(content.value == null) content.value = ""
+        if(spoilerText.value == null) spoilerText.value = ""
+
 
         viewModelScope.launch {
             _credential.value = credential ?: loadDefaultCredential()
             loadHashtags()
             loadLanguagesList()
         }
+
+
     }
 
     /**
      * 投稿を送信する
      */
     suspend fun postStatuses(
-        text: String,
-        spoilerText: String,
         sensitive: Boolean,
         visibility: String,
         language: String,
@@ -87,7 +100,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
         val result = withContext(Dispatchers.IO) {
             val list =  mediaAttachments.unzip().second
             StatusesModel(credential.value!!).postStatuses(
-                text, spoilerText, list, sensitive, visibility, pollOption, pollExpire, pollMultiple, replyTo, language
+                content.value!!, spoilerText.value!!, list, sensitive, visibility, pollOption, pollExpire, pollMultiple, replyTo, language
             )
         }
         _toastMessage.value = result.toastMessage
@@ -168,10 +181,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?): ViewM
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val credential: Credential?, private val replyTo: Status?
+    class Factory(private val credential: Credential?, private val replyTo: Status?, private val intentText: String?
         ) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return CreatePostsViewModel(credential, replyTo) as T
+            return CreatePostsViewModel(credential, replyTo, intentText) as T
         }
     }
 
