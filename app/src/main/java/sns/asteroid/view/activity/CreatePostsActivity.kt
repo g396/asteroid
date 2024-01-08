@@ -36,7 +36,6 @@ import sns.asteroid.model.emoji.CustomEmojiParser
 import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.ISO639Lang
 import sns.asteroid.view.adapter.pager.EmojiPagerAdapter
-import sns.asteroid.view.adapter.poll.CreatePollAdapter
 import sns.asteroid.view.adapter.spinner.LanguageAdapter
 import sns.asteroid.view.adapter.spinner.VisibilityAdapter
 import sns.asteroid.view.adapter.time.TimeSpinnerAdapter
@@ -121,10 +120,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 poll.root.visibility =
                     if (binding.poll.isChecked) View.VISIBLE
                     else View.GONE
-            }
-            poll.recyclerView.also {
-                it.adapter = CreatePollAdapter(this@CreatePostsActivity)
-                it.layoutManager = LinearLayoutManager(this@CreatePostsActivity)
             }
             poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
             poll.hours.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.hours)
@@ -357,18 +352,10 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             val button = binding.send.apply {
                 isClickable = false
             }
-
             val loading = LoadingDialog().apply {
                 show(supportFragmentManager, "tag")
             }
-
-            val pollOption = if (binding.poll.isChecked) {
-                val recyclerView = binding.includeCreatePoll.recyclerView
-                val adapter = recyclerView.adapter as CreatePollAdapter
-                adapter.getList()
-            } else null
-
-            val result = viewModel.postStatuses(pollOption)
+            val result = viewModel.postStatuses()
             if (result) {
                 setResult(RESULT_OK, Intent())
                 finish()

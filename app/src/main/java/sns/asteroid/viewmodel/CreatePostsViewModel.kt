@@ -42,6 +42,15 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     val content = MutableLiveData<String>()
     val spoilerText = MutableLiveData<String>()
 
+    /* EditText (poll) */
+    val value1 = MutableLiveData<String>()
+    val value2 = MutableLiveData<String>()
+    val value3 = MutableLiveData<String>()
+    val value4 = MutableLiveData<String>()
+    private val pollOption get() =
+        if(createPoll.value == true) listOfNotNull(value1.value, value2.value, value3.value, value4.value)
+        else null
+
     /* CheckBox */
     val sensitive = MutableLiveData<Boolean>()
     val resizeImage = MutableLiveData<Boolean>()
@@ -111,9 +120,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     /**
      * 投稿を送信する
      */
-    suspend fun postStatuses(
-        pollOption: List<String>?,
-    ): Boolean {
+    suspend fun postStatuses(): Boolean {
         val notUploadedYet = media.value!!.filter { selected ->
             val found = mediaAttachments.find { uploaded -> selected.first == uploaded.first }
             found == null

@@ -32,12 +32,74 @@
             android:text="@string/create_a_poll"/>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <EditText
+        style="@style/EditTextStyle"
+        android:id="@+id/value1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:nestedScrollingEnabled="false"/>
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="8dp"
+        android:padding="4dp"
+        android:background="@drawable/background_normal"
+        android:backgroundTint="@color/cardview_sub_background"
+        android:text="@={viewModel.value1}"
+        android:hint="value"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:inputType="text"
+        android:theme="@style/EditTextStyle"
+        app:customTextSize='@{"default"}' />
+    <EditText
+        style="@style/EditTextStyle"
+        android:id="@+id/value2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="8dp"
+        android:padding="4dp"
+        android:background="@drawable/background_normal"
+        android:backgroundTint="@color/cardview_sub_background"
+        android:text="@={viewModel.value2}"
+        android:hint="value"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:inputType="text"
+        android:theme="@style/EditTextStyle"
+        app:customTextSize='@{"default"}' />
+    <EditText
+        style="@style/EditTextStyle"
+        android:id="@+id/value3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="8dp"
+        android:padding="4dp"
+        android:background="@drawable/background_normal"
+        android:backgroundTint="@color/cardview_sub_background"
+        android:text="@={viewModel.value3}"
+        android:hint="value"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:inputType="text"
+        android:theme="@style/EditTextStyle"
+        app:customTextSize='@{"default"}' />
+    <EditText
+        style="@style/EditTextStyle"
+        android:id="@+id/value4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="8dp"
+        android:padding="4dp"
+        android:background="@drawable/background_normal"
+        android:backgroundTint="@color/cardview_sub_background"
+        android:text="@={viewModel.value4}"
+        android:hint="value"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:inputType="text"
+        android:theme="@style/EditTextStyle"
+        app:customTextSize='@{"default"}' />
 
     <CheckBox
         android:id="@+id/checkBox"
