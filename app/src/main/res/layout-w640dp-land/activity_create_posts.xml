@@ -252,6 +252,7 @@
                     android:id="@+id/selectVisibility"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:selectedItemPosition="@={viewModel.visibilityPosition}"
                     android:background="@color/transparent" />
 
                 <ImageButton
@@ -297,6 +298,7 @@
                     android:id="@+id/language"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:selectedItemPosition="@={viewModel.langPosition}"
                     android:background="@color/transparent" />
             </LinearLayout>
         </HorizontalScrollView>

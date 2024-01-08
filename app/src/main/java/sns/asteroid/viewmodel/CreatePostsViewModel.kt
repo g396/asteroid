@@ -18,19 +18,14 @@ import sns.asteroid.model.settings.SettingsManageAccountsModel
 import sns.asteroid.model.user.MediaModel
 import sns.asteroid.model.user.StatusesModel
 import sns.asteroid.model.util.ISO639Lang
+import sns.asteroid.view.adapter.spinner.VisibilityAdapter
 
-class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intentText: String?): ViewModel() {
+class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intentText: String?, visibility: String?): ViewModel() {
     private val _credential = MutableLiveData<Credential>()
     val credential: LiveData<Credential> get() = _credential
 
     private var _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String> get() = _toastMessage
-
-    private val _hashtags = MutableLiveData<List<String>>()
-    val hashtags: LiveData<List<String>> get() = _hashtags
-
-    private val _language = MutableLiveData<List<ISO639Lang>>()
-    val language: LiveData<List<ISO639Lang>> get() = _language
 
     // 複数種類のメディアを同時に添付することは出来ないので最初に選んだメディアの種類を保持する必要あり
     private val _property = MutableLiveData<Property>()
@@ -53,6 +48,17 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     val createPoll = MutableLiveData<Boolean>()
     val pollMultiple = MutableLiveData<Boolean>()
 
+    /* PopupMenu items */
+    private val _hashtags = MutableLiveData<List<String>>()
+    val hashtags: LiveData<List<String>> get() = _hashtags
+
+    /* Spinner items */
+    private val _language = MutableLiveData<List<ISO639Lang>>()
+    val language: LiveData<List<ISO639Lang>> get() = _language
+    var langPosition: Int = 0
+
+    var visibilityPosition: Int = 0
+
     init {
         _property.value = Property.NONE
         _media.value = mutableListOf()
@@ -70,6 +76,9 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         createPoll.value = false
         pollMultiple.value = true
 
+        visibilityPosition =
+            VisibilityAdapter.getPosition(replyTo?.visibility ?: visibility)
+
         viewModelScope.launch {
             _credential.value = credential ?: loadDefaultCredential()
             loadHashtags()
@@ -83,8 +92,6 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
      * 投稿を送信する
      */
     suspend fun postStatuses(
-        visibility: String,
-        language: String,
         pollOption: List<String>?,
         pollExpire: Int?,
     ): Boolean {
@@ -104,6 +111,8 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             }
         }
 
+        val languageCode = language.value?.getOrNull(langPosition)?.code ?: ""
+
         val multiple =
             if(createPoll.value == true) pollMultiple.value
             else null
@@ -111,7 +120,16 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         val result = withContext(Dispatchers.IO) {
             val list =  mediaAttachments.unzip().second
             StatusesModel(credential.value!!).postStatuses(
-                content.value!!, spoilerText.value!!, list, sensitive.value!!, visibility, pollOption, pollExpire, multiple, replyTo, language
+                content.value!!,
+                spoilerText.value!!,
+                list,
+                sensitive.value!!,
+                VisibilityAdapter.getVisibility(visibilityPosition),
+                pollOption,
+                pollExpire,
+                multiple,
+                replyTo,
+                languageCode
             )
         }
         _toastMessage.value = result.toastMessage
@@ -192,10 +210,14 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val credential: Credential?, private val replyTo: Status?, private val intentText: String?
+    class Factory(
+        private val credential: Credential?,
+        private val replyTo: Status?,
+        private val intentText: String?,
+        private val visibility: String?,
         ) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return CreatePostsViewModel(credential, replyTo, intentText) as T
+            return CreatePostsViewModel(credential, replyTo, intentText, visibility) as T
         }
     }
 

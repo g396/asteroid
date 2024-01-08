@@ -55,7 +55,8 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         val credential = intent.getSerializableExtra("credential") as Credential?
         val replyTo = intent.getSerializableExtra("reply_to") as Status?
         val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
-        CreatePostsViewModel.Factory(credential, replyTo, intentText)
+        val visibility = intent.getStringExtra("visibility")
+        CreatePostsViewModel.Factory(credential, replyTo, intentText, visibility)
     }
     private val emojiViewModel: EmojiListViewModel by viewModels()
 
@@ -116,10 +117,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         }
         binding.selectVisibility.also {
             it.adapter = VisibilityAdapter(this@CreatePostsActivity, it)
-
-            val visibility = viewModel.replyTo?.visibility ?: intent.getStringExtra("visibility")
-            val position = VisibilityAdapter.getPosition(visibility)
-            it.setSelection(position)
         }
         binding.includeCreatePoll.also { poll ->
             binding.poll.setOnClickListener {
@@ -368,17 +365,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 show(supportFragmentManager, "tag")
             }
 
-            val visibility = let {
-                val spinner = binding.selectVisibility
-                val item = spinner.selectedItem as VisibilityAdapter.Visibility
-                item.value
-            }
-            val language = let {
-                val spinner = binding.language
-                val item = spinner.selectedItem as ISO639Lang
-                item.code
-            }
-
             val pollOption = if (binding.poll.isChecked) {
                 val recyclerView = binding.includeCreatePoll.recyclerView
                 val adapter = recyclerView.adapter as CreatePollAdapter
@@ -392,7 +378,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 ((days * 24 + hours) * 60 + minutes) * 60
             } else null
 
-            val result = viewModel.postStatuses(visibility, language, pollOption, pollExpire)
+            val result = viewModel.postStatuses(pollOption, pollExpire)
             if (result) {
                 setResult(RESULT_OK, Intent())
                 finish()
