@@ -47,9 +47,6 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     val value2 = MutableLiveData<String>()
     val value3 = MutableLiveData<String>()
     val value4 = MutableLiveData<String>()
-    private val pollOption get() =
-        if(createPoll.value == true) listOfNotNull(value1.value, value2.value, value3.value, value4.value)
-        else null
 
     /* CheckBox */
     val sensitive = MutableLiveData<Boolean>()
@@ -64,11 +61,8 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     /* Spinner items */
     private val _language = MutableLiveData<List<ISO639Lang>>()
     val language: LiveData<List<ISO639Lang>> get() = _language
-    var langPosition: Int = 0
 
-    var visibilityPosition: Int = 0
-
-    /* Spinner (poll) */
+    /* Spinner items (poll) */
     val days = listOf(
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
         10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -81,12 +75,24 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     )
     val mins = listOf(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55)
 
+    /* Spinner position (use 2way-binding) */
+    var langPosition: Int = 0
+    var visibilityPosition: Int = 0
     var dayPosition: Int = 0
     var hourPosition: Int = 1
     var minPosition: Int = 0
 
+    /* Spinner item getter */
+    private val languageCode get() =
+        language.value?.getOrNull(langPosition)?.code ?: ""
+
+    private val pollOption get() =
+        if(createPoll.value == true) listOfNotNull(value1.value, value2.value, value3.value, value4.value)
+        else null
+
     private val expireInSeconds get() =
-        (((days[dayPosition] * 24 + hours[hourPosition]) * 60) + mins[minPosition]) * 60
+        if(createPoll.value == true) (((days[dayPosition] * 24 + hours[hourPosition]) * 60) + mins[minPosition]) * 60
+        else null
 
     init {
         _property.value = Property.NONE
@@ -137,14 +143,9 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             }
         }
 
-        val languageCode = language.value?.getOrNull(langPosition)?.code ?: ""
-
         val multiple =
             if(createPoll.value == true) pollMultiple.value
             else null
-        val expire =
-            if(createPoll.value == true) expireInSeconds
-        else null
 
         val result = withContext(Dispatchers.IO) {
             val list =  mediaAttachments.unzip().second
@@ -155,7 +156,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
                 sensitive.value!!,
                 VisibilityAdapter.getVisibility(visibilityPosition),
                 pollOption,
-                expire,
+                expireInSeconds,
                 multiple,
                 replyTo,
                 languageCode

@@ -343,24 +343,18 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
     /**
      * 投稿を送信する
-     * TODO: 双方向データバインディングしたらこんなに記述いらなくなる
      */
-    private fun postStatus() {
-        lifecycleScope.launch {
-            val button = binding.send.apply {
-                isClickable = false
-            }
-            val loading = LoadingDialog().apply {
-                show(supportFragmentManager, "tag")
-            }
-            val result = viewModel.postStatuses()
-            if (result) {
+    private fun postStatus() = lifecycleScope.launch {
+        LoadingDialog().also { dialog ->
+            binding.send.isClickable = false
+            dialog.show(supportFragmentManager, "tag")
+
+            if (viewModel.postStatuses()) {
                 setResult(RESULT_OK, Intent())
                 finish()
             }
-
-            button.isClickable = true
-            loading.dismiss()
+            dialog.dismiss()
+            binding.send.isClickable = true
         }
     }
 
