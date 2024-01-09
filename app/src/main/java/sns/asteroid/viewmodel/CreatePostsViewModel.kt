@@ -1,16 +1,10 @@
 package sns.asteroid.viewmodel
 
-import android.graphics.Bitmap
 import android.net.Uri
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import sns.asteroid.CustomApplication
-import sns.asteroid.R
-import sns.asteroid.api.entities.MediaAttachment
 import sns.asteroid.api.entities.Status
 import sns.asteroid.db.entities.Credential
 import sns.asteroid.model.settings.RecentlyHashtagModel
@@ -27,16 +21,8 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     private var _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String> get() = _toastMessage
 
-    // 複数種類のメディアを同時に添付することは出来ないので最初に選んだメディアの種類を保持する必要あり
-    private val _property = MutableLiveData<Property>()
-    val property: LiveData<Property> get() = _property
-
-    private val _media = MutableLiveData<List<Pair<Uri, Bitmap>>>()
-    val media: LiveData<List<Pair<Uri, Bitmap>>> get() = _media
-
-    private val descriptions = mutableMapOf<Uri, String>()
-
-    val mediaAttachments = mutableListOf<Pair<Uri, MediaAttachment>>()
+    private val _mediaFile = MutableLiveData<List<MediaModel.MediaFile>>()
+    val mediaFile: LiveData<List<MediaModel.MediaFile>> get() = _mediaFile
 
     /* EditText */
     val content = MutableLiveData<String>()
@@ -95,9 +81,6 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         else null
 
     init {
-        _property.value = Property.NONE
-        _media.value = mutableListOf()
-
         replyTo?.let {
             if(it.account.id != credential?.account_id) content.value = String.format("@%1\$s ", replyTo.account.acct)
         }
@@ -110,6 +93,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         resizeImage.value = true
         createPoll.value = false
         pollMultiple.value = true
+        _mediaFile.value = emptyList()
 
         visibilityPosition =
             VisibilityAdapter.getPosition(replyTo?.visibility ?: visibility)
@@ -119,27 +103,30 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             loadHashtags()
             loadLanguagesList()
         }
-
-
     }
 
     /**
      * 投稿を送信する
      */
     suspend fun postStatuses(): Boolean {
-        val notUploadedYet = media.value!!.filter { selected ->
-            val found = mediaAttachments.find { uploaded -> selected.first == uploaded.first }
-            found == null
-        }
+        val notUploadedYet = mediaFile.value!!.filter { (it.uri != null) and (it.mediaAttachment == null) }
         notUploadedYet.forEach {
             val result = withContext(Dispatchers.IO) {
-                MediaModel(credential.value!!).postMedia(it.first, descriptions[it.first], resizeImage.value!!)
+                MediaModel(credential.value!!).postMedia(it.uri!!, it.description, resizeImage.value!!)
             }
-            if (result.isSuccess) {
-                mediaAttachments.add(Pair(it.first, result.mediaAttachment!!))
-            } else {
+            if (!result.isSuccess) {
                 _toastMessage.value = result.message
                 return false
+            }
+            result.mediaAttachment?.let { mediaAttachment ->
+                val index = mediaFile.value!!.indexOf(it)
+                val uploaded = it.copy(mediaAttachment = mediaAttachment)
+
+                val list = mediaFile.value!!.toMutableList().apply {
+                    removeAt(index)
+                    add(index, uploaded)
+                }
+                _mediaFile.value = list
             }
         }
 
@@ -148,7 +135,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             else null
 
         val result = withContext(Dispatchers.IO) {
-            val list =  mediaAttachments.unzip().second
+            val list =  mediaFile.value!!.mapNotNull { it.mediaAttachment }
             StatusesModel(credential.value!!).postStatuses(
                 content.value!!,
                 spoilerText.value!!,
@@ -171,20 +158,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     /**
      * 添付ファイルのリストに指定のファイルを追加する
      */
-    suspend fun addMedia(property: Property, uri: Uri) = withContext(Dispatchers.IO) {
-        val thumbnail =
-            if(property == Property.AUDIO) {
-                val resources = CustomApplication.getApplicationContext().resources
-                ResourcesCompat.getDrawable(resources, R.drawable.audiofile, null)?.toBitmap()
-            } else {
-                MediaModel.getThumbnail(uri)
-            } ?: return@withContext
-
-        val item = Pair(uri, thumbnail)
-        val added = this@CreatePostsViewModel.media.value!!.toMutableList().apply { add(item) }
-
-        _property.postValue(property)
-        _media.postValue(added)
+    suspend fun addMedia(type: MediaModel.MediaType, uri: Uri) = withContext(Dispatchers.IO) {
+        val media = MediaModel.MediaFile(uri = uri, type = type)
+        val withThumbnail = MediaModel.getThumbnail(media)
+        _mediaFile.postValue(mediaFile.value!!.plus(withThumbnail))
     }
 
     suspend fun saveHashtag(status: Status?) = withContext(Dispatchers.IO) {
@@ -205,22 +182,23 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     /**
      * 添付ファイルに説明文を追加する
      */
-    fun addDescription(uri: Uri, description: String) {
-        descriptions[uri] = description
-    }
-
-    fun getDescription(uri: Uri): String {
-        return descriptions.getOrDefault(uri, "")
+    fun addDescription(position: Int, description: String) {
+        val added = mediaFile.value!!.getOrNull(position)?.copy(description = description) ?: return
+        val list = mediaFile.value!!.toMutableList().apply {
+            removeAt(position)
+            add(position, added)
+        }
+        _mediaFile.postValue(list)
     }
 
     /**
      * 添付ファイルのリストから指定のファイルを削除する
      */
-    fun removeImage(uri: Uri) {
-        val removed = media.value!!.toMutableList().apply { removeIf { it.first == uri } }
-        _media.postValue(removed)
-
-        if(removed.isEmpty()) _property.postValue(Property.NONE)
+    fun removeImage(position: Int) {
+        val list = mediaFile.value!!.toMutableList().apply {
+            removeAt(position)
+        }
+        _mediaFile.postValue(list)
     }
 
     /**
@@ -250,12 +228,4 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             return CreatePostsViewModel(credential, replyTo, intentText, visibility) as T
         }
     }
-
-    enum class Property {
-        IMAGE,
-        VIDEO,
-        AUDIO,
-        NONE,
-    }
-
 }
