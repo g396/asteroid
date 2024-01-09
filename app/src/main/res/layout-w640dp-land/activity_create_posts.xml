@@ -8,6 +8,9 @@
         <import type="android.view.View"/>
         <import type="sns.asteroid.api.entities.Status"/>
         <variable
+            name="viewModel"
+            type="sns.asteroid.viewmodel.CreatePostsViewModel" />
+        <variable
             name="emojiViewModel"
             type="sns.asteroid.viewmodel.EmojiListViewModel" />
         <variable
@@ -68,6 +71,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/background_normal"
+                    android:text="@={viewModel.spoilerText}"
                     android:visibility="gone"
                     android:hint="@string/hint_warning"
                     android:inputType="text"
@@ -93,6 +97,7 @@
                         android:gravity="top"
                         android:hint="@string/hint"
                         android:theme="@style/EditTextStyle"
+                        android:text="@={viewModel.content}"
                         app:customTextSize='@{"default"}'
                         app:layout_constraintBottom_toTopOf="@id/images"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +128,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
+                        android:checked="@={viewModel.sensitive}"
                         android:text="@string/mark_as_nsfw"
                         android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
                         app:customTextSize='@{"default"}'
@@ -138,7 +144,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:text="画像をリサイズ"
-                        android:checked="true"
+                        android:checked="@={viewModel.resizeImage}"
                         android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
                         app:customTextSize='@{"default"}'
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -154,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="8dp"
-                    android:visibility="gone" />
+                    android:visibility="@{viewModel.createPoll ? View.VISIBLE : View.GONE}"
+                    app:viewModel="@{viewModel}" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -245,6 +252,7 @@
                     android:id="@+id/selectVisibility"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:selectedItemPosition="@={viewModel.visibilityPosition}"
                     android:background="@color/transparent" />
 
                 <ImageButton
@@ -273,6 +281,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/selector_button_poll"
+                    android:checked="@={viewModel.createPoll}"
                     android:enabled="@{media.size() == 0}"
                     android:textOff="@null"
                     android:textOn="@null" />
@@ -289,6 +298,7 @@
                     android:id="@+id/language"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:selectedItemPosition="@={viewModel.langPosition}"
                     android:background="@color/transparent" />
             </LinearLayout>
         </HorizontalScrollView>
