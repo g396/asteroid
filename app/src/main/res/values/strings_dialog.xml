@@ -2,6 +2,7 @@
 <resources>
     <!--menu-->
     <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_add">Add</string>
     <string name="dialog_show_never">Naver show again</string>
@@ -37,6 +38,7 @@
     <string name="dialog_create_post">Send posts from %1$s?</string>
     <string name="dialog_create_post_delete">Delete it?</string>
     <string name="dialog_remove_image">Remove the file?</string>
+    <string name="dialog_save_draft">Save to draft?</string>
 
     <string name="dialog_enter_hashtag">Enter a hashtag</string>
     <string name="dialog_change_account">Select account</string>
@@ -48,4 +50,7 @@
     <string name="dialog_create_a_new_list">Create a new list</string>
     <string name="dialog_hint_list">Title</string>
     <string name="dialog_delete_list">Delete %1$s?</string>
+
+    <!--draft-->
+    <string name="dialog_delete_all">Delete all?</string>
 </resources>

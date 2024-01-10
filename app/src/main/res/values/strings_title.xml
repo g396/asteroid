@@ -15,4 +15,5 @@
     <string name="title_add_to_list">Add to the list / Remove</string>
     <string name="title_accounts_list">List of accounts</string>
     <string name="title_recently_hashtags">Recently used hashtags</string>
+    <string name="title_draft">Drafts</string>
 </resources>

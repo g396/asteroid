@@ -1,6 +1,7 @@
 package sns.asteroid.view.activity
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,10 +21,12 @@ import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
@@ -64,7 +67,15 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
     private val binding: ActivityCreatePostsBinding by lazy { ActivityCreatePostsBinding.inflate(layoutInflater) }
 
+    private val draftSelectResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                onDraftSelect(intent = it.data)
+            }
+        }
+
     private var editTextFocus: EditText? = null
+    private var moveCursor = true
 
     companion object {
         const val REQUEST_CODE_IMAGE = 20
@@ -89,6 +100,10 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             binding.credential = it
             lifecycleScope.launch { emojiViewModel.getCustomEmojiCategories(it.instance) }
         })
+        viewModel.enableSpoilerText.observe(this, Observer {
+            if (it) binding.spoilerText.requestFocus()
+            else binding.content.requestFocus()
+        })
         viewModel.mediaFile.observe(this@CreatePostsActivity, Observer {
             binding.media = it
             (binding.images.adapter as MediaAdapter).submitList(it)
@@ -105,12 +120,15 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
         binding.apply {
             send.setOnClickListener { showDialog() }
-            cw.setOnClickListener { showWarningText() }
             addImage.setOnClickListener(MediaButtonClickListener())
             hashtag.setOnClickListener(HashtagButtonClickListener())
             customEmoji.setOnClickListener { openEmojiSelector() }
             textArea.setOnClickListener { showKeyboard() }
             avatar.setOnClickListener { selectOtherAccount() }
+            draft.setOnClickListener { openDraft() }
+
+            cw.setOnClickListener { binding.invalidateAll() }
+            poll.setOnClickListener { binding.invalidateAll() }
         }
 
         binding.images.also {
@@ -121,23 +139,19 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             it.adapter = VisibilityAdapter(this@CreatePostsActivity, it)
         }
         binding.includeCreatePoll.also { poll ->
-            binding.poll.setOnClickListener {
-                binding.invalidateAll()
-            }
             poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
             poll.hours.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.hours)
             poll.minutes.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.mins)
         }
 
         binding.content.addTextChangedListener(object: TextWatcher {
-            private var isFirst = true
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
             override fun afterTextChanged(s: Editable) {
-                if (isFirst) {
-                    isFirst = false
+                if (moveCursor) {
+                    moveCursor = false
                     binding.content.setSelection(s.length)
                 }
             }
@@ -283,18 +297,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
     }
 
     /**
-     * 警告文テキストボックスの表示・非表示
-     */
-    private fun showWarningText() {
-        binding.spoilerText.visibility =
-            if (binding.cw.isChecked) View.VISIBLE
-            else View.GONE
-
-        if (binding.spoilerText.visibility == View.VISIBLE) binding.spoilerText.requestFocus()
-        else binding.content.requestFocus()
-    }
-
-    /**
      * 絵文字セレクタの表示・非表示
      */
     private fun openEmojiSelector() {
@@ -387,6 +389,18 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             .show(supportFragmentManager, "tag")
     }
 
+    private fun openDraft() {
+        val intent = Intent(this, DraftActivity::class.java)
+        draftSelectResult.launch(intent)
+    }
+
+    private fun onDraftSelect(intent: Intent?) = lifecycleScope.launch {
+        val position = intent?.getIntExtra("position", 0) ?: return@launch
+        moveCursor = true
+        viewModel.load(position)
+        binding.invalidateAll()
+    }
+
     /**
      * 画像・テキスト等をintentから受け取る
      */
@@ -408,17 +422,25 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 binding.emojiSelector.visibility = View.GONE
                 return
             }
-            val isNotEmpty = (viewModel.mediaFile.value!!.isNotEmpty()) or (binding.content.text.isNotBlank())
+            val isNotEmpty =
+                (viewModel.mediaFile.value!!.isNotEmpty()) or (binding.content.text.isNotBlank())
 
             if(isNotEmpty) {
-                val listener = object : SimpleDialog.SimpleDialogListener {
+                val listener = object : SimpleThreeOptionsDialog.SimpleDialogListener {
                     override fun onDialogAccept() {
-                        finish()
+                        lifecycleScope.launch {
+                            viewModel.save()
+                            finish()
+                        }
                     }
                     override fun onDialogCancel() {
                     }
+
+                    override fun onDialogDecline() {
+                        finish()
+                    }
                 }
-                SimpleDialog.newInstance(listener, getString(R.string.dialog_create_post_delete))
+                SimpleThreeOptionsDialog.newInstance(listener, getString(R.string.dialog_save_draft))
                     .show(supportFragmentManager, "tag")
             } else {
                 finish()

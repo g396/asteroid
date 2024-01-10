@@ -2,6 +2,7 @@
 <resources>
     <!--menu-->
     <string name="dialog_yes">はい</string>
+    <string name="dialog_no">いいえ</string>
     <string name="dialog_cancel">キャンセル</string>
     <string name="dialog_add">追加</string>
     <string name="dialog_show_never">次回以降表示しない</string>
@@ -37,6 +38,7 @@
     <string name="dialog_create_post">%1$sから投稿しますか？</string>
     <string name="dialog_create_post_delete">削除しますか？</string>
     <string name="dialog_remove_image">添付ファイルを削除しますか？</string>
+    <string name="dialog_save_draft">下書きへ保存しますか？</string>
 
     <string name="dialog_enter_hashtag">ハッシュタグを入力</string>
     <string name="dialog_change_account">アカウントを選択</string>
@@ -48,4 +50,7 @@
     <string name="dialog_create_a_new_list">新しいリストを作成</string>
     <string name="dialog_hint_list">タイトルを入力</string>
     <string name="dialog_delete_list">%1$sを削除しますか？</string>
+
+    <!--draft-->
+    <string name="dialog_delete_all">全て削除しますか？</string>
 </resources>

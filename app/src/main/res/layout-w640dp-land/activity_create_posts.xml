@@ -72,7 +72,7 @@
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/background_normal"
                     android:text="@={viewModel.spoilerText}"
-                    android:visibility="gone"
+                    android:visibility="@{viewModel.enableSpoilerText ? View.VISIBLE : View.GONE}"
                     android:hint="@string/hint_warning"
                     android:inputType="text"
                     android:theme="@style/EditTextStyle"
@@ -290,6 +290,7 @@
                     android:id="@+id/cw"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:checked="@={viewModel.enableSpoilerText}"
                     android:background="@drawable/selector_button_cw"
                     android:textOff="@null"
                     android:textOn="@null" />
@@ -300,6 +301,13 @@
                     android:layout_height="48dp"
                     android:selectedItemPosition="@={viewModel.langPosition}"
                     android:background="@color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/draft"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/draft" />
             </LinearLayout>
         </HorizontalScrollView>
 
