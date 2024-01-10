@@ -33,6 +33,7 @@ class DraftModel {
         }
 
         fun insert(
+            id: Int,
             content: String?,
             languageCode: String?,
             visibility: String?,
@@ -47,7 +48,7 @@ class DraftModel {
             expireMin: Int,
         ) {
             val draft = Draft(
-                id = 0,
+                id = id,
                 content = content ?: "",
                 language = languageCode ?: "",
                 visibility = visibility ?: "",

@@ -85,6 +85,8 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         if(createPoll.value == true) (((days[dayPosition] * 24 + hours[hourPosition]) * 60) + mins[minPosition]) * 60
         else null
 
+    private var draftId = 0
+
     init {
         replyTo?.let {
             if(it.account.id != credential?.account_id) content.value = String.format("@%1\$s ", replyTo.account.acct)
@@ -190,6 +192,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
 
     suspend fun save() = withContext(Dispatchers.IO) {
         DraftModel.insert(
+            id = draftId,
             content = content.value!!,
             languageCode = languageCode,
             visibility = VisibilityAdapter.getVisibility(visibilityPosition),
@@ -206,7 +209,8 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     }
 
     suspend fun load(position: Int) = withContext(Dispatchers.IO) {
-        val draft = DraftModel.getAll().getOrNull(position) ?: return@withContext
+        val draft = DraftModel.getAll().getOrNull(position)?.also { draftId = it.id }
+            ?: return@withContext
 
         content.postValue(draft.content)
         spoilerText.postValue(draft.spoilerText)
