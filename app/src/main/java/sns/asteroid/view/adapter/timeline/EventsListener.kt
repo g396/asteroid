@@ -47,6 +47,18 @@ interface EventsListener {
 
     /**
      * EventsListenerの実装
+     * 別画面でメディアを表示する
+     */
+    fun editPosts(status: Status) {
+        val intent = Intent(requireContext(), CreatePostsActivity::class.java).apply {
+            putExtra("credential", viewModel.credential.value)
+            putExtra("edit", status)
+        }
+        startActivity(intent)
+    }
+
+    /**
+     * EventsListenerの実装
      * 投稿をふぁぼる or ふぁぼ解除
      *
      * 投稿に対して絵文字リアクションボタンを表示する際は、ふぁぼボタンを省略し
@@ -522,6 +534,7 @@ interface EventsListener {
     fun onMenuItemClick(status: Status, item: Item) {
         when(item) {
             Item.MENU_DELETE                    -> deletePosts(status)
+            Item.MENU_EDIT                      -> editPosts(status)
             Item.MENU_PIN                       -> pinThePosts(status)
             Item.MENU_UNPIN                     -> unPinThePosts(status)
             Item.MENU_FAVOURITE                 -> onFavouriteMenuSelect(status)
@@ -619,20 +632,21 @@ interface EventsListener {
 
     enum class Item(val order: Int) {
         MENU_DELETE(0),
-        MENU_PIN(1),
-        MENU_UNPIN(2),
-        MENU_FAVOURITE(3),
-        MENU_UNFAVOURITE(4),
-        MENU_BOOST_PUBLIC(5),
-        MENU_BOOST_UNLISTED(6),
-        MENU_BOOST_PRIVATE(7),
-        MENU_FAVOURITE_OTHER_ACCOUNT(8),
-        MENU_BOOST_OTHER_ACCOUNT(9),
-        MENU_BOOKMARK_OTHER_ACCOUNT(10),
-        MENU_WHO_FAVOURITED(11),
-        MENU_WHO_BOOSTED(12),
-        MENU_OPEN_BROWSER(13),
-        MENU_COPY_CLIPBOARD(14),
+        MENU_EDIT(1),
+        MENU_PIN(2),
+        MENU_UNPIN(3),
+        MENU_FAVOURITE(4),
+        MENU_UNFAVOURITE(5),
+        MENU_BOOST_PUBLIC(6),
+        MENU_BOOST_UNLISTED(7),
+        MENU_BOOST_PRIVATE(8),
+        MENU_FAVOURITE_OTHER_ACCOUNT(9),
+        MENU_BOOST_OTHER_ACCOUNT(10),
+        MENU_BOOKMARK_OTHER_ACCOUNT(11),
+        MENU_WHO_FAVOURITED(12),
+        MENU_WHO_BOOSTED(13),
+        MENU_OPEN_BROWSER(14),
+        MENU_COPY_CLIPBOARD(15),
     }
 
     enum class Visibility {

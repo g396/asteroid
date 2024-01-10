@@ -125,6 +125,71 @@ class Statuses(
         }
     }
 
+    fun editStatus(
+        id: String,
+        status: String?,
+        mediaIds: List<String>?,
+        mediaAttributes: List<Triple<String?, String, String>>?,
+        pollOptions: List<String>?,
+        pollExpiresIn: Int?,
+        pollMultiple: Boolean?,
+        pollHideTotals: Boolean?,
+        sensitive: Boolean?,
+        spoilerText: String,
+        language: String,
+    ): Response? {
+        val url = ("https://${credential.instance}/api/v1/statuses/$id").toHttpUrlOrNull()
+            ?: return null
+
+        val urlBuilder =url.newBuilder().apply {
+            status?.let {
+                addQueryParameter("status", "$status")
+            }
+            pollExpiresIn?.let {
+                addQueryParameter("poll[expires_in]", "$pollExpiresIn")
+            }
+            pollMultiple?.let {
+                addQueryParameter("poll[multiple]", "$pollMultiple")
+            }
+            pollHideTotals?.let {
+                addQueryParameter("poll[hide_totals]", "$pollHideTotals")
+            }
+            sensitive?.let {
+                addQueryParameter("sensitive", "$sensitive")
+            }
+
+            mediaIds?.forEach {
+                addQueryParameter("media_ids[]", it)
+            }
+            mediaAttributes?.forEach {
+                addQueryParameter("media_attributes[][id]", it.first)
+                addQueryParameter("media_attributes[][description]", it.second)
+                addQueryParameter("media_attributes[][focus]", it.third)
+            }
+            pollOptions?.forEach {
+                addQueryParameter("poll[options][]", it)
+            }
+            if(spoilerText.isNotBlank())
+                addQueryParameter("spoiler_text", spoilerText)
+            if(language.isNotBlank())
+                addQueryParameter("language", language)
+        }
+
+        val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+        val request = Request.Builder()
+            .url(urlBuilder.build())
+            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .put(requestBody)
+            .build()
+
+        return try {
+            OkHttpClient().newCall(request).execute()
+        } catch (e:Exception) {
+            return null
+        }
+    }
+
     fun deleteStatus(id: String): Response? {
         val url = ("https://${credential.instance}/api/v1/statuses/$id").toHttpUrlOrNull()
             ?: return null
@@ -157,6 +222,23 @@ class Statuses(
             .url(urlBuilder.build())
             .addHeader("Authorization", "Bearer ${credential.accessToken}")
             .post(requestBody)
+            .build()
+
+        return try {
+            OkHttpClient().newCall(request).execute()
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    fun getStatusSource(id: String): Response? {
+        val url = ("https://${credential.instance}/api/v1/statuses/$id/source").toHttpUrlOrNull()
+            ?: return null
+
+        val request = Request.Builder()
+            .url(url.newBuilder().build())
+            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .get()
             .build()
 
         return try {
