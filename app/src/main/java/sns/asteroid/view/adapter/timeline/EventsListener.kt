@@ -50,6 +50,10 @@ interface EventsListener {
      * 別画面でメディアを表示する
      */
     fun editPosts(status: Status) {
+        if (viewModel.credential.value?.instance == "fedibird.com") {
+            Toast.makeText(requireContext(), "Not available in fedibird.com", Toast.LENGTH_SHORT).show()
+            return
+        }
         val intent = Intent(requireContext(), CreatePostsActivity::class.java).apply {
             putExtra("credential", viewModel.credential.value)
             putExtra("edit", status)
