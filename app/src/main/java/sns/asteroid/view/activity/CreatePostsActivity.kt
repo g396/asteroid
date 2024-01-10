@@ -1,6 +1,7 @@
 package sns.asteroid.view.activity
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,10 +21,12 @@ import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
@@ -63,6 +66,13 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
     private val emojiViewModel: EmojiListViewModel by viewModels()
 
     private val binding: ActivityCreatePostsBinding by lazy { ActivityCreatePostsBinding.inflate(layoutInflater) }
+
+    private val draftSelectResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                onDraftSelect(intent = it.data)
+            }
+        }
 
     private var editTextFocus: EditText? = null
 
@@ -111,6 +121,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             customEmoji.setOnClickListener { openEmojiSelector() }
             textArea.setOnClickListener { showKeyboard() }
             avatar.setOnClickListener { selectOtherAccount() }
+            draft.setOnClickListener { openDraft() }
         }
 
         binding.images.also {
@@ -387,6 +398,17 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             .show(supportFragmentManager, "tag")
     }
 
+    private fun openDraft() {
+        val intent = Intent(this, DraftActivity::class.java)
+        draftSelectResult.launch(intent)
+    }
+
+    private fun onDraftSelect(intent: Intent?) = lifecycleScope.launch {
+        val position = intent?.getIntExtra("position", 0) ?: return@launch
+        viewModel.load(position)
+        binding.invalidateAll()
+    }
+
     /**
      * 画像・テキスト等をintentから受け取る
      */
@@ -408,17 +430,25 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 binding.emojiSelector.visibility = View.GONE
                 return
             }
-            val isNotEmpty = (viewModel.mediaFile.value!!.isNotEmpty()) or (binding.content.text.isNotBlank())
+            val isNotEmpty =
+                (viewModel.mediaFile.value!!.isNotEmpty()) or (binding.content.text.isNotBlank())
 
             if(isNotEmpty) {
-                val listener = object : SimpleDialog.SimpleDialogListener {
+                val listener = object : SimpleThreeOptionsDialog.SimpleDialogListener {
                     override fun onDialogAccept() {
-                        finish()
+                        lifecycleScope.launch {
+                            viewModel.save()
+                            finish()
+                        }
                     }
                     override fun onDialogCancel() {
                     }
+
+                    override fun onDialogDecline() {
+                        finish()
+                    }
                 }
-                SimpleDialog.newInstance(listener, getString(R.string.dialog_create_post_delete))
+                SimpleThreeOptionsDialog.newInstance(listener, getString(R.string.dialog_save_draft))
                     .show(supportFragmentManager, "tag")
             } else {
                 finish()

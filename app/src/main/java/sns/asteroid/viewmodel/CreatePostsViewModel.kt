@@ -7,6 +7,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import sns.asteroid.api.entities.Status
 import sns.asteroid.db.entities.Credential
+import sns.asteroid.db.entities.Draft
+import sns.asteroid.model.DraftModel
 import sns.asteroid.model.settings.RecentlyHashtagModel
 import sns.asteroid.model.settings.SettingsManageAccountsModel
 import sns.asteroid.model.user.MediaModel
@@ -37,8 +39,11 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     /* CheckBox */
     val sensitive = MutableLiveData<Boolean>()
     val resizeImage = MutableLiveData<Boolean>()
-    val createPoll = MutableLiveData<Boolean>()
     val pollMultiple = MutableLiveData<Boolean>()
+
+    /* ToggleButton */
+    val createPoll = MutableLiveData<Boolean>()
+    val enableSpoilerText = MutableLiveData<Boolean>()
 
     /* PopupMenu items */
     private val _hashtags = MutableLiveData<List<String>>()
@@ -93,6 +98,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         resizeImage.value = true
         createPoll.value = false
         pollMultiple.value = true
+        value1.value = ""
+        value2.value = ""
+        value3.value = ""
+        value4.value = ""
         _mediaFile.value = emptyList()
 
         visibilityPosition =
@@ -177,6 +186,59 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
     suspend fun loadLanguagesList() = withContext(Dispatchers.IO) {
         val languages = ISO639Lang.getLanguageList()
         _language.postValue(languages)
+    }
+
+    suspend fun save() = withContext(Dispatchers.IO) {
+        DraftModel.insert(
+            content = content.value!!,
+            languageCode = languageCode,
+            visibility = VisibilityAdapter.getVisibility(visibilityPosition),
+            spoilerText = spoilerText.value!!,
+            pollValue1 = value1.value!!,
+            pollValue2 = value2.value!!,
+            pollValue3 = value3.value!!,
+            pollValue4 = value4.value!!,
+            pollMultiple = pollMultiple.value!!,
+            expireDay = days[dayPosition],
+            expireHour = hours[hourPosition],
+            expireMin = mins[minPosition],
+        )
+    }
+
+    suspend fun load(position: Int) = withContext(Dispatchers.IO) {
+        val draft = DraftModel.getAll().getOrNull(position) ?: return@withContext
+
+        content.postValue(draft.content)
+        spoilerText.postValue(draft.spoilerText)
+
+        value1.postValue(draft.pollValue1)
+        value2.postValue(draft.pollValue2)
+        value3.postValue(draft.pollValue3)
+        value4.postValue(draft.pollValue4)
+        pollMultiple.postValue(draft.pollMultiple)
+
+        dayPosition = days.indexOf(draft.expireDay).let {
+            if (it < 0) 0 else it
+        }
+        hourPosition = hours.indexOf(draft.expireHour).let {
+            if (it < 0) 0 else it
+        }
+        minPosition = mins.indexOf(draft.expireMin).let {
+            if (it < 0) 0 else it
+        }
+        langPosition = language.value!!.indexOfFirst { it.code == draft.language }.let {
+            if (it < 0) 0 else it
+        }
+        visibilityPosition =
+            VisibilityAdapter.getPosition(draft.visibility)
+
+        createPoll.postValue(
+            draft.pollValue1.isNotBlank()
+                    or draft.pollValue2.isNotBlank()
+                    or draft.pollValue3.isNotBlank()
+                    or draft.pollValue4.isNotBlank()
+        )
+        enableSpoilerText.postValue(draft.spoilerText.isNotEmpty())
     }
 
     /**

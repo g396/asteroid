@@ -37,6 +37,7 @@
     <string name="dialog_create_post">Send posts from %1$s?</string>
     <string name="dialog_create_post_delete">Delete it?</string>
     <string name="dialog_remove_image">Remove the file?</string>
+    <string name="dialog_save_draft">Save to draft?</string>
 
     <string name="dialog_enter_hashtag">Enter a hashtag</string>
     <string name="dialog_change_account">Select account</string>
