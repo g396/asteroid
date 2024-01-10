@@ -75,6 +75,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         }
 
     private var editTextFocus: EditText? = null
+    private var moveCursor = true
 
     companion object {
         const val REQUEST_CODE_IMAGE = 20
@@ -144,14 +145,13 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         }
 
         binding.content.addTextChangedListener(object: TextWatcher {
-            private var isFirst = true
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
             override fun afterTextChanged(s: Editable) {
-                if (isFirst) {
-                    isFirst = false
+                if (moveCursor) {
+                    moveCursor = false
                     binding.content.setSelection(s.length)
                 }
             }
@@ -396,6 +396,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
     private fun onDraftSelect(intent: Intent?) = lifecycleScope.launch {
         val position = intent?.getIntExtra("position", 0) ?: return@launch
+        moveCursor = true
         viewModel.load(position)
         binding.invalidateAll()
     }
