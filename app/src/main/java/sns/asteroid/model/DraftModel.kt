@@ -26,6 +26,12 @@ class DraftModel {
             dao.delete(draft).also { db.close() }
         }
 
+        fun delete(id: Int) {
+            val db = AppDatabase.getDatabase(context)
+            val dao = db.draftDao()
+            dao.delete(id).also { db.close() }
+        }
+
         fun insert(draft: Draft) {
             val db = AppDatabase.getDatabase(context)
             val dao = db.draftDao()

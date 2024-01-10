@@ -18,6 +18,9 @@ interface DraftDao {
     @Delete
     fun delete(draft: Draft)
 
+    @Query("DELETE FROM Draft WHERE :id = id")
+    fun delete(id: Int)
+
     @Query("DELETE FROM Draft")
     fun deleteAll()
 

@@ -161,9 +161,11 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             )
         }
         _toastMessage.value = result.toastMessage
-
         saveHashtag(result.status)
-        return result.isSuccess
+
+        return result.isSuccess.also {
+            if(it) deleteDraft()
+        }
     }
 
     /**
@@ -243,6 +245,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
                     or draft.pollValue4.isNotBlank()
         )
         enableSpoilerText.postValue(draft.spoilerText.isNotEmpty())
+    }
+
+    suspend fun deleteDraft() = withContext(Dispatchers.IO) {
+        DraftModel.delete(draftId)
     }
 
     /**
