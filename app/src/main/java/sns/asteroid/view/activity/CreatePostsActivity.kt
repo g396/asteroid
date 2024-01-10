@@ -99,6 +99,10 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             binding.credential = it
             lifecycleScope.launch { emojiViewModel.getCustomEmojiCategories(it.instance) }
         })
+        viewModel.enableSpoilerText.observe(this, Observer {
+            if (it) binding.spoilerText.requestFocus()
+            else binding.content.requestFocus()
+        })
         viewModel.mediaFile.observe(this@CreatePostsActivity, Observer {
             binding.media = it
             (binding.images.adapter as MediaAdapter).submitList(it)
@@ -115,13 +119,15 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
         binding.apply {
             send.setOnClickListener { showDialog() }
-            cw.setOnClickListener { showWarningText() }
             addImage.setOnClickListener(MediaButtonClickListener())
             hashtag.setOnClickListener(HashtagButtonClickListener())
             customEmoji.setOnClickListener { openEmojiSelector() }
             textArea.setOnClickListener { showKeyboard() }
             avatar.setOnClickListener { selectOtherAccount() }
             draft.setOnClickListener { openDraft() }
+
+            cw.setOnClickListener { binding.invalidateAll() }
+            poll.setOnClickListener { binding.invalidateAll() }
         }
 
         binding.images.also {
@@ -132,9 +138,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             it.adapter = VisibilityAdapter(this@CreatePostsActivity, it)
         }
         binding.includeCreatePoll.also { poll ->
-            binding.poll.setOnClickListener {
-                binding.invalidateAll()
-            }
             poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
             poll.hours.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.hours)
             poll.minutes.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.mins)
@@ -291,18 +294,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             it.type = mimeType
         }
         startActivityForResult(intent, requestCode)
-    }
-
-    /**
-     * 警告文テキストボックスの表示・非表示
-     */
-    private fun showWarningText() {
-        binding.spoilerText.visibility =
-            if (binding.cw.isChecked) View.VISIBLE
-            else View.GONE
-
-        if (binding.spoilerText.visibility == View.VISIBLE) binding.spoilerText.requestFocus()
-        else binding.content.requestFocus()
     }
 
     /**
