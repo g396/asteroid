@@ -2,6 +2,7 @@
 <resources>
     <!--menu-->
     <string name="dialog_yes">はい</string>
+    <string name="dialog_no">いいえ</string>
     <string name="dialog_cancel">キャンセル</string>
     <string name="dialog_add">追加</string>
     <string name="dialog_show_never">次回以降表示しない</string>

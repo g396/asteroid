@@ -2,6 +2,7 @@
 <resources>
     <!--menu-->
     <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_add">Add</string>
     <string name="dialog_show_never">Naver show again</string>

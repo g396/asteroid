@@ -21,7 +21,7 @@ class SimpleThreeOptionsDialog: DialogFragment() {
             setNeutralButton(getString(R.string.dialog_cancel), DialogInterface.OnClickListener { _, _ ->
                 listener?.onDialogCancel()
             })
-            setNegativeButton("No", DialogInterface.OnClickListener { _, _ ->
+            setNegativeButton(getString(R.string.dialog_no), DialogInterface.OnClickListener { _, _ ->
                 listener?.onDialogDecline()
             })
         }.create()
