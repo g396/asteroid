@@ -50,4 +50,7 @@
     <string name="dialog_create_a_new_list">Create a new list</string>
     <string name="dialog_hint_list">Title</string>
     <string name="dialog_delete_list">Delete %1$s?</string>
+
+    <!--draft-->
+    <string name="dialog_delete_all">Delete all?</string>
 </resources>

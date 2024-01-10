@@ -50,4 +50,7 @@
     <string name="dialog_create_a_new_list">新しいリストを作成</string>
     <string name="dialog_hint_list">タイトルを入力</string>
     <string name="dialog_delete_list">%1$sを削除しますか？</string>
+
+    <!--draft-->
+    <string name="dialog_delete_all">全て削除しますか？</string>
 </resources>

@@ -38,4 +38,6 @@
     <string name="menu_replies_policy_none">No one</string>
     <string name="menu_replies_policy_list">Members of the list</string>
     <string name="menu_replies_policy_followed">Any Followed User</string>
+
+    <string name="menu_delete_all">Delete all</string>
 </resources>

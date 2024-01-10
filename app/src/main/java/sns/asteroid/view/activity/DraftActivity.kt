@@ -2,11 +2,11 @@ package sns.asteroid.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
@@ -21,7 +21,7 @@ import sns.asteroid.db.entities.Draft
 import sns.asteroid.view.dialog.SimpleDialog
 import sns.asteroid.viewmodel.DraftViewModel
 
-class DraftActivity: AppCompatActivity() {
+class DraftActivity: AppCompatActivity(), MenuProvider {
     val binding: ActivityDraftBinding by lazy { ActivityDraftBinding.inflate(layoutInflater) }
     val viewModel: DraftViewModel by viewModels()
 
@@ -31,6 +31,7 @@ class DraftActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTitle(R.string.title_draft)
         setContentView(binding.root)
+        addMenuProvider(this)
 
         viewModel.drafts.observe(this, Observer {
             adapter.submitList(it)
@@ -42,6 +43,24 @@ class DraftActivity: AppCompatActivity() {
 
         lifecycleScope.launch {
             viewModel.getAll()
+        }
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menu.add(getString(R.string.menu_delete_all))
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        SimpleDialog.newInstance(RemoveAllDialogListener(), getString(R.string.dialog_delete_all))
+            .show(supportFragmentManager, "tag")
+        return false
+    }
+
+    inner class RemoveAllDialogListener : SimpleDialog.SimpleDialogListener {
+        override fun onDialogAccept() {
+            lifecycleScope.launch { viewModel.deleteAll() }
+        }
+        override fun onDialogCancel() {
         }
     }
 
