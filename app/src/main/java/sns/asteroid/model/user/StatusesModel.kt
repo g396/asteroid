@@ -125,7 +125,11 @@ class StatusesModel(val credential: Credential) {
         if(text.isEmpty() and mediaFile.isEmpty()) return Result(false, getString(R.string.empty))
 
         val mediaIds = mediaFile.mapNotNull { it.mediaAttachment?.id }
-        val mediaAttributes = mediaFile.map { Triple(it.mediaAttachment?.id, it.description, "0.00,0.00") }
+        val mediaAttributes = mediaFile.map {
+            val x = it.mediaAttachment?.meta?.focus?.x
+            val y = it.mediaAttachment?.meta?.focus?.y
+            Triple(it.mediaAttachment?.id, it.description, "$x,$y")
+        }
 
         val client = Statuses(credential)
         val response = client.editStatus(
