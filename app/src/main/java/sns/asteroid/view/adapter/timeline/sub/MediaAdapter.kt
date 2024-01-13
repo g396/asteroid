@@ -78,8 +78,9 @@ class MediaAdapter (
             return
         }
 
+        val ratio = media.meta?.original?.aspect ?: 1.0
         val blurHashImg = blurHashImages[media.id]
-            ?: BlurHashDecoder.decode(media.blurhash, 160, 90).also {
+            ?: BlurHashDecoder.decode(media.blurhash, (108 * ratio).toInt(), 108).also {
                 if (it != null) { blurHashImages[media.id] = it }
             } ?: return
 

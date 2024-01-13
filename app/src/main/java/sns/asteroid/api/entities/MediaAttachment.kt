@@ -16,13 +16,15 @@ data class MediaAttachment(
     val url: String,
     val preview_url: String = "",
     val remote_url: String?,
-    val meta: Meta,
+    val meta: Meta?,
     val description: String?,
     val blurhash: String = "",
 ): java.io.Serializable, ContentInterface {
 
     @Serializable
     data class Meta(
+        val original: Size? = null,
+        val small: Size? = null,
         val focus: Focus? = null,
     ): java.io.Serializable {
 
@@ -30,6 +32,14 @@ data class MediaAttachment(
         data class Focus(
             val x: Double,
             val y: Double,
+        ): java.io.Serializable
+
+        @Serializable
+        data class Size(
+            val width: Int = 0,
+            val height: Int = 0,
+            val size: String = "",
+            val aspect : Double? = null,
         ): java.io.Serializable
     }
 }
