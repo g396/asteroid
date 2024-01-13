@@ -204,6 +204,9 @@ open class TimelineAdapter(
             popupMenu.menu.apply {
                 if(myAccountId == posts.account.id)
                     add(MY_POSTS, Item.MENU_DELETE.order, Item.MENU_DELETE.order, R.string.delete)
+                if(myAccountId == posts.account.id)
+                    add(MY_POSTS, Item.MENU_EDIT.order, Item.MENU_EDIT.order, R.string.edit)
+
                 if((myAccountId == posts.account.id) and !posts.pinned)
                     add(MY_POSTS, Item.MENU_PIN.order, Item.MENU_PIN.order, context.getString(R.string.pin_the_posts))
                 if((myAccountId == posts.account.id) and posts.pinned)

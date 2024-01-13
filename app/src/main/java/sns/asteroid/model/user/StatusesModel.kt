@@ -7,6 +7,7 @@ import sns.asteroid.api.Statuses
 import sns.asteroid.api.entities.Context
 import sns.asteroid.api.entities.MediaAttachment
 import sns.asteroid.api.entities.Status
+import sns.asteroid.api.entities.StatusSource
 import sns.asteroid.db.entities.Credential
 
 class StatusesModel(val credential: Credential) {
@@ -110,6 +111,58 @@ class StatusesModel(val credential: Credential) {
         }
     }
 
+    fun editStatus(
+        id:String,
+        text: String,
+        spoilerText: String,
+        mediaFile: List<MediaModel.MediaFile>,
+        sensitive: Boolean,
+        pollOptions: List<String>?,
+        pollExpire: Int?,
+        pollMultiple: Boolean?,
+        language: String,
+    ): Result {
+        if(text.isEmpty() and mediaFile.isEmpty()) return Result(false, getString(R.string.empty))
+
+        val mediaIds = mediaFile.mapNotNull { it.mediaAttachment?.id }
+        val mediaAttributes = mediaFile.map {
+            val x = it.mediaAttachment?.meta?.focus?.x
+            val y = it.mediaAttachment?.meta?.focus?.y
+            Triple(it.mediaAttachment?.id, it.description, "$x,$y")
+        }
+
+        val client = Statuses(credential)
+        val response = client.editStatus(
+            id = id,
+            status = text,
+            spoilerText = spoilerText,
+            mediaIds = mediaIds,
+            mediaAttributes = mediaAttributes,
+            sensitive = sensitive,
+            pollOptions = pollOptions,
+            pollExpiresIn = pollExpire,
+            pollMultiple = pollMultiple,
+            pollHideTotals = null,
+            language  = language,
+        ) ?: return Result(false, getString(R.string.failed))
+
+        if(!response.isSuccessful)
+            return Result(isSuccess = false, toastMessage = response.body?.string().toString())
+
+        val json = Json {
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        }
+        return try {
+            val status = json.decodeFromString(Status.serializer(), response.body!!.string())
+            Result(isSuccess = true, status = status, toastMessage = getString(R.string.send))
+        } catch (e: Exception) {
+            Result(isSuccess = true, toastMessage = e.toString())
+        } finally {
+            response.close()
+        }
+    }
+
     fun deleteStatus(statusId: String): Result {
         val client = Statuses(credential)
         val response = client.deleteStatus(statusId)
@@ -119,6 +172,27 @@ class StatusesModel(val credential: Credential) {
             Result(true, getString(R.string.deleted)).also { response.close() }
         else
             Result(false, response.body!!.string()).also { response.close() }
+    }
+
+    fun getStatusSource(statusId: String): StatusSource? {
+        val client = Statuses(credential)
+        val response = client.getStatusSource(statusId) ?: return null
+
+        if(!response.isSuccessful) return null
+            .also { response.close() }
+
+        val json = Json {
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        }
+
+        return try {
+            json.decodeFromString(StatusSource.serializer(), response.body!!.string())
+        } catch (e: Exception) {
+            null
+        } finally {
+            response.close()
+        }
     }
 
     /**

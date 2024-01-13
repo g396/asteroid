@@ -44,6 +44,15 @@ class MediaModel(val credential: Credential) {
     }
 
     companion object {
+        fun getMediaType(name: String): MediaType {
+            return when(name) {
+                "image" -> MediaType.IMAGE
+                "gifv" -> MediaType.VIDEO
+                "video" -> MediaType.VIDEO
+                "audio" -> MediaType.AUDIO
+                else -> MediaType.IMAGE
+            }
+        }
         fun getThumbnail(media: MediaFile): MediaFile {
             if(media.uri == null) return media
 

@@ -16,7 +16,7 @@ import sns.asteroid.model.user.StatusesModel
 import sns.asteroid.model.util.ISO639Lang
 import sns.asteroid.view.adapter.spinner.VisibilityAdapter
 
-class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intentText: String?, visibility: String?): ViewModel() {
+class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intentText: String?, visibility: String?, edit: Status?): ViewModel() {
     private val _credential = MutableLiveData<Credential>()
     val credential: LiveData<Credential> get() = _credential
 
@@ -86,6 +86,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         else null
 
     private var draftId = 0
+    val editId = edit?.id
 
     init {
         replyTo?.let {
@@ -113,6 +114,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             _credential.value = credential ?: loadDefaultCredential()
             loadHashtags()
             loadLanguagesList()
+            edit?.let { setValue(it) }
         }
     }
 
@@ -146,11 +148,23 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             else null
 
         val result = withContext(Dispatchers.IO) {
-            val list =  mediaFile.value!!.mapNotNull { it.mediaAttachment }
-            StatusesModel(credential.value!!).postStatuses(
+            if (editId != null)
+                StatusesModel(credential.value!!).editStatus(
+                    editId,
+                    content.value!!,
+                    spoilerText.value!!,
+                    mediaFile.value!!,
+                    sensitive.value!!,
+                    pollOption,
+                    expireInSeconds,
+                    multiple,
+                    languageCode,
+                )
+            else
+                StatusesModel(credential.value!!).postStatuses(
                 content.value!!,
                 spoilerText.value!!,
-                list,
+                mediaFile.value!!.mapNotNull { it.mediaAttachment },
                 sensitive.value!!,
                 VisibilityAdapter.getVisibility(visibilityPosition),
                 pollOption,
@@ -235,7 +249,7 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         langPosition = language.value!!.indexOfFirst { it.code == draft.language }.let {
             if (it < 0) 0 else it
         }
-        visibilityPosition =
+        if(editId == null) visibilityPosition =
             VisibilityAdapter.getPosition(draft.visibility)
 
         createPoll.postValue(
@@ -249,6 +263,16 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
 
     suspend fun deleteDraft() = withContext(Dispatchers.IO) {
         DraftModel.delete(draftId)
+    }
+
+    suspend fun getStatusSource() = withContext(Dispatchers.IO) {
+        if (editId == null) return@withContext false
+        val statusSource = StatusesModel(credential.value!!).getStatusSource(editId)
+            ?: return@withContext false
+
+        content.postValue(statusSource.text)
+        spoilerText.postValue(statusSource.spoiler_text)
+        return@withContext true
     }
 
     /**
@@ -281,6 +305,33 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
             SettingsManageAccountsModel().getCredentials().firstOrNull()
     }
 
+    private fun setValue(status: Status) {
+        sensitive.value = status.sensitive
+
+        status.poll?.let {
+            pollMultiple.value = it.multiple
+            value1.value = it.options.getOrNull(0)?.title ?: ""
+            value2.value = it.options.getOrNull(1)?.title ?: ""
+            value3.value = it.options.getOrNull(2)?.title ?: ""
+            value4.value = it.options.getOrNull(3)?.title ?: ""
+        }
+
+        langPosition = language.value!!.indexOfFirst { it.code == status.language }.let {
+            if (it < 0) 0 else it
+        }
+        visibilityPosition =
+            VisibilityAdapter.getPosition(status.visibility)
+
+        createPoll.value = status.poll != null
+        enableSpoilerText.value = status.spoiler_text.isNotEmpty()
+
+        mutableListOf<MediaModel.MediaFile>().apply {
+            status.media_attachments.forEach {
+                add(MediaModel.MediaFile(MediaModel.getMediaType(it.type), null, null, it.description ?: "", it))
+            }
+        }.also { _mediaFile.value = it }
+    }
+
 
     /**
      * 投稿元アカウントを切り替える
@@ -295,9 +346,10 @@ class CreatePostsViewModel(credential: Credential?, val replyTo: Status?, intent
         private val replyTo: Status?,
         private val intentText: String?,
         private val visibility: String?,
+        private val edit: Status?,
         ) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return CreatePostsViewModel(credential, replyTo, intentText, visibility) as T
+            return CreatePostsViewModel(credential, replyTo, intentText, visibility, edit) as T
         }
     }
 }

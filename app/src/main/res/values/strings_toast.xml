@@ -56,6 +56,7 @@
     <string name="permission_granted">Permission granted, try to perform the operation again</string>
     <string name="press_back_button_again">Press the back button again to exit</string>
 
+    <string name="select_account_edit">Account switching is not available when editing posts</string>
     <string name="select_account_reply">Account switching is not available when replying</string>
     <string name="select_account_media">Account switching is not available when uploaded media</string>
 </resources>

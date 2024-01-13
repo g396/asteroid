@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import sns.asteroid.R
 import sns.asteroid.api.entities.CustomEmoji
@@ -61,7 +62,8 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         val replyTo = intent.getSerializableExtra("reply_to") as Status?
         val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
         val visibility = intent.getStringExtra("visibility")
-        CreatePostsViewModel.Factory(credential, replyTo, intentText, visibility)
+        val edit = intent.getSerializableExtra("edit") as Status?
+        CreatePostsViewModel.Factory(credential, replyTo, intentText, visibility, edit)
     }
     private val emojiViewModel: EmojiListViewModel by viewModels()
 
@@ -110,6 +112,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         })
         viewModel.language.observe(this@CreatePostsActivity, Observer {
             LanguageAdapter(this, binding.language, it)
+            binding.invalidateAll()
         })
         viewModel.toastMessage.observe(this@CreatePostsActivity, Observer {
             Toast.makeText(this@CreatePostsActivity, it, Toast.LENGTH_SHORT).show()
@@ -137,6 +140,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         }
         binding.selectVisibility.also {
             it.adapter = VisibilityAdapter(this@CreatePostsActivity, it)
+            it.isEnabled = (viewModel.editId == null)
         }
         binding.includeCreatePoll.also { poll ->
             poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
@@ -159,6 +163,9 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
         showKeyboard()
         onBackPressedDispatcher.addCallback(BackKeyCallback())
+
+        if((viewModel.editId != null) and (savedInstanceState == null))
+            getStatusSource()
     }
 
     /**
@@ -366,11 +373,30 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
     }
 
     /**
+     * 投稿編集時においてプレーンテキストを取得する
+     * (StatusエンティティにはHTMLテキストしか入っていない)
+     */
+    private fun getStatusSource() = lifecycleScope.launch {
+        val dialog = LoadingDialog().also { it.show(supportFragmentManager, "tag") }
+
+        if(viewModel.getStatusSource()) {
+            dialog.dismiss()
+            binding.invalidateAll()
+        } else {
+            Toast.makeText(this@CreatePostsActivity, "null", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+
+    /**
      * 投稿アカウントの切り替え用ダイアログを表示する
      * (返信時やメディアのアップロード試行後は不可)
      */
     private fun selectOtherAccount() {
-        if (viewModel.replyTo != null) {
+        if (viewModel.editId != null) {
+            Toast.makeText(this, R.string.select_account_edit, Toast.LENGTH_SHORT).show()
+            return
+        } else if (viewModel.replyTo != null) {
             Toast.makeText(this, getString(R.string.select_account_reply), Toast.LENGTH_SHORT).show()
             return
         } else if (viewModel.mediaFile.value!!.mapNotNull { it.mediaAttachment }.isNotEmpty()) {
@@ -598,6 +624,12 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
             if(media.thumbnail != null) {
                 binding.image.setImageBitmap(media.thumbnail)
+            } else if(media.mediaAttachment?.type == "audio") {
+                binding.image.setImageResource(R.drawable.audiofile)
+            } else if(media.mediaAttachment?.preview_url != null) {
+                Glide.with(this@CreatePostsActivity)
+                    .load(media.mediaAttachment.preview_url)
+                    .into(binding.image)
             }
 
             binding.image.setOnClickListener {
