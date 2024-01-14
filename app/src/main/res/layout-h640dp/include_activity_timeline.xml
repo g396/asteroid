@@ -70,7 +70,7 @@
 
     <include
         android:id="@+id/postField"
-        layout="@layout/include_create_post"
+        layout="@layout/include_quick_post"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
