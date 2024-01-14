@@ -20,10 +20,10 @@ class StandardTimelineModel(
             Category.PUBLIC         -> client.getPublic(maxId, sinceId)
             Category.LOCAL_MEDIA    -> client.getLocal(maxId, sinceId, onlyMedia = true)
             Category.PUBLIC_MEDIA   -> client.getPublic(maxId, sinceId, onlyMedia = true)
-        } ?: return Result(isSuccess=false, toastMessage=getString(R.string.failed_loading))
+        } ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed_loading))
 
         if(!response.isSuccessful)
-            return Result<Status>(isSuccess=false, toastMessage=response.body!!.string())
+            return Result<Status>(isSuccess = false, toastMessage = response.body?.string())
                 .also { response.close() }
 
         val json = Json {
@@ -33,7 +33,12 @@ class StandardTimelineModel(
 
         return try {
             val statuses = json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
-            Result(isSuccess = true, contents = statuses, maxId = statuses.lastOrNull()?.id, sinceId = statuses.firstOrNull()?.id)
+            Result(
+                isSuccess   = true,
+                contents    = statuses,
+                maxId       = statuses.lastOrNull()?.id,
+                sinceId     = statuses.firstOrNull()?.id,
+            )
         } catch (e: Exception) {
             Result(isSuccess=false, toastMessage=e.toString())
         } finally {

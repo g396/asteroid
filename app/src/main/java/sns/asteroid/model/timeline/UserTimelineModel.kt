@@ -14,8 +14,7 @@ open class UserTimelineModel(
     val subject: String,
 ): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val client = Accounts(credential)
-        val response = client.getStatuses(userId, maxId, sinceId, subject)
+        val response = Accounts(credential).getStatuses(userId, maxId, sinceId, subject)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
         if(!response.isSuccessful)
@@ -26,16 +25,20 @@ open class UserTimelineModel(
             ignoreUnknownKeys = true
             coerceInputValues = true
         }
-        val statuses = json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
 
-        if(statuses.isEmpty()) return Result<Status>(isSuccess=true)
-            .also { response.close() }
-
-        return Result(
-            isSuccess       = true,
-            contents        = statuses,
-            maxId           = statuses.last().id,
-            sinceId         = statuses.first().id,
-        ).also { response.close() }
+        return try {
+            val statuses =
+                json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
+            Result(
+                isSuccess   = true,
+                contents    = statuses,
+                maxId       = statuses.lastOrNull()?.id,
+                sinceId     = statuses.firstOrNull()?.id,
+            )
+        } catch (e: Exception) {
+            Result(isSuccess = false, toastMessage = e.toString())
+        } finally {
+            response.close()
+        }
     }
 }
