@@ -111,7 +111,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             (binding.images.adapter as MediaAdapter).submitList(it)
         })
         viewModel.language.observe(this@CreatePostsActivity, Observer {
-            LanguageAdapter(this, binding.language, it)
+            LanguageAdapter(this, binding.item.language, it)
             binding.invalidateAll()
         })
         viewModel.toastMessage.observe(this@CreatePostsActivity, Observer {
@@ -128,10 +128,10 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             customEmoji.setOnClickListener { openEmojiSelector() }
             textArea.setOnClickListener { showKeyboard() }
             avatar.setOnClickListener { selectOtherAccount() }
-            draft.setOnClickListener { openDraft() }
 
-            cw.setOnClickListener { binding.invalidateAll() }
-            poll.setOnClickListener { binding.invalidateAll() }
+            item.draft.setOnClickListener { openDraft() }
+            item.cw.setOnClickListener { binding.invalidateAll() }
+            item.poll.setOnClickListener { binding.invalidateAll() }
         }
 
         binding.images.also {
@@ -555,7 +555,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_xor), Toast.LENGTH_SHORT).show()
                 return
             }
-            if(binding.poll.isChecked) {
+            if(viewModel.createPoll.value == true) {
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_poll_xor), Toast.LENGTH_SHORT).show()
                 return
             }

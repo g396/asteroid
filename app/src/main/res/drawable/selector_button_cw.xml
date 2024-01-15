@@ -2,12 +2,14 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <layer-list>
-            <item android:drawable="@drawable/button_cw_active" android:gravity="center"/>
+            <item android:width="36dp" android:height="36dp" android:drawable="@drawable/circle" android:gravity="center" />
+            <item android:width="24dp" android:height="24dp" android:drawable="@drawable/button_cw_active" android:gravity="center"/>
         </layer-list>
     </item>
     <item android:state_enabled="false">
         <layer-list>
-            <item android:drawable="@drawable/button_cw" android:gravity="center"/>
+            <item android:width="36dp" android:height="36dp" android:drawable="@drawable/circle" android:gravity="center" />
+            <item android:width="24dp" android:height="24dp" android:drawable="@drawable/button_cw" android:gravity="center" />
         </layer-list>
     </item>
 </selector>

@@ -161,21 +161,42 @@
                             android:checked="@={viewModel.resizeImage}"
                             android:visibility="@{media.size() == 0 ? View.GONE : View.VISIBLE}"
                             app:customTextSize='@{"default"}'
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintBottom_toTopOf="@id/divider"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/gray2"
+                            android:alpha="0.5"
+                            android:visibility="@{viewModel.createPoll ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toTopOf="@id/include_create_poll"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                <include
-                    android:id="@+id/include_create_poll"
-                    layout="@layout/include_create_poll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginTop="8dp"
-                    android:visibility="@{viewModel.createPoll ? View.VISIBLE : View.GONE}"
-                    app:viewModel="@{viewModel}"/>
+                        <include
+                            android:id="@+id/include_create_poll"
+                            layout="@layout/include_create_poll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.createPoll ? View.VISIBLE : View.GONE}"
+                            app:viewModel="@{viewModel}"
+                            app:layout_constraintBottom_toTopOf="@id/item"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <include
+                            layout="@layout/include_create_post_item"
+                            android:id="@+id/item"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:viewModel="@{viewModel}"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Space
                     android:layout_width="match_parent"
@@ -291,38 +312,6 @@
                     android:background="@color/transparent"
                     android:src="@drawable/image" />
 
-                <ToggleButton
-                    android:id="@+id/poll"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/selector_button_poll"
-                    android:checked="@={viewModel.createPoll}"
-                    android:enabled="@{media.size() == 0}"
-                    android:textOff="@null"
-                    android:textOn="@null" />
-
-                <ToggleButton
-                    android:id="@+id/cw"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:checked="@={viewModel.enableSpoilerText}"
-                    android:background="@drawable/selector_button_cw"
-                    android:textOff="@null"
-                    android:textOn="@null" />
-
-                <Spinner
-                    android:id="@+id/language"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:selectedItemPosition="@={viewModel.langPosition}"
-                    android:background="@color/transparent" />
-
-                <ImageButton
-                    android:id="@+id/draft"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@color/transparent"
-                    android:src="@drawable/draft" />
             </LinearLayout>
         </HorizontalScrollView>
 
