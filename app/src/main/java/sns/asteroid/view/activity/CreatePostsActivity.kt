@@ -102,10 +102,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             binding.credential = it
             lifecycleScope.launch { emojiViewModel.getCustomEmojiCategories(it.instance) }
         })
-        viewModel.enableSpoilerText.observe(this, Observer {
-            if (it) binding.spoilerText.requestFocus()
-            else binding.content.requestFocus()
-        })
         viewModel.mediaFile.observe(this@CreatePostsActivity, Observer {
             binding.media = it
             (binding.images.adapter as MediaAdapter).submitList(it)
@@ -130,7 +126,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             avatar.setOnClickListener { selectOtherAccount() }
 
             item.draft.setOnClickListener { openDraft() }
-            item.cw.setOnClickListener { binding.invalidateAll() }
+            item.cw.setOnClickListener { changeFocus() }
             item.poll.setOnClickListener { binding.invalidateAll() }
         }
 
@@ -424,6 +420,16 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         val position = intent?.getIntExtra("position", 0) ?: return@launch
         moveCursor = true
         viewModel.load(position)
+        binding.invalidateAll()
+    }
+
+    /**
+     * 警告文の挿入の際にEditTextへのフォーカスを切替える
+     */
+    private fun changeFocus() {
+        binding.spoilerText.isVisible = !binding.spoilerText.isVisible
+        if (binding.spoilerText.isVisible) binding.spoilerText.requestFocus()
+        else binding.content.requestFocus()
         binding.invalidateAll()
     }
 
