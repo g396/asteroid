@@ -30,22 +30,21 @@ class PinnedUserTimelineModel(
             ignoreUnknownKeys = true
             coerceInputValues = true
         }
-        val pinned = json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
-            .map { it.copy(pinned = true) }
 
-        if(pinned.isEmpty()) return posts.also {
+        return try {
+            val pinned =
+                json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
+                    .map { it.copy(pinned = true) }
+            Result(
+                isSuccess       = true,
+                contents        = pinned.plus(posts.contents?.filter { !it.pinned } as List<Status>),
+                maxId           = posts.maxId,
+                sinceId         = posts.sinceId,
+            ).also { isFirst = false }
+        } catch (e: Exception) {
+            Result(isSuccess = false, toastMessage = e.toString())
+        } finally {
             response.close()
-            isFirst = false
-        }
-
-        return Result(
-            isSuccess       = true,
-            contents        = pinned.plus(posts.contents?.filter { !it.pinned } as List<Status>),
-            maxId           = posts.maxId,
-            sinceId         = posts.sinceId,
-        ).also {
-            response.close()
-            isFirst = false
         }
     }
 }

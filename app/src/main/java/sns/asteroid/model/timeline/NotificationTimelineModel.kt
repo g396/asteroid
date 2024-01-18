@@ -10,35 +10,34 @@ import sns.asteroid.db.entities.Credential
 import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 
-class NotificationTimelineModel(
-    credential: Credential,
-    val onlyMention: Boolean = false,
-): AbstractTimelineModel<Notification>(credential) {
+class NotificationTimelineModel(credential: Credential): AbstractTimelineModel<Notification>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Notification> {
         val client = Notifications(credential)
-        val response = client.getAll(maxId, sinceId, onlyMention)
+        val response = client.getAll(maxId, sinceId, onlyMention = false)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed_loading))
 
         if(!response.isSuccessful)
-            return Result<Notification>(isSuccess = false, toastMessage = response.body!!.string())
+            return Result<Notification>(isSuccess = false, toastMessage = response.body?.string())
                 .also { response.close() }
 
         val json = Json {
             ignoreUnknownKeys = true
             coerceInputValues = true
         }
-        val notifications =
-            json.decodeFromString(ListSerializer(Notification.serializer()), response.body!!.string())
 
-        if(notifications.isEmpty())
-            return Result<Notification>(isSuccess = true)
-                .also { response.close() }
-
-        return Result(
-            isSuccess   = true,
-            contents    = notifications.margeSameReaction(),
-            maxId       = notifications.last().id,
-            sinceId     = notifications.first().id,
-        ).also { response.close() }
+        return try {
+            val notifications =
+                json.decodeFromString(ListSerializer(Notification.serializer()), response.body!!.string())
+            Result(
+                isSuccess   = true,
+                contents    = notifications.margeSameReaction(),
+                maxId       = notifications.lastOrNull()?.id,
+                sinceId     = notifications.firstOrNull()?.id,
+            )
+        } catch (e: Exception) {
+            Result(isSuccess = false, toastMessage = e.toString())
+        } finally {
+            response.close()
+        }
     }
 }

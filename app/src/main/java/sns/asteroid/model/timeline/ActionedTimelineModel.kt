@@ -27,7 +27,7 @@ class ActionedTimelineModel(
         } ?: return Result(isSuccess=false, toastMessage=getString(R.string.failed_loading))
 
         if(!response.isSuccessful)
-            return Result<Status>(isSuccess=false, toastMessage=response.body!!.string())
+            return Result<Status>(isSuccess= false, toastMessage = response.body?.string())
                 .also { response.close() }
 
         val json = Json {
@@ -35,18 +35,20 @@ class ActionedTimelineModel(
             coerceInputValues = true
         }
 
-        val statuses = json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
-
-        if(statuses.isEmpty()) return Result<Status>(isSuccess=true)
-            .also { response.close() }
-
-        return Result(
-            isSuccess       = true,
-            contents        = statuses,
-            toastMessage    = null,
-            maxId           = AttributeGetter.getMaxIdFromHttpLinkHeader(response),
-            sinceId         = AttributeGetter.getSinceIdFromHttpLinkHeader(response),
-        ).also { response.close() }
+        return try {
+            val statuses =
+                json.decodeFromString(ListSerializer(Status.serializer()), response.body!!.string())
+            Result(
+                isSuccess   = true,
+                contents    = statuses,
+                maxId       = AttributeGetter.getMaxIdFromHttpLinkHeader(response),
+                sinceId     = AttributeGetter.getSinceIdFromHttpLinkHeader(response),
+            )
+        } catch (e: Exception) {
+            Result(isSuccess = false, toastMessage = e.toString())
+        } finally {
+            response.close()
+        }
     }
 
     enum class Category {
