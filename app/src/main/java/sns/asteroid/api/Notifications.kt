@@ -4,13 +4,13 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
 class Notifications(
-    private val credential: Credential,
+    private val server: String,
+    private val accessToken: String,
 ) {
     fun getAll(maxId: String?, sinceId: String?, onlyMention: Boolean): Response? {
-        val url = ("https://${credential.instance}/api/v1/notifications").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/notifications").toHttpUrlOrNull()
             ?: return null
 
         // ブラックリスト形式で除外しないとfedibirdでバグる・・・
@@ -37,7 +37,7 @@ class Notifications(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 

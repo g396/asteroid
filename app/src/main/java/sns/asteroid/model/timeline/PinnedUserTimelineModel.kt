@@ -18,7 +18,7 @@ class PinnedUserTimelineModel(
         val posts = super.getContents(maxId, sinceId)
         if(!posts.isSuccess or !isFirst) return posts
 
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.getStatuses(userId, maxId, sinceId, subject, isPinned = true)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 

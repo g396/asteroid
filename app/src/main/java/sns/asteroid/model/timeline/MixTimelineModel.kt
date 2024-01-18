@@ -10,7 +10,7 @@ import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 class MixTimelineModel(credential: Credential): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val client = Timelines(credential)
+        val client = Timelines(credential.instance, credential.accessToken)
 
         val getLocal = client.getLocal(maxId, sinceId)
             ?: return Result(isSuccess=false, toastMessage=getString(R.string.failed_loading))

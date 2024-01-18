@@ -13,7 +13,7 @@ class HashtagTimelineModel(
     private val hashtag: String,
 ): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val client = Timelines(credential)
+        val client = Timelines(credential.instance, credential.accessToken)
         val response = client.getHashtag(hashtag, maxId, sinceId)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed_loading))
 

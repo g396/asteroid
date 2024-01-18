@@ -7,11 +7,13 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
-class Media(val credential: Credential) {
+class Media(
+    private val server: String,
+    private val accessToken: String,
+) {
     fun postMedia(file: ByteArray, fileName: String, mimeType: String, description: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/media").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/media").toHttpUrlOrNull()
             ?: return null
 
         val requestBody = file.toRequestBody(mimeType.toMediaTypeOrNull())
@@ -29,7 +31,7 @@ class Media(val credential: Credential) {
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(multipartBody)
             .build()
 

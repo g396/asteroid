@@ -10,10 +10,11 @@ import okhttp3.Response
 import sns.asteroid.db.entities.Credential
 
 class Accounts(
-    private val credential: Credential
+    private val server: String,
+    private val accessToken: String,
 ) {
     fun getAccountByAcct(acct: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/lookup").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/lookup").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder().apply {
@@ -22,7 +23,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -38,7 +39,7 @@ class Accounts(
     }
     
     fun getStatuses(id: String, maxId: String?, sinceId: String?, subject: String, isPinned: Boolean): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/statuses").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/statuses").toHttpUrlOrNull()
             ?: return null
 
         val params = HashMap<String, String>().apply {
@@ -55,7 +56,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -67,7 +68,7 @@ class Accounts(
     }
 
     fun getFollowers(id: String, maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/followers").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/followers").toHttpUrlOrNull()
             ?: return null
 
         val params = HashMap<String, String>().apply {
@@ -82,7 +83,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -94,7 +95,7 @@ class Accounts(
     }
 
     fun getFollowing(id: String, maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/following").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/following").toHttpUrlOrNull()
             ?: return null
 
         val params = HashMap<String, String>().apply {
@@ -109,7 +110,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -121,7 +122,7 @@ class Accounts(
     }
 
     fun getBlocks(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/blocks").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/blocks").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder().apply {
@@ -131,7 +132,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -143,7 +144,7 @@ class Accounts(
     }
 
     fun getMutes(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/mutes").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/mutes").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder().apply {
@@ -153,7 +154,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -165,7 +166,7 @@ class Accounts(
     }
 
     fun getFavourites(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/favourites").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/favourites").toHttpUrlOrNull()
             ?: return null
 
         val params = HashMap<String, String>().apply {
@@ -180,7 +181,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -192,7 +193,7 @@ class Accounts(
     }
 
     fun getBookmarks(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/bookmarks").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/bookmarks").toHttpUrlOrNull()
             ?: return null
 
         val params = HashMap<String, String>().apply {
@@ -207,7 +208,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -219,7 +220,7 @@ class Accounts(
     }
 
     fun getRelationships(ids: List<String>): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/relationships").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/relationships").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder().apply {
@@ -228,7 +229,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -240,14 +241,14 @@ class Accounts(
     }
 
     fun getList(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/lists").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/lists").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder()
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -260,7 +261,7 @@ class Accounts(
 
 
     fun postUserAction(id: String, action: PostAction): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/${action.endpoint}").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/${action.endpoint}").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
@@ -278,7 +279,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(requestBody)
             .build()
 
@@ -307,14 +308,14 @@ class Accounts(
 
     fun postAcceptOrRejectFollowRequests(accountId: String, isAccept: Boolean): Response? {
         val path = if (isAccept) "authorize" else "reject"
-        val url = ("https://${credential.instance}/api/v1/follow_requests/${accountId}/${path}").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/follow_requests/${accountId}/${path}").toHttpUrlOrNull()
             ?: return null
 
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(requestBody)
             .build()
 
@@ -334,7 +335,7 @@ class Accounts(
         avatar: ByteArray? = null,
         header: ByteArray? = null,
     ): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/update_credentials").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/update_credentials").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
@@ -365,7 +366,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .patch(multipartBody)
             .build()
 

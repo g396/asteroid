@@ -24,7 +24,7 @@ class StatusesModel(val credential: Credential) {
     )
 
     fun getContext(id: String): ResultOfContext {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.getContext(id)
             ?: return ResultOfContext(isSuccess = false, context = null, toastMessage = getString(R.string.failed))
 
@@ -43,7 +43,7 @@ class StatusesModel(val credential: Credential) {
         if(text.isEmpty()) return Result(isSuccess = false, getString(R.string.empty))
 
         val response =
-            Statuses(credential).postNewStatus(status = text, visibility = visibility)
+            Statuses(credential.instance, credential.accessToken).postNewStatus(status = text, visibility = visibility)
             ?: return Result(false, getString(R.string.failed))
 
         if(!response.isSuccessful)
@@ -80,7 +80,7 @@ class StatusesModel(val credential: Credential) {
 
         val mediaIds = mediaAttachments.associateBy { it.id } .keys.toList()
 
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postNewStatus(
             status = text,
             spoilerText = spoilerText,
@@ -131,7 +131,7 @@ class StatusesModel(val credential: Credential) {
             Triple(it.mediaAttachment?.id, it.description, "$x,$y")
         }
 
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.editStatus(
             id = id,
             status = text,
@@ -164,7 +164,7 @@ class StatusesModel(val credential: Credential) {
     }
 
     fun deleteStatus(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.deleteStatus(statusId)
             ?: return Result(false, getString(R.string.failed))
 
@@ -175,7 +175,7 @@ class StatusesModel(val credential: Credential) {
     }
 
     fun getStatusSource(statusId: String): StatusSource? {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.getStatusSource(statusId) ?: return null
 
         if(!response.isSuccessful) return null
@@ -199,7 +199,7 @@ class StatusesModel(val credential: Credential) {
      * ふぁぼる
      */
     fun postFavourite(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.FAVOURITE)
             ?: return Result(false, getString(R.string.failed))
 
@@ -218,7 +218,7 @@ class StatusesModel(val credential: Credential) {
      * ふぁぼ取り消す
      */
     fun postUnFavourite(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.UNFAVOURITE)
             ?: return Result(false, getString(R.string.failed))
 
@@ -237,7 +237,7 @@ class StatusesModel(val credential: Credential) {
      * ブーストする
      */
     fun postBoost(statusId: String, visibility: Visibility): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = when(visibility) {
             Visibility.NONE -> client.postAction(statusId, Statuses.PostAction.BOOST)
             Visibility.PUBLIC -> client.postAction(statusId, Statuses.PostAction.BOOST_PUBLIC)
@@ -260,7 +260,7 @@ class StatusesModel(val credential: Credential) {
      * ブースト取り消す
      */
     fun postUnBoost(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.UNBOOST)
             ?: return Result(false, getString(R.string.failed))
 
@@ -279,7 +279,7 @@ class StatusesModel(val credential: Credential) {
      * ブックマークする
      */
     fun postBookMark(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.BOOKMARK)
             ?: return Result(false, getString(R.string.failed))
 
@@ -298,7 +298,7 @@ class StatusesModel(val credential: Credential) {
      * ブックマーク取り消す
      */
     fun postUnBookmark(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.UNBOOKMARK)
             ?: return Result(false, getString(R.string.failed))
 
@@ -317,7 +317,7 @@ class StatusesModel(val credential: Credential) {
      * ピン留めする
      */
     fun postPin(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.PIN)
             ?: return Result(false, getString(R.string.failed))
 
@@ -336,7 +336,7 @@ class StatusesModel(val credential: Credential) {
      * ピン留めする
      */
     fun postUnPin(statusId: String): Result {
-        val client = Statuses(credential)
+        val client = Statuses(credential.instance, credential.accessToken)
         val response = client.postAction(statusId, Statuses.PostAction.UNPIN)
             ?: return Result(false, getString(R.string.failed))
 

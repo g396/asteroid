@@ -12,7 +12,7 @@ import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 class NotificationTimelineModel(credential: Credential): AbstractTimelineModel<Notification>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Notification> {
-        val client = Notifications(credential)
+        val client = Notifications(credential.instance, credential.accessToken)
         val response = client.getAll(maxId, sinceId, onlyMention = false)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed_loading))
 

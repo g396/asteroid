@@ -6,18 +6,18 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
 class Statuses(
-    private val credential: Credential,
+    private val server: String,
+    private val accessToken: String,
 ) {
     fun getContext(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses/$id/context").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/statuses/$id/context").toHttpUrlOrNull()
             ?: return null
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -87,7 +87,7 @@ class Statuses(
         language: String,
         scheduledAt: String?,
     ): Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/statuses").toHttpUrlOrNull()
             ?: return null
 
         val params = HashMap<String, String>().apply {
@@ -114,7 +114,7 @@ class Statuses(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(requestBody)
             .build()
 
@@ -138,7 +138,7 @@ class Statuses(
         spoilerText: String,
         language: String,
     ): Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses/$id").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/statuses/$id").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder().apply {
@@ -179,7 +179,7 @@ class Statuses(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .put(requestBody)
             .build()
 
@@ -191,12 +191,12 @@ class Statuses(
     }
 
     fun deleteStatus(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses/$id").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/statuses/$id").toHttpUrlOrNull()
             ?: return null
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .delete()
             .build()
 
@@ -208,7 +208,7 @@ class Statuses(
     }
 
     fun postAction(id: String, action: PostAction): Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses/$id/${action.value}").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/statuses/$id/${action.value}").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
@@ -220,7 +220,7 @@ class Statuses(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(requestBody)
             .build()
 
@@ -232,12 +232,12 @@ class Statuses(
     }
 
     fun getStatusSource(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses/$id/source").toHttpUrlOrNull()
+        val url = ("https://${server}/api/v1/statuses/$id/source").toHttpUrlOrNull()
             ?: return null
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -262,7 +262,7 @@ class Statuses(
         return getWhoActioned(id, ActionBy.FAVOURITE, maxId, sinceId)
     }
     private fun getWhoActioned(id: String, action: ActionBy, maxId: String?, sinceId: String?) : Response? {
-        val url = ("https://${credential.instance}/api/v1/statuses/$id/${action.value}").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/statuses/$id/${action.value}").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder().apply {
@@ -273,7 +273,7 @@ class Statuses(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 

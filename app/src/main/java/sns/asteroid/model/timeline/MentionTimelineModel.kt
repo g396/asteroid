@@ -13,7 +13,8 @@ class MentionTimelineModel(
     credential: Credential,
 ): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val response = Notifications(credential).getAll(maxId, sinceId, onlyMention = true)
+        val response =
+            Notifications(credential.instance, credential.accessToken).getAll(maxId, sinceId, onlyMention = true)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed_loading))
 
         if(!response.isSuccessful)

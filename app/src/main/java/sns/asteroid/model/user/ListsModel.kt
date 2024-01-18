@@ -17,7 +17,7 @@ class ListsModel(val credential: Credential) {
     )
 
     fun getAll(): Result {
-        val client = Lists(credential)
+        val client = Lists(credential.instance, credential.accessToken)
         val response = client.getLists()
             ?: return Result(isSuccess = false, lists = null, message = getString(R.string.failed))
 
@@ -34,7 +34,7 @@ class ListsModel(val credential: Credential) {
     }
 
     fun get(id: String): Result {
-        val response = Lists(credential).getSingleList(id)
+        val response = Lists(credential.instance, credential.accessToken).getSingleList(id)
             ?: return Result(isSuccess = false, message = getString(R.string.failed))
 
         if(!response.isSuccessful)
@@ -57,7 +57,7 @@ class ListsModel(val credential: Credential) {
     }
 
     fun getInAccount(userId: String): Result {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.getList(userId)
             ?: return Result(isSuccess = false, lists = null, message = getString(R.string.failed))
 
@@ -74,7 +74,7 @@ class ListsModel(val credential: Credential) {
     }
 
     fun createList(title: String): ListTimeline? {
-        val client = Lists(credential)
+        val client = Lists(credential.instance, credential.accessToken)
         val response = client.createList(title)
             ?: return null
 
@@ -89,7 +89,8 @@ class ListsModel(val credential: Credential) {
     }
 
     fun updateList(id: String, title: String, repliesPolicy: String, exclusive: Boolean?): Result {
-        val response = Lists(credential).updateList(id, title, repliesPolicy, exclusive)
+        val response =
+            Lists(credential.instance, credential.accessToken).updateList(id, title, repliesPolicy, exclusive)
             ?: return Result(isSuccess = false, message = getString(R.string.failed))
 
         if (!response.isSuccessful)
@@ -111,19 +112,19 @@ class ListsModel(val credential: Credential) {
     }
 
     fun deleteList(id: String): Boolean {
-        val client = Lists(credential)
+        val client = Lists(credential.instance, credential.accessToken)
         val response = client.deleteList(id) ?: return false
         return response.isSuccessful
     }
 
     fun addAccountToList(userId: String, listId: String): Boolean {
-        val client = Lists(credential)
+        val client = Lists(credential.instance, credential.accessToken)
         val response = client.addAccount(userId, listId) ?: return false
         return response.isSuccessful
     }
 
     fun removeAccountFromList(userId: String, listId: String): Boolean {
-        val client = Lists(credential)
+        val client = Lists(credential.instance, credential.accessToken)
         val response = client.removeAccount(userId, listId) ?: return false
         return response.isSuccessful
     }

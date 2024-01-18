@@ -176,7 +176,7 @@ class MediaModel(val credential: Credential) {
 
         val file = readAndResize(uri, context, resize)
             ?: return Result(isSuccess = false, mediaAttachment = null, message = getString(R.string.failed_to_load_media))
-        val response = Media(credential).postMedia(file.first, file.second, file.third, description)
+        val response = Media(credential.instance, credential.accessToken).postMedia(file.first, file.second, file.third, description)
             ?: return Result(isSuccess = false, mediaAttachment = null, message = getString(R.string.failed))
 
         if(!response.isSuccessful)
