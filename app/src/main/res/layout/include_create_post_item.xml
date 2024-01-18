@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="sns.asteroid.viewmodel.CreatePostsViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ToggleButton
+            android:id="@+id/cw"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/selector_button_cw"
+            android:stateListAnimator="@null"
+            android:checked="@={viewModel.enableSpoilerText}"
+            android:textOff="@null"
+            android:textOn="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/poll"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/selector_button_poll"
+            android:stateListAnimator="@null"
+            android:checked="@={viewModel.createPoll}"
+            android:enabled="@{viewModel.mediaFile.size() == 0}"
+            android:textOff="@null"
+            android:textOn="@null"
+            app:layout_constraintStart_toEndOf="@id/cw"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/language"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:padding="4dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/card_background"
+            android:selectedItemPosition="@={viewModel.langPosition}"
+            app:layout_constraintStart_toEndOf="@id/poll"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/draft"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/card_background"
+            android:src="@drawable/draft"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

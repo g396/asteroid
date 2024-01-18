@@ -26,6 +26,7 @@ class LanguageAdapter(
 
         view.findViewById<TextView>(R.id.text).apply {
             text = list[position].code.uppercase().ifEmpty { "Lang" }
+            setTextColor((0xFF888888).toInt())
         }
 
         return view

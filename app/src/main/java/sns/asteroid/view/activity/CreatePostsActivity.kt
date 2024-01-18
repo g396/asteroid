@@ -102,16 +102,12 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             binding.credential = it
             lifecycleScope.launch { emojiViewModel.getCustomEmojiCategories(it.instance) }
         })
-        viewModel.enableSpoilerText.observe(this, Observer {
-            if (it) binding.spoilerText.requestFocus()
-            else binding.content.requestFocus()
-        })
         viewModel.mediaFile.observe(this@CreatePostsActivity, Observer {
             binding.media = it
             (binding.images.adapter as MediaAdapter).submitList(it)
         })
         viewModel.language.observe(this@CreatePostsActivity, Observer {
-            LanguageAdapter(this, binding.language, it)
+            LanguageAdapter(this, binding.item.language, it)
             binding.invalidateAll()
         })
         viewModel.toastMessage.observe(this@CreatePostsActivity, Observer {
@@ -128,10 +124,10 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             customEmoji.setOnClickListener { openEmojiSelector() }
             textArea.setOnClickListener { showKeyboard() }
             avatar.setOnClickListener { selectOtherAccount() }
-            draft.setOnClickListener { openDraft() }
 
-            cw.setOnClickListener { binding.invalidateAll() }
-            poll.setOnClickListener { binding.invalidateAll() }
+            item.draft.setOnClickListener { openDraft() }
+            item.cw.setOnClickListener { changeFocus() }
+            item.poll.setOnClickListener { binding.invalidateAll() }
         }
 
         binding.images.also {
@@ -428,6 +424,16 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
     }
 
     /**
+     * 警告文の挿入の際にEditTextへのフォーカスを切替える
+     */
+    private fun changeFocus() {
+        binding.spoilerText.isVisible = !binding.spoilerText.isVisible
+        if (binding.spoilerText.isVisible) binding.spoilerText.requestFocus()
+        else binding.content.requestFocus()
+        binding.invalidateAll()
+    }
+
+    /**
      * 画像・テキスト等をintentから受け取る
      */
     private fun getContentFromIntent() {
@@ -555,7 +561,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_xor), Toast.LENGTH_SHORT).show()
                 return
             }
-            if(binding.poll.isChecked) {
+            if(viewModel.createPoll.value == true) {
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_poll_xor), Toast.LENGTH_SHORT).show()
                 return
             }
