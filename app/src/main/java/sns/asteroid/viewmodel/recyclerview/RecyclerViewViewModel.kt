@@ -18,7 +18,7 @@ import sns.asteroid.model.timeline.GettingContentsModel
 import sns.asteroid.model.user.StatusesModel
 
 abstract class RecyclerViewViewModel<T: ContentInterface>(
-    val columnInfo: ColumnInfo,
+    protected val columnInfo: ColumnInfo,
     credential: Credential
 ): ViewModel() {
     abstract val timelineModel: GettingContentsModel<T>
