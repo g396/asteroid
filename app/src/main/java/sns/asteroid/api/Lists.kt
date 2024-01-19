@@ -7,18 +7,20 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
-class Lists(val credential: Credential) {
+class Lists(
+    private val server: String,
+    private val accessToken: String,
+) {
     fun getLists(): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder()
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -30,14 +32,14 @@ class Lists(val credential: Credential) {
     }
 
     fun getSingleList(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists/$id").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists/$id").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder()
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -49,7 +51,7 @@ class Lists(val credential: Credential) {
     }
 
     fun updateList(id: String, title: String, repliesPolicy: String, exclusive: Boolean?): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists/$id").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists/$id").toHttpUrlOrNull()
             ?: return null
 
         val multipartBody = MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -60,7 +62,7 @@ class Lists(val credential: Credential) {
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .put(multipartBody)
             .build()
 
@@ -72,7 +74,7 @@ class Lists(val credential: Credential) {
     }
 
     fun createList(title: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists").toHttpUrlOrNull()
             ?: return null
 
         val multipartBody = MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -81,7 +83,7 @@ class Lists(val credential: Credential) {
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(multipartBody)
             .build()
 
@@ -93,14 +95,14 @@ class Lists(val credential: Credential) {
     }
 
     fun deleteList(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists/$id").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists/$id").toHttpUrlOrNull()
             ?: return null
 
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .delete(requestBody)
             .build()
 
@@ -112,7 +114,7 @@ class Lists(val credential: Credential) {
     }
 
     fun getAccounts(maxId: String?, sinceId: String?, listId: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists/$listId/accounts").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists/$listId/accounts").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
@@ -125,7 +127,7 @@ class Lists(val credential: Credential) {
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -137,7 +139,7 @@ class Lists(val credential: Credential) {
     }
 
     fun addAccount(userId: String, listId: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists/$listId/accounts").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists/$listId/accounts").toHttpUrlOrNull()
             ?: return null
 
         val multipartBody = MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -146,7 +148,7 @@ class Lists(val credential: Credential) {
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(multipartBody)
             .build()
 
@@ -158,7 +160,7 @@ class Lists(val credential: Credential) {
     }
 
     fun removeAccount(userId: String, listId: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/lists/$listId/accounts").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/lists/$listId/accounts").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
@@ -168,7 +170,7 @@ class Lists(val credential: Credential) {
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .delete(requestBody)
             .build()
 

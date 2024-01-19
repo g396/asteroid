@@ -19,7 +19,7 @@ class AccountsModel(val credential: Credential) {
     )
 
     fun getAccountByAcct(acct: String): Result {
-        val response = Accounts(credential).getAccountByAcct(acct)
+        val response = Accounts(credential.instance, credential.accessToken).getAccountByAcct(acct)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
         if(!response.isSuccessful)
@@ -50,7 +50,7 @@ class AccountsModel(val credential: Credential) {
         avatar: ByteArray? = null,
         header: ByteArray? = null,
     ): Result {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.patchUpdateCredentials(displayName, note, fields, isLocked, isBot, avatar, header)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 

@@ -14,7 +14,8 @@ open class UserTimelineModel(
     val subject: String,
 ): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val response = Accounts(credential).getStatuses(userId, maxId, sinceId, subject)
+        val response =
+            Accounts(credential.instance, credential.accessToken).getStatuses(userId, maxId, sinceId, subject)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
         if(!response.isSuccessful)

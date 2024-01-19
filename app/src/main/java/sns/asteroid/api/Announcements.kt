@@ -10,7 +10,7 @@ class Announcements(private val server: String, private val accessToken: String)
         val url = ("https://${server}/api/v1/announcements").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
+        val urlBuilder = url.newBuilder().apply {
             addQueryParameter("with_dismissed", "true")
         }
 

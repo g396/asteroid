@@ -20,7 +20,7 @@ class ActionedTimelineModel(
 ): AbstractTimelineModel<Status>(credential) {
 
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = when(category) {
             Category.BOOKMARK -> client.getBookmarks(maxId, sinceId)
             Category.FAVOURITE -> client.getFavourites(maxId, sinceId)

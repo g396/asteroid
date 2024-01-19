@@ -13,7 +13,7 @@ class StandardTimelineModel(
     private val category: Category,
 ): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val client = Timelines(credential)
+        val client = Timelines(credential.instance, credential.accessToken)
         val response = when(category) {
             Category.LOCAL          -> client.getLocal(maxId, sinceId)
             Category.HOME           -> client.getHome(maxId, sinceId)

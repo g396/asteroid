@@ -7,11 +7,11 @@ import okhttp3.Response
 
 /**
  * インスタンス固有の情報を取得する
- * @param domain インスタンスのドメイン(ex. "mastodon.social")
+ * @param server インスタンスのドメイン(ex. "mastodon.social")
  */
-class Instance(private val domain: String) {
+class Instance(private val server: String) {
     fun getInstance(): Response? {
-        val url = ("https://$domain/api/v2/instance").toHttpUrlOrNull()
+        val url = ("https://$server/api/v2/instance").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder()
@@ -28,7 +28,7 @@ class Instance(private val domain: String) {
     }
 
     fun getInstanceV1(): Response? {
-        val url = ("https://$domain/api/v1/instance").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/instance").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder()
@@ -45,7 +45,7 @@ class Instance(private val domain: String) {
     }
 
     fun getCustomEmojis(): Response? {
-        val url = ("https://$domain/api/v1/custom_emojis").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/custom_emojis").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder =url.newBuilder()

@@ -16,7 +16,7 @@ class UserActionModel(val credential: Credential) {
     )
 
     fun postUserAction(id: String, action: Accounts.PostAction): Result {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.postUserAction(id, action)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
@@ -49,7 +49,7 @@ class UserActionModel(val credential: Credential) {
     }
 
     fun acceptFollowRequest(account: Account): Result {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.postAcceptOrRejectFollowRequests(account.id, isAccept = true)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
@@ -60,7 +60,7 @@ class UserActionModel(val credential: Credential) {
     }
 
     fun rejectFollowRequest(account: Account): Result {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.postAcceptOrRejectFollowRequests(account.id, isAccept = false)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 

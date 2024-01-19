@@ -13,8 +13,8 @@ import sns.asteroid.model.util.AttributeGetter
 class WhoActionedModel(credential: Credential, val id: String, val action: Action): AbstractTimelineModel<Account>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Account> {
         val response = when(action) {
-            Action.BOOST -> Statuses(credential).getWhoBoosted(id, maxId, sinceId)
-            Action.FAVOURITE -> Statuses(credential).getWhoFavourited(id, maxId, sinceId)
+            Action.BOOST -> Statuses(credential.instance, credential.accessToken).getWhoBoosted(id, maxId, sinceId)
+            Action.FAVOURITE -> Statuses(credential.instance, credential.accessToken).getWhoFavourited(id, maxId, sinceId)
         } ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
         if (!response.isSuccessful)

@@ -7,22 +7,22 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
 class Accounts(
-    private val credential: Credential
+    private val server: String,
+    private val accessToken: String,
 ) {
     fun getAccountByAcct(acct: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/lookup").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/lookup").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
+        val urlBuilder = url.newBuilder().apply {
             addQueryParameter("acct", acct)
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -38,24 +38,27 @@ class Accounts(
     }
     
     fun getStatuses(id: String, maxId: String?, sinceId: String?, subject: String, isPinned: Boolean): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/statuses").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/statuses").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            put("pinned", "$isPinned")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-            subject.let { if (it.contains("media")) put("only_media", "true") }
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
+            addQueryParameter("pinned", "$isPinned")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
+
+            if(subject.contains("media"))
+                addQueryParameter("only_media", "true")
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -67,22 +70,23 @@ class Accounts(
     }
 
     fun getFollowers(id: String, maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/followers").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/followers").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -94,22 +98,23 @@ class Accounts(
     }
 
     fun getFollowing(id: String, maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/following").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/following").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -121,17 +126,21 @@ class Accounts(
     }
 
     fun getBlocks(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/blocks").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/blocks").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            maxId?.let { addQueryParameter("max_id", "$maxId") }
-            sinceId?.let { addQueryParameter("since_id", "$sinceId") }
+        val urlBuilder = url.newBuilder().apply {
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -143,17 +152,21 @@ class Accounts(
     }
 
     fun getMutes(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/mutes").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/mutes").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            maxId?.let { addQueryParameter("max_id", "$maxId") }
-            sinceId?.let { addQueryParameter("since_id", "$sinceId") }
+        val urlBuilder = url.newBuilder().apply {
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -165,22 +178,23 @@ class Accounts(
     }
 
     fun getFavourites(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/favourites").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/favourites").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -192,22 +206,23 @@ class Accounts(
     }
 
     fun getBookmarks(maxId: String?, sinceId: String?): Response? {
-        val url = ("https://${credential.instance}/api/v1/bookmarks").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/bookmarks").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -219,16 +234,18 @@ class Accounts(
     }
 
     fun getRelationships(ids: List<String>): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/relationships").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/relationships").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            ids.forEach{ param -> addQueryParameter("id[]", param) }
+        val urlBuilder = url.newBuilder().apply {
+            ids.forEach{
+                addQueryParameter("id[]", it)
+            }
         }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -240,14 +257,14 @@ class Accounts(
     }
 
     fun getList(id: String): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/lists").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/lists").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder()
+        val urlBuilder = url.newBuilder()
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .get()
             .build()
 
@@ -260,7 +277,7 @@ class Accounts(
 
 
     fun postUserAction(id: String, action: PostAction): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/${id}/${action.endpoint}").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/${id}/${action.endpoint}").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
@@ -278,7 +295,7 @@ class Accounts(
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(requestBody)
             .build()
 
@@ -307,14 +324,14 @@ class Accounts(
 
     fun postAcceptOrRejectFollowRequests(accountId: String, isAccept: Boolean): Response? {
         val path = if (isAccept) "authorize" else "reject"
-        val url = ("https://${credential.instance}/api/v1/follow_requests/${accountId}/${path}").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/follow_requests/${accountId}/${path}").toHttpUrlOrNull()
             ?: return null
 
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(url.newBuilder().build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .post(requestBody)
             .build()
 
@@ -334,38 +351,44 @@ class Accounts(
         avatar: ByteArray? = null,
         header: ByteArray? = null,
     ): Response? {
-        val url = ("https://${credential.instance}/api/v1/accounts/update_credentials").toHttpUrlOrNull()
+        val url = ("https://$server/api/v1/accounts/update_credentials").toHttpUrlOrNull()
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
-            displayName?.let {addQueryParameter("display_name", it) }
-            note?.let { addQueryParameter("note", it) }
-            fields?.let {
-                for((index,field) in it.withIndex()){
-                    addQueryParameter("fields_attributes[$index][name]", field["name"])
-                    addQueryParameter("fields_attributes[$index][value]", field["value"])
-                }
+            displayName?.let {
+                addQueryParameter("display_name", it)
             }
-            isLocked?.let { addQueryParameter("locked", "$it")}
-            isBot?.let { addQueryParameter("bot", "$it")}
+            note?.let {
+                addQueryParameter("note", it)
+            }
+            isLocked?.let {
+                addQueryParameter("locked", "$it")
+            }
+            isBot?.let {
+                addQueryParameter("bot", "$it")
+            }
+            fields?.forEachIndexed { index, field ->
+                addQueryParameter("fields_attributes[$index][name]", field["name"])
+                addQueryParameter("fields_attributes[$index][value]", field["value"])
+            }
         }
 
-        val multipartBody = let {
-            val avatarPart = avatar?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-            val headerPart = header?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        val multipartBody =
+            if ((avatar == null) and (header == null))
+                "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+            else {
+                val avatarPart = avatar?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+                val headerPart = header?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
-            if((avatarPart == null) and (headerPart == null))
-                return@let "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-
-            val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-            avatarPart?.let { builder.addFormDataPart("avatar", "avatar", it) }
-            headerPart?.let { builder.addFormDataPart("header", "header", it) }
-            builder.build()
-        }
+                MultipartBody.Builder().setType(MultipartBody.FORM).apply {
+                    avatarPart?.let { addFormDataPart("avatar", "avatar", it) }
+                    headerPart?.let { addFormDataPart("header", "header", it) }
+                }.build()
+            }
 
         val request = Request.Builder()
             .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer ${credential.accessToken}")
+            .addHeader("Authorization", "Bearer $accessToken")
             .patch(multipartBody)
             .build()
 

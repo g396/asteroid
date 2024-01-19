@@ -16,7 +16,7 @@ class FedibirdActionModel(val credential: Credential) {
     )
 
     fun putEmojiReactions(statusId: String, emojiShortCode: String): Result {
-        val client = EmojiReactions(credential)
+        val client = EmojiReactions(credential.instance, credential.accessToken)
         val response = client.putEmojiReactions(statusId, emojiShortCode)
             ?: return Result(false, status = null, toastMessage = getString(R.string.failed))
 
@@ -35,7 +35,7 @@ class FedibirdActionModel(val credential: Credential) {
     }
 
     fun deleteEmojiReactions(statusId: String, emojiShortCode: String): Result {
-        val client = EmojiReactions(credential)
+        val client = EmojiReactions(credential.instance, credential.accessToken)
         val response = client.deleteEmojiReactions(statusId, emojiShortCode)
             ?: return Result(false, status = null, toastMessage = getString(R.string.failed))
 
