@@ -19,15 +19,11 @@ class Apps(private val server: String, private val appName: String) {
         val url = ("https://$server/api/v1/apps").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("client_name", appName.ifBlank { APP_NAME })
-            put("redirect_uris", REDIRECT_URI)
-            put("scopes", SCOPE)
-            put("website", WEBSITE)
-        }
-
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("client_name", appName.ifBlank { APP_NAME })
+            addQueryParameter("redirect_uris", REDIRECT_URI)
+            addQueryParameter("scopes", SCOPE)
+            addQueryParameter("website", WEBSITE)
         }
 
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())

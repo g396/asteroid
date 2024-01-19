@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
 class Accounts(
     private val server: String,
@@ -17,7 +16,7 @@ class Accounts(
         val url = ("https://$server/api/v1/accounts/lookup").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
+        val urlBuilder = url.newBuilder().apply {
             addQueryParameter("acct", acct)
         }
 
@@ -42,16 +41,19 @@ class Accounts(
         val url = ("https://$server/api/v1/accounts/${id}/statuses").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            put("pinned", "$isPinned")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-            subject.let { if (it.contains("media")) put("only_media", "true") }
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
+            addQueryParameter("pinned", "$isPinned")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
+
+            if(subject.contains("media"))
+                addQueryParameter("only_media", "true")
         }
 
         val request = Request.Builder()
@@ -71,14 +73,15 @@ class Accounts(
         val url = ("https://$server/api/v1/accounts/${id}/followers").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
@@ -98,14 +101,15 @@ class Accounts(
         val url = ("https://$server/api/v1/accounts/${id}/following").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
@@ -125,9 +129,13 @@ class Accounts(
         val url = ("https://$server/api/v1/blocks").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            maxId?.let { addQueryParameter("max_id", "$maxId") }
-            sinceId?.let { addQueryParameter("since_id", "$sinceId") }
+        val urlBuilder = url.newBuilder().apply {
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
@@ -147,9 +155,13 @@ class Accounts(
         val url = ("https://$server/api/v1/mutes").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            maxId?.let { addQueryParameter("max_id", "$maxId") }
-            sinceId?.let { addQueryParameter("since_id", "$sinceId") }
+        val urlBuilder = url.newBuilder().apply {
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
@@ -169,14 +181,15 @@ class Accounts(
         val url = ("https://$server/api/v1/favourites").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
@@ -196,14 +209,15 @@ class Accounts(
         val url = ("https://$server/api/v1/bookmarks").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            put("limit", "40")
-            maxId?.let { put("max_id", "$maxId") }
-            sinceId?.let {put("since_id", "$sinceId")}
-        }
+        val urlBuilder = url.newBuilder().apply {
+            addQueryParameter("limit", "40")
 
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
+            maxId?.let {
+                addQueryParameter("max_id", "$maxId")
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", "$sinceId")
+            }
         }
 
         val request = Request.Builder()
@@ -223,8 +237,10 @@ class Accounts(
         val url = ("https://$server/api/v1/accounts/relationships").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            ids.forEach{ param -> addQueryParameter("id[]", param) }
+        val urlBuilder = url.newBuilder().apply {
+            ids.forEach{
+                addQueryParameter("id[]", it)
+            }
         }
 
         val request = Request.Builder()
@@ -244,7 +260,7 @@ class Accounts(
         val url = ("https://$server/api/v1/accounts/${id}/lists").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder()
+        val urlBuilder = url.newBuilder()
 
         val request = Request.Builder()
             .url(urlBuilder.build())
@@ -339,30 +355,36 @@ class Accounts(
             ?: return null
 
         val urlBuilder = url.newBuilder().apply {
-            displayName?.let {addQueryParameter("display_name", it) }
-            note?.let { addQueryParameter("note", it) }
-            fields?.let {
-                for((index,field) in it.withIndex()){
-                    addQueryParameter("fields_attributes[$index][name]", field["name"])
-                    addQueryParameter("fields_attributes[$index][value]", field["value"])
-                }
+            displayName?.let {
+                addQueryParameter("display_name", it)
             }
-            isLocked?.let { addQueryParameter("locked", "$it")}
-            isBot?.let { addQueryParameter("bot", "$it")}
+            note?.let {
+                addQueryParameter("note", it)
+            }
+            isLocked?.let {
+                addQueryParameter("locked", "$it")
+            }
+            isBot?.let {
+                addQueryParameter("bot", "$it")
+            }
+            fields?.forEachIndexed { index, field ->
+                addQueryParameter("fields_attributes[$index][name]", field["name"])
+                addQueryParameter("fields_attributes[$index][value]", field["value"])
+            }
         }
 
-        val multipartBody = let {
-            val avatarPart = avatar?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-            val headerPart = header?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        val multipartBody =
+            if ((avatar == null) and (header == null))
+                "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+            else {
+                val avatarPart = avatar?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+                val headerPart = header?.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
-            if((avatarPart == null) and (headerPart == null))
-                return@let "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-
-            val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-            avatarPart?.let { builder.addFormDataPart("avatar", "avatar", it) }
-            headerPart?.let { builder.addFormDataPart("header", "header", it) }
-            builder.build()
-        }
+                MultipartBody.Builder().setType(MultipartBody.FORM).apply {
+                    avatarPart?.let { addFormDataPart("avatar", "avatar", it) }
+                    headerPart?.let { addFormDataPart("header", "header", it) }
+                }.build()
+            }
 
         val request = Request.Builder()
             .url(urlBuilder.build())

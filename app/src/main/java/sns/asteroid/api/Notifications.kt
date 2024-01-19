@@ -30,9 +30,16 @@ class Notifications(
 
         val urlBuilder =url.newBuilder().apply {
             addQueryParameter("limit", "40")
-            maxId?.let { addQueryParameter("max_id", it) }
-            sinceId?.let { addQueryParameter("since_id", it) }
-            if(onlyMention) excludeTypes.forEach { addQueryParameter("exclude_types[]", it) }
+
+            maxId?.let {
+                addQueryParameter("max_id", it)
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", it)
+            }
+            if(onlyMention) excludeTypes.forEach {
+                addQueryParameter("exclude_types[]", it)
+            }
         }
 
         val request = Request.Builder()

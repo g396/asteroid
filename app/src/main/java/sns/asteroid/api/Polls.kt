@@ -15,8 +15,10 @@ class Polls(
         val url = ("https://${server}/api/v1/polls/$id/votes").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            choices.forEach { addQueryParameter("choices[]", it.toString()) }
+        val urlBuilder = url.newBuilder().apply {
+            choices.forEach {
+                addQueryParameter("choices[]", it.toString())
+            }
         }
 
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())

@@ -10,7 +10,7 @@ class Suggestions(private val server: String, private val accessToken: String) {
         val url = ("https://$server/api/v1/suggestions").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
+        val urlBuilder = url.newBuilder().apply {
             addQueryParameter("limit", "$limit")
         }
         val request = Request.Builder()

@@ -28,86 +28,58 @@ class Statuses(
         }
     }
 
-    fun postNewStatus(status: String, visibility: String): Response? {
-        return postNewStatus(
-            status = status,
-            mediaIds = null,
-            pollOptions = null,
-            pollExpiresIn = null,
-            pollMultiple = null,
-            pollHideTotals = null,
-            inReplyToId = null,
-            sensitive = false,
-            spoilerText = "",
-            visibility = visibility,
-            language = "",
-            scheduledAt = null,
-        )
-    }
-
-    fun postNewStatus(
-        status: String,
-        spoilerText: String,
-        mediaIds: List<String>,
-        sensitive: Boolean,
-        visibility: String,
-        pollOptions: List<String>?,
-        pollExpiresIn: Int?,
-        pollMultiple: Boolean?,
-        inReplyToId: String?,
-        language: String,
-    ): Response? {
-        return postNewStatus(
-            status = status,
-            mediaIds = mediaIds,
-            pollOptions = pollOptions,
-            pollExpiresIn = pollExpiresIn,
-            pollMultiple = pollMultiple,
-            pollHideTotals = null,
-            inReplyToId = inReplyToId,
-            sensitive = sensitive,
-            spoilerText = spoilerText,
-            visibility = visibility,
-            language = language,
-            scheduledAt = null,
-        )
-    }
-
     fun postNewStatus(
         status: String?,
-        mediaIds: List<String>?,
-        pollOptions: List<String>?,
-        pollExpiresIn: Int?,
-        pollMultiple: Boolean?,
-        pollHideTotals: Boolean?,
-        inReplyToId: String?,
-        sensitive: Boolean?,
-        spoilerText: String,
+        mediaIds: List<String>? = null,
+        pollOptions: List<String>? = null,
+        pollExpiresIn: Int? = null,
+        pollMultiple: Boolean? = null,
+        pollHideTotals: Boolean? = null,
+        inReplyToId: String? = null,
+        sensitive: Boolean? = null,
+        spoilerText: String = "",
         visibility: String,
-        language: String,
-        scheduledAt: String?,
+        language: String = "",
+        scheduledAt: String? = null,
     ): Response? {
         val url = ("https://$server/api/v1/statuses").toHttpUrlOrNull()
             ?: return null
 
-        val params = HashMap<String, String>().apply {
-            status?.let {put("status", "$status")}
-            pollExpiresIn?.let {put("poll[expires_in]", "$pollExpiresIn")}
-            pollMultiple?.let {put("poll[multiple]", "$pollMultiple")}
-            pollHideTotals?.let {put("poll[hide_totals]", "$pollHideTotals")}
-            inReplyToId?.let {put("in_reply_to_id", "$inReplyToId")}
-            sensitive?.let {put("sensitive", "$sensitive")}
-            scheduledAt?.let {put("scheduled_at", "$scheduledAt")}
+        val urlBuilder = url.newBuilder().apply {
+            status?.let {
+                addQueryParameter("status", it)
+            }
+            pollExpiresIn?.let {
+                addQueryParameter("poll[expires_in]", "$it")
+            }
+            pollMultiple?.let {
+                addQueryParameter("poll[multiple]","$it")
+            }
+            pollHideTotals?.let {
+                addQueryParameter("poll[hide_totals]", "$it")
+            }
+            inReplyToId?.let {
+                addQueryParameter("in_reply_to_id", it)
+            }
+            sensitive?.let {
+                addQueryParameter("sensitive", "$it")
+            }
+            scheduledAt?.let {
+                addQueryParameter("scheduled_at", it)
+            }
+            mediaIds?.forEach {
+                addQueryParameter("media_ids[]", it)
+            }
+            pollOptions?.forEach {
+                addQueryParameter("poll[options][]", it)
+            }
 
-            if(visibility.isNotBlank()) put("visibility", visibility)
-            if(spoilerText.isNotBlank()) put("spoiler_text", spoilerText)
-            if(language.isNotBlank()) put("language", language)
-        }
-
-        val urlBuilder =url.newBuilder().apply {
-            params.forEach{ param -> addQueryParameter(param.key, param.value)}
-            mediaIds?.forEach { addQueryParameter("media_ids[]", it) }
-            pollOptions?.forEach { addQueryParameter("poll[options][]", it) }
+            if(visibility.isNotBlank())
+                addQueryParameter("visibility", visibility)
+            if(spoilerText.isNotBlank())
+                addQueryParameter("spoiler_text", spoilerText)
+            if(language.isNotBlank())
+                addQueryParameter("language", language)
         }
 
         val requestBody = "{}".toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())

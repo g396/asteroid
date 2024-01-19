@@ -6,7 +6,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import sns.asteroid.db.entities.Credential
 
 class EmojiReactions(
     private val server: String,
