@@ -56,7 +56,7 @@ class TimelineActivity:
     }
 
     private val adapter by lazy {
-        TimelinePagerAdapter(this, binding.include.tabs, binding.include.viewPager)
+        TimelinePagerAdapter(this, binding.include.viewPager, binding.include.tabs)
     }
     private val drawerCredentialSpinner by lazy {
         DrawerCredentialAdapter(this, headerDrawerBinding)
