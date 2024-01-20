@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import sns.asteroid.R
 import sns.asteroid.databinding.ActivitySingleTimelineBinding
 import sns.asteroid.db.entities.ColumnInfo
 import sns.asteroid.db.entities.Credential
@@ -18,6 +19,8 @@ class SingleTimelineActivity : BaseActivity() {
     private val binding by lazy { ActivitySingleTimelineBinding.inflate(layoutInflater) }
 
     private val credential by lazy { intent.getSerializableExtra("credential") as Credential }
+    private val columnInfo by lazy { intent.getSerializableExtra("column") as ColumnInfo }
+
     private val adapter by lazy { TimelinePagerAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +34,12 @@ class SingleTimelineActivity : BaseActivity() {
         }
 
         binding.floatingActionButton.apply {
-            setOnClickListener { openCreatePostsActivity(credential) }
+            if (columnInfo.subject == "hashtag") {
+                setImageResource(R.drawable.hashtag)
+                setOnClickListener { openCreatePostsActivity(credential, "#${columnInfo.option_id}", "")}
+            } else {
+                setOnClickListener { openCreatePostsActivity(credential) }
+            }
         }
     }
 
@@ -54,7 +62,6 @@ class SingleTimelineActivity : BaseActivity() {
 
         @Suppress("MoveVariableDeclarationIntoWhen")
         override fun createFragment(position: Int): Fragment {
-            val columnInfo =  intent.getSerializableExtra("column") as ColumnInfo
             val column = Pair(columnInfo, credential)
 
             return when(columnInfo.subject) {
