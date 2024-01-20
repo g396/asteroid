@@ -2,6 +2,7 @@ package sns.asteroid.view.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -34,6 +35,8 @@ class SingleTimelineActivity : BaseActivity() {
         }
 
         binding.floatingActionButton.apply {
+            isVisible = true
+
             if (columnInfo.subject == "hashtag") {
                 setImageResource(R.drawable.hashtag)
                 setOnClickListener { openCreatePostsActivity(credential, "#${columnInfo.option_id}", "")}
@@ -79,7 +82,6 @@ class SingleTimelineActivity : BaseActivity() {
                 "reblogged_by" -> AccountListFragment.newInstance(column)
                 else        -> TimelineFragment.newInstance(column, true)
             }.also {
-                binding.floatingActionButton.visibility = View.VISIBLE
                 fragment = it
             }
         }
