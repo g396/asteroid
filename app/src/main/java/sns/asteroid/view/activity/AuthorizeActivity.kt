@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -38,13 +41,40 @@ class AuthorizeActivity : AppCompatActivity() {
                 materialTextfield2.visibility =
                     if (isChecked) View.VISIBLE
                     else View.GONE
+                editTextServer.imeOptions =
+                    if(isChecked) EditorInfo.IME_ACTION_DONE
+                    else EditorInfo.IME_ACTION_GO
+
+                if(isChecked) accessToken.requestFocus()
+                else editTextServer.requestFocus()
+
                 checkBox2.isEnabled = !isChecked
             }
             checkBox2.setOnCheckedChangeListener { _, isChecked ->
                 materialTextfield3.visibility =
                     if (isChecked) View.VISIBLE
                     else View.GONE
+                editTextServer.imeOptions =
+                    if(isChecked) EditorInfo.IME_ACTION_DONE
+                    else EditorInfo.IME_ACTION_GO
+
+                if(isChecked) appName.requestFocus()
+                else editTextServer.requestFocus()
+
                 checkBox.isEnabled = !isChecked
+            }
+
+            appName.apply {
+                imeOptions = EditorInfo.IME_ACTION_GO
+                setOnEditorActionListener(EditorActionListener())
+            }
+            accessToken.apply {
+                imeOptions = EditorInfo.IME_ACTION_GO
+                setOnEditorActionListener(EditorActionListener())
+            }
+            editTextServer.apply {
+                imeOptions = EditorInfo.IME_ACTION_GO
+                setOnEditorActionListener(EditorActionListener())
             }
         }
 
@@ -105,7 +135,6 @@ class AuthorizeActivity : AppCompatActivity() {
         binding.editTextServer.requestFocus()
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.showSoftInput(binding.editTextServer, 0)
-
     }
 
     /**
@@ -129,4 +158,12 @@ class AuthorizeActivity : AppCompatActivity() {
         }
     }
 
+    inner class EditorActionListener: TextView.OnEditorActionListener {
+        override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+            when (actionId) {
+                EditorInfo.IME_ACTION_GO -> binding.buttonLogin.callOnClick()
+            }
+            return true
+        }
+    }
 }
