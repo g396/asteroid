@@ -1,9 +1,11 @@
 package sns.asteroid.view.activity
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +56,8 @@ class AuthorizeActivity : AppCompatActivity() {
                 openBrowser(uri)
             })
         }
+
+        showKeyboard()
     }
 
     /**
@@ -97,6 +101,12 @@ class AuthorizeActivity : AppCompatActivity() {
         startActivity(webIntent)
     }
 
+    private fun showKeyboard() {
+        binding.editTextServer.requestFocus()
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(binding.editTextServer, 0)
+
+    }
 
     /**
      * OAuth認証せずにアクセストークンを直接入力する場合
