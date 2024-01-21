@@ -8,9 +8,7 @@ import android.widget.PopupMenu
 import android.widget.PopupMenu.OnMenuItemClickListener
 import android.widget.ToggleButton
 import androidx.core.net.toUri
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.google.android.flexbox.FlexboxLayoutManager
 import sns.asteroid.R
 import sns.asteroid.api.entities.Status
@@ -44,6 +42,13 @@ open class TimelineAdapter(
     // アクションボタンを隠す設定が有効の際には
     // このIDの投稿だけボタンを表示する
     private var selectingStatusId: String? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.itemAnimator = object: DefaultItemAnimator(){}.apply {
+            supportsChangeAnimations = false
+        }
+        recyclerView.setHasFixedSize(true)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)

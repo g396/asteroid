@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.Observer
 import androidx.lifecycle.coroutineScope
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import sns.asteroid.R
@@ -56,9 +55,6 @@ class StatusDetailActivity: AppCompatActivity(), EventsListener  {
         binding.recyclerView.also {
             it.adapter = recyclerViewAdapter
             it.layoutManager = LinearLayoutManager(this)
-            it.setHasFixedSize(true)
-            it.itemAnimator = object: DefaultItemAnimator(){}.apply { supportsChangeAnimations = false }
-
             registerForContextMenu(it)
         }
 
