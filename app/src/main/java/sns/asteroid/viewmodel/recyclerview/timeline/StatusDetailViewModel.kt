@@ -7,25 +7,20 @@ import kotlinx.coroutines.withContext
 import sns.asteroid.api.entities.Status
 import sns.asteroid.db.entities.ColumnInfo
 import sns.asteroid.db.entities.Credential
-import sns.asteroid.model.timeline.AbstractTimelineModel
-import sns.asteroid.model.user.StatusesModel
+import sns.asteroid.model.timeline.ContextModel
 
 class StatusDetailViewModel(columnInfo: ColumnInfo, credential: Credential, val status: Status):
     TimelineViewModel(columnInfo, credential) {
 
-    override val timelineModel: AbstractTimelineModel<Status>
-        get() = TODO("Not yet implemented")
+    override val timelineModel = ContextModel(credential, status)
     init {
         _contents.value = listOf(status)
     }
 
     suspend fun getParentAndChildStatuses() {
-        val result = withContext(Dispatchers.IO) { StatusesModel(credential.value!!).getContext(status.id) }
+        val result = withContext(Dispatchers.IO) { timelineModel.getLatest() }
         if (result.isSuccess) {
-            _contents.value = mutableListOf(status).apply {
-                result.context?.ancestors?.let { addAll(0, it) }
-                result.context?.descendants?.let { addAll(it) }
-            }
+            result.contents?.let { _contents.value = it }
         } else {
             result.toastMessage?.let { toastMessage.value = it }
         }

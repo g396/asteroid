@@ -17,28 +17,6 @@ class StatusesModel(val credential: Credential) {
         val status: Status? = null,
     )
 
-    data class ResultOfContext(
-        val isSuccess: Boolean,
-        val context: Context?, // is not Android.Context
-        val toastMessage: String?,
-    )
-
-    fun getContext(id: String): ResultOfContext {
-        val client = Statuses(credential.instance, credential.accessToken)
-        val response = client.getContext(id)
-            ?: return ResultOfContext(isSuccess = false, context = null, toastMessage = getString(R.string.failed))
-
-        if(!response.isSuccessful)
-            return ResultOfContext(isSuccess = false, context = null, toastMessage = response.body!!.string())
-
-        val json = Json {
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-        }
-        val context = json.decodeFromString(Context.serializer(), response.body!!.string())
-        return ResultOfContext(isSuccess = true, context = context, toastMessage = null)
-    }
-
     fun postStatuses(text: String, visibility: String): Result {
         if(text.isEmpty()) return Result(isSuccess = false, getString(R.string.empty))
 
