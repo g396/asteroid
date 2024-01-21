@@ -2,22 +2,14 @@ package sns.asteroid.view.activity
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.Observer
 import androidx.lifecycle.coroutineScope
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import kotlinx.coroutines.launch
 import sns.asteroid.R
 import sns.asteroid.api.entities.Status
@@ -25,8 +17,6 @@ import sns.asteroid.databinding.ActivityStatusDetailBinding
 import sns.asteroid.db.entities.Credential
 import sns.asteroid.view.adapter.timeline.EventsListener
 import sns.asteroid.view.adapter.timeline.TimelineAdapter
-import sns.asteroid.view.adapter.timeline.TimelineFooterAdapter
-import sns.asteroid.view.fragment.recyclerview.timeline.TimelineFragment
 import sns.asteroid.viewmodel.recyclerview.timeline.StatusDetailViewModel
 
 /**
