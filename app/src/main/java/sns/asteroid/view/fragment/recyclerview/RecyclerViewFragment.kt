@@ -7,13 +7,11 @@ import android.view.*
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.core.text.HtmlCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import kotlinx.coroutines.launch
@@ -75,16 +73,11 @@ abstract class RecyclerViewFragment<T: ContentInterface>:
             it.toolbar.addMenuProvider(this)
         }
         binding.recyclerView.also {
-            val concatAdapter = ConcatAdapter().apply {
+            it.layoutManager = LinearLayoutManager(requireContext())
+            it.adapter = ConcatAdapter().apply {
                 addAdapter(recyclerViewAdapter)
                 addAdapter(TimelineFooterAdapter(requireContext(), this@RecyclerViewFragment))
             }
-            it.adapter = concatAdapter
-            it.layoutManager = LinearLayoutManager(requireContext())
-
-            it.setHasFixedSize(true)
-            it.itemAnimator = object: DefaultItemAnimator(){}.apply { supportsChangeAnimations = false }
-
             registerForContextMenu(it)
         }
         binding.refresh.also {
