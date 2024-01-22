@@ -40,38 +40,12 @@ open class TimelineAdapter(
     private val myAccountId: String,
     private val listener: EventsListener,
     override val columnContext: String,
-) : ListAdapter<Status, RecyclerView.ViewHolder>(ContentDiffUtil<Status>()), TimelineFilter {
+): BaseTimelineAdapter<Status>() {
     private val settings = SettingsValues.getInstance()
 
     // アクションボタンを隠す設定が有効の際には
     // このIDの投稿だけボタンを表示する
     private var selectingStatusId: String? = null
-
-    companion object {
-        private const val VIEW_TYPE_DEFAULT = 0
-        private const val VIEW_TYPE_FILTER = 1
-        private const val VIEW_TYPE_HIDDEN = 2
-    }
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.itemAnimator = object: DefaultItemAnimator(){}.apply {
-            supportsChangeAnimations = false
-        }
-        recyclerView.setHasFixedSize(true)
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        if (!getItem(position).useFilter)
-            return VIEW_TYPE_DEFAULT
-
-        val filter = getItem(position).filtered
-        return if (filter.none { it.filter.context.contains(columnContext)})
-            VIEW_TYPE_DEFAULT
-        else if (filter.any { it.filter.filter_action == "hide" })
-            VIEW_TYPE_HIDDEN
-        else
-            VIEW_TYPE_FILTER
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -92,18 +66,16 @@ open class TimelineAdapter(
         }
     }
 
-    private fun onBindFilterViewHolder(holder: FilterViewHolder, position: Int) {
-        val binding = holder.binding
-        val status = getItem(position).reblog?: getItem(position)
-            .also { binding.posts = it }
-        val parentStatus = getItem(position)
+    override fun getStatus(position: Int): Status? {
+        return getItem(position).reblog ?: getItem(position)
+    }
 
-        binding.filterText.setOnClickListener {
-            status.useFilter = false
-            // ストリーミング中だとpositionがだんだんズレていくので再度取得する
-            val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
-            notifyItemChanged(currentPosition)
-        }
+    override fun getParentStatus(position: Int): Status? {
+        return getItem(position)
+    }
+
+    override fun findPositions(status: Status): List<Int> {
+        return currentList.filter { it.id == status.id }.map { currentList.indexOf(it) }
     }
 
     @SuppressLint("ClickableViewAccessibility")
