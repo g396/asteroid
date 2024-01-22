@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.*
 import com.google.android.flexbox.FlexboxLayoutManager
 import sns.asteroid.R
 import sns.asteroid.api.entities.Status
+import sns.asteroid.databinding.RowHiddenBinding
 import sns.asteroid.databinding.RowPostsBinding
+import sns.asteroid.databinding.RowPostsFilterBinding
 import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.*
@@ -26,6 +28,8 @@ import sns.asteroid.view.adapter.timeline.EventsListener.Companion.OTHER_ACCOUNT
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.WHO_ACTIONED
 import sns.asteroid.view.adapter.timeline.sub.MediaAdapter
 import sns.asteroid.view.adapter.timeline.sub.ReactionAdapter
+import sns.asteroid.view.adapter.timeline.viewholder.FilterViewHolder
+import sns.asteroid.view.adapter.timeline.viewholder.HiddenViewHolder
 
 /**
  * タイムラインの要素
@@ -36,12 +40,18 @@ open class TimelineAdapter(
     private val myAccountId: String,
     private val listener: EventsListener,
     override val columnContext: String,
-) : ListAdapter<Status, TimelineAdapter.ViewHolder>(ContentDiffUtil<Status>()), TimelineFilter {
+) : ListAdapter<Status, RecyclerView.ViewHolder>(ContentDiffUtil<Status>()), TimelineFilter {
     private val settings = SettingsValues.getInstance()
 
     // アクションボタンを隠す設定が有効の際には
     // このIDの投稿だけボタンを表示する
     private var selectingStatusId: String? = null
+
+    companion object {
+        private const val VIEW_TYPE_DEFAULT = 0
+        private const val VIEW_TYPE_FILTER = 1
+        private const val VIEW_TYPE_HIDDEN = 2
+    }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         recyclerView.itemAnimator = object: DefaultItemAnimator(){}.apply {
@@ -50,14 +60,54 @@ open class TimelineAdapter(
         recyclerView.setHasFixedSize(true)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun getItemViewType(position: Int): Int {
+        if (!getItem(position).useFilter)
+            return VIEW_TYPE_DEFAULT
+
+        val filter = getItem(position).filtered
+        return if (filter.none { it.filter.context.contains(columnContext)})
+            VIEW_TYPE_DEFAULT
+        else if (filter.any { it.filter.filter_action == "hide" })
+            VIEW_TYPE_HIDDEN
+        else
+            VIEW_TYPE_FILTER
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val binding = RowPostsBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return when(viewType) {
+            VIEW_TYPE_DEFAULT ->
+                TimelineViewHolder(RowPostsBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_FILTER ->
+                FilterViewHolder(RowPostsFilterBinding.inflate(inflater, parent, false))
+            else ->
+                HiddenViewHolder(RowHiddenBinding.inflate(inflater, parent, false))
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is TimelineViewHolder -> onBindNormalViewHolder(holder, position)
+            is FilterViewHolder -> onBindFilterViewHolder(holder, position)
+        }
+    }
+
+    private fun onBindFilterViewHolder(holder: FilterViewHolder, position: Int) {
+        val binding = holder.binding
+        val status = getItem(position).reblog?: getItem(position)
+            .also { binding.posts = it }
+        val parentStatus = getItem(position)
+
+        binding.filterText.setOnClickListener {
+            status.useFilter = false
+            // ストリーミング中だとpositionがだんだんズレていくので再度取得する
+            val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
+            notifyItemChanged(currentPosition)
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    private fun onBindNormalViewHolder(holder: TimelineViewHolder, position: Int) {
         val binding = holder.binding
         val status = getItem(position).reblog?: getItem(position)
         val parentStatus = getItem(position)
@@ -65,8 +115,6 @@ open class TimelineAdapter(
         // For BindingAdapter
         binding.posts = status
         binding.columnContext = columnContext
-        binding.filteringVisibility = filteringVisibility(status.filtered, status.useFilter)
-        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered, status.useFilter)
         binding.boostedBy =
             if(parentStatus.reblog != null) {
                 val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
@@ -94,14 +142,6 @@ open class TimelineAdapter(
                     true
                 } else false
             }
-        }
-
-        // show filtered posts
-        binding.filterText.setOnClickListener {
-            status.useFilter = false
-            // ストリーミング中だとpositionがだんだんズレていくので再度取得する
-            val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
-            notifyItemChanged(currentPosition)
         }
 
         // show or hide content warning
@@ -272,7 +312,7 @@ open class TimelineAdapter(
         }
     }
 
-    inner class ViewHolder(internal val binding: RowPostsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TimelineViewHolder(internal val binding: RowPostsBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.mediaAttachments.also {
                 it.adapter = MediaAdapter(context, listener, 2)

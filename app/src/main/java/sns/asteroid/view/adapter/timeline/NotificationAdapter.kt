@@ -13,21 +13,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
 import sns.asteroid.api.entities.Account
 import sns.asteroid.api.entities.Notification
+import sns.asteroid.databinding.RowHiddenBinding
 import sns.asteroid.databinding.RowNotificationBinding
+import sns.asteroid.databinding.RowPostsFilterBinding
 import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.ContentDiffUtil
 import sns.asteroid.view.adapter.poll.PollAdapter
 import sns.asteroid.view.adapter.timeline.sub.MediaAdapter
 import sns.asteroid.view.adapter.timeline.sub.NotificationImageAdapter
+import sns.asteroid.view.adapter.timeline.viewholder.FilterViewHolder
+import sns.asteroid.view.adapter.timeline.viewholder.HiddenViewHolder
 
 class NotificationAdapter(
     val context: Context,
     private val listener: EventsListener,
     private val notificationListener: NotificationEventListener,
-) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(ContentDiffUtil<Notification>()), TimelineFilter {
+) : ListAdapter<Notification, RecyclerView.ViewHolder>(ContentDiffUtil<Notification>()), TimelineFilter {
     override val columnContext = "notifications"
     private val settings = SettingsValues.getInstance()
+
+    companion object {
+        private const val VIEW_TYPE_DEFAULT = 0
+        private const val VIEW_TYPE_FILTER = 1
+        private const val VIEW_TYPE_HIDDEN = 2
+    }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         recyclerView.itemAnimator = object: DefaultItemAnimator(){}.apply {
@@ -36,13 +46,55 @@ class NotificationAdapter(
         recyclerView.setHasFixedSize(true)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val binding = RowNotificationBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+    override fun getItemViewType(position: Int): Int {
+        if (getItem(position).status?.useFilter != true)
+            return VIEW_TYPE_DEFAULT
+
+        val filter = getItem(position).status?.filtered
+            ?: return VIEW_TYPE_DEFAULT
+
+        return if (filter.none { it.filter.context.contains(columnContext) })
+            VIEW_TYPE_DEFAULT
+        else if (filter.any { it.filter.filter_action == "hide" })
+            VIEW_TYPE_HIDDEN
+        else
+            VIEW_TYPE_FILTER
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(context)
+        return when(viewType) {
+            VIEW_TYPE_DEFAULT ->
+                NotificationViewHolder(RowNotificationBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_FILTER ->
+                FilterViewHolder(RowPostsFilterBinding.inflate(inflater, parent, false))
+            else ->
+                HiddenViewHolder(RowHiddenBinding.inflate(inflater, parent, false))
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is NotificationViewHolder -> onBindNotificationViewHolder(holder, position)
+            is FilterViewHolder -> onBindFilterViewHolder(holder, position)
+        }
+    }
+
+    private fun onBindFilterViewHolder(holder: FilterViewHolder, position: Int) {
+        val binding = holder.binding
+        val status = getItem(position).status?.reblog?: getItem(position).status
+            ?.also { binding.posts = it }
+        val parentStatus = getItem(position)
+
+        binding.filterText.setOnClickListener {
+            status?.useFilter = false
+            // ストリーミング中だとpositionがだんだんズレていくので再度取得する
+            val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
+            notifyItemChanged(currentPosition)
+        }
+    }
+
+    private fun onBindNotificationViewHolder(holder: NotificationViewHolder, position: Int) {
         val binding = holder.binding
         val notification = getItem(position)
 
@@ -55,7 +107,7 @@ class NotificationAdapter(
         if (notification.status != null) setStatusView(holder, position)
     }
 
-    private fun setReactionView(holder: ViewHolder, position: Int) {
+    private fun setReactionView(holder: NotificationViewHolder, position: Int) {
         val binding = holder.binding
         val notification = getItem(position)
 
@@ -69,8 +121,6 @@ class NotificationAdapter(
                 notification.type
             content =
                 notification.account.note.ifEmpty { "No content" }
-            filteringVisibility =
-                notification.status?.let { filteringVisibility(it.filtered, it.useFilter) } ?: View.VISIBLE
         }
 
         // Events
@@ -118,7 +168,7 @@ class NotificationAdapter(
         })
     }
     @SuppressLint("ClickableViewAccessibility")
-    private fun setStatusView(holder: ViewHolder, position: Int) {
+    private fun setStatusView(holder: NotificationViewHolder, position: Int) {
         val binding = holder.binding.status
         val notification = getItem(position)
         val status = notification.status ?: return
@@ -126,8 +176,6 @@ class NotificationAdapter(
         // For BindingAdapter
         binding.posts = status
         binding.columnContext = columnContext
-        binding.filteringVisibility = filteringVisibility(status.filtered, status.useFilter)
-        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered, status.useFilter)
         binding.showCard = settings.isShowCard
         binding.showVia = false
         binding.showRelation = false
@@ -146,13 +194,6 @@ class NotificationAdapter(
             summary.setOnClickListener { root.callOnClick() }
             includePoll.root.setOnClickListener { root.callOnClick() }
             includePoll.poll.setOnClickListener { root.callOnClick() }
-        }
-
-        // show filtered posts
-        binding.filterText.setOnClickListener {
-            status.useFilter = false
-            val currentPosition = currentList.indexOfFirst { it.status?.id == status.id }
-            notifyItemChanged(currentPosition)
         }
 
         // show or hide content warning
@@ -205,7 +246,7 @@ class NotificationAdapter(
         }
     }
 
-    inner class ViewHolder(val binding: RowNotificationBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class NotificationViewHolder(val binding: RowNotificationBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.status.icon.visibility = View.GONE
             binding.status.username.visibility = View.GONE

@@ -16,15 +16,11 @@
         <variable
             name="content"
             type="String" />
-        <variable
-            name="filteringVisibility"
-            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="@{filteringVisibility}">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"

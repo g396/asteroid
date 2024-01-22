@@ -12,12 +12,6 @@
             name="posts"
             type="sns.asteroid.api.entities.Status" />
         <variable
-            name="filteringVisibility"
-            type="int" />
-        <variable
-            name="filteringMessageVisibility"
-            type="int" />
-        <variable
             name="boostedBy"
             type="String" />
         <variable
@@ -51,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? filteringVisibility : View.GONE}'
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? View.VISIBLE : View.GONE}'
             app:layout_constraintBottom_toBottomOf="@+id/pinned"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pinned"
@@ -64,7 +58,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? filteringVisibility : View.GONE}'
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? View.VISIBLE : View.GONE}'
             android:text="@string/pinned"
             app:flow_lastVerticalBias="0"
             app:customTextSize='@{"default"}'
@@ -79,7 +73,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:adjustViewBounds="true"
-            android:visibility="@{(boostedBy.length() > 0) ? filteringVisibility : View.GONE}"
+            android:visibility="@{(boostedBy.length() > 0) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/boost_by"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/boost_by"
@@ -93,7 +87,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/boosted_by"
-            android:visibility="@{(boostedBy.length() > 0) ? filteringVisibility : View.GONE}"
+            android:visibility="@{(boostedBy.length() > 0) ? View.VISIBLE : View.GONE}"
             app:content="@{boostedBy}"
             app:scaleEmojis="@{false}"
             app:customTextSize='@{"default"}'
@@ -102,30 +96,12 @@
             app:layout_constraintStart_toEndOf="@+id/boostIcon"
             app:layout_constraintTop_toBottomOf="@+id/pinned" />
 
-        <TextView
-            android:id="@+id/filterText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:padding="16dp"
-            android:gravity="center"
-            android:background="@drawable/background_normal"
-            android:visibility="@{filteringMessageVisibility}"
-            app:customTextSize='@{"default"}'
-            app:filter_subject="@{posts.filtered}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="4dp"
-            android:visibility="@{filteringVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/boost_by"
