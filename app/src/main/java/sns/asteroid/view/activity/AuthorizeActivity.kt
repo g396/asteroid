@@ -162,6 +162,7 @@ class AuthorizeActivity : AppCompatActivity() {
         override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
             when (actionId) {
                 EditorInfo.IME_ACTION_GO -> binding.buttonLogin.callOnClick()
+                else -> return false
             }
             return true
         }
