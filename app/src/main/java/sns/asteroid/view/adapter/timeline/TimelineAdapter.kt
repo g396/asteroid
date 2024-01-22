@@ -61,7 +61,7 @@ open class TimelineAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is TimelineViewHolder -> bindStatus(holder.binding, position)
-            is FilterViewHolder -> onBindFilterViewHolder(holder, position)
+            is FilterViewHolder -> bindFilterText(holder.binding, position)
         }
     }
 

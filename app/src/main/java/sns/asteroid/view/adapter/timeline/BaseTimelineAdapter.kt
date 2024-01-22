@@ -12,13 +12,13 @@ import sns.asteroid.R
 import sns.asteroid.api.entities.ContentInterface
 import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.RowPostsBinding
+import sns.asteroid.databinding.RowPostsFilterBinding
 import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.ContentDiffUtil
 import sns.asteroid.view.adapter.poll.PollAdapter
 import sns.asteroid.view.adapter.timeline.sub.MediaAdapter
 import sns.asteroid.view.adapter.timeline.sub.ReactionAdapter
-import sns.asteroid.view.adapter.timeline.viewholder.FilterViewHolder
 
 /**
  * TL表示用Adapterと通知表示用Adapterの共通部分
@@ -69,8 +69,7 @@ abstract class BaseTimelineAdapter<T: ContentInterface>(
     /**
      * 警告文(ミュートを適用したフィルターのカテゴリ)を表示
      */
-    protected fun onBindFilterViewHolder(holder: FilterViewHolder, position: Int) {
-        val binding = holder.binding
+    protected fun bindFilterText(binding: RowPostsFilterBinding, position: Int) {
         val status = getStatus(position)?.reblog?: getStatus(position)
             ?.also { binding.posts = it }
         val parentStatus = getParentStatus(position) ?: return

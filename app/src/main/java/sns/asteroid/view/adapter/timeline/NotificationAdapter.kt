@@ -43,8 +43,8 @@ class NotificationAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
-            is NotificationViewHolder -> onBindNotificationViewHolder(holder, position)
-            is FilterViewHolder -> onBindFilterViewHolder(holder, position)
+            is NotificationViewHolder -> bindReaction(holder.binding, position)
+            is FilterViewHolder -> bindFilterText(holder.binding, position)
         }
     }
 
@@ -73,21 +73,7 @@ class NotificationAdapter(
         }
     }
 
-    private fun onBindNotificationViewHolder(holder: NotificationViewHolder, position: Int) {
-        val binding = holder.binding
-        val notification = getItem(position)
-
-        binding.apply {
-            status.root.isVisible = notification.status != null
-            reaction.notificationText.isVisible = notification.status == null
-        }
-
-        setReactionView(holder, position)
-        if (notification.status != null) bindStatus(holder.binding.status, position)
-    }
-
-    private fun setReactionView(holder: NotificationViewHolder, position: Int) {
-        val binding = holder.binding
+    private fun bindReaction(binding: RowNotificationBinding, position: Int) {
         val notification = getItem(position)
 
         // View-binding
@@ -145,7 +131,15 @@ class NotificationAdapter(
                 listener.onAccountClick(acct)
             }
         })
+
+        binding.apply {
+            status.root.isVisible = notification.status != null
+            reaction.notificationText.isVisible = notification.status == null
+        }
+
+        if (notification.status != null) bindStatus(binding.status, position)
     }
+
 
     inner class NotificationViewHolder(val binding: RowNotificationBinding): RecyclerView.ViewHolder(binding.root) {
         init {
