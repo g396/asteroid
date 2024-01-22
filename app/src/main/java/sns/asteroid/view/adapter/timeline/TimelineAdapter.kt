@@ -89,22 +89,38 @@ open class TimelineAdapter(
         }
 
         binding.include.apply {
-            root.setOnClickListener { return@setOnClickListener } // ボタンの隙間を押した時に非表示になるとめんどくさいので
-            reply.setOnClickListener { listener.onReplyButtonClick(status) }
-            favorite.setOnClickListener { listener.onFavouriteButtonClick(status, it as ToggleButton) }
-            emojiAction.setOnClickListener { listener.onEmojiButtonClick(status, true, "") }
-            boost.setOnClickListener { listener.onBoostButtonClick(status, it as ToggleButton) }
-            bookmark.setOnClickListener { listener.onBookmarkButtonClick(status, it as ToggleButton) }
+            root.visibility =
+                if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
+
+            root.setOnClickListener {
+                return@setOnClickListener  // ボタンの隙間を押した時に非表示になるとめんどくさいので
+            }
+            reply.setOnClickListener {
+                listener.onReplyButtonClick(status)
+            }
+            favorite.setOnClickListener {
+                listener.onFavouriteButtonClick(status, it as ToggleButton)
+            }
+            emojiAction.setOnClickListener {
+                listener.onEmojiButtonClick(status, true, "")
+            }
+            boost.setOnClickListener {
+                listener.onBoostButtonClick(status, it as ToggleButton)
+            }
+            bookmark.setOnClickListener {
+                listener.onBookmarkButtonClick(status, it as ToggleButton)
+            }
             detail.setOnClickListener(OnMenuClickListener(status))
 
-            favorite.setOnLongClickListener { listener.onFavouriteButtonLongClick(status.uri).run { true } }
-            boost.setOnLongClickListener { listener.onBoostButtonLongClick(status.uri).run { true } }
-            bookmark.setOnLongClickListener { listener.onBookmarkButtonLongClick(status.uri).run { true } }
-        }
-
-        // BindingAdapterに移行したいけどなんか重くなる
-        binding.include.rowTootButton.apply {
-            visibility = if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
+            favorite.setOnLongClickListener {
+                listener.onFavouriteButtonLongClick(status.uri).run { true }
+            }
+            boost.setOnLongClickListener {
+                listener.onBoostButtonLongClick(status.uri).run { true }
+            }
+            bookmark.setOnLongClickListener {
+                listener.onBookmarkButtonLongClick(status.uri).run { true }
+            }
         }
     }
 
