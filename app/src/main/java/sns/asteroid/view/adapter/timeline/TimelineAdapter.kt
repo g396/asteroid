@@ -216,6 +216,11 @@ open class TimelineAdapter(
                 it.layoutManager = GridLayoutManager(context, 1)
             }
             binding.include.showCounts = settings.isShowReactionsCount
+
+            binding.columnContext = columnContext
+            binding.showCard = settings.isShowCard
+            binding.showVia = settings.isShowVia
+            binding.showRelation = true
         }
     }
 }

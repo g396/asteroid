@@ -13,7 +13,6 @@ import sns.asteroid.api.entities.ContentInterface
 import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.RowPostsBinding
 import sns.asteroid.databinding.RowPostsFilterBinding
-import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.ContentDiffUtil
 import sns.asteroid.view.adapter.poll.PollAdapter
@@ -27,8 +26,6 @@ abstract class BaseTimelineAdapter<T: ContentInterface>(
     private val context: Context,
     private val listener: EventsListener,
 ): ListAdapter<T, RecyclerView.ViewHolder>(ContentDiffUtil<T>()) {
-    private val settings = SettingsValues.getInstance()
-
     abstract val columnContext: String
 
     companion object {
@@ -90,16 +87,12 @@ abstract class BaseTimelineAdapter<T: ContentInterface>(
 
         // For BindingAdapter
         binding.posts = status
-        binding.columnContext = columnContext
         binding.boostedBy =
             if(parentStatus.reblog != null) {
                 val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
                 String.format(context.getString(R.string.boosted_by), user)
             } else null
         binding.boostVisibility = parentStatus.visibility
-        binding.showCard = settings.isShowCard
-        binding.showVia = settings.isShowVia
-        binding.showRelation = true
 
         // 当たり判定広げる用
         binding.apply {

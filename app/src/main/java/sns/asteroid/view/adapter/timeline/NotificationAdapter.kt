@@ -62,8 +62,6 @@ class NotificationAdapter(
 
     override fun bindStatus(binding: RowPostsBinding, position: Int) {
         super.bindStatus(binding, position)
-        binding.showVia = false
-        binding.showRelation = false
 
         val status = getStatus(position) ?: return
 
@@ -162,6 +160,10 @@ class NotificationAdapter(
                 it.adapter = PollAdapter(context)
                 it.layoutManager = GridLayoutManager(context, 1)
             }
+
+            binding.status.columnContext = columnContext
+            binding.status.showVia = false
+            binding.status.showRelation = false
         }
     }
 
