@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.*
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,14 @@ class NotificationAdapter(
 ) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(ContentDiffUtil<Notification>()), TimelineFilter {
     override val columnContext = "notifications"
     private val settings = SettingsValues.getInstance()
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.itemAnimator = object: DefaultItemAnimator(){}.apply {
+            supportsChangeAnimations = false
+        }
+        recyclerView.setHasFixedSize(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val binding = RowNotificationBinding.inflate(inflater, parent, false)
