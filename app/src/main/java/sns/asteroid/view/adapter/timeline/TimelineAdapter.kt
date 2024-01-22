@@ -1,31 +1,34 @@
 package sns.asteroid.view.adapter.timeline
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.PopupMenu.OnMenuItemClickListener
 import android.widget.ToggleButton
-import androidx.core.net.toUri
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
 import sns.asteroid.R
 import sns.asteroid.api.entities.Status
+import sns.asteroid.databinding.RowHiddenBinding
 import sns.asteroid.databinding.RowPostsBinding
+import sns.asteroid.databinding.RowPostsFilterBinding
 import sns.asteroid.model.settings.SettingsValues
-import sns.asteroid.model.util.TextLinkMovementMethod
-import sns.asteroid.view.adapter.*
 import sns.asteroid.view.adapter.poll.PollAdapter
-import sns.asteroid.view.adapter.timeline.EventsListener.*
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.BOOST
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.FAVOURITE
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.GENERAL
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.MY_POSTS
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.OTHER_ACCOUNT
 import sns.asteroid.view.adapter.timeline.EventsListener.Companion.WHO_ACTIONED
+import sns.asteroid.view.adapter.timeline.EventsListener.Item
 import sns.asteroid.view.adapter.timeline.sub.MediaAdapter
 import sns.asteroid.view.adapter.timeline.sub.ReactionAdapter
+import sns.asteroid.view.adapter.timeline.viewholder.FilterViewHolder
+import sns.asteroid.view.adapter.timeline.viewholder.HiddenViewHolder
 
 /**
  * タイムラインの要素
@@ -36,145 +39,88 @@ open class TimelineAdapter(
     private val myAccountId: String,
     private val listener: EventsListener,
     override val columnContext: String,
-) : ListAdapter<Status, TimelineAdapter.ViewHolder>(ContentDiffUtil<Status>()), TimelineFilter {
+): BaseTimelineAdapter<Status>(context, listener) {
     private val settings = SettingsValues.getInstance()
 
     // アクションボタンを隠す設定が有効の際には
     // このIDの投稿だけボタンを表示する
     private var selectingStatusId: String? = null
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.itemAnimator = object: DefaultItemAnimator(){}.apply {
-            supportsChangeAnimations = false
-        }
-        recyclerView.setHasFixedSize(true)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val binding = RowPostsBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return when(viewType) {
+            VIEW_TYPE_DEFAULT ->
+                TimelineViewHolder(RowPostsBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_FILTER ->
+                FilterViewHolder(RowPostsFilterBinding.inflate(inflater, parent, false))
+            else ->
+                HiddenViewHolder(RowHiddenBinding.inflate(inflater, parent, false))
+        }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val binding = holder.binding
-        val status = getItem(position).reblog?: getItem(position)
-        val parentStatus = getItem(position)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is TimelineViewHolder -> bindStatus(holder.binding, position)
+            is FilterViewHolder -> bindFilterText(holder.binding, position)
+        }
+    }
 
-        // For BindingAdapter
-        binding.posts = status
-        binding.columnContext = columnContext
-        binding.filteringVisibility = filteringVisibility(status.filtered, status.useFilter)
-        binding.filteringMessageVisibility = filteringMessageVisibility(status.filtered, status.useFilter)
-        binding.boostedBy =
-            if(parentStatus.reblog != null) {
-                val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
-                String.format(context.getString(R.string.boosted_by), user)
-            } else null
-        binding.boostVisibility = parentStatus.visibility
-        binding.showCard = settings.isShowCard
-        binding.showVia = settings.isShowVia
-        binding.showRelation = true
+    override fun getStatus(position: Int): Status? {
+        return getItem(position).reblog ?: getItem(position)
+    }
+
+    override fun getParentStatus(position: Int): Status? {
+        return getItem(position)
+    }
+
+    override fun findPositions(status: Status): List<Int> {
+        return currentList.filter { it.id == status.id }.map { currentList.indexOf(it) }
+    }
+
+    override fun bindStatus(binding: RowPostsBinding, position: Int) {
+        super.bindStatus(binding, position)
+
+        val status = getStatus(position) ?: return
+        val parentStatus = getParentStatus(position) ?: return
 
         // ボタンを展開したり閉じたりするやつ
         binding.root.setOnClickListener {
             if (settings.isHideActionButtons) showOrHideActionButtons(parentStatus.id)
         }
-        // 当たり判定広げる用
-        binding.apply {
-            summary.setOnClickListener { binding.root.callOnClick() }
-            includePoll.root.setOnClickListener { binding.root.callOnClick() }
-            includePoll.poll.setOnClickListener { binding.root.callOnClick() }
 
-            // setOnClickListenerだとなんかうまくいかない
-            reactions.setOnTouchListener { _, event ->
-                if (event.actionMasked == MotionEvent.ACTION_UP) {
-                    binding.root.callOnClick()
-                    true
-                } else false
-            }
-        }
-
-        // show filtered posts
-        binding.filterText.setOnClickListener {
-            status.useFilter = false
-            // ストリーミング中だとpositionがだんだんズレていくので再度取得する
-            val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
-            notifyItemChanged(currentPosition)
-        }
-
-        // show or hide content warning
-        binding.cw.root.setOnClickListener {
-            status.isShowContent = !status.isShowContent
-            val currentPosition = currentList.indexOfFirst { it.id == parentStatus.id }
-            notifyItemChanged(currentPosition)
-        }
-
-        binding.boostBy.setOnClickListener {
-            listener.onAccountClick(parentStatus.account)
-        }
-        binding.icon.setOnClickListener {
-            listener.onAccountClick(status.reblog?.account?: status.account)
-        }
-        binding.reply.root.setOnClickListener {
-            listener.onStatusSelect(status)
-        }
-        binding.includePoll.pollButton.setOnClickListener {
-            val recyclerView = binding.includePoll.poll
-            val loading = binding.includePoll.pollLoading
-            val checked = (recyclerView.adapter as PollAdapter).getCheckedList()
-            listener.onVoteButtonClick(status.poll!!.id, checked, loading)
-        }
         binding.include.apply {
-            root.setOnClickListener { return@setOnClickListener } // ボタンの隙間を押した時に非表示になるとめんどくさいので
-            reply.setOnClickListener { listener.onReplyButtonClick(status) }
-            favorite.setOnClickListener { listener.onFavouriteButtonClick(status, it as ToggleButton) }
-            emojiAction.setOnClickListener { listener.onEmojiButtonClick(status, true, "") }
-            boost.setOnClickListener { listener.onBoostButtonClick(status, it as ToggleButton) }
-            bookmark.setOnClickListener { listener.onBookmarkButtonClick(status, it as ToggleButton) }
+            root.visibility =
+                if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
+
+            root.setOnClickListener {
+                return@setOnClickListener  // ボタンの隙間を押した時に非表示になるとめんどくさいので
+            }
+            reply.setOnClickListener {
+                listener.onReplyButtonClick(status)
+            }
+            favorite.setOnClickListener {
+                listener.onFavouriteButtonClick(status, it as ToggleButton)
+            }
+            emojiAction.setOnClickListener {
+                listener.onEmojiButtonClick(status, true, "")
+            }
+            boost.setOnClickListener {
+                listener.onBoostButtonClick(status, it as ToggleButton)
+            }
+            bookmark.setOnClickListener {
+                listener.onBookmarkButtonClick(status, it as ToggleButton)
+            }
             detail.setOnClickListener(OnMenuClickListener(status))
 
-            favorite.setOnLongClickListener { listener.onFavouriteButtonLongClick(status.uri).run { true } }
-            boost.setOnLongClickListener { listener.onBoostButtonLongClick(status.uri).run { true } }
-            bookmark.setOnLongClickListener { listener.onBookmarkButtonLongClick(status.uri).run { true } }
-        }
-        binding.card.rowTootCard.setOnClickListener {
-            val uri = status.card?.url?.toUri() ?: return@setOnClickListener
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            context.startActivity(intent)
-        }
-
-        // enable hyperlink in textview
-        binding.summary.movementMethod = TextLinkMovementMethod(object : TextLinkMovementMethod.LinkCallback {
-            override fun onHashtagClick(hashtag: String) {
-                listener.onHashtagClick(hashtag)
+            favorite.setOnLongClickListener {
+                listener.onFavouriteButtonLongClick(status.uri).run { true }
             }
-            override fun onWebFingerClick(acct: String) {
-                listener.onAccountClick(acct)
+            boost.setOnLongClickListener {
+                listener.onBoostButtonLongClick(status.uri).run { true }
             }
-            override fun onAccountURLClick(url: String) {
-                val acct = status.mentions.find { it.url == url }?.acct ?: return
-                listener.onAccountClick(acct)
+            bookmark.setOnLongClickListener {
+                listener.onBookmarkButtonLongClick(status.uri).run { true }
             }
-        })
-
-        // RecyclerView contents
-        binding.mediaAttachments.apply {
-            (adapter as MediaAdapter).submitList(status.media_attachments, status.sensitive)
-        }
-        binding.reactions.apply {
-            val emojis = status.emoji_reactions ?: emptyList()
-            (adapter as ReactionAdapter).submitList(emojis, status)
-        }
-        binding.includePoll.poll.apply {
-            val poll = status.poll ?: return@apply
-            (adapter as? PollAdapter)?.submitPoll(poll)
-        }
-
-        // BindingAdapterに移行したいけどなんか重くなる
-        binding.include.rowTootButton.apply {
-            visibility = if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
         }
     }
 
@@ -204,7 +150,7 @@ open class TimelineAdapter(
     inner class OnMenuClickListener(private val posts: Status): View.OnClickListener {
         override fun onClick(v: View) {
             val popupMenu = PopupMenu(context, v).apply {
-                setOnMenuItemClickListener(MenuItemClickListener(v))
+                setOnMenuItemClickListener(MenuItemClickListener(posts, v))
             }
             popupMenu.menu.apply {
                 if(myAccountId == posts.account.id)
@@ -242,37 +188,37 @@ open class TimelineAdapter(
             }
             popupMenu.show()
         }
+    }
 
-        inner class MenuItemClickListener(private val v: View): OnMenuItemClickListener {
-            override fun onMenuItemClick(item: MenuItem?): Boolean {
-                if(item?.groupId == BOOST) {
-                    val boostPopupMenu = PopupMenu(context, v).apply {
-                        setOnMenuItemClickListener(BoostMenuItemClickListener())
-                    }
-                    boostPopupMenu.menu.apply {
-                        add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, context.getString(R.string.visibility_public))
-                        add(BOOST, Item.MENU_BOOST_UNLISTED.order, Item.MENU_BOOST_UNLISTED.order, context.getString(R.string.visibility_unlisted))
-                        add(BOOST, Item.MENU_BOOST_PRIVATE.order, Item.MENU_BOOST_PRIVATE.order, context.getString(R.string.visibility_private))
-                    }
-                    boostPopupMenu.show()
-                } else {
-                    val selected = Item.values().find { enum -> item?.order == enum.order } ?: return false
-                    listener.onMenuItemClick(posts, selected)
+    inner class MenuItemClickListener(private val posts: Status, private val v: View): OnMenuItemClickListener {
+        override fun onMenuItemClick(item: MenuItem?): Boolean {
+            if(item?.groupId == BOOST) {
+                val boostPopupMenu = PopupMenu(context, v).apply {
+                    setOnMenuItemClickListener(BoostMenuItemClickListener(posts))
                 }
-                return false
-            }
-        }
-
-        inner class BoostMenuItemClickListener : OnMenuItemClickListener {
-            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                boostPopupMenu.menu.apply {
+                    add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, context.getString(R.string.visibility_public))
+                    add(BOOST, Item.MENU_BOOST_UNLISTED.order, Item.MENU_BOOST_UNLISTED.order, context.getString(R.string.visibility_unlisted))
+                    add(BOOST, Item.MENU_BOOST_PRIVATE.order, Item.MENU_BOOST_PRIVATE.order, context.getString(R.string.visibility_private))
+                }
+                boostPopupMenu.show()
+            } else {
                 val selected = Item.values().find { enum -> item?.order == enum.order } ?: return false
                 listener.onMenuItemClick(posts, selected)
-                return false
             }
+            return false
         }
     }
 
-    inner class ViewHolder(internal val binding: RowPostsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class BoostMenuItemClickListener(private val posts: Status) : OnMenuItemClickListener {
+        override fun onMenuItemClick(item: MenuItem?): Boolean {
+            val selected = Item.values().find { enum -> item?.order == enum.order } ?: return false
+            listener.onMenuItemClick(posts, selected)
+            return false
+        }
+    }
+
+    inner class TimelineViewHolder(internal val binding: RowPostsBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.mediaAttachments.also {
                 it.adapter = MediaAdapter(context, listener, 2)
@@ -286,6 +232,11 @@ open class TimelineAdapter(
                 it.layoutManager = GridLayoutManager(context, 1)
             }
             binding.include.showCounts = settings.isShowReactionsCount
+
+            binding.columnContext = columnContext
+            binding.showCard = settings.isShowCard
+            binding.showVia = settings.isShowVia
+            binding.showRelation = true
         }
     }
 }

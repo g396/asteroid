@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="posts"
+            type="sns.asteroid.api.entities.Status" />
+    </data>
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/filterText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:background="@drawable/background_normal"
+        app:customTextSize='@{"default"}'
+        app:filter_subject="@{posts.filtered}"
+        tools:text="Filtered: Example"/>
+</layout>
