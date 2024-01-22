@@ -1,17 +1,34 @@
 package sns.asteroid.view.adapter.timeline
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.view.MotionEvent
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import sns.asteroid.R
 import sns.asteroid.api.entities.ContentInterface
 import sns.asteroid.api.entities.Status
+import sns.asteroid.databinding.RowPostsBinding
+import sns.asteroid.model.settings.SettingsValues
+import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.ContentDiffUtil
+import sns.asteroid.view.adapter.poll.PollAdapter
+import sns.asteroid.view.adapter.timeline.sub.MediaAdapter
+import sns.asteroid.view.adapter.timeline.sub.ReactionAdapter
 import sns.asteroid.view.adapter.timeline.viewholder.FilterViewHolder
 
 /**
  * TL表示用Adapterと通知表示用Adapterの共通部分
  */
-abstract class BaseTimelineAdapter<T: ContentInterface>: ListAdapter<T, RecyclerView.ViewHolder>(ContentDiffUtil<T>()) {
+abstract class BaseTimelineAdapter<T: ContentInterface>(
+    private val context: Context,
+    private val listener: EventsListener,
+): ListAdapter<T, RecyclerView.ViewHolder>(ContentDiffUtil<T>()) {
+    private val settings = SettingsValues.getInstance()
+
     abstract val columnContext: String
 
     companion object {
@@ -64,6 +81,96 @@ abstract class BaseTimelineAdapter<T: ContentInterface>: ListAdapter<T, Recycler
             findPositions(parentStatus).forEach {
                 notifyItemChanged(it)
             }
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    protected open fun bindStatus(binding: RowPostsBinding, position: Int) {
+        val status = getStatus(position) ?: return
+        val parentStatus = getParentStatus(position) ?: return
+
+        // For BindingAdapter
+        binding.posts = status
+        binding.columnContext = columnContext
+        binding.boostedBy =
+            if(parentStatus.reblog != null) {
+                val user = parentStatus.account.convertedDisplayName.ifBlank { parentStatus.account.acct }
+                String.format(context.getString(R.string.boosted_by), user)
+            } else null
+        binding.boostVisibility = parentStatus.visibility
+        binding.showCard = settings.isShowCard
+        binding.showVia = settings.isShowVia
+        binding.showRelation = true
+
+        // 当たり判定広げる用
+        binding.apply {
+            summary.setOnClickListener { binding.root.callOnClick() }
+            includePoll.root.setOnClickListener { binding.root.callOnClick() }
+            includePoll.poll.setOnClickListener { binding.root.callOnClick() }
+
+            // setOnClickListenerだとなんかうまくいかない
+            reactions.setOnTouchListener { _, event ->
+                if (event.actionMasked == MotionEvent.ACTION_UP) {
+                    binding.root.callOnClick()
+                    true
+                } else false
+            }
+        }
+
+        // show or hide content warning
+        binding.cw.root.setOnClickListener {
+            status.isShowContent = !status.isShowContent
+            findPositions(status).forEach {
+                notifyItemChanged(it)
+            }
+        }
+
+        binding.boostBy.setOnClickListener {
+            listener.onAccountClick(parentStatus.account)
+        }
+        binding.icon.setOnClickListener {
+            listener.onAccountClick(status.reblog?.account?: status.account)
+        }
+        binding.reply.root.setOnClickListener {
+            listener.onStatusSelect(status)
+        }
+        binding.includePoll.pollButton.setOnClickListener {
+            val recyclerView = binding.includePoll.poll
+            val loading = binding.includePoll.pollLoading
+            val checked = (recyclerView.adapter as PollAdapter).getCheckedList()
+            listener.onVoteButtonClick(status.poll!!.id, checked, loading)
+        }
+        binding.card.rowTootCard.setOnClickListener {
+            val uri = status.card?.url?.toUri() ?: return@setOnClickListener
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            context.startActivity(intent)
+        }
+
+        // enable hyperlink in textview
+        binding.summary.movementMethod = TextLinkMovementMethod(object : TextLinkMovementMethod.LinkCallback {
+            override fun onHashtagClick(hashtag: String) {
+                listener.onHashtagClick(hashtag)
+            }
+            override fun onWebFingerClick(acct: String) {
+                listener.onAccountClick(acct)
+            }
+            override fun onAccountURLClick(url: String) {
+                val acct = status.mentions.find { it.url == url }?.acct ?: return
+                listener.onAccountClick(acct)
+            }
+        })
+
+        // RecyclerView contents
+        binding.mediaAttachments.apply {
+            (adapter as? MediaAdapter)?.submitList(status.media_attachments, status.sensitive)
+        }
+        binding.reactions.apply {
+            val emojis = status.emoji_reactions ?: emptyList()
+            (adapter as? ReactionAdapter)?.submitList(emojis, status)
+        }
+        binding.includePoll.poll.apply {
+            val poll = status.poll ?: return@apply
+            (adapter as? PollAdapter)?.submitPoll(poll)
         }
     }
 

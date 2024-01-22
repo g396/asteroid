@@ -1,10 +1,9 @@
 package sns.asteroid.view.adapter.timeline
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.view.*
-import androidx.core.net.toUri
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +13,8 @@ import sns.asteroid.api.entities.Notification
 import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.RowHiddenBinding
 import sns.asteroid.databinding.RowNotificationBinding
+import sns.asteroid.databinding.RowPostsBinding
 import sns.asteroid.databinding.RowPostsFilterBinding
-import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.poll.PollAdapter
 import sns.asteroid.view.adapter.timeline.sub.MediaAdapter
@@ -27,9 +26,8 @@ class NotificationAdapter(
     val context: Context,
     private val listener: EventsListener,
     private val notificationListener: NotificationEventListener,
-): BaseTimelineAdapter<Notification>() {
+): BaseTimelineAdapter<Notification>(context, listener) {
     override val columnContext = "notifications"
-    private val settings = SettingsValues.getInstance()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -62,6 +60,19 @@ class NotificationAdapter(
         return currentList.filter { status.id == it.status?.id }.map { currentList.indexOf(it) }
     }
 
+    override fun bindStatus(binding: RowPostsBinding, position: Int) {
+        super.bindStatus(binding, position)
+        binding.showVia = false
+        binding.showRelation = false
+
+        val status = getStatus(position) ?: return
+
+        // 投稿の詳細を開く
+        binding.root.setOnClickListener {
+            listener.onStatusSelect(status)
+        }
+    }
+
     private fun onBindNotificationViewHolder(holder: NotificationViewHolder, position: Int) {
         val binding = holder.binding
         val notification = getItem(position)
@@ -72,7 +83,7 @@ class NotificationAdapter(
         }
 
         setReactionView(holder, position)
-        if (notification.status != null) setStatusView(holder, position)
+        if (notification.status != null) bindStatus(holder.binding.status, position)
     }
 
     private fun setReactionView(holder: NotificationViewHolder, position: Int) {
@@ -134,84 +145,6 @@ class NotificationAdapter(
                 listener.onAccountClick(acct)
             }
         })
-    }
-    @SuppressLint("ClickableViewAccessibility")
-    private fun setStatusView(holder: NotificationViewHolder, position: Int) {
-        val binding = holder.binding.status
-        val notification = getItem(position)
-        val status = notification.status ?: return
-
-        // For BindingAdapter
-        binding.posts = status
-        binding.columnContext = columnContext
-        binding.showCard = settings.isShowCard
-        binding.showVia = false
-        binding.showRelation = false
-
-        holder.binding.apply {
-            reactedUser = notification.account
-            notificationType = notification.type
-        }
-
-        // 投稿の詳細を開く
-        binding.root.setOnClickListener {
-            listener.onStatusSelect(status)
-        }
-        // 当たり判定広げる用
-        binding.apply {
-            summary.setOnClickListener { root.callOnClick() }
-            includePoll.root.setOnClickListener { root.callOnClick() }
-            includePoll.poll.setOnClickListener { root.callOnClick() }
-        }
-
-        // show or hide content warning
-        binding.cw.root.setOnClickListener {
-            status.isShowContent = !status.isShowContent
-            val currentPosition = currentList.indexOfFirst { it.status?.id == status.id }
-            notifyItemChanged(currentPosition)
-        }
-
-        binding.icon.setOnClickListener {
-            listener.onAccountClick(status.reblog?.account?: status.account)
-        }
-        binding.reply.root.setOnClickListener {
-            listener.onStatusSelect(status)
-        }
-        binding.includePoll.pollButton.setOnClickListener {
-            val recyclerView = binding.includePoll.poll
-            val loading = binding.includePoll.pollLoading
-            val checked = (recyclerView.adapter as PollAdapter).getCheckedList()
-            listener.onVoteButtonClick(status.poll!!.id, checked, loading)
-        }
-
-        binding.card.rowTootCard.setOnClickListener {
-            val uri = status.card?.url?.toUri() ?: return@setOnClickListener
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            context.startActivity(intent)
-        }
-
-        // enable hyperlink in textview
-        binding.summary.movementMethod = TextLinkMovementMethod(object : TextLinkMovementMethod.LinkCallback {
-            override fun onHashtagClick(hashtag: String) {
-                listener.onHashtagClick(hashtag)
-            }
-            override fun onWebFingerClick(acct: String) {
-                listener.onAccountClick(acct)
-            }
-            override fun onAccountURLClick(url: String) {
-                val acct = status.mentions.find { it.url == url }?.acct ?: return
-                listener.onAccountClick(acct)
-            }
-        })
-
-        // RecyclerView contents
-        binding.mediaAttachments.apply {
-            (adapter as MediaAdapter).submitList(status.media_attachments, status.sensitive)
-        }
-        binding.includePoll.poll.apply {
-            val poll = status.poll ?: return@apply
-            (adapter as? PollAdapter)?.submitPoll(poll)
-        }
     }
 
     inner class NotificationViewHolder(val binding: RowNotificationBinding): RecyclerView.ViewHolder(binding.root) {
