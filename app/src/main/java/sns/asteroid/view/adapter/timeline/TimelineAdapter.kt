@@ -134,7 +134,7 @@ open class TimelineAdapter(
     inner class OnMenuClickListener(private val posts: Status): View.OnClickListener {
         override fun onClick(v: View) {
             val popupMenu = PopupMenu(context, v).apply {
-                setOnMenuItemClickListener(MenuItemClickListener(v))
+                setOnMenuItemClickListener(MenuItemClickListener(posts, v))
             }
             popupMenu.menu.apply {
                 if(myAccountId == posts.account.id)
@@ -172,33 +172,33 @@ open class TimelineAdapter(
             }
             popupMenu.show()
         }
+    }
 
-        inner class MenuItemClickListener(private val v: View): OnMenuItemClickListener {
-            override fun onMenuItemClick(item: MenuItem?): Boolean {
-                if(item?.groupId == BOOST) {
-                    val boostPopupMenu = PopupMenu(context, v).apply {
-                        setOnMenuItemClickListener(BoostMenuItemClickListener())
-                    }
-                    boostPopupMenu.menu.apply {
-                        add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, context.getString(R.string.visibility_public))
-                        add(BOOST, Item.MENU_BOOST_UNLISTED.order, Item.MENU_BOOST_UNLISTED.order, context.getString(R.string.visibility_unlisted))
-                        add(BOOST, Item.MENU_BOOST_PRIVATE.order, Item.MENU_BOOST_PRIVATE.order, context.getString(R.string.visibility_private))
-                    }
-                    boostPopupMenu.show()
-                } else {
-                    val selected = Item.values().find { enum -> item?.order == enum.order } ?: return false
-                    listener.onMenuItemClick(posts, selected)
+    inner class MenuItemClickListener(private val posts: Status, private val v: View): OnMenuItemClickListener {
+        override fun onMenuItemClick(item: MenuItem?): Boolean {
+            if(item?.groupId == BOOST) {
+                val boostPopupMenu = PopupMenu(context, v).apply {
+                    setOnMenuItemClickListener(BoostMenuItemClickListener(posts))
                 }
-                return false
-            }
-        }
-
-        inner class BoostMenuItemClickListener : OnMenuItemClickListener {
-            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                boostPopupMenu.menu.apply {
+                    add(BOOST, Item.MENU_BOOST_PUBLIC.order, Item.MENU_BOOST_PUBLIC.order, context.getString(R.string.visibility_public))
+                    add(BOOST, Item.MENU_BOOST_UNLISTED.order, Item.MENU_BOOST_UNLISTED.order, context.getString(R.string.visibility_unlisted))
+                    add(BOOST, Item.MENU_BOOST_PRIVATE.order, Item.MENU_BOOST_PRIVATE.order, context.getString(R.string.visibility_private))
+                }
+                boostPopupMenu.show()
+            } else {
                 val selected = Item.values().find { enum -> item?.order == enum.order } ?: return false
                 listener.onMenuItemClick(posts, selected)
-                return false
             }
+            return false
+        }
+    }
+
+    inner class BoostMenuItemClickListener(private val posts: Status) : OnMenuItemClickListener {
+        override fun onMenuItemClick(item: MenuItem?): Boolean {
+            val selected = Item.values().find { enum -> item?.order == enum.order } ?: return false
+            listener.onMenuItemClick(posts, selected)
+            return false
         }
     }
 
