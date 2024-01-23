@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.PopupMenu.OnMenuItemClickListener
 import android.widget.ToggleButton
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -89,8 +90,8 @@ open class TimelineAdapter(
         }
 
         binding.include.apply {
-            root.visibility =
-                if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
+            root.isVisible =
+                (parentStatus.id == selectingStatusId) or !settings.isHideActionButtons
 
             root.setOnClickListener {
                 return@setOnClickListener  // ボタンの隙間を押した時に非表示になるとめんどくさいので
