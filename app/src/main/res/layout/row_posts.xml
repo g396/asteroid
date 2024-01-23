@@ -215,61 +215,52 @@
                     app:layout_constraintTop_toBottomOf="@+id/reply"
                     app:spoilerText="@{posts.parsedSpoilerText}" />
 
-                <LinearLayout
-                    android:id="@+id/spoilerContent"
+                <TextView
+                    android:id="@+id/summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:visibility="@{posts.showContent ? View.VISIBLE : View.GONE}"
-                    android:orientation="vertical">
+                    android:text="@string/sample_summary3"
+                    android:visibility="@{posts.showContent &amp;&amp; posts.content.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:content="@{posts.parsedContent}"
+                    app:scaleEmojis="@{true}"
+                    app:customTextSize='@{"default"}'
+                    app:setTextColorByVisibility="@{posts.visibility}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/summary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sample_summary3"
-                        android:visibility="@{posts.content.length() > 0 ? View.VISIBLE : View.GONE}"
-                        app:content="@{posts.parsedContent}"
-                        app:scaleEmojis="@{true}"
-                        app:customTextSize='@{"default"}'
-                        app:setTextColorByVisibility="@{posts.visibility}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <include
+                    android:id="@+id/include_poll"
+                    layout="@layout/include_poll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="@{posts.showContent &amp;&amp; posts.poll != null ? View.VISIBLE : View.GONE}"
+                    android:nestedScrollingEnabled="false"
+                    android:clickable="false"
+                    app:voted="@{posts.poll.voted}"
+                    app:expired="@{posts.poll.expired}"
+                    app:expireAt="@{posts.poll.expires_at}"
+                    app:layout_goneMarginTop="0dp"
+                    android:isScrollContainer="false"/>
 
-                    <include
-                        android:id="@+id/include_poll"
-                        layout="@layout/include_poll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:visibility="@{posts.poll == null ? View.GONE : View.VISIBLE}"
-                        android:nestedScrollingEnabled="false"
-                        android:clickable="false"
-                        app:voted="@{posts.poll.voted}"
-                        app:expired="@{posts.poll.expired}"
-                        app:expireAt="@{posts.poll.expires_at}"
-                        app:layout_goneMarginTop="0dp"
-                        android:isScrollContainer="false"/>
-
-                    <include
-                        android:id="@+id/card"
-                        layout="@layout/row_posts_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:visibility="@{showCard &amp;&amp; (posts.card != null) ? View.VISIBLE : View.GONE}"
-                        app:cardDescription="@{posts.card.description}"
-                        app:cardTitle="@{posts.card.title}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/poll"
-                        app:layout_goneMarginTop="0dp"
-                        app:thumbnail="@{posts.card.image}"
-                        tools:visibility="visible" />
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/card"
+                    layout="@layout/row_posts_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="@{posts.showContent &amp;&amp; showCard &amp;&amp; (posts.card != null) ? View.VISIBLE : View.GONE}"
+                    app:cardDescription="@{posts.card.description}"
+                    app:cardTitle="@{posts.card.title}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/poll"
+                    app:layout_goneMarginTop="0dp"
+                    app:thumbnail="@{posts.card.image}"
+                    tools:visibility="visible" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mediaAttachments"
