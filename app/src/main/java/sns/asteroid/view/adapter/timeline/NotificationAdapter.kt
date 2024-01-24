@@ -69,6 +69,13 @@ class NotificationAdapter(
         binding.root.setOnClickListener {
             listener.onStatusSelect(status)
         }
+
+        // set visibility (xml上で行うとスクロールが挙動不審になる)
+        binding.apply {
+            reactions.isVisible = false
+            card.root.isVisible = false
+            reply.root.isVisible = false
+        }
     }
 
     private fun bindReaction(binding: RowNotificationBinding, position: Int) {
@@ -162,8 +169,6 @@ class NotificationAdapter(
             }
 
             binding.status.columnContext = columnContext
-            binding.status.showVia = false
-            binding.status.showRelation = false
         }
     }
 

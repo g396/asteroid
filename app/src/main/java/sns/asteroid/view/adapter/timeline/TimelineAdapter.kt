@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.PopupMenu.OnMenuItemClickListener
 import android.widget.ToggleButton
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -34,7 +35,7 @@ import sns.asteroid.view.adapter.timeline.viewholder.HiddenViewHolder
  * タイムラインの要素
  * フッターは別で定義(TimelineFooterAdapter)
  */
-open class TimelineAdapter(
+class TimelineAdapter(
     val context: Context,
     private val myAccountId: String,
     private val listener: EventsListener,
@@ -89,8 +90,8 @@ open class TimelineAdapter(
         }
 
         binding.include.apply {
-            root.visibility =
-                if ((parentStatus.id == selectingStatusId) or !settings.isHideActionButtons) View.VISIBLE else View.GONE
+            root.isVisible =
+                (parentStatus.id == selectingStatusId) or !settings.isHideActionButtons
 
             root.setOnClickListener {
                 return@setOnClickListener  // ボタンの隙間を押した時に非表示になるとめんどくさいので
@@ -234,9 +235,7 @@ open class TimelineAdapter(
             binding.include.showCounts = settings.isShowReactionsCount
 
             binding.columnContext = columnContext
-            binding.showCard = settings.isShowCard
-            binding.showVia = settings.isShowVia
-            binding.showRelation = true
+            binding.via.isVisible = settings.isShowVia
         }
     }
 }
