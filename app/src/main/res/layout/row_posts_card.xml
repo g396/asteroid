@@ -30,15 +30,13 @@
 
             <ImageView
                 android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:visibility="@{thumbnail == null ? View.GONE : View.VISIBLE}"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="16:9"
                 app:glide="@{thumbnail}"
-                app:layout_constraintWidth="match_parent"
-                app:layout_constraintHeight="wrap_content_constrained"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
