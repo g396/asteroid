@@ -35,7 +35,7 @@ import sns.asteroid.view.adapter.timeline.viewholder.HiddenViewHolder
  * タイムラインの要素
  * フッターは別で定義(TimelineFooterAdapter)
  */
-open class TimelineAdapter(
+class TimelineAdapter(
     val context: Context,
     private val myAccountId: String,
     private val listener: EventsListener,
