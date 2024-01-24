@@ -235,9 +235,7 @@ open class TimelineAdapter(
             binding.include.showCounts = settings.isShowReactionsCount
 
             binding.columnContext = columnContext
-            binding.showCard = settings.isShowCard
-            binding.showVia = settings.isShowVia
-            binding.showRelation = true
+            binding.via.isVisible = settings.isShowVia
         }
     }
 }

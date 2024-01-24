@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.MotionEvent
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import sns.asteroid.api.entities.ContentInterface
 import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.RowPostsBinding
 import sns.asteroid.databinding.RowPostsFilterBinding
+import sns.asteroid.model.settings.SettingsValues
 import sns.asteroid.model.util.TextLinkMovementMethod
 import sns.asteroid.view.adapter.ContentDiffUtil
 import sns.asteroid.view.adapter.poll.PollAdapter
@@ -84,6 +86,7 @@ abstract class BaseTimelineAdapter<T: ContentInterface>(
     protected open fun bindStatus(binding: RowPostsBinding, position: Int) {
         val status = getStatus(position) ?: return
         val parentStatus = getParentStatus(position) ?: return
+        val settings = SettingsValues.getInstance()
 
         // For BindingAdapter
         binding.posts = status
@@ -163,6 +166,18 @@ abstract class BaseTimelineAdapter<T: ContentInterface>(
         binding.includePoll.poll.apply {
             val poll = status.poll ?: return@apply
             (adapter as? PollAdapter)?.submitPoll(poll)
+        }
+
+        // set visibility (xml上で行うとスクロールが挙動不審になる)
+        binding.apply {
+            mediaAttachments.isVisible =
+                status.media_attachments.isNotEmpty()
+            reactions.isVisible =
+                status.emoji_reactions?.isNotEmpty() == true
+            card.root.isVisible =
+                (status.card != null) and status.isShowContent  and settings.isShowCard
+            reply.root.isVisible =
+                status.in_reply_to_id != null
         }
     }
 
