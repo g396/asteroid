@@ -75,7 +75,8 @@ class TimelineAdapter(
     }
 
     override fun findPositions(status: Status): List<Int> {
-        return currentList.filter { it.id == status.id }.map { currentList.indexOf(it) }
+        return currentList.filter { (it.id == status.id) or (it.reblog?.id == status.id) }
+            .map { currentList.indexOf(it) }
     }
 
     override fun bindStatus(binding: RowPostsBinding, position: Int) {
