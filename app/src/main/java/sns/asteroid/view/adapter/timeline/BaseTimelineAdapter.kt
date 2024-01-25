@@ -171,7 +171,7 @@ abstract class BaseTimelineAdapter<T: ContentInterface>(
         // set visibility (xml上で行うとスクロールが挙動不審になる)
         binding.apply {
             mediaAttachments.isVisible =
-                status.media_attachments.isNotEmpty()
+                status.media_attachments.isNotEmpty() and status.isShowContent
             reactions.isVisible =
                 status.emoji_reactions?.isNotEmpty() == true
             card.root.isVisible =

@@ -234,8 +234,8 @@
                 app:cardTitle="@{posts.card.title}"
                 app:layout_constraintStart_toEndOf="@id/icon"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
-                app:layout_constraintTop_toBottomOf="@id/include_poll"
-                app:thumbnail="@{posts.card.image}"
+                app:layout_constraintTop_toBottomOf="@id/mediaAttachments"
+                app:thumbnail="@{posts.media_attachments.size() > 0 ? null : posts.card.image}"
                 tools:visibility="visible" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -246,7 +246,7 @@
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintStart_toEndOf="@id/icon"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
-                app:layout_constraintTop_toBottomOf="@id/card" />
+                app:layout_constraintTop_toBottomOf="@id/include_poll" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reactions"
@@ -256,7 +256,7 @@
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintStart_toEndOf="@id/icon"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
-                app:layout_constraintTop_toBottomOf="@+id/mediaAttachments" />
+                app:layout_constraintTop_toBottomOf="@+id/card" />
 
             <TextView
                 android:id="@+id/via"
