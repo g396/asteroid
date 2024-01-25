@@ -235,7 +235,7 @@
                 app:layout_constraintStart_toEndOf="@id/icon"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
                 app:layout_constraintTop_toBottomOf="@id/include_poll"
-                app:thumbnail="@{posts.card.image}"
+                app:thumbnail="@{posts.media_attachments.size() > 0 ? null : posts.card.image}"
                 tools:visibility="visible" />
 
             <androidx.recyclerview.widget.RecyclerView
