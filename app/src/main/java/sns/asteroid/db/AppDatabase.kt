@@ -15,13 +15,12 @@ import sns.asteroid.db.entities.*
 import java.io.File
 
 @Database(
-    entities = [Credential::class, AppSetting::class, ColumnInfo::class, RecentlyHashtag::class, Draft::class],
-    version = 4,
+    entities = [Credential::class, ColumnInfo::class, RecentlyHashtag::class, Draft::class],
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun credentialDao(): CredentialDao
-    abstract fun appSettingDao(): AppSettingDao
     abstract fun columnInfoDao(): ColumnInfoDao
     abstract fun hashtagDao(): HashtagDao
     abstract fun draftDao(): DraftDao
@@ -36,6 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
                     .addMigrations(Migration1to2())
                     .addMigrations(Migration2to3())
                     .addMigrations(Migration3to4())
+                    .addMigrations(Migration4to5())
                     .openHelperFactory(SupportFactory(password.toByteArray()))
                     .build()
             }
@@ -148,6 +148,12 @@ abstract class AppDatabase : RoomDatabase() {
                     "expire_min INTEGER NOT NULL," +
                     "PRIMARY KEY(id))"
             )
+        }
+    }
+
+    class Migration4to5: Migration(4,5) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("DROP TABLE AppSetting")
         }
     }
 }
