@@ -107,6 +107,16 @@ class VisibilityAdapter(
                 else        -> 0
             }
         }
+
+        fun getVisibility(position: Int): String {
+            return when(position) {
+                1 -> "public"
+                2 -> "unlisted"
+                3 -> "private"
+                4 -> "direct"
+                else -> ""
+            }
+        }
     }
 
     enum class Visibility(val value: String) {

@@ -11,6 +11,8 @@ import android.os.Build
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Size
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.toBitmap
 import kotlinx.serialization.json.Json
 import sns.asteroid.CustomApplication
 import sns.asteroid.R
@@ -27,12 +29,43 @@ class MediaModel(val credential: Credential) {
         val message: String
     )
 
+    data class MediaFile(
+        val type: MediaType,
+        val uri: Uri?,
+        val thumbnail: Bitmap? = null,
+        val description: String = "",
+        val mediaAttachment: MediaAttachment? = null,
+    )
+
+    enum class MediaType {
+        IMAGE,
+        VIDEO,
+        AUDIO,
+    }
+
     companion object {
-        fun getThumbnail(uri: Uri): Bitmap? {
+        fun getMediaType(name: String): MediaType {
+            return when(name) {
+                "image" -> MediaType.IMAGE
+                "gifv" -> MediaType.VIDEO
+                "video" -> MediaType.VIDEO
+                "audio" -> MediaType.AUDIO
+                else -> MediaType.IMAGE
+            }
+        }
+        fun getThumbnail(media: MediaFile): MediaFile {
+            if(media.uri == null) return media
+
             val context = CustomApplication.getApplicationContext()
 
+            if(media.type == MediaType.AUDIO) {
+                val bitmap = ResourcesCompat.getDrawable(context.resources, R.drawable.audiofile, null)?.toBitmap()
+                return media.copy(thumbnail = bitmap)
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                return context.contentResolver.loadThumbnail(uri, Size(256,256), null)
+                val bitmap = context.contentResolver.loadThumbnail(media.uri, Size(256,256), null)
+                return media.copy(thumbnail = bitmap)
             }
 
             // TODO: Android Q未満　未確認
@@ -42,19 +75,20 @@ class MediaModel(val credential: Credential) {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     null,
                     MediaStore.Images.ImageColumns.DATA +  " = ?",
-                    arrayOf(uri.toString()),
+                    arrayOf(media.uri.toString()),
                     null
-                ) ?: return null
+                ) ?: return media
 
             if (!cursor.moveToFirst()) {
                 cursor.close()
-                return null
+                return media
             }
 
             val index = cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)
             val id = cursor.getLong(index)
 
-            return MediaStore.Images.Thumbnails.getThumbnail(contentResolver, id, MediaStore.Images.Thumbnails.MICRO_KIND, null)
+            val bitmap = MediaStore.Images.Thumbnails.getThumbnail(contentResolver, id, MediaStore.Images.Thumbnails.MICRO_KIND, null)
+            return media.copy(thumbnail = bitmap)
         }
 
         fun importFile(uri: Uri, autoResize: Int? = null): ByteArray? {
@@ -142,7 +176,7 @@ class MediaModel(val credential: Credential) {
 
         val file = readAndResize(uri, context, resize)
             ?: return Result(isSuccess = false, mediaAttachment = null, message = getString(R.string.failed_to_load_media))
-        val response = Media(credential).postMedia(file.first, file.second, file.third, description)
+        val response = Media(credential.instance, credential.accessToken).postMedia(file.first, file.second, file.third, description)
             ?: return Result(isSuccess = false, mediaAttachment = null, message = getString(R.string.failed))
 
         if(!response.isSuccessful)

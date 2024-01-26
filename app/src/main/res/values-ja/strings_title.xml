@@ -15,4 +15,5 @@
     <string name="title_add_to_list">リストへ追加・削除</string>
     <string name="title_accounts_list">リスト内のアカウント一覧</string>
     <string name="title_recently_hashtags">最近使用したハッシュタグ</string>
+    <string name="title_draft">下書き一覧</string>
 </resources>

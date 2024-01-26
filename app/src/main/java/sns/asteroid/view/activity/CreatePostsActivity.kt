@@ -1,28 +1,39 @@
 package sns.asteroid.view.activity
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.*
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
 import android.view.View.OnClickListener
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import sns.asteroid.R
 import sns.asteroid.api.entities.CustomEmoji
@@ -32,12 +43,11 @@ import sns.asteroid.databinding.RowMediaSquareBinding
 import sns.asteroid.db.entities.Credential
 import sns.asteroid.model.emoji.CustomEmojiParser
 import sns.asteroid.model.settings.SettingsValues
+import sns.asteroid.model.user.MediaModel
 import sns.asteroid.view.adapter.pager.EmojiPagerAdapter
-import sns.asteroid.view.adapter.poll.CreatePollAdapter
+import sns.asteroid.view.adapter.spinner.LanguageAdapter
 import sns.asteroid.view.adapter.spinner.VisibilityAdapter
-import sns.asteroid.view.adapter.time.TimeDaysAdapter
-import sns.asteroid.view.adapter.time.TimeHoursAdapter
-import sns.asteroid.view.adapter.time.TimeMinutesAdapter
+import sns.asteroid.view.adapter.time.TimeSpinnerAdapter
 import sns.asteroid.view.dialog.*
 import sns.asteroid.view.fragment.emoji_selector.EmojiSelectorFragment
 import sns.asteroid.viewmodel.CreatePostsViewModel
@@ -50,13 +60,24 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
     private val viewModel: CreatePostsViewModel by viewModels {
         val credential = intent.getSerializableExtra("credential") as Credential?
         val replyTo = intent.getSerializableExtra("reply_to") as Status?
-        CreatePostsViewModel.Factory(credential, replyTo)
+        val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
+        val visibility = intent.getStringExtra("visibility")
+        val edit = intent.getSerializableExtra("edit") as Status?
+        CreatePostsViewModel.Factory(credential, replyTo, intentText, visibility, edit)
     }
     private val emojiViewModel: EmojiListViewModel by viewModels()
 
     private val binding: ActivityCreatePostsBinding by lazy { ActivityCreatePostsBinding.inflate(layoutInflater) }
 
+    private val draftSelectResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                onDraftSelect(intent = it.data)
+            }
+        }
+
     private var editTextFocus: EditText? = null
+    private var moveCursor = true
 
     companion object {
         const val REQUEST_CODE_IMAGE = 20
@@ -73,6 +94,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         getContentFromIntent()
         setContentView(binding.root)
 
+        binding.viewModel = viewModel
         binding.emojiViewModel = emojiViewModel
         binding.replyStatus = viewModel.replyTo
 
@@ -80,9 +102,13 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             binding.credential = it
             lifecycleScope.launch { emojiViewModel.getCustomEmojiCategories(it.instance) }
         })
-        viewModel.media.observe(this@CreatePostsActivity, Observer {
+        viewModel.mediaFile.observe(this@CreatePostsActivity, Observer {
             binding.media = it
             (binding.images.adapter as MediaAdapter).submitList(it)
+        })
+        viewModel.language.observe(this@CreatePostsActivity, Observer {
+            LanguageAdapter(this, binding.item.language, it)
+            binding.invalidateAll()
         })
         viewModel.toastMessage.observe(this@CreatePostsActivity, Observer {
             Toast.makeText(this@CreatePostsActivity, it, Toast.LENGTH_SHORT).show()
@@ -93,12 +119,15 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
         binding.apply {
             send.setOnClickListener { showDialog() }
-            cw.setOnClickListener { showWarningText() }
             addImage.setOnClickListener(MediaButtonClickListener())
             hashtag.setOnClickListener(HashtagButtonClickListener())
             customEmoji.setOnClickListener { openEmojiSelector() }
             textArea.setOnClickListener { showKeyboard() }
             avatar.setOnClickListener { selectOtherAccount() }
+
+            item.draft.setOnClickListener { openDraft() }
+            item.cw.setOnClickListener { changeFocus() }
+            item.poll.setOnClickListener { binding.invalidateAll() }
         }
 
         binding.images.also {
@@ -107,29 +136,32 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         }
         binding.selectVisibility.also {
             it.adapter = VisibilityAdapter(this@CreatePostsActivity, it)
-
-            val visibility = viewModel.replyTo?.visibility ?: intent.getStringExtra("visibility")
-            val position = VisibilityAdapter.getPosition(visibility)
-            it.setSelection(position)
+            it.isEnabled = (viewModel.editId == null)
         }
         binding.includeCreatePoll.also { poll ->
-            binding.poll.setOnClickListener {
-                poll.root.visibility =
-                    if (binding.poll.isChecked) View.VISIBLE
-                    else View.GONE
-            }
-            poll.recyclerView.also {
-                it.adapter = CreatePollAdapter(this@CreatePostsActivity)
-                it.layoutManager = LinearLayoutManager(this@CreatePostsActivity)
-            }
-            poll.days.adapter = TimeDaysAdapter(this@CreatePostsActivity)
-            poll.hours.adapter = TimeHoursAdapter(this@CreatePostsActivity)
-            poll.minutes.adapter = TimeMinutesAdapter(this@CreatePostsActivity)
-            poll.hours.setSelection(1)
+            poll.days.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.days)
+            poll.hours.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.hours)
+            poll.minutes.adapter = TimeSpinnerAdapter(this@CreatePostsActivity, viewModel.mins)
         }
+
+        binding.content.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable) {
+                if (moveCursor) {
+                    moveCursor = false
+                    binding.content.setSelection(s.length)
+                }
+            }
+        })
 
         showKeyboard()
         onBackPressedDispatcher.addCallback(BackKeyCallback())
+
+        if((viewModel.editId != null) and (savedInstanceState == null))
+            getStatusSource()
     }
 
     /**
@@ -152,9 +184,9 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             val uri = data?.data?: return@launch
 
             when(requestCode) {
-                REQUEST_CODE_IMAGE -> viewModel.addMedia(CreatePostsViewModel.Property.IMAGE, uri)
-                REQUEST_CODE_VIDEO -> viewModel.addMedia(CreatePostsViewModel.Property.VIDEO, uri)
-                REQUEST_CODE_AUDIO -> viewModel.addMedia(CreatePostsViewModel.Property.AUDIO, uri)
+                REQUEST_CODE_IMAGE -> viewModel.addMedia(MediaModel.MediaType.IMAGE, uri)
+                REQUEST_CODE_VIDEO -> viewModel.addMedia(MediaModel.MediaType.VIDEO, uri)
+                REQUEST_CODE_AUDIO -> viewModel.addMedia(MediaModel.MediaType.AUDIO, uri)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -217,10 +249,10 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
      * MediaAdapterCallback
      * サムネイルクリック時にダイアログ表示→確認後に添付メディアを削除
      */
-    private fun onRemoveButtonClick(position: Int, uri: Uri) {
+    private fun onRemoveButtonClick(position: Int) {
         val listener = object : SimpleDialog.SimpleDialogListener {
             override fun onDialogAccept() {
-                viewModel.removeImage(uri)
+                viewModel.removeImage(position)
             }
             override fun onDialogCancel() {
             }
@@ -229,15 +261,15 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             .show(supportFragmentManager, "tag")
     }
 
-    private fun onThumbnailClick(position: Int, uri: Uri) {
-        onRemoveButtonClick(position, uri)
+    private fun onThumbnailClick(position: Int) {
+        onRemoveButtonClick(position)
     }
 
-    private fun onDescriptionButtonClick(position: Int, uri: Uri) {
-        val description = viewModel.getDescription(uri)
+    private fun onDescriptionButtonClick(position: Int) {
+        val description = viewModel.mediaFile.value?.getOrNull(position)?.description ?: return
         val listener = object : SimpleTextInputDialog.SimpleTextInputDialogListener {
             override fun onInputText(text: String) {
-                viewModel.addDescription(uri, text)
+                viewModel.addDescription(position, text)
             }
             override fun onDialogCancel() {
             }
@@ -265,18 +297,6 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             it.type = mimeType
         }
         startActivityForResult(intent, requestCode)
-    }
-
-    /**
-     * 警告文テキストボックスの表示・非表示
-     */
-    private fun showWarningText() {
-        binding.spoilerText.visibility =
-            if (binding.cw.isChecked) View.VISIBLE
-            else View.GONE
-
-        if (binding.spoilerText.visibility == View.VISIBLE) binding.spoilerText.requestFocus()
-        else binding.content.requestFocus()
     }
 
     /**
@@ -333,57 +353,34 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
 
     /**
      * 投稿を送信する
-     * TODO: 双方向データバインディングしたらこんなに記述いらなくなる
      */
-    private fun postStatus() {
-        lifecycleScope.launch {
-            val button = binding.send.apply {
-                isClickable = false
-            }
+    private fun postStatus() = lifecycleScope.launch {
+        LoadingDialog().also { dialog ->
+            binding.send.isClickable = false
+            dialog.show(supportFragmentManager, "tag")
 
-            val loading = LoadingDialog().apply {
-                show(supportFragmentManager, "tag")
-            }
-
-            val text = binding.content.text.toString()
-            val spoilerText = binding.spoilerText.text.toString()
-
-            val visibility = let {
-                val spinner = binding.selectVisibility
-                val item = spinner.selectedItem as VisibilityAdapter.Visibility
-                item.value
-            }
-            val sensitive = binding.checkBox.isChecked
-
-            val pollOption = if (binding.poll.isChecked) {
-                val recyclerView = binding.includeCreatePoll.recyclerView
-                val adapter = recyclerView.adapter as CreatePollAdapter
-                adapter.getList()
-            } else null
-
-            val pollExpire = if (binding.poll.isChecked) {
-                val minutes = binding.includeCreatePoll.minutes.selectedItem as Int
-                val hours = binding.includeCreatePoll.hours.selectedItem as Int
-                val days = binding.includeCreatePoll.days.selectedItem as Int
-                ((days * 24 + hours) * 60 + minutes) * 60
-            } else null
-
-            val pollMultiple = if(binding.poll.isChecked) {
-                binding.includeCreatePoll.checkBox.isChecked
-            } else null
-
-            val resizeImage = binding.checkBoxResize.isChecked
-
-            val result = viewModel.postStatuses(
-                text, spoilerText, sensitive, visibility, pollOption, pollExpire, pollMultiple, resizeImage
-            )
-            if (result) {
+            if (viewModel.postStatuses()) {
                 setResult(RESULT_OK, Intent())
                 finish()
             }
+            dialog.dismiss()
+            binding.send.isClickable = true
+        }
+    }
 
-            button.isClickable = true
-            loading.dismiss()
+    /**
+     * 投稿編集時においてプレーンテキストを取得する
+     * (StatusエンティティにはHTMLテキストしか入っていない)
+     */
+    private fun getStatusSource() = lifecycleScope.launch {
+        val dialog = LoadingDialog().also { it.show(supportFragmentManager, "tag") }
+
+        if(viewModel.getStatusSource()) {
+            dialog.dismiss()
+            binding.invalidateAll()
+        } else {
+            Toast.makeText(this@CreatePostsActivity, "null", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
@@ -392,10 +389,13 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
      * (返信時やメディアのアップロード試行後は不可)
      */
     private fun selectOtherAccount() {
-        if (viewModel.replyTo != null) {
+        if (viewModel.editId != null) {
+            Toast.makeText(this, R.string.select_account_edit, Toast.LENGTH_SHORT).show()
+            return
+        } else if (viewModel.replyTo != null) {
             Toast.makeText(this, getString(R.string.select_account_reply), Toast.LENGTH_SHORT).show()
             return
-        } else if (viewModel.mediaAttachments.isNotEmpty()) {
+        } else if (viewModel.mediaFile.value!!.mapNotNull { it.mediaAttachment }.isNotEmpty()) {
             Toast.makeText(this, getString(R.string.select_account_media), Toast.LENGTH_SHORT).show()
             return
         }
@@ -411,6 +411,28 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             .show(supportFragmentManager, "tag")
     }
 
+    private fun openDraft() {
+        val intent = Intent(this, DraftActivity::class.java)
+        draftSelectResult.launch(intent)
+    }
+
+    private fun onDraftSelect(intent: Intent?) = lifecycleScope.launch {
+        val position = intent?.getIntExtra("position", 0) ?: return@launch
+        moveCursor = true
+        viewModel.load(position)
+        binding.invalidateAll()
+    }
+
+    /**
+     * 警告文の挿入の際にEditTextへのフォーカスを切替える
+     */
+    private fun changeFocus() {
+        binding.spoilerText.isVisible = !binding.spoilerText.isVisible
+        if (binding.spoilerText.isVisible) binding.spoilerText.requestFocus()
+        else binding.content.requestFocus()
+        binding.invalidateAll()
+    }
+
     /**
      * 画像・テキスト等をintentから受け取る
      */
@@ -418,22 +440,8 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
         // 共有機能から画像を受け取った場合
         if(intent.type?.startsWith("image/") == true) {
             val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
-            lifecycleScope.launch { viewModel.addMedia(CreatePostsViewModel.Property.IMAGE, uri) }
+            lifecycleScope.launch { viewModel.addMedia(MediaModel.MediaType.IMAGE, uri) }
             return
-        }
-
-        if(intent.type == "text/plain") {
-            // タイムラインのテキストボックスor共有機能から文字列を受け取った場合
-            binding.content.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
-            binding.content.setSelection(binding.content.text.length)
-        } else {
-            // 返信先のacctをテキストボックスに入力する(自分への返信は除く)
-            val replyTo = intent.getSerializableExtra("reply_to") as Status? ?: return
-            val credential = intent.getSerializableExtra("credential") as Credential?
-            if(credential?.account_id != replyTo.account.id) {
-                binding.content.setText(String.format(getString(R.string.acct) + " ", replyTo.account.acct))
-                binding.content.setSelection(binding.content.text.length)
-            }
         }
     }
 
@@ -446,17 +454,25 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
                 binding.emojiSelector.visibility = View.GONE
                 return
             }
-            val isNotEmpty = (viewModel.media.value!!.isNotEmpty()) or (binding.content.text.isNotBlank())
+            val isNotEmpty =
+                (viewModel.mediaFile.value!!.isNotEmpty()) or (binding.content.text.isNotBlank())
 
             if(isNotEmpty) {
-                val listener = object : SimpleDialog.SimpleDialogListener {
+                val listener = object : SimpleThreeOptionsDialog.SimpleDialogListener {
                     override fun onDialogAccept() {
-                        finish()
+                        lifecycleScope.launch {
+                            viewModel.save()
+                            finish()
+                        }
                     }
                     override fun onDialogCancel() {
                     }
+
+                    override fun onDialogDecline() {
+                        finish()
+                    }
                 }
-                SimpleDialog.newInstance(listener, getString(R.string.dialog_create_post_delete))
+                SimpleThreeOptionsDialog.newInstance(listener, getString(R.string.dialog_save_draft))
                     .show(supportFragmentManager, "tag")
             } else {
                 finish()
@@ -533,19 +549,19 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
      */
     inner class MediaButtonClickListener: OnClickListener {
         override fun onClick(v: View?) {
-            if (viewModel.media.value!!.size >= 4) {
+            if (viewModel.mediaFile.value!!.size >= 4) {
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_attachments_limit), Toast.LENGTH_SHORT).show()
                 return
             }
-            if (viewModel.property.value == CreatePostsViewModel.Property.VIDEO) {
+            if (viewModel.mediaFile.value!!.firstOrNull()?.type == MediaModel.MediaType.VIDEO) {
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_xor), Toast.LENGTH_SHORT).show()
                 return
             }
-            if (viewModel.property.value == CreatePostsViewModel.Property.AUDIO) {
+            if (viewModel.mediaFile.value!!.firstOrNull()?.type == MediaModel.MediaType.AUDIO) {
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_xor), Toast.LENGTH_SHORT).show()
                 return
             }
-            if(binding.poll.isChecked) {
+            if(viewModel.createPoll.value == true) {
                 Toast.makeText(this@CreatePostsActivity, getString(R.string.media_poll_xor), Toast.LENGTH_SHORT).show()
                 return
             }
@@ -555,7 +571,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             popupMenu.menu.apply {
                 add(Menu.NONE, REQUEST_CODE_IMAGE, Menu.NONE, getString(R.string.context_img))
 
-                if(viewModel.media.value!!.isEmpty()) {
+                if(viewModel.mediaFile.value!!.isEmpty()) {
                     add(Menu.NONE, REQUEST_CODE_VIDEO, Menu.NONE, getString(R.string.context_video))
                     add(Menu.NONE, REQUEST_CODE_AUDIO, Menu.NONE, getString(R.string.context_audio))
                 }
@@ -601,7 +617,7 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
      */
     inner class MediaAdapter(
         val context: Context,
-    ): ListAdapter<Pair<Uri, Bitmap>, MediaAdapter.ViewHolder>(AdapterDiffUtil()) {
+    ): ListAdapter<MediaModel.MediaFile, MediaAdapter.ViewHolder>(AdapterDiffUtil()) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val layoutInflater = LayoutInflater.from(context)
             val binding = RowMediaSquareBinding.inflate(layoutInflater)
@@ -612,28 +628,40 @@ class CreatePostsActivity: AppCompatActivity(), EmojiSelectorFragment.EmojiSelec
             val media = getItem(position)
             val binding = holder.binding
 
-            binding.image.apply {
-                setImageBitmap(media.second)
-                setOnClickListener { onThumbnailClick(position, media.first) }
+            if(media.thumbnail != null) {
+                binding.image.setImageBitmap(media.thumbnail)
+            } else if(media.mediaAttachment?.type == "audio") {
+                binding.image.setImageResource(R.drawable.audiofile)
+            } else if(media.mediaAttachment?.preview_url != null) {
+                Glide.with(this@CreatePostsActivity)
+                    .load(media.mediaAttachment.preview_url)
+                    .into(binding.image)
             }
-            binding.button.apply {
-                setOnClickListener { onRemoveButtonClick(position, media.first) }
+
+            binding.image.setOnClickListener {
+                val currentPosition = currentList.indexOf(media)
+                onThumbnailClick(currentPosition)
             }
-            binding.alt.apply {
-                setOnClickListener { onDescriptionButtonClick(position, media.first) }
+            binding.button.setOnClickListener {
+                val currentPosition = currentList.indexOf(media)
+                onRemoveButtonClick(currentPosition)
+            }
+            binding.alt.setOnClickListener {
+                val currentPosition = currentList.indexOf(media)
+                onDescriptionButtonClick(currentPosition)
             }
         }
 
         inner class ViewHolder(val binding: RowMediaSquareBinding): RecyclerView.ViewHolder(binding.root)
     }
 
-    inner class AdapterDiffUtil: DiffUtil.ItemCallback<Pair<Uri, Bitmap>>() {
-        override fun areItemsTheSame(oldItem: Pair<Uri, Bitmap>, newItem: Pair<Uri, Bitmap>): Boolean {
-            return oldItem.first == newItem.first
+    inner class AdapterDiffUtil: DiffUtil.ItemCallback<MediaModel.MediaFile>() {
+        override fun areItemsTheSame(oldItem: MediaModel.MediaFile, newItem: MediaModel.MediaFile): Boolean {
+            return oldItem.hashCode() == newItem.hashCode()
         }
 
-        override fun areContentsTheSame(oldItem: Pair<Uri, Bitmap>, newItem: Pair<Uri, Bitmap>): Boolean {
-            return oldItem.first == newItem.first
+        override fun areContentsTheSame(oldItem: MediaModel.MediaFile, newItem: MediaModel.MediaFile): Boolean {
+            return oldItem == newItem
         }
     }
 }

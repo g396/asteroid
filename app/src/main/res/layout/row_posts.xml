@@ -5,7 +5,6 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="sns.asteroid.view.BindingAdapter"/>
         <variable
             name="columnContext"
             type="String" />
@@ -13,23 +12,11 @@
             name="posts"
             type="sns.asteroid.api.entities.Status" />
         <variable
-            name="filteringVisibility"
-            type="int" />
-        <variable
-            name="filteringMessageVisibility"
-            type="int" />
-        <variable
             name="boostedBy"
             type="String" />
         <variable
-            name="showRelation"
-            type="boolean" />
-        <variable
-            name="showCard"
-            type="boolean" />
-        <variable
-            name="showVia"
-            type="boolean" />
+            name="boostVisibility"
+            type="String" />
         <variable
             name="background"
             type="int" />
@@ -46,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? View.VISIBLE : View.GONE}'
             app:layout_constraintBottom_toBottomOf="@+id/pinned"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pinned"
@@ -59,10 +46,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:visibility="@{posts.pinned ? filteringVisibility : View.GONE}"
+            android:visibility='@{(columnContext.equals("account") &amp;&amp; posts.pinned) ? View.VISIBLE : View.GONE}'
             android:text="@string/pinned"
             app:flow_lastVerticalBias="0"
-            app:isPinned="@{posts.pinned}"
             app:customTextSize='@{"default"}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pinIcon"
@@ -74,7 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:visibility="@{(boostedBy.length() > 0) ? filteringVisibility : View.GONE}"
+            android:adjustViewBounds="true"
+            android:visibility="@{(boostedBy.length() > 0) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/boost_by"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/boost_by"
@@ -88,42 +75,26 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/boosted_by"
-            android:visibility="@{(boostedBy.length() > 0) ? filteringVisibility : View.GONE}"
+            android:visibility="@{(boostedBy.length() > 0) ? View.VISIBLE : View.GONE}"
+            app:content="@{boostedBy}"
+            app:scaleEmojis="@{false}"
             app:customTextSize='@{"default"}'
-            app:boostedBy="@{boostedBy}"
+            app:setTextColorByVisibility="@{boostVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/boostIcon"
             app:layout_constraintTop_toBottomOf="@+id/pinned" />
 
-        <TextView
-            android:id="@+id/filterText"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/row"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="4dp"
-            android:padding="16dp"
-            android:gravity="center"
-            android:background="@drawable/background_normal"
-            android:visibility="@{filteringMessageVisibility}"
-            app:customTextSize='@{"default"}'
-            app:filter_subject="@{posts.filtered}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/row"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:visibility="@{filteringVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/boost_by"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:backgroundDrawable="@{background}">
+            app:reblog="@{boostedBy.length() > 0}">
 
             <ImageView
                 android:id="@+id/icon"
@@ -148,6 +119,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/sample_display_name"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:setTextColorByVisibility="@{posts.visibility}"
                 app:acct="@{posts.account.acct}"
                 app:customTextSize='@{"default"}'
                 app:displayName="@{posts.account.convertedDisplayName}"
@@ -172,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="4dp"
-                app:editedAt="@{posts.edited_at}"
+                android:visibility="@{posts.edited_at.length() > 0 ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="@+id/post_at"
                 app:layout_constraintDimensionRatio="5:7"
                 app:layout_constraintEnd_toStartOf="@+id/visibilityIcon"
@@ -189,138 +163,134 @@
                 android:focusableInTouchMode="false"
                 android:text="@string/sample_created_at"
                 app:customTextSize='@{"default"}'
+                app:setTextColorByVisibility="@{posts.visibility}"
                 app:date="@{posts.created_at}"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <include
+                android:id="@+id/reply"
+                layout="@layout/include_post_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:inReplyToId="@{posts.in_reply_to_id}"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+                app:layout_constraintTop_toBottomOf="@+id/username"
+                tools:visibility="visible" />
+
+            <include
+                android:id="@+id/cw"
+                layout="@layout/include_post_spoiler_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toStartOf="@id/spaceEnd"
                 app:layout_constraintStart_toEndOf="@+id/icon"
-                app:layout_constraintTop_toBottomOf="@+id/username">
+                app:layout_constraintTop_toBottomOf="@+id/reply"
+                app:spoilerText="@{posts.parsedSpoilerText}" />
 
-                <include
-                    android:id="@+id/reply"
-                    layout="@layout/include_post_reply"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:visibility="@{(showRelation == false) || (posts.in_reply_to_id == null) ? View.GONE : View.VISIBLE}"
-                    app:inReplyToId="@{posts.in_reply_to_id}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toBottomOf="@+id/username" />
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/sample_summary3"
+                android:visibility="@{posts.showContent &amp;&amp; posts.content.length() > 0 ? View.VISIBLE : View.GONE}"
+                app:content="@{posts.parsedContent}"
+                app:scaleEmojis="@{true}"
+                app:customTextSize='@{"default"}'
+                app:setTextColorByVisibility="@{posts.visibility}"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintTop_toBottomOf="@id/cw" />
 
-                <include
-                    android:id="@+id/cw"
-                    layout="@layout/include_post_spoiler_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toBottomOf="@+id/reply"
-                    app:spoilerText="@{posts.parsedSpoilerText}" />
+            <include
+                android:id="@+id/include_poll"
+                layout="@layout/include_poll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="@{posts.showContent &amp;&amp; posts.poll != null ? View.VISIBLE : View.GONE}"
+                android:nestedScrollingEnabled="false"
+                android:clickable="false"
+                app:voted="@{posts.poll.voted}"
+                app:expired="@{posts.poll.expired}"
+                app:expireAt="@{posts.poll.expires_at}"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintTop_toBottomOf="@id/summary"
+                android:isScrollContainer="false"/>
 
-                <LinearLayout
-                    android:id="@+id/spoilerContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:visibility="@{posts.showContent ? View.VISIBLE : View.GONE}"
-                    android:orientation="vertical">
+            <include
+                android:id="@+id/card"
+                layout="@layout/row_posts_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardDescription="@{posts.card.description}"
+                app:cardTitle="@{posts.card.title}"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintTop_toBottomOf="@id/mediaAttachments"
+                app:thumbnail="@{posts.media_attachments.size() > 0 ? null : posts.card.image}"
+                tools:visibility="visible" />
 
-                    <TextView
-                        android:id="@+id/summary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sample_summary3"
-                        app:content="@{posts.parsedContent}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mediaAttachments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintTop_toBottomOf="@id/include_poll" />
 
-                    <include
-                        android:id="@+id/include_poll"
-                        layout="@layout/include_poll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:visibility="@{posts.poll == null ? View.GONE : View.VISIBLE}"
-                        android:nestedScrollingEnabled="false"
-                        android:clickable="false"
-                        app:voted="@{posts.poll.voted}"
-                        app:expired="@{posts.poll.expired}"
-                        app:expireAt="@{posts.poll.expires_at}"
-                        app:layout_goneMarginTop="0dp"
-                        android:isScrollContainer="false"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reactions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintTop_toBottomOf="@+id/card" />
 
-                    <include
-                        android:id="@+id/card"
-                        layout="@layout/row_posts_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:visibility="@{showCard &amp;&amp; (posts.card != null) ? View.VISIBLE : View.GONE}"
-                        app:cardDescription="@{posts.card.description}"
-                        app:cardTitle="@{posts.card.title}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/poll"
-                        app:layout_goneMarginTop="0dp"
-                        app:thumbnail="@{posts.card.image}"
-                        tools:visibility="visible" />
+            <TextView
+                android:id="@+id/via"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text='@{"via " + posts.application.name}'
+                android:textColor="#888888"
+                app:customTextSize='@{"small"}'
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintTop_toBottomOf="@id/reactions"
+                tools:text="via Asteroid" />
 
-                </LinearLayout>
+            <include
+                android:id="@+id/include"
+                layout="@layout/row_posts_reaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintStart_toStartOf="@id/icon"
+                app:layout_constraintTop_toBottomOf="@id/via"
+                app:posts="@{posts}" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mediaAttachments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:nestedScrollingEnabled="false"
-                    android:visibility="@{posts.media_attachments.size() > 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_goneMarginTop="0dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/reactions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:nestedScrollingEnabled="false"
-                    android:visibility="@{posts.emoji_reactions.size() > 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_goneMarginTop="0dp"
-                    app:layout_constraintTop_toBottomOf="@+id/mediaAttachments" />
-
-                <TextView
-                    android:id="@+id/via"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:visibility="@{showVia ? View.VISIBLE : View.GONE}"
-                    android:text='@{"via " + posts.application.name}'
-                    android:textColor="#888888"
-                    app:customTextSize='@{"small"}'
-                    app:layout_goneMarginTop="0dp"
-                    tools:text="via Asteroid" />
-
-                <Space
-                    android:id="@+id/space"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toBottomOf="@+id/include" />
-
-            </LinearLayout>
+            <Space
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:layout_marginHorizontal="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
+                app:layout_constraintStart_toStartOf="@id/icon"
+                app:layout_constraintTop_toBottomOf="@+id/include" />
 
             <Space
                 android:id="@+id/spaceEnd"
@@ -329,19 +299,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-
-            <include
-                android:id="@+id/include"
-                layout="@layout/row_posts_reaction"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toStartOf="@id/spaceEnd"
-                app:layout_constraintStart_toStartOf="@id/icon"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_goneMarginTop="0dp"
-                app:posts="@{posts}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

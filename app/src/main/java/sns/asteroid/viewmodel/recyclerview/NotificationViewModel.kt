@@ -24,10 +24,10 @@ class NotificationViewModel(
     credential: Credential,
 ) : RecyclerViewViewModel<Notification>(columnInfo, credential), Streaming,
     AbstractStreamingClient.OnReceiveListener<Notification>, StatusViewModelInterface {
-    override val timelineModel =
-        if(columnInfo.subject == "mention") NotificationTimelineModel(credential, onlyMention = true)
-        else NotificationTimelineModel(credential)
+    override val timelineModel = NotificationTimelineModel(credential)
 
+    override val hash: String get() = columnInfo.hash
+    override var enableStreaming = columnInfo.streaming
     override val streamingClient = NotificationStreamingClient(this, credential)
 
     /**
@@ -35,6 +35,7 @@ class NotificationViewModel(
      */
     override fun onUpdated(notification: Notification) {
         viewModelScope.launch {
+            timelineModel.setSinceId(notification.id)
             withContext(Dispatchers.Main) { updateContent(notification) }
         }
     }
@@ -58,7 +59,7 @@ class NotificationViewModel(
             _contents.value?.toMutableList()?.apply {
                 val index = indexOf(current)
                 removeAt(index)
-                add(index, content.copy().apply { status?.isSelected = current.status?.isSelected ?: false })
+                add(index, content)
             }.let { _contents.postValue(it) }
         } else {
             _contents.value?.toMutableList()?.apply { add(0, content) }
@@ -73,11 +74,7 @@ class NotificationViewModel(
             it.status?.poll?.id == poll.id
         }
         statuses.forEach { s ->
-            val new = s.copy().also {
-                it.status = it.status?.copy()?.also { c ->
-                    c.poll = poll
-                }
-            }
+            val new = s.copy(status = s.status?.copy(poll = poll))
             val index = mutableList.indexOf(s)
             mutableList.removeAt(index)
             mutableList.add(index, new)
@@ -93,9 +90,7 @@ class NotificationViewModel(
             it.status?.id == status.id
         }
         notifications.forEach { n ->
-            val new = n.copy().also {
-                it.status = status
-            }
+            val new = n.copy(status = status)
             val index = mutableList.indexOf(n)
             mutableList.removeAt(index)
             mutableList.add(index, new)

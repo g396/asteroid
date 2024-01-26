@@ -49,11 +49,9 @@ open class TimelineViewModel(
             it.reblog?.id == content.id
         }
         reblogged.forEach { r ->
-            val new = r.copy().also {
-                it.isSelected = r.isSelected
-                it.filtered = r.filtered
+            val new = r.copy(reblog = content).also {
+                it.useFilter = r.useFilter
                 it.isShowContent = r.isShowContent
-                it.reblog = content
             }
             val index = mutableList.indexOfFirst { it.id == r.id }
             mutableList.removeAt(index)
@@ -65,8 +63,7 @@ open class TimelineViewModel(
         }
         statuses.forEach { s ->
             val new = content.also {
-                it.isSelected = s.isSelected
-                it.filtered = s.filtered
+                it.useFilter = s.useFilter
                 it.isShowContent = s.isShowContent
             }
             val index = mutableList.indexOf(s)
@@ -85,12 +82,7 @@ open class TimelineViewModel(
             it.reblog?.poll?.id == poll.id
         }
         reblogged.forEach { r ->
-            val new = r.copy().also {
-                it.isSelected = r.isSelected
-                it.reblog = it.reblog?.copy()?.also { s ->
-                    s.poll = poll
-                }
-            }
+            val new = r.copy(reblog = r.reblog?.copy(poll = poll))
             val index = mutableList.indexOfFirst { it.id == r.id }
             mutableList.removeAt(index)
             mutableList.add(index, new)
@@ -101,10 +93,7 @@ open class TimelineViewModel(
             it.poll?.id == poll.id
         }
         statuses.forEach { s ->
-            val new = s.copy().also {
-                it.isSelected = s.isSelected
-                it.poll = poll
-            }
+            val new = s.copy(poll = poll)
             val index = mutableList.indexOf(s)
             mutableList.removeAt(index)
             mutableList.add(index, new)

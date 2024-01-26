@@ -12,7 +12,7 @@ import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 class BlocksModel(credential: Credential): AbstractTimelineModel<Account>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Account> {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.getBlocks(maxId, sinceId)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 

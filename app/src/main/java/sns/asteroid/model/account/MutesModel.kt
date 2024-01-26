@@ -12,7 +12,7 @@ import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 class MutesModel(credential: Credential): AbstractTimelineModel<Account>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Account> {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.getMutes(maxId, sinceId)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 

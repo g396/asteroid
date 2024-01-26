@@ -18,7 +18,7 @@ class RelationshipModel(val credential: Credential, val ids: List<String>) {
     constructor(credential: Credential, id: String) : this(credential, listOf(id))
 
     fun getRelationship(): Result {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.getRelationships(ids)
             ?: return Result(isSuccess = false, relationship = null, toastMessage = getString(R.string.failed))
 

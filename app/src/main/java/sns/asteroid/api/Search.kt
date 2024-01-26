@@ -15,10 +15,17 @@ class Search(
 
         val urlBuilder =url.newBuilder().apply {
             addQueryParameter("q", query)
-            maxId?.let { addQueryParameter("max_id", it) }
-            minId?.let { addQueryParameter("min_id", it) }
             addQueryParameter("limit", "$limit")
-            if (type != Type.ALL) { addQueryParameter("type", type.value) }
+
+            maxId?.let {
+                addQueryParameter("max_id", it)
+            }
+            minId?.let {
+                addQueryParameter("min_id", it)
+            }
+
+            if (type != Type.ALL)
+                addQueryParameter("type", type.value)
         }
 
         val request = Request.Builder()
@@ -38,12 +45,14 @@ class Search(
         val url = ("https://${server}/api/v2/search").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
+        val urlBuilder = url.newBuilder().apply {
             addQueryParameter("q", query)
             addQueryParameter("offset", "$offset")
             addQueryParameter("limit", "$limit")
             addQueryParameter("resolve", "true")
-            if (type != Type.ALL) { addQueryParameter("type", type.value) }
+
+            if (type != Type.ALL)
+                addQueryParameter("type", type.value)
         }
 
         val request = Request.Builder()

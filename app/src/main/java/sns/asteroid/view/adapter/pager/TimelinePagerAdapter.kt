@@ -27,8 +27,9 @@ import sns.asteroid.view.fragment.recyclerview.timeline.StatusesTrendsFragment
  */
 class TimelinePagerAdapter(
     private val activity: FragmentActivity,
-    private val tabLayout: TabLayout,
     private val viewPager2: ViewPager2,
+    private val tabLayout: TabLayout? = null,
+    private val enableAddMenu: Boolean = false,
 ) : FragmentStateAdapter(activity), PagerAdapter {
     private var columns = mutableListOf<Pair<ColumnInfo, Credential>>()
 
@@ -43,7 +44,7 @@ class TimelinePagerAdapter(
 
             // タブのインジケータの色をカラムの色に合わせる
             columns.getOrNull(position)?.let {
-                tabLayout.setSelectedTabIndicatorColor(it.second.accentColor)
+                tabLayout?.setSelectedTabIndicatorColor(it.second.accentColor)
             }
         }
     }
@@ -55,7 +56,7 @@ class TimelinePagerAdapter(
             it.registerOnPageChangeCallback(pageChangeCallback)
         }
 
-        tabLayout.also {
+        tabLayout?.also {
             it.addOnTabSelectedListener(TabSelectListener(this))
         }
     }
@@ -78,19 +79,23 @@ class TimelinePagerAdapter(
         val subject = column.first.subject
 
         return when (subject) {
-            "notification"  -> NotificationFragment.newInstance(column)
-            "mention"       -> TimelineStreamingFragment.newInstance(column)
-            "local"         -> TimelineStreamingFragment.newInstance(column)
-            "public"        -> TimelineStreamingFragment.newInstance(column)
-            "local_media"   -> TimelineStreamingFragment.newInstance(column)
-            "public_media"  -> TimelineStreamingFragment.newInstance(column)
-            "home"          -> TimelineStreamingFragment.newInstance(column)
-            "mix"           -> TimelineStreamingFragment.newInstance(column)
-            "list"          -> ListTimelineFragment.newInstance(column)
-            "hashtag"       -> HashtagTimelineFragment.newInstance(column)
+            "notification"  -> NotificationFragment.newInstance(column, enableAddMenu)
+            "mention"       -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "local"         -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "public"        -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "local_media"   -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "public_media"  -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "home"          -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "mix"           -> TimelineStreamingFragment.newInstance(column, enableAddMenu)
+            "list"          -> ListTimelineFragment.newInstance(column, enableAddMenu)
+            "hashtag"       -> HashtagTimelineFragment.newInstance(column, enableAddMenu)
             "trends_hashtags"-> HashtagTrendsFragment.newInstance(column)
             "trends_statuses"-> StatusesTrendsFragment.newInstance(column)
-            else            -> TimelineFragment.newInstance(column)
+            "block"         -> AccountListFragment.newInstance(column)
+            "mute"          -> AccountListFragment.newInstance(column)
+            "favourited_by" -> AccountListFragment.newInstance(column)
+            "reblogged_by"  -> AccountListFragment.newInstance(column)
+            else            -> TimelineFragment.newInstance(column, enableAddMenu)
         }
     }
 
@@ -117,7 +122,9 @@ class TimelinePagerAdapter(
             columns.addAll(newList)
         }.dispatchUpdatesTo(this)
 
-        TabLayoutMediator(tabLayout, viewPager2, TabConfig()).attach() // テーマカラーの変更の反映
+        tabLayout?.also {
+            TabLayoutMediator(it, viewPager2, TabConfig()).attach()
+        }
         viewPager2.offscreenPageLimit = if (newList.isEmpty()) 1 else newList.size
     }
 

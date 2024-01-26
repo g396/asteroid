@@ -47,6 +47,22 @@ interface EventsListener {
 
     /**
      * EventsListenerの実装
+     * 別画面でメディアを表示する
+     */
+    fun editPosts(status: Status) {
+        if (viewModel.credential.value?.instance == "fedibird.com") {
+            Toast.makeText(requireContext(), "Not available in fedibird.com", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val intent = Intent(requireContext(), CreatePostsActivity::class.java).apply {
+            putExtra("credential", viewModel.credential.value)
+            putExtra("edit", status)
+        }
+        startActivity(intent)
+    }
+
+    /**
+     * EventsListenerの実装
      * 投稿をふぁぼる or ふぁぼ解除
      *
      * 投稿に対して絵文字リアクションボタンを表示する際は、ふぁぼボタンを省略し
@@ -81,6 +97,42 @@ interface EventsListener {
                     settings.isDialogEnableOnFavourite = !isChecked
                 else
                     settings.isDialogEnableOnUndoFavourite = !isChecked
+            }
+            override fun onDialogAccept() {
+                exec()
+            }
+            override fun onDialogCancel() {
+            }
+        }
+
+        if(isDialogEnable)
+            SimpleCheckBoxDialog.newInstance(callback, title, checkBoxTitle)
+                .show(requireActivity().supportFragmentManager, "tag")
+        else
+            exec()
+    }
+
+    /**
+     * 公開範囲を指定してブースト
+     */
+    fun onBoostMenuSelect(status: Status, visibility: Visibility) {
+        val settings = SettingsValues.getInstance()
+
+        val isDialogEnable = settings.isDialogEnableOnBoost
+        val title = getString(R.string.dialog_reblog)
+        val checkBoxTitle = getString(R.string.dialog_show_never)
+
+        val exec = {
+            when(visibility) {
+                Visibility.PUBLIC -> lifecycleScope.launch { viewModel.postBoostPublic(status.id) }
+                Visibility.UNLISTED -> lifecycleScope.launch { viewModel.postBoostUnlisted(status.id) }
+                Visibility.PRIVATE -> lifecycleScope.launch { viewModel.postBoostPrivate(status.id) }
+            }
+        }
+
+        val callback = object: SimpleCheckBoxDialog.SimpleCheckboxDialogListener {
+            override fun onCheckedDialog(isChecked: Boolean) {
+                settings.isDialogEnableOnBoost = !isChecked
             }
             override fun onDialogAccept() {
                 exec()
@@ -486,10 +538,14 @@ interface EventsListener {
     fun onMenuItemClick(status: Status, item: Item) {
         when(item) {
             Item.MENU_DELETE                    -> deletePosts(status)
+            Item.MENU_EDIT                      -> editPosts(status)
             Item.MENU_PIN                       -> pinThePosts(status)
             Item.MENU_UNPIN                     -> unPinThePosts(status)
             Item.MENU_FAVOURITE                 -> onFavouriteMenuSelect(status)
             Item.MENU_UNFAVOURITE               -> onFavouriteMenuSelect(status)
+            Item.MENU_BOOST_PUBLIC              -> onBoostMenuSelect(status, Visibility.PUBLIC)
+            Item.MENU_BOOST_UNLISTED            -> onBoostMenuSelect(status, Visibility.UNLISTED)
+            Item.MENU_BOOST_PRIVATE             -> onBoostMenuSelect(status, Visibility.PRIVATE)
             Item.MENU_FAVOURITE_OTHER_ACCOUNT   -> onFavouriteButtonLongClick(status.uri)
             Item.MENU_BOOKMARK_OTHER_ACCOUNT    -> onBookmarkButtonLongClick(status.uri)
             Item.MENU_BOOST_OTHER_ACCOUNT       -> onBoostButtonLongClick(status.uri)
@@ -580,24 +636,35 @@ interface EventsListener {
 
     enum class Item(val order: Int) {
         MENU_DELETE(0),
-        MENU_PIN(1),
-        MENU_UNPIN(2),
-        MENU_FAVOURITE(3),
-        MENU_UNFAVOURITE(4),
-        MENU_FAVOURITE_OTHER_ACCOUNT(5),
-        MENU_BOOST_OTHER_ACCOUNT(6),
-        MENU_BOOKMARK_OTHER_ACCOUNT(7),
-        MENU_WHO_FAVOURITED(8),
-        MENU_WHO_BOOSTED(9),
-        MENU_OPEN_BROWSER(10),
-        MENU_COPY_CLIPBOARD(11),
+        MENU_EDIT(1),
+        MENU_PIN(2),
+        MENU_UNPIN(3),
+        MENU_FAVOURITE(4),
+        MENU_UNFAVOURITE(5),
+        MENU_BOOST_PUBLIC(6),
+        MENU_BOOST_UNLISTED(7),
+        MENU_BOOST_PRIVATE(8),
+        MENU_FAVOURITE_OTHER_ACCOUNT(9),
+        MENU_BOOST_OTHER_ACCOUNT(10),
+        MENU_BOOKMARK_OTHER_ACCOUNT(11),
+        MENU_WHO_FAVOURITED(12),
+        MENU_WHO_BOOSTED(13),
+        MENU_OPEN_BROWSER(14),
+        MENU_COPY_CLIPBOARD(15),
+    }
+
+    enum class Visibility {
+        PUBLIC,
+        UNLISTED,
+        PRIVATE,
     }
 
     companion object {
         const val MY_POSTS = 0
         const val FAVOURITE = 1
-        const val OTHER_ACCOUNT = 2
-        const val WHO_ACTIONED = 3
-        const val GENERAL = 4
+        const val BOOST = 2
+        const val OTHER_ACCOUNT = 3
+        const val WHO_ACTIONED = 4
+        const val GENERAL = 5
     }
 }

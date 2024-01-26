@@ -10,26 +10,20 @@ import androidx.security.crypto.MasterKey
 import androidx.sqlite.db.SupportSQLiteDatabase
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
-import sns.asteroid.db.dao.AppSettingDao
-import sns.asteroid.db.dao.ColumnInfoDao
-import sns.asteroid.db.dao.CredentialDao
-import sns.asteroid.db.dao.HashtagDao
-import sns.asteroid.db.entities.AppSetting
-import sns.asteroid.db.entities.ColumnInfo
-import sns.asteroid.db.entities.Credential
-import sns.asteroid.db.entities.RecentlyHashtag
+import sns.asteroid.db.dao.*
+import sns.asteroid.db.entities.*
 import java.io.File
 
 @Database(
-    entities = [Credential::class, AppSetting::class, ColumnInfo::class, RecentlyHashtag::class],
-    version = 3,
+    entities = [Credential::class, ColumnInfo::class, RecentlyHashtag::class, Draft::class],
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun credentialDao(): CredentialDao
-    abstract fun appSettingDao(): AppSettingDao
     abstract fun columnInfoDao(): ColumnInfoDao
     abstract fun hashtagDao(): HashtagDao
+    abstract fun draftDao(): DraftDao
 
     companion object {
         private var instance: AppDatabase? = null
@@ -40,6 +34,8 @@ abstract class AppDatabase : RoomDatabase() {
                 Room.databaseBuilder(context, AppDatabase::class.java, "db-primary")
                     .addMigrations(Migration1to2())
                     .addMigrations(Migration2to3())
+                    .addMigrations(Migration3to4())
+                    .addMigrations(Migration4to5())
                     .openHelperFactory(SupportFactory(password.toByteArray()))
                     .build()
             }
@@ -126,9 +122,38 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
+
     class Migration2to3: Migration(2,3) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL("CREATE TABLE RecentlyHashtag(hashtag TEXT NOT NULL, last_at TEXT NOT NULL, PRIMARY KEY(hashtag))")
+        }
+    }
+
+    class Migration3to4: Migration(3,4) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // SQLiteだとBooleanが無いのでIntegerを使用する
+            database.execSQL("CREATE TABLE Draft(" +
+                    "id INTEGER NOT NULL," +
+                    "content TEXT NOT NULL," +
+                    "language TEXT NOT NULL," +
+                    "visibility TEXT NOT NULL," +
+                    "spoiler_text TEXT NOT NULL," +
+                    "poll1 TEXT NOT NULL," +
+                    "poll2 TEXT NOT NULL," +
+                    "poll3 TEXT NOT NULL," +
+                    "poll4 TEXT NOT NULL," +
+                    "poll_multiple INTEGER NOT NULL," +
+                    "expire_day INTEGER NOT NULL," +
+                    "expire_hour INTEGER NOT NULL," +
+                    "expire_min INTEGER NOT NULL," +
+                    "PRIMARY KEY(id))"
+            )
+        }
+    }
+
+    class Migration4to5: Migration(4,5) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("DROP TABLE AppSetting")
         }
     }
 }

@@ -5,6 +5,10 @@
     <!--posts-->
     <string name="deleted">Deleted</string>
 
+    <!--streaming-->
+    <string name="streaming_connect">Streaming in progress…</string>
+    <string name="streaming_disconnect">Streaming disabled</string>
+
     <!--upload media-->
     <string name="uploaded">Uploaded</string>
     <string name="failed_to_load_media">Failed to load</string>
@@ -52,6 +56,7 @@
     <string name="permission_granted">Permission granted, try to perform the operation again</string>
     <string name="press_back_button_again">Press the back button again to exit</string>
 
+    <string name="select_account_edit">Account switching is not available when editing posts</string>
     <string name="select_account_reply">Account switching is not available when replying</string>
     <string name="select_account_media">Account switching is not available when uploaded media</string>
 </resources>

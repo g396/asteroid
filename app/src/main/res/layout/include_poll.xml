@@ -19,8 +19,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    android:background="@drawable/background_normal"
-    android:backgroundTint="@color/cardview_sub_background"
+    android:background="@drawable/background_stroke_1dp"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView

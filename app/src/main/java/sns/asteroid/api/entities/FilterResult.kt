@@ -9,13 +9,17 @@ data class FilterResult(
     val status_matches: String? = null,
 ): java.io.Serializable {
 
+    /**
+     * @param expires_at ISO-8601 Datetime
+     * @param filter_action Enumerable (warn, hide)
+     */
     @Serializable
     data class Filter(
         val id: String,
         val title: String,
         val context: List<String>,
-        val expires_at: String? = null, // ISO 8601 Datetime
-        val filter_action: String = "warn", // enumerable, "warn" or "hide"
+        val expires_at: String? = null,
+        val filter_action: String = "warn",
         val keywords: FilterKeyword? = null,
         val statuses: FilterStatus? = null,
     ): java.io.Serializable {

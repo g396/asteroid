@@ -11,11 +11,13 @@
     <string name="sp_emoji_animation">GIF絵文字を再生する</string>
     <string name="sp_emoji_animation_summary">私の技量不足でTextView内の絵文字は再生されません</string>
     <string name="sp_time_format">時刻のフォーマット</string>
+    <string name="sp_text_color_visibility">投稿のVisibilityに合わせて文字色を変更する</string>
 
     <!--タイムラインの投稿-->
     <string name="header_posts">投稿の詳細</string>
     <string name="sp_show_card">リンク先のプレビューを表示する</string>
     <string name="sp_show_via">viaを表示する</string>
+    <string name="sp_boost_background">ブーストされた投稿を緑色の枠で囲む</string>
     <string name="sp_hide_buttons">アクションボタンを隠す</string>
 
     <!--プロフィール画像-->

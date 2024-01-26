@@ -109,7 +109,7 @@ class AboutInstanceActivity : BaseActivity(), TextLinkMovementMethod.LinkCallbac
             val domain = viewModel.instance.value?.domain
                 ?: viewModel.instanceV1.value?.uri
                 ?: return@setOnClickListener
-            val acct = "${binding.account!!.acct}@$domain"
+            val acct = "${binding.account?.acct}@$domain"
             openAccount(viewModel.credential, acct, null)
         }
         binding.admin.note.movementMethod = TextLinkMovementMethod(this)

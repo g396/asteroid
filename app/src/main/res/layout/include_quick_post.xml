@@ -10,10 +10,10 @@
     android:background="@color/cardview_background">
     <ImageButton
         android:id="@+id/hashtag"
-        android:layout_width="48dp"
+        android:layout_width="36dp"
         android:layout_height="48dp"
         android:background="@color/transparent"
-        android:padding="12dp"
+        android:padding="6dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/hashtag"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,10 +22,10 @@
 
     <ImageButton
         android:id="@+id/customEmoji"
-        android:layout_width="48dp"
+        android:layout_width="36dp"
         android:layout_height="48dp"
         android:background="@color/transparent"
-        android:padding="12dp"
+        android:padding="6dp"
         android:scaleType="fitCenter"
         android:src="@drawable/emoji"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
 
     <Spinner
         android:id="@+id/selectVisibility"
-        android:layout_width="48dp"
+        android:layout_width="36dp"
         android:layout_height="48dp"
         android:background="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"

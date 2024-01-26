@@ -1,17 +1,25 @@
 package sns.asteroid.api.entities
 
 import kotlinx.serialization.Serializable
-import sns.asteroid.R
 import sns.asteroid.model.emoji.CustomEmojiParser
 
+/**
+ * @param created_at            ISO-8601 Datetime
+ * @param content               HTML text
+ * @param visibility            Enumerable (public, unlisted, private, direct)
+ * @param language              ISO-639 Part 1 two-letter language code
+ * @param edited_at             ISO-8601 Datetime
+ * @param emoji_reactions       use in fedibird.com and others
+ * @param emoji_reactions_count use in fedibird.com and others
+ */
 @Serializable
 data class Status(
     override val id: String,
     val uri: String,
-    val created_at: String, // ISO 8601 Datetime
+    val created_at: String,
     val account: Account,
-    val content: String, // HTML
-    val visibility: String, //Enumerable (public, unlisted, private, direct)
+    val content: String,
+    val visibility: String,
     val sensitive: Boolean,
     val spoiler_text: String,
     val media_attachments: List<MediaAttachment>,
@@ -25,36 +33,24 @@ data class Status(
     val url: String? = null,
     val in_reply_to_id: String? = null,
     val in_reply_to_account_id: String? = null,
-    var reblog: Status? = null,
-    var poll: Poll? = null,
+    val reblog: Status? = null,
+    val poll: Poll? = null,
     val card: Card? = null,
-    val language: String? = null, // ISO 639 Part 1 two-letter language code
+    val language: String? = null,
     val text: String? = null,
-    val edited_at: String? = null, // ISO 8601 Datetime
-    var favourited: Boolean = false,
-    var reblogged: Boolean = false,
+    val edited_at: String? = null,
+    val favourited: Boolean = false,
+    val reblogged: Boolean = false,
     val muted: Boolean = false,
-    var bookmarked: Boolean = false,
-    var pinned: Boolean = false,
-    var filtered: List<FilterResult> = emptyList(),
-    val emoji_reactions: List<EmojiReaction>? = null, // use in fedibird.com
+    val bookmarked: Boolean = false,
+    val pinned: Boolean = false,
+    val filtered: List<FilterResult> = emptyList(),
+    val emoji_reactions: List<EmojiReaction>? = null,
     val emoji_reactions_count: Int = 0,
-    var isShowContent: Boolean = reblog?.spoiler_text?.isEmpty() ?: spoiler_text.isEmpty(),
 ): java.io.Serializable, ContentInterface {
-    var isSelected = false // タイムラインでのボタン表示・非表示切り替えに使用する
-
     val parsedContent = CustomEmojiParser.parse(content, emojis)
     val parsedSpoilerText = CustomEmojiParser.parse(spoiler_text, emojis)
 
-    val background by lazy {
-        // if (isPinned) R.drawable.background_pinned
-        if (reblog != null) R.drawable.background_boost
-        else R.drawable.background_normal
-    }
-    val boostedBy by lazy {
-        val empty = ""
-        if (reblog == null) empty
-        else if (account.display_name.isBlank()) account.username
-        else CustomEmojiParser.parse(account.display_name, account.emojis)
-    }
+    var isShowContent: Boolean = reblog?.spoiler_text?.isEmpty() ?: spoiler_text.isEmpty()
+    var useFilter: Boolean = true
 }

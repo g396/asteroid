@@ -12,7 +12,7 @@ import sns.asteroid.model.timeline.GettingContentsModel
 
 class FollowingModel(credential: Credential, private val userId: String): AbstractTimelineModel<Account>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): GettingContentsModel.Result<Account> {
-        val client = Accounts(credential)
+        val client = Accounts(credential.instance, credential.accessToken)
         val response = client.getFollowing(userId, maxId, sinceId)
             ?: return GettingContentsModel.Result(
                 isSuccess = false,

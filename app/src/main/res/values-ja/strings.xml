@@ -51,6 +51,7 @@
     <string name="edit">編集</string>
     <string name="favourite">ふぁぼる</string>
     <string name="unfavourite">ふぁぼ取消</string>
+    <string name="boost_selected_visibility">公開範囲を指定してブースト</string>
     <string name="pin_the_posts">プロフィールへピン留めする</string>
     <string name="unpin_the_posts">プロフィールからピン留めを外す</string>
     <string name="who_favourited">この投稿をふぁぼった人一覧</string>

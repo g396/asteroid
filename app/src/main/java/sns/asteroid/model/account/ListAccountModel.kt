@@ -12,7 +12,7 @@ import sns.asteroid.model.timeline.GettingContentsModel
 
 class ListAccountModel(credential: Credential, val listId: String): AbstractTimelineModel<Account>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): GettingContentsModel.Result<Account> {
-        val client = Lists(credential)
+        val client = Lists(credential.instance, credential.accessToken)
         val response = client.getAccounts(maxId, sinceId, listId)
             ?: return GettingContentsModel.Result(
                 isSuccess = false,

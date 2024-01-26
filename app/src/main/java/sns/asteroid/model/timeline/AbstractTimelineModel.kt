@@ -6,8 +6,8 @@ import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 abstract class AbstractTimelineModel<T>(protected val credential: Credential):
     GettingContentsModel<T> {
-    var maxId: String? = null
-    var sinceId: String? = null
+    private var maxId: String? = null
+    private var sinceId: String? = null
 
     override fun getLatest(): Result<T> {
         return getContents(maxId = null, sinceId = sinceId)
@@ -34,6 +34,10 @@ abstract class AbstractTimelineModel<T>(protected val credential: Credential):
         maxId = null
         sinceId = null
         return getLatest()
+    }
+
+    fun setSinceId(id: String) {
+        sinceId = id
     }
 
     protected abstract fun getContents(maxId: String?, sinceId: String?): Result<T>

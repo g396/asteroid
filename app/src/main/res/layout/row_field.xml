@@ -2,49 +2,67 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="name"
+            type="String" />
+        <variable
+            name="value"
+            type="String" />
+        <variable
+            name="verified"
+            type="boolean" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/verified"
+            android:id="@+id/verifiedImageView"
             android:layout_width="18sp"
             android:layout_height="18sp"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/name"
+            android:visibility="@{verified ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTextView"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/name"
+            app:layout_constraintTop_toTopOf="@+id/nameTextView"
             app:layout_goneMarginStart="0dp"
             app:srcCompat="@drawable/verified" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/nameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/sample_field1"
+            tools:text="@string/sample_field1"
             android:textStyle="bold"
+            app:content="@{name}"
+            app:scaleEmojis="@{false}"
             app:customTextSize='@{"default"}'
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/verified"
+            app:layout_constraintStart_toEndOf="@+id/verifiedImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/value"
+            android:id="@+id/valueTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/sample_value1"
+            tools:text="@string/sample_value1"
             app:customTextSize='@{"default"}'
+            app:content="@{value}"
+            app:scaleEmojis="@{false}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,15 +16,11 @@
         <variable
             name="content"
             type="String" />
-        <variable
-            name="filteringVisibility"
-            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="@{filteringVisibility}">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +81,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:textStyle="bold"
                 app:notificationType="@{notificationType}"
                 app:reactedUser="@{account}"
@@ -97,12 +92,14 @@
                 android:id="@+id/notificationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/background_normal"
                 android:backgroundTint="@color/cardview_background"
                 android:padding="8dp"
                 app:customTextSize='@{"default"}'
                 app:content="@{content}"
+                app:scaleEmojis="@{true}"
                 tools:text="@string/sample_summary"
                 tools:visibility="invisible" />
 

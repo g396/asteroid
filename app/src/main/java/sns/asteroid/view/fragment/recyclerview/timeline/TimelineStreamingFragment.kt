@@ -1,7 +1,10 @@
 package sns.asteroid.view.fragment.recyclerview.timeline
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import kotlinx.coroutines.launch
 import sns.asteroid.R
@@ -16,15 +19,30 @@ open class TimelineStreamingFragment: TimelineFragment() {
         TimelineStreamingViewModel.Factory(column, credential)
     }
 
+    /**
+     * ストリーミング復帰時に最新の投稿を別途取得したり
+     * 色々と条件が異なるのでsuper()を呼ばない
+     */
     override fun onFragmentShow() {
         lifecycleScope.launch { viewModel.reloadCredential() }
+        if(!viewModel.streamingClient.isConnecting() and viewModel.enableStreaming) {
+            resumeStreaming()
+            loadLatest()
+        } else if(!viewModel.isLoaded) {
+            loadLatest()
+        }
+    }
 
-        if(!viewModel.isLoaded)
-            startStreaming()
-        if(!viewModel.isLoaded or !viewModel.streamingClient.isConnecting()) {
-            lifecycleScope.launch {
-                resumeStreaming()
-                loadLatest()
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        super.onCreateMenu(menu, menuInflater)
+        menu.findItem(R.id.action_streaming).also {
+            it.isVisible = true
+            if (viewModel.enableStreaming) {
+                it.isChecked = true
+                it.setIcon(R.drawable.streaming_on)
+            } else {
+                it.isChecked = false
+                it.setIcon(R.drawable.streaming_off)
             }
         }
     }
@@ -42,14 +60,13 @@ open class TimelineStreamingFragment: TimelineFragment() {
                 reload()
             }
             R.id.action_streaming -> {
+                item.isChecked = !item.isChecked
                 if (item.isChecked) {
-                    item.isChecked = false
-                    item.setIcon(R.drawable.streaming_off)
-                    stopStreaming()
-                } else {
-                    item.isChecked = true
                     item.setIcon(R.drawable.streaming_on)
                     startStreaming()
+                } else {
+                    item.setIcon(R.drawable.streaming_off)
+                    stopStreaming()
                 }
             }
             else -> super.onMenuItemSelected(item)
@@ -58,10 +75,12 @@ open class TimelineStreamingFragment: TimelineFragment() {
     }
 
     private fun startStreaming() {
+        Toast.makeText(requireContext(), R.string.streaming_connect, Toast.LENGTH_SHORT).show()
         lifecycleScope.launch { viewModel.startStreaming() }
     }
 
     private fun stopStreaming() {
+        Toast.makeText(requireContext(), R.string.streaming_disconnect, Toast.LENGTH_SHORT).show()
         lifecycleScope.launch { viewModel.stopStreaming() }
     }
 

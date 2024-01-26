@@ -2,17 +2,20 @@ package sns.asteroid.api.entities
 
 import kotlinx.serialization.Serializable
 
+/**
+ * @param configuration added at v3.4.2
+ */
 @Serializable
 data class InstanceV1(
     val uri: String,
     val title: String,
     val version: String,
-    val short_description: String,
+    val short_description: String = "",
     val thumbnail: String,
     val languages: List<String>,
-    val configuration: Configuration? = null, // added at 3.4.2
+    val configuration: Configuration? = null,
     val registrations: Boolean,
-    val contact_account: Account,
+    val contact_account: Account? = null,
 ){
     @Serializable
     data class Configuration(

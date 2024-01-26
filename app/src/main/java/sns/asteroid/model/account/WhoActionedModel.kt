@@ -13,8 +13,8 @@ import sns.asteroid.model.util.AttributeGetter
 class WhoActionedModel(credential: Credential, val id: String, val action: Action): AbstractTimelineModel<Account>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Account> {
         val response = when(action) {
-            Action.BOOST -> Statuses(credential).getWhoBoosted(id, maxId, sinceId)
-            Action.FAVOURITE -> Statuses(credential).getWhoFavourited(id, maxId, sinceId)
+            Action.BOOST -> Statuses(credential.instance, credential.accessToken).getWhoBoosted(id, maxId, sinceId)
+            Action.FAVOURITE -> Statuses(credential.instance, credential.accessToken).getWhoFavourited(id, maxId, sinceId)
         } ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed))
 
         if (!response.isSuccessful)
@@ -38,10 +38,7 @@ class WhoActionedModel(credential: Credential, val id: String, val action: Actio
             maxId = AttributeGetter.getMaxIdFromHttpLinkHeader(response),
             sinceId = AttributeGetter.getSinceIdFromHttpLinkHeader(response),
             toastMessage = if(accounts.isEmpty()) getString(R.string.end_of_list) else null,
-        ).also {
-            android.util.Log.d("maxId", it.maxId.toString())
-            android.util.Log.d("sinceId", it.sinceId.toString())
-        }
+        )
     }
 
     enum class Action {

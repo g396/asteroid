@@ -13,9 +13,6 @@ class AnnouncementsModel(private val credential: Credential) {
         val response = Announcements(credential.instance, credential.accessToken).getAll()
             ?: return Result(isSuccess = false, message = getString(R.string.failed))
 
-        android.util.Log.d("log", response.code.toString())
-
-
         if (!response.isSuccessful)
             return Result(isSuccess = false, message = response.body?.string())
                 .also { response.close() }
@@ -27,10 +24,8 @@ class AnnouncementsModel(private val credential: Credential) {
 
         return try {
             val announcements = json.decodeFromString(ListSerializer(Announcement.serializer()), response.body!!.string())
-            android.util.Log.d("log", announcements.toString())
             Result(isSuccess = true, announcements = announcements)
         } catch (e:Exception) {
-            android.util.Log.d("log", e.toString())
             Result(isSuccess = false, message = e.toString())
         }
     }

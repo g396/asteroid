@@ -16,10 +16,16 @@ class Hashtags(
         val url = ("https://${server}/api/v1/followed_tags").toHttpUrlOrNull()
             ?: return null
 
-        val urlBuilder =url.newBuilder().apply {
-            maxId?.let { addQueryParameter("max_id", it) }
-            sinceId?.let { addQueryParameter("since_id", it) }
-            limit?.let { addQueryParameter("limit", "$it") }
+        val urlBuilder = url.newBuilder().apply {
+            maxId?.let {
+                addQueryParameter("max_id", it)
+            }
+            sinceId?.let {
+                addQueryParameter("since_id", it)
+            }
+            limit?.let {
+                addQueryParameter("limit", "$it")
+            }
         }
 
         val request = Request.Builder()

@@ -2,6 +2,7 @@ package sns.asteroid.model.streaming
 
 import kotlinx.serialization.json.Json
 import okhttp3.*
+import sns.asteroid.api.entities.Notification
 import sns.asteroid.api.entities.Status
 import sns.asteroid.db.entities.ColumnInfo
 import sns.asteroid.db.entities.Credential
@@ -32,6 +33,19 @@ open class TimelineStreamingClient(
             "update" -> listener.onUpdated(json.decodeFromString(Status.serializer(), data))
             "delete" -> listener.onDeleted(data)
             "status.update" -> listener.onEdited(json.decodeFromString(Status.serializer(), data))
+            "notification"  -> parseNotification(data)?.let { listener.onEdited(it) }
+        }
+    }
+
+    private fun parseNotification(payload: String): Status? {
+        val json = Json {
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        }
+        return try {
+            json.decodeFromString(Notification.serializer(), payload).status
+        } catch (e: Exception) {
+            null
         }
     }
 

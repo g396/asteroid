@@ -5,110 +5,39 @@ import kotlinx.serialization.json.Json
 import sns.asteroid.R
 import sns.asteroid.api.Notifications
 import sns.asteroid.api.entities.Notification
+import sns.asteroid.api.entities.Notification.Companion.margeSameReaction
 import sns.asteroid.db.entities.Credential
 import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 
-class NotificationTimelineModel(
-    credential: Credential,
-    val onlyMention: Boolean = false,
-): AbstractTimelineModel<Notification>(credential) {
+class NotificationTimelineModel(credential: Credential): AbstractTimelineModel<Notification>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Notification> {
-        val client = Notifications(credential)
-        val response = client.getAll(maxId, sinceId, onlyMention)
+        val client = Notifications(credential.instance, credential.accessToken)
+        val response = client.getAll(maxId, sinceId, onlyMention = false)
             ?: return Result(isSuccess = false, toastMessage = getString(R.string.failed_loading))
 
         if(!response.isSuccessful)
-            return Result<Notification>(isSuccess = false, toastMessage = response.body!!.string())
+            return Result<Notification>(isSuccess = false, toastMessage = response.body?.string())
                 .also { response.close() }
 
         val json = Json {
             ignoreUnknownKeys = true
             coerceInputValues = true
         }
-        val notifications =
-            json.decodeFromString(ListSerializer(Notification.serializer()), response.body!!.string())
 
-        if(notifications.isEmpty())
-            return Result<Notification>(isSuccess = true)
-                .also { response.close() }
-
-        return Result(
-            isSuccess   = true,
-            contents    = notifications.margeSameReaction(),
-            maxId       = notifications.last().id,
-            sinceId     = notifications.first().id,
-        ).also { response.close() }
-    }
-
-    private fun List<Notification>.margeSameReaction(): List<Notification> {
-        return this.margeSameReaction("favourite")
-            .margeSameReaction("reblog")
-            .margeEmojiReaction()
-    }
-
-    private fun List<Notification>.margeSameReaction(notificationType: String): List<Notification> {
-        val notifications = this
-
-        // 投稿 - アクションしたユーザのリスト のMapを作る
-        val groupingFavourites = let {
-            val reactions = notifications.filter { (it.type == notificationType) and (it.status != null) }
-
-            val group = reactions.groupBy { it.status!!.id }
-
-            group.keys.associateWith { id ->
-                group[id]!!.associate { Pair(it.account, it.id) }.keys
-            }
+        return try {
+            val notifications =
+                json.decodeFromString(ListSerializer(Notification.serializer()), response.body!!.string())
+            Result(
+                isSuccess   = true,
+                contents    = notifications.margeSameReaction(),
+                maxId       = notifications.lastOrNull()?.id,
+                sinceId     = notifications.firstOrNull()?.id,
+            )
+        } catch (e: Exception) {
+            Result(isSuccess = false, toastMessage = e.toString())
+        } finally {
+            response.close()
         }
-
-        val list = notifications.toMutableList()
-
-        groupingFavourites.forEach { id, accounts ->
-            val first = notifications.find { (it.status?.id == id) and (it.type == notificationType) }
-            first?.otherAccount = accounts.toList()
-
-            list.removeIf { (it.status?.id == id) and (it.type == notificationType) and (it.otherAccount.isEmpty()) }
-        }
-
-        return list
-    }
-
-    private fun List<Notification>.margeEmojiReaction(): List<Notification> {
-        val shortCodes = this.associate { Pair(it.id, it.emoji_reaction?.name ?: "") }.values
-            .toSet()
-            .filter { it.isNotEmpty() }
-
-        var mutableList = this
-
-        shortCodes.forEach {
-            mutableList = mutableList.margeEmojiReaction(it)
-        }
-
-        return mutableList
-    }
-
-    private fun  List<Notification>.margeEmojiReaction(shortCode: String): List<Notification> {
-        val notifications = this
-
-        // 投稿 - アクションしたユーザのリスト のMapを作る
-        val accountsMap = let {
-            val reactions = notifications.filter { (it.emoji_reaction?.name == shortCode) and (it.status != null) }
-            val group = reactions.groupBy { it.status!!.id }
-
-            group.keys.associateWith { id ->
-                group[id]!!.associate { Pair(it.account, it.id) }.keys
-            }
-        }
-
-        val list = notifications.toMutableList()
-
-        accountsMap.forEach { id, accounts ->
-            val first = notifications.find { (it.status?.id == id) and (it.emoji_reaction?.name == shortCode) }
-            first?.otherAccount = accounts.toList()
-
-            list.removeIf { (it.status?.id == id) and (it.emoji_reaction?.name == shortCode) and (it.otherAccount.isEmpty()) }
-        }
-
-        return list
     }
 }

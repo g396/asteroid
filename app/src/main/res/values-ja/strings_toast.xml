@@ -5,6 +5,10 @@
     <!--posts-->
     <string name="deleted">削除しました</string>
 
+    <!--streaming-->
+    <string name="streaming_connect">ストリーミング接続中・・・</string>
+    <string name="streaming_disconnect">ストリーミングを無効化しました</string>
+
     <!--upload media-->
     <string name="uploaded">アップロード完了</string>
     <string name="failed_to_load_media">ファイルの読み込みに失敗しました</string>
@@ -50,6 +54,7 @@
     <string name="permission_granted">権限が承認されました。もう一度操作を実行して下さい</string>
     <string name="press_back_button_again">もう一度戻るアクションで終了</string>
 
+    <string name="select_account_edit">編集時はアカウント切替できません</string>
     <string name="select_account_reply">返信時はアカウント切替できません</string>
     <string name="select_account_media">メディアのアップロード後はアカウント切替できません</string>
 </resources>

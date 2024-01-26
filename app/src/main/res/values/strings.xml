@@ -53,6 +53,7 @@
     <string name="edit">Edit this post</string>
     <string name="favourite">Favourite</string>
     <string name="unfavourite">Unfavourite</string>
+    <string name="boost_selected_visibility">Boost with selected visibility</string>
     <string name="pin_the_posts">Pin posts to profile</string>
     <string name="who_favourited">Show users who favourited this</string>
     <string name="who_reblogged">Show users who boosted this</string>

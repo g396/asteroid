@@ -8,4 +8,11 @@
     <color name="graph_background">#71717A</color>
     <color name="error_message">@color/red</color>
     <color name="switch_account">@color/gray3</color>
+
+    <color name="textColorSecondary">#b3ffffff</color>
+
+    <color name="textColorPublic">@color/textColorSecondary</color>
+    <color name="textColorUnlisted">@color/green_200</color>
+    <color name="textColorPrivate">@color/orange_200</color>
+    <color name="textColorDirect">@color/deep_purple_200</color>
 </resources>

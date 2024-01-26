@@ -10,7 +10,7 @@ import sns.asteroid.model.timeline.GettingContentsModel.Result
 
 class MixTimelineModel(credential: Credential): AbstractTimelineModel<Status>(credential) {
     override fun getContents(maxId: String?, sinceId: String?): Result<Status> {
-        val client = Timelines(credential)
+        val client = Timelines(credential.instance, credential.accessToken)
 
         val getLocal = client.getLocal(maxId, sinceId)
             ?: return Result(isSuccess=false, toastMessage=getString(R.string.failed_loading))
@@ -18,7 +18,7 @@ class MixTimelineModel(credential: Credential): AbstractTimelineModel<Status>(cr
             ?: return Result(isSuccess=false, toastMessage=getString(R.string.failed_loading))
 
         if(!getLocal.isSuccessful or !getHome.isSuccessful)
-            return Result<Status>(isSuccess=false, toastMessage=getLocal.body!!.string())
+            return Result<Status>(isSuccess = false, toastMessage = getLocal.body?.string())
                 .also {
                     getLocal.close()
                     getHome.close()
@@ -28,23 +28,20 @@ class MixTimelineModel(credential: Credential): AbstractTimelineModel<Status>(cr
             ignoreUnknownKeys = true
             coerceInputValues = true
         }
-        val local = json.decodeFromString(ListSerializer(Status.serializer()), getLocal.body!!.string())
-        val home = json.decodeFromString(ListSerializer(Status.serializer()), getHome.body!!.string())
-        val statuses = integration(local, home)
 
-        if(statuses.isEmpty()) return Result<Status>(isSuccess=true)
-            .also {
-                getLocal.close()
-                getHome.close()
-            }
-
-        return Result(
-            isSuccess       = true,
-            contents        = statuses,
-            toastMessage    = null,
-            maxId           = statuses.last().id,
-            sinceId         = statuses.first().id,
-        ).also {
+        return try {
+            val local = json.decodeFromString(ListSerializer(Status.serializer()), getLocal.body!!.string())
+            val home = json.decodeFromString(ListSerializer(Status.serializer()), getHome.body!!.string())
+            val statuses = integration(local, home)
+            Result(
+                isSuccess   = true,
+                contents    = statuses,
+                maxId       = statuses.lastOrNull()?.id,
+                sinceId     = statuses.firstOrNull()?.id,
+            )
+        } catch (e: Exception) {
+            Result(isSuccess = false, toastMessage = e.toString())
+        } finally {
             getLocal.close()
             getHome.close()
         }

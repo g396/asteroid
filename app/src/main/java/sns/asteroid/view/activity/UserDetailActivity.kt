@@ -71,45 +71,40 @@ class UserDetailActivity:
         viewModel.relationship.observe(this, Observer {
             binding.toolbar.invalidateMenu()
 
-            binding.followButton.also { button ->
+            binding.profile.followButton.also { button ->
                 if(it.blocking) {
-                    binding.followButtonImageResource = R.drawable.button_block
-                    binding.followButtonAccentColor = getColor(R.color.gray0)
-                    binding.followButtonTitle = getString(R.string.button_block)
+                    binding.profile.followButtonAccentColor = getColor(R.color.gray0)
+                    binding.profile.followButtonTitle = getString(R.string.button_block)
                 } else if (it.muting) {
-                    binding.followButtonImageResource = R.drawable.button_mute
-                    binding.followButtonAccentColor = getColor(R.color.gray0)
-                    binding.followButtonTitle = getString(R.string.button_mute)
+                    binding.profile.followButtonAccentColor = getColor(R.color.gray0)
+                    binding.profile.followButtonTitle = getString(R.string.button_mute)
                 } else if(it.following) {
-                    binding.followButtonImageResource = R.drawable.button_follow_active
-                    binding.followButtonAccentColor = viewModel.credential.accentColor
-                    binding.followButtonTitle = getString(R.string.button_following)
+                    binding.profile.followButtonAccentColor = viewModel.credential.accentColor
+                    binding.profile.followButtonTitle = getString(R.string.button_following)
                 } else if (it.requested) {
-                    binding.followButtonImageResource = R.drawable.button_follow_request
-                    binding.followButtonAccentColor = getColor(R.color.gray0)
-                    binding.followButtonTitle = getString(R.string.button_request)
+                    binding.profile.followButtonAccentColor = getColor(R.color.gray0)
+                    binding.profile.followButtonTitle = getString(R.string.button_request)
                 } else {
-                    binding.followButtonImageResource = R.drawable.button_follow
-                    binding.followButtonAccentColor = getColor(R.color.gray0)
-                    binding.followButtonTitle = getString(R.string.button_follow)
+                    binding.profile.followButtonAccentColor = getColor(R.color.gray0)
+                    binding.profile.followButtonTitle = getString(R.string.button_follow)
                 }
                 button.visibility = View.VISIBLE
             }
         })
 
         viewModel.account.observe(this, Observer { account ->
-            binding.account = account
+            binding.profile.account = account
 
-            binding.fields.also {
-                val list = account.fields ?: emptyList()
+            binding.profile.fields.also {
+                val list = account.convertedField ?: emptyList()
                 it.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
                 (it.adapter as FieldAdapter).submitList(list)
             }
-            binding.hitoWoMadowasuSuuji.also {
+            binding.profile.followFollower.also {
                 val list = listOf(
-                    Field(getString(R.string.title_posts),"${account.statuses_count}", null),
-                    Field(getString(R.string.title_following),"${account.following_count}", null),
-                    Field(getString(R.string.title_followers),"${account.followers_count}", null),
+                    Triple(getString(R.string.title_posts),"${account.statuses_count}", null),
+                    Triple(getString(R.string.title_following),"${account.following_count}", null),
+                    Triple(getString(R.string.title_followers),"${account.followers_count}", null),
                 )
                 (it.adapter as FieldAdapter).submitList(list)
             }
@@ -122,27 +117,27 @@ class UserDetailActivity:
             lifecycleScope.launch {
                 if(!isMe) viewModel.getRelationship()
                 else {
-                    binding.editProfile.visibility = View.VISIBLE
-                    binding.followButtonAccentColor = viewModel.credential.accentColor
+                    binding.profile.editProfile.visibility = View.VISIBLE
+                    binding.profile.followButtonAccentColor = viewModel.credential.accentColor
                 }
             }
         })
 
-        binding.profile.movementMethod = TextLinkMovementMethod(this)
+        binding.profile.profile.movementMethod = TextLinkMovementMethod(this)
 
-        binding.followButton.also {
+        binding.profile.followButton.also {
             it.setOnClickListener { onFollowButtonClick() }
         }
-        binding.editProfile.also {
+        binding.profile.editProfile.also {
             it.setOnClickListener { openEditProfile(viewModel.credential) }
         }
-        binding.also {
+        binding.profile.also {
             it.fields.adapter = FieldAdapter(this, TextLinkMovementMethod(this))
             it.fields.layoutManager = GridLayoutManager(this, 1)
 
-            it.hitoWoMadowasuSuuji.adapter = FieldAdapter(this, TextLinkMovementMethod(this))
-            it.hitoWoMadowasuSuuji.layoutManager = GridLayoutManager(this, 3)
-            it.hitoWoMadowasuSuujiCard.visibility = if (SettingsValues.newInstance().isShowFollowersCount) View.VISIBLE else View.GONE
+            it.followFollower.adapter = FieldAdapter(this, TextLinkMovementMethod(this))
+            it.followFollower.layoutManager = GridLayoutManager(this, 3)
+            it.followFollower.visibility = if (SettingsValues.newInstance().isShowFollowersCount) View.VISIBLE else View.GONE
         }
 
         lifecycleScope.launch {

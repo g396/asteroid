@@ -32,4 +32,6 @@
     <string name="menu_replies_policy_none">表示しない</string>
     <string name="menu_replies_policy_list">リスト内のユーザ</string>
     <string name="menu_replies_policy_followed">フォロー中のユーザ全員</string>
+
+    <string name="menu_delete_all">全て削除</string>
 </resources>

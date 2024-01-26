@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import sns.asteroid.R
 import sns.asteroid.api.entities.Notification
+import sns.asteroid.api.entities.Status
 import sns.asteroid.databinding.ActivityNotificationDetailBinding
 import sns.asteroid.databinding.FragmentNotificationDetailBinding
 import sns.asteroid.db.entities.Credential
@@ -60,7 +61,7 @@ class NotificationDetailActivity: AppCompatActivity() {
             val status = let {
                 val notification = requireArguments().get("notification") as Notification
                 notification.status!!
-            }.apply { isSelected = true }
+            }
 
             StatusDetailViewModel.Factory(credential, status)
         }
@@ -71,7 +72,10 @@ class NotificationDetailActivity: AppCompatActivity() {
                 myAccountId = viewModel.credential.value!!.account_id,
                 listener = this@NotificationDetailFragment,
                 columnContext = "notifications"
-            )
+            ).also {
+                val notification = requireArguments().get("notification") as Notification
+                it.showActionButton(notification.status?.id)
+            }
         }
 
         private var _binding: FragmentNotificationDetailBinding? = null
